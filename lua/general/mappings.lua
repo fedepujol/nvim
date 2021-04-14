@@ -1,6 +1,9 @@
 -- General Mappings
 local opts = { noremap = true }
 
+vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', opts)
+vim.g.mapleader = ' '
+
 -- Use ALT + hjkl to resize windows
 vim.api.nvim_set_keymap('n', '<M-j>', ':resize -2<CR>', opts)
 vim.api.nvim_set_keymap('n', '<M-k>', ':resize +2<CR>', opts)

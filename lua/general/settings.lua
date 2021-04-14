@@ -1,4 +1,7 @@
 -- Settings
+-- For more information about the options use :h 'option'.
+-- E.g. :h 'background'
+
 local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
@@ -8,7 +11,6 @@ o.background = "dark"                   -- Tell NVim the background color
 o.backup = false                        -- No backup file when written
 o.clipboard = "unnamedplus"             -- Copy-Paste between Neovim and everything else
 o.cmdheight = 2                         -- More space to display messages
-o.completeopt = "menuone,noselect"      -- Necesary form nvim-compe
 o.encoding = "UTF-8"                    -- Encoding used internally
 o.hidden = true                         -- Buffers becomes hidden when abandoned
 o.hlsearch = true                       -- Highlighting search
@@ -19,7 +21,6 @@ o.showtabline = 2                       -- Always show tabs
 o.smarttab = true                       -- Insert "tabstop" number of spaces when pressing tab 
 o.splitbelow = true                     -- Horizontal splits will be bellow
 o.splitright = true                     -- Vertical splits will be on the right
-o.termguicolors = true                  -- Set for colorizer
 o.timeoutlen = 500                      -- Time in miliseconds to wait for a mapped sequence to complete
 o.updatetime = 300                      -- Time to wait before the swap file is written to disk (also CursorHold)
 o.writebackup = false                   -- No backup file

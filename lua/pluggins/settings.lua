@@ -1,14 +1,6 @@
--- Setting Paq
+-- Settings
+local o = vim.o
 
-vim.cmd 'packadd paq-nvim'
-local paq = require 'paq-nvim'.paq
-paq {'paq-nvim', opt = true}
-
-paq {'neovim/nvim-lspconfig'}
-paq {'glepnir/lspsaga.nvim'}
-paq {'kyazdani42/nvim-web-devicons'}
-paq {'romgrk/barbar.nvim'}
-paq {'norcalli/nvim-colorizer.lua'}
-paq {'hrsh7th/nvim-compe'}
-paq {'hrsh7th/vim-vsnip'}
-paq {'nvim-treesitter/nvim-treesitter'}
+-- Global Options
+o.termguicolors = true                  -- Set for colorizer. Enables 24-Bit Colors on TUI.
+o.completeopt = "menuone,noselect"      -- Set for nvim-compe. Comma-separated options for Insert mode.
