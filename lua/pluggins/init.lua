@@ -1,0 +1,6 @@
+require('pluggins.barbar')
+require('pluggins.colorizer')
+require('pluggins.compe')
+require('pluggins.lsp')
+require('pluggins.lspsaga')
+require('pluggins.treesitter')

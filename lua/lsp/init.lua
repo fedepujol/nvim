@@ -1,0 +1,7 @@
+require('lsp.bash')
+require('lsp.css')
+require('lsp.json')
+require('lsp.pyright')
+require('lsp.tsserver')
+require('lsp.vim')
+require('lsp.yaml')
