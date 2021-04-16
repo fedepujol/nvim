@@ -2,7 +2,7 @@
 
 vim.cmd 'packadd paq-nvim'
 local paq = require 'paq-nvim'.paq
-paq {'paq-nvim', opt = true}
+paq {'savq/paq-nvim', opt = true}
 
 paq {'neovim/nvim-lspconfig'}
 paq {'glepnir/lspsaga.nvim'}
@@ -11,5 +11,5 @@ paq {'romgrk/barbar.nvim'}
 paq {'norcalli/nvim-colorizer.lua'}
 paq {'hrsh7th/nvim-compe'}
 paq {'hrsh7th/vim-vsnip'}
-paq {'nvim-treesitter/nvim-treesitter'}
-paq {'liuchengxu/vim-which-key'}
+paq {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+paq {'glepnir/galaxyline.nvim', branch = 'main'}

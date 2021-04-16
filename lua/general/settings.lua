@@ -9,7 +9,7 @@ local wo = vim.wo
 -- Global Options
 o.background = "dark"                   -- Tell NVim the background color
 o.backup = false                        -- No backup file when written
-o.clipboard = "unnamedplus"             -- Copy-Paste between Neovim and everything else
+--o.clipboard = "unnamedplus"             -- Copy-Paste between Neovim and everything else
 o.cmdheight = 2                         -- More space to display messages
 o.encoding = "UTF-8"                    -- Encoding used internally
 o.hidden = true                         -- Buffers becomes hidden when abandoned
