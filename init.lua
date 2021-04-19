@@ -11,7 +11,7 @@ require('pluggins.compe')
 require('pluggins.lsp')
 require('pluggins.lspsaga')
 require('pluggins.treesitter')
-require('pluggins.galaxy-line')
+require('pluggins.galaxyline.galaxy-line')
 
 -- LSP
 require('lsp.bash')

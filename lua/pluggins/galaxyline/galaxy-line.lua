@@ -1,109 +1,140 @@
 -- GalaxyLine
-local colors = require('colors')
-local gLineSection = require('galaxyline').section
-local mode_aliases = {
-    [19] = { alias = 'S-BLOCK', color = { fg = colors.black, bg = colors.gray5 }},
-    [22] = { alias = 'V-BLOCK', color = { fg = colors.black, bg = colors.orange5 }},
-    [82] = { alias = 'REPLACE', color = { fg = colors.white, bg = colors.red3 }},
-    [83] = { alias = 'S-LINE', color = { fg = colors.black, bg = colors.gray3 }},
-    [86] = { alias = 'V-LINE', color = { fg = colors.black, bg = colors.orange4 }},
-    [99] = { alias = 'COMMAND', color = { fg = colors.white, bg = colors.purple1 }},
-    [105] = { alias = 'INSERT', color = { fg = colors.white, bg = colors.green0 }},
-    [110] = { alias = 'NORMAL', color = { fg = colors.white, bg = colors.blue0 }},
-    [115] = { alias = 'SELECT', color = { fg = colors.black, bg = colors.gray1 }},
-    [116] = { alias = 'TERMINAL', color = { fg = colors.white, bg = colors.yellow1 }},
-    [118] = { alias = 'VISUAL', color = { fg = colors.white, bg = colors.orange0 }},
-}
+---------------------------------------------------------------
+------------------------   Variables   ------------------------
+---------------------------------------------------------------
+local gl = require('galaxyline')
+local gLineSection = gl.section
+local colors = require('pluggins.galaxyline.colors')
+local vimMode = require('pluggins.galaxyline.providers.mode')
+local icon = require('pluggins.galaxyline.providers.icon')
 
+local distro = 'arch'
 
-local getCurrentMode = function()
-    local cMode = mode_aliases[vim.fn.mode():byte()]
-    if cMode == nil then
-        cMode = mode_aliases[110]
-    end
-    return cMode
+local buffer_not_emtpy = function ()
+    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
 end
 
-local getModeAlias = function()
-    return getCurrentMode().alias
-end
+vim.cmd("hi Statusline guifg='#1e1e1e'")
 
-local getModeColor = function ()
-    return getCurrentMode().color
-end
-
----------------------
---- Left Section ----
----------------------
+---------------------------------------------------------------
+------------------------ Left Section  ------------------------
+---------------------------------------------------------------
 gLineSection.left[0] = {
     CustomIcon = {
         provider = function()
-            return '  '..''..'  '
+            return '  '..icon.getIcon(distro) ..' '
         end,
-        separator = ' | ',
-        highlight = { colors.white, colors.blue0, 'bold' }
+        highlight = icon.getColor(distro),
     }
 }
 
 gLineSection.left[1] = {
     ViMode = {
         provider = function ()
-            vim.api.nvim_command('hi GalaxyViMode guifg='..getModeColor().fg..' guibg='..getModeColor().bg..' gui=bold')
-            return ' '..getModeAlias()..' '
+            vim.api.nvim_command('hi GalaxyViMode guifg='..vimMode.getModeColor().fg..' guibg='..vimMode.getModeColor().bg..' gui=bold')
+            return '  '..vimMode.getModeAlias()..' '
         end,
-        separator = ' \\ ',
-        highlight = { colors.bg, colors.bg },
+        highlight = { colors.black5, colors.black5 },
     }
 }
 
 gLineSection.left[2] = {
     FileIcon = {
-        provider = 'FileIcon',
-        condition = require('galaxyline.condition').buffer_not_emtpy,
+        provider = {function () return '  ' end, 'FileIcon'},
+        condition = buffer_not_emtpy(),
+        highlight = { colors.fg, colors.black5 }
     }
 }
 
 gLineSection.left[3] = {
     FileName = {
         provider = 'FileName',
+        condition = buffer_not_emtpy(),
+        separator = '~',
+        highlight = { colors.fg, colors.black5 },
+        separator_highlight = { colors.green0, colors.black5 },
     }
 }
 
-----------------------
---- Right Sections ---
-----------------------
+gLineSection.left[4] = {
+    FileSize = {
+        provider = 'FileSize',
+        condition = buffer_not_emtpy(),
+        highlight = { colors.green0, colors.black5 },
+    }
+}
+
+---------------------------------------------------------------
+-----------------------  Mid Section   ------------------------
+---------------------------------------------------------------
+gLineSection.mid[0] = {
+    DiagnosticHint  = {
+        provider = 'DiagnosticHint',
+        icon = ' ',
+        highlight = { colors.gray0, colors.black5 },
+        separator_highlight = { colors.green0, colors.black5 },
+    }
+}
+
+gLineSection.mid[1] = {
+    DiagnosticInfo  = {
+        provider = 'DiagnosticInfo',
+        icon = ' ',
+        highlight = { colors.green0, colors.black5 },
+        separator_highlight = { colors.green0, colors.black5 },
+    }
+}
+
+gLineSection.mid[2] = {
+    DiagnosticWarn  = {
+        provider = 'DiagnosticWarn',
+        icon = ' ',
+        highlight = { colors.yellow3, colors.black5 },
+        separator_highlight = { colors.yellow3, colors.black5 },
+    }
+}
+
+gLineSection.mid[3] = {
+    DiagnosticError  = {
+        provider = 'DiagnosticError',
+        icon = ' ',
+        highlight = { colors.red0, colors.black5 },
+    }
+}
+---------------------------------------------------------------
+----------------------- Right Section  ------------------------
+---------------------------------------------------------------
 gLineSection.right[0] = {
     FileFormat = {
         provider = 'FileFormat',
-        condition = require('galaxyline.condition').buffer_not_emtpy
+        condition = buffer_not_emtpy(),
+        highlight = {colors.fg, colors.black5 }
     }
 }
 
 gLineSection.right[1] = {
     FileEncode = {
         provider = 'FileEncode',
-        separator = ' |'
+        separator = ' |',
+        highlight = { colors.fg, colors.black5 },
+        separator_highlight = { colors.fg, colors.black5 }
    },
 }
 
 gLineSection.right[2] = {
-     FileTypeName = {
-       provider = 'FileTypeName',
-       separator = ' | '
-    },
+    CurrentLine = {
+        provider = function () return vim.fn.line('.') end,
+        separator = ' | Ln ',
+        highlight = {colors.fg, colors.black5 },
+        separator_highlight = {colors.fg, colors.black5 }
+    }
 }
 
 gLineSection.right[3] = {
-    LinePercent = {
-        provider = 'LinePercent',
-        separator = ' |',
-    }
-}
-
-gLineSection.right[4] = {
     LineColumn = {
-        provider = 'LineColumn',
+        provider = function() return vim.fn.col('.')..' ' end,
+        separator = ', Col ',
+        highlight = {colors.fg, colors.black5 },
+        separator_highlight = {colors.fg, colors.black5 }
     }
 }
-
-

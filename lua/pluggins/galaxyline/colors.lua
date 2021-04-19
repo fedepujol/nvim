@@ -11,7 +11,14 @@
 local COLORS = {
     -- Generals
     white = '#FFFFFF',
-    black = '#000000',
+
+    -- Black Shades
+    black0 = '#000000',
+    black1 = '#0C0C0C',
+    black2 = '#191919',
+    black3 = '#161616',
+    black4 = '#262626',
+    black5 = '#1E1E1E',
 
     -- Blue Shades
     blue0 = '#0D47A1',
@@ -75,13 +82,13 @@ local COLORS = {
 
     -- Purple Shades
     purple0 = '#450045',
-    purple1 = '#800080',
-    purple2 = '#A700A7',
-    purple3 = '#A70099',
-    purple4 = '#BB00AB',
-    purple5 = '#800075',
-    purple6 = '#590051',
-    purple7 = '#45003F',
+    purple1 = '#45003F',
+    purple2 = '#590051',
+    purple3 = '#800080',
+    purple4 = '#800075',
+    purple5 = '#A700A7',
+    purple6 = '#A70099',
+    purple7 = '#BB00AB',
 
     -- Orange Shades
     orange0 = '#764C00',
