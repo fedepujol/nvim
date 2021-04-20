@@ -31,16 +31,18 @@ gLineSection.left[1] = {
 gLineSection.left[2] = {
     ViMode = {
         provider = function ()
-            vim.api.nvim_command('hi GalaxyViMode guifg='..vimMode.getModeColor().fg..' guibg='..vimMode.getModeColor().bg..' gui=bold')
-            return '  '..vimMode.getModeAlias()..' '
+            --vim.api.nvim_command('hi GalaxyViMode guifg='..vimMode.getModeColor().fg..' guibg='..vimMode.getModeColor().bg..' gui=bold')
+            --return '  '..vimMode.getModeAlias()..' '
+            return vim.fn.mode():byte()
         end,
-        highlight = { colors.black5, colors.black5 },
+        highlight = { colors.white, colors.black5 },
     }
 }
 
 gLineSection.left[3] = {
     FileIcon = {
         provider = {function () return '  ' end, 'FileIcon'},
+        condition = bufferNotEmtpy,
         highlight = { colors.fg, colors.black5 }
     }
 }
@@ -48,6 +50,7 @@ gLineSection.left[3] = {
 gLineSection.left[4] = {
     FileName = {
         provider = 'FileName',
+        condition = bufferNotEmtpy,
         separator = '~',
         highlight = { colors.fg, colors.black5 },
         separator_highlight = { colors.green5, colors.black5 },
@@ -57,6 +60,7 @@ gLineSection.left[4] = {
 gLineSection.left[5] = {
     FileSize = {
         provider = 'FileSize',
+        condition = bufferNotEmtpy,
         highlight = { colors.green5, colors.black5 },
     }
 }
@@ -65,33 +69,46 @@ gLineSection.left[5] = {
 -----------------------  Mid Section   ------------------------
 ---------------------------------------------------------------
 gLineSection.mid[0] = {
-    DiagnosticHint  = {
-        provider = 'DiagnosticHint',
-        icon = ' ',
-        highlight = { colors.gray4, colors.black5 },
+    GetLspClient  = {
+        provider = 'GetLspClient',
+        condition = bufferNotEmtpy,
+        icon = '* ',
+        highlight = { colors.white, colors.black5 },
     }
 }
 
 gLineSection.mid[1] = {
-    DiagnosticInfo  = {
-        provider = 'DiagnosticInfo',
-        icon = ' ',
-        highlight = { colors.green5, colors.black5 },
+    DiagnosticHint  = {
+        provider = 'DiagnosticHint',
+        condition = bufferNotEmtpy,
+        icon = ' ',
+        highlight = { colors.gray4, colors.black5 },
     }
 }
 
 gLineSection.mid[2] = {
-    DiagnosticWarn  = {
-        provider = 'DiagnosticWarn',
-        icon = ' ',
-        highlight = { colors.yellow3, colors.black5 },
+    DiagnosticInfo  = {
+        provider = 'DiagnosticInfo',
+        condition = bufferNotEmtpy,
+        icon = ' ',
+        highlight = { colors.green5, colors.black5 },
     }
 }
 
 gLineSection.mid[3] = {
+    DiagnosticWarn  = {
+        provider = 'DiagnosticWarn',
+        condition = bufferNotEmtpy,
+        icon = ' ',
+        highlight = { colors.yellow3, colors.black5 },
+    }
+}
+
+gLineSection.mid[4] = {
     DiagnosticError  = {
         provider = 'DiagnosticError',
-        icon = ' ',
+        condition = bufferNotEmtpy,
+        icon = ' ',
         highlight = { colors.red4, colors.black5 },
     }
 }
