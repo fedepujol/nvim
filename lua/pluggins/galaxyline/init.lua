@@ -3,9 +3,12 @@
 ------------------------   Variables   ------------------------
 ---------------------------------------------------------------
 local gLineSection = require('galaxyline').section
+local condition = require('galaxyline.condition')
+
 local colors = require('theme.colors')
-local vimMode = require('pluggins.galaxyline.providers.mode')
 local icon = require('pluggins.galaxyline.providers.icon')
+local vimMode = require('pluggins.galaxyline.providers.mode')
+local space = require('pluggins.galaxyline.providers.space')
 
 local distro = 'arch'
 
@@ -69,43 +72,72 @@ gLineSection.left[5] = {
 gLineSection.mid[0] = {
     GetLspClient  = {
         provider = 'GetLspClient',
-        condition = bufferNotEmtpy,
+        condition = condition.buffer_not_empty,
         icon = ' ',
-        separator = '',
         highlight = { colors.white, colors.black3 },
-        separator_highlight = { colors.black3, colors.black3 },
     }
 }
 
 gLineSection.mid[1] = {
-    DiagnosticInfo  = {
-        provider = 'DiagnosticInfo',
-        icon = ' ',
-        separator  = '  ',
-        highlight = { colors.green5, colors.black3 },
-        separator_highlight = { colors.black3, colors.black3 },
+    Space  = {
+        provider = function ()
+            return ' '
+        end,
+        condition = condition.buffer_not_empty,
+        highlight = { colors.black3, colors.black3 },
     }
 }
 
 gLineSection.mid[2] = {
-    DiagnosticWarn  = {
-        provider = 'DiagnosticWarn',
-        icon = ' ',
-        separator  = '  ',
-        highlight = { colors.yellow3, colors.black3 },
-        separator_highlight = { colors.black3, colors.black3 },
+    DiagnosticError  = {
+        provider = function()
+            local count = vim.lsp.diagnostic.get_count(0, [[Error]])
+            return ' '..count
+        end,
+        highlight = { colors.red4, colors.black3 }
     }
 }
 
 gLineSection.mid[3] = {
-    DiagnosticError  = {
-        provider = 'DiagnosticError',
-        icon = ' ',
-        separator  = '  ',
-        highlight = { colors.red4, colors.black3 },
-        separator_highlight = { colors.black3, colors.black3 },
+    Space  = {
+        provider = function ()
+            return ' '
+        end,
+        condition = condition.buffer_not_empty,
+        highlight = { colors.black3, colors.black3 },
     }
 }
+
+gLineSection.mid[4] = {
+    DiagnosticWarn  = {
+        provider = function ()
+            local count = vim.lsp.diagnostic.get_count(0, [[Warning]])
+            return ' '..count
+        end,
+        highlight = { colors.yellow3, colors.black3 }
+    }
+}
+
+gLineSection.mid[5] = {
+    Space  = {
+        provider = function ()
+            return ' '
+        end,
+        condition = condition.buffer_not_empty,
+        highlight = { colors.black3, colors.black3 },
+    }
+}
+
+gLineSection.mid[6] = {
+    DiagnosticInfo  = {
+        provider = function ()
+            local count = vim.lsp.diagnostic.get_count(0, [[Info]])
+            return ' '..count
+        end,
+        highlight = { colors.green5, colors.black3 },
+    }
+}
+
 ---------------------------------------------------------------
 ----------------------- Right Section  ------------------------
 ---------------------------------------------------------------
