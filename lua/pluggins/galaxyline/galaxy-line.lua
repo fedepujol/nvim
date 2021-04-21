@@ -31,9 +31,8 @@ gLineSection.left[1] = {
 gLineSection.left[2] = {
     ViMode = {
         provider = function ()
-            --vim.api.nvim_command('hi GalaxyViMode guifg='..vimMode.getModeColor().fg..' guibg='..vimMode.getModeColor().bg..' gui=bold')
-            --return '  '..vimMode.getModeAlias()..' '
-            return vim.fn.mode():byte()
+            vim.api.nvim_command('hi GalaxyViMode guifg='..vimMode.getModeColor().fg..' guibg='..vimMode.getModeColor().bg..' gui=bold')
+            return '  '..vimMode.getModeAlias()..' '
         end,
         highlight = { colors.white, colors.black5 },
     }

@@ -11,26 +11,32 @@ local VMode = {
         [99] = { alias = 'COMMAND', color = { fg = colors.white, bg = colors.purple3 }},
         [105] = { alias = 'INSERT', color = { fg = colors.white, bg = colors.green0 }},
         [110] = { alias = 'NORMAL', color = { fg = colors.white, bg = colors.blue0 }},
+        [114] = { alias = 'OP-PENDING', color = { fg = colors.black0, bg = colors.gray6 }},
         [115] = { alias = 'SELECT', color = { fg = colors.black0, bg = colors.gray1 }},
         [116] = { alias = 'TERMINAL', color = { fg = colors.white, bg = colors.yellow1 }},
         [118] = { alias = 'VISUAL', color = { fg = colors.white, bg = colors.orange0 }},
     }
 }
 
-function VMode.getCurrentMode()
+local getCurrentMode = function()
+
     local cMode = VMode.mode_aliases[vim.fn.mode():byte()]
     if cMode == nil then
-        cMode = VMode.mode_aliases[110]
+        -- If mode is not mapped, show the mode() and the byte convertion
+        cMode = {
+            alias = vim.fn.mode()..' '..vim.fn.mode():byte(),
+            color = { fg = colors.white, bg = colors.red7 }
+        }
     end
     return cMode
 end
 
 function VMode.getModeAlias()
-    return VMode.getCurrentMode().alias
+    return getCurrentMode().alias
 end
 
 function VMode.getModeColor()
-    return VMode.getCurrentMode().color
+    return getCurrentMode().color
 end
 
 return VMode
