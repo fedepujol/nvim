@@ -1,0 +1,2 @@
+-- Telescope
+require('telescope').setup{}
