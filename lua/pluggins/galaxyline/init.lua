@@ -8,7 +8,6 @@ local condition = require('galaxyline.condition')
 local colors = require('theme.colors')
 local icon = require('pluggins.galaxyline.providers.icon')
 local vimMode = require('pluggins.galaxyline.providers.mode')
-local space = require('pluggins.galaxyline.providers.space')
 
 local distro = 'arch'
 
@@ -17,6 +16,7 @@ local bufferNotEmtpy = function ()
 end
 
 vim.cmd("hi Statusline guifg='#161616'")
+vim.cmd("hi StatusLineNc guifg='#161616'")
 
 ---------------------------------------------------------------
 ------------------------ Left Section  ------------------------
@@ -37,15 +37,9 @@ gLineSection.left[2] = {
             vim.api.nvim_command('hi GalaxyViMode guifg='..vimMode.getModeColor().fg..' guibg='..vimMode.getModeColor().bg..' gui=bold')
             return '  '..vimMode.getModeAlias()..' '
         end,
+        separator = ' ',
         highlight = { colors.white, colors.black3 },
-    }
-}
-
-gLineSection.left[3] = {
-    FileIcon = {
-        provider = {function () return '  ' end, 'FileIcon'},
-        condition = bufferNotEmtpy,
-        highlight = { colors.fg, colors.black3 }
+        separator_highlight = { colors.white, colors.black3 },
     }
 }
 
@@ -72,6 +66,9 @@ gLineSection.left[5] = {
 gLineSection.mid[0] = {
     GetLspClient  = {
         provider = 'GetLspClient',
+	--[[provider = function()
+		return vim.lsp.get_client_by_id()
+	end,]]
         condition = condition.buffer_not_empty,
         icon = ' ',
         highlight = { colors.white, colors.black3 },
@@ -142,13 +139,32 @@ gLineSection.mid[6] = {
 ----------------------- Right Section  ------------------------
 ---------------------------------------------------------------
 gLineSection.right[0] = {
-    FileFormat = {
-        provider = 'FileFormat',
-        highlight = {colors.white, colors.black3 }
+    FileIcon = {
+        provider = {function () return '  ' end, 'FileIcon'},
+        condition = bufferNotEmtpy,
+        highlight = { colors.fg, colors.black3 }
     }
 }
 
 gLineSection.right[1] = {
+	FileTypeName = {
+		provider = 'FileTypeName',
+		condition = condition.buffer_not_empty,
+		highlight = { colors.white, colors.black3 },
+		separator_highlight = { colors.white, colors.black3 },
+	}
+}
+
+gLineSection.right[2] = {
+    FileFormat = {
+        provider = 'FileFormat',
+	separator = ' | ',
+        highlight = {colors.white, colors.black3 },
+	separator_highlight = { colors.white, colors.black3 }
+    }
+}
+
+gLineSection.right[3] = {
     FileEncode = {
         provider = 'FileEncode',
         separator = ' |',
@@ -157,7 +173,7 @@ gLineSection.right[1] = {
    },
 }
 
-gLineSection.right[2] = {
+gLineSection.right[4] = {
     CurrentLine = {
         provider = function () return vim.fn.line('.') end,
         separator = ' | ',
@@ -166,10 +182,10 @@ gLineSection.right[2] = {
     }
 }
 
-gLineSection.right[3] = {
+gLineSection.right[5] = {
     LineColumn = {
         provider = function() return vim.fn.col('.')..' ' end,
         separator = ', ',
-        highlight = {colors.white, colors.black3 }, 
+        highlight = {colors.white, colors.black3 },
         separator_highlight = {colors.white, colors.black3 } }
 }
