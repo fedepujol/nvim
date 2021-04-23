@@ -66,9 +66,6 @@ gLineSection.left[5] = {
 gLineSection.mid[0] = {
     GetLspClient  = {
         provider = 'GetLspClient',
-	--[[provider = function()
-		return vim.lsp.get_client_by_id()
-	end,]]
         condition = condition.buffer_not_empty,
         icon = ' ',
         highlight = { colors.white, colors.black3 },
@@ -80,7 +77,6 @@ gLineSection.mid[1] = {
         provider = function ()
             return ' '
         end,
-        condition = condition.buffer_not_empty,
         highlight = { colors.black3, colors.black3 },
     }
 }
@@ -100,7 +96,6 @@ gLineSection.mid[3] = {
         provider = function ()
             return ' '
         end,
-        condition = condition.buffer_not_empty,
         highlight = { colors.black3, colors.black3 },
     }
 }
@@ -120,7 +115,6 @@ gLineSection.mid[5] = {
         provider = function ()
             return ' '
         end,
-        condition = condition.buffer_not_empty,
         highlight = { colors.black3, colors.black3 },
     }
 }
