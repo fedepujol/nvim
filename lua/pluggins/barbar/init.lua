@@ -1,5 +1,4 @@
 -- BarBar Setup
-
 local opts = {noremap = true, silent = true}
 
 -- Move between buffers
@@ -12,3 +11,10 @@ vim.api.nvim_set_keymap('n', '<M-,>', ':BufferMovePrevious<CR>', opts)
 
 -- Close
 vim.api.nvim_set_keymap('n', '<M-c>', ':BufferClose<CR>', opts)
+
+-- Options
+vim.api.nvim_exec([[
+	let bufferline = get(g:, 'bufferline', {})
+	let bufferline.animation = v:false
+	let bufferline.auto_hide = v:true
+]], false)
