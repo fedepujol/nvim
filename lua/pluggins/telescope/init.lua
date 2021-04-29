@@ -33,4 +33,4 @@ vim.api.nvim_set_keymap('n', '<C-f>f', "<CMD>lua require('telescope.builtin').fi
 vim.api.nvim_set_keymap('n', '<C-f>g', "<CMD>lua require('telescope.builtin').live_grep()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<C-f>b', "<CMD>lua require('telescope.builtin').file_browser()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<C-f>p', "<CMD>lua require('telescope.builtin').oldfiles()<CR>", opts)
-vim.api.nvim_set_keymap('n', '<C-k><C-m>', "<CMD>lua require('telescope.builtin').keymaps()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<C-k><C-s>', "<CMD>lua require('telescope.builtin').keymaps()<CR>", opts)
