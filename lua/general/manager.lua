@@ -13,8 +13,8 @@ paq {'kabouzeid/nvim-lspinstall'}
 -- Icons
 paq {'kyazdani42/nvim-web-devicons'}
 
--- Buffer Bar
-paq {'romgrk/barbar.nvim'} -- Find a replace
+-- Buffer Bar (Find a better replace/write one)
+paq {'romgrk/barbar.nvim'}
 
 -- Hex/RGB/Color Handler
 paq {'norcalli/nvim-colorizer.lua'}
@@ -29,11 +29,12 @@ paq {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 -- StatusLine
 paq {'glepnir/galaxyline.nvim', branch = 'main'}
 
--- Finder
--- View Telescope
+-- Search/FZF
 paq {'nvim-lua/plenary.nvim'}
 paq {'nvim-lua/popup.nvim'}
 paq {'nvim-telescope/telescope.nvim'}
 
 -- Code Versioning
--- View GitSings/GitGutter
+
+-- File Explorer
+paq {'kyazdani42/nvim-tree.lua'}
