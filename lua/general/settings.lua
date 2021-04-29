@@ -40,3 +40,4 @@ wo.conceallevel = 0                     -- Determine how text with the "conceal"
 wo.cursorline = true                    -- Enable hightlightning of the current line
 wo.number = true                        -- Line numbers
 wo.wrap = false                         -- Display long lines as such
+wo.signcolumn = 'yes' 		            -- Always show the SignColumn
