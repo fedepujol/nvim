@@ -15,10 +15,11 @@ local COLORS = {
     -- Black Shades
     black0 = '#000000',
     black1 = '#0C0C0C',
-    black2 = '#191919',
     black3 = '#161616',
-    black4 = '#262626',
+    black2 = '#191919',
     black5 = '#1E1E1E',
+    black4 = '#262626',
+    black6 = '#2F2F2F',
 
     -- Blue Shades
     blue0 = '#0D47A1',
