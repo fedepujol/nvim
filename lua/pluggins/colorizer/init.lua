@@ -1,2 +1,6 @@
  -- Colorizer Setup
- require 'colorizer'.setup{}
+ require('colorizer').setup{
+	'*',
+	lua = { names = false },
+	html = { names = false }
+}
