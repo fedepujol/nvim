@@ -13,11 +13,11 @@ else
 	print("Unsupported system")
 end
 
-sumneko_root_path = vim.fn.stdpath("config")..'\\lua-language-server'
-sumneko_binary = sumneko_root_path.."\\bin\\"..system_name.."\\lua-language-server"
+sumneko_root_path = vim.fn.stdpath("config")..'/lua-language-server'
+sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
 require('lspconfig').sumneko_lua.setup{
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "\\main.lua"},
+	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
 	settings = {
 		Lua = {
 			runtime = {
@@ -33,8 +33,8 @@ require('lspconfig').sumneko_lua.setup{
 			workspace = {
 				-- Make the server aware of Neovim runtime files
 				library = {
-					[vim.fn.expand('$VIMRUNTIME\\lua')] = true,
-					[vim.fn.expand('$VIMRUNTIME\\lua\\vim\\lsp')] = true,
+					[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+					[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
 				},
 			},
 			-- Do not send telemetry data
