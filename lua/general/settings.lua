@@ -14,7 +14,7 @@ o.cmdheight = 2                         -- More space to display messages
 o.encoding = "UTF-8"                    -- Encoding used internally
 o.hidden = true                         -- Buffers becomes hidden when abandoned
 o.hlsearch = true                       -- Highlighting search
-o.listchars = "tab:| "                  -- Make tabs appear as | in the editor
+o.listchars = "tab:. "                  -- Make tabs appear as | in the editor
 o.mouse = "a"                           -- Enables mouse support
 o.pumheight = 10                        -- Maximum number of items to show in Pop-ups
 o.ruler = true                          -- Show line and column numbers of the cursor position
@@ -30,10 +30,10 @@ o.writebackup = false                   -- No backup file
 bo.autoindent = true                    -- Copy indent from current line when starting a new line
 bo.expandtab = true                     -- Converts tabs into spaces
 bo.fileencoding = "UTF-8"               -- Encoding fot the current buffer. Conversion done with iconv()
-bo.shiftwidth = 4                       -- Change number of spaces inserted for indentation
+vim.cmd('set shiftwidth=4')             -- Change number of spaces inserted for indentation
 bo.smartindent = true                   -- Smart autoindenting when starting a new line
 bo.syntax = "ON"                        -- Enable syntax
-bo.tabstop = 4                          -- Set Tab to 4 spaces
+vim.cmd('set tabstop=4')                -- Set Tab to 4 spaces
 bo.softtabstop = -1                     -- Length to use when editing text (0 for 'tabstop', -1 for 'shiftwidth')
 
 -- Window Options
@@ -43,3 +43,5 @@ wo.list = true                          -- Always show Tabs
 wo.number = true                        -- Line numbers
 wo.signcolumn = 'yes'                   -- Always show the SignColumn
 wo.wrap = false                         -- Display long lines as such
+
+vim.cmd("filetype plugin indent on")
