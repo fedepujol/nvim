@@ -11,4 +11,5 @@ vim.api.nvim_exec([[
     hi NvimTreeGitNew               guifg=#96E098
     hi NvimTreeGitDeleted           guifg=#FF3B3B
     hi NvimTreeGitDirty             guifg=#B27D1B
+    hi NvimTreeGitRenamed           guifg=#949494
 ]], false)
