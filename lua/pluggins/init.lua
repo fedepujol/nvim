@@ -8,6 +8,7 @@ require('pluggins.treesitter')
 require('pluggins.galaxyline')
 require('pluggins.telescope')
 require('pluggins.nvim-tree')
+require('pluggins.gitsigns')
 
 -- LSP
 require('pluggins.lsp.bash-ls')

@@ -35,6 +35,7 @@ paq {'nvim-lua/popup.nvim'}
 paq {'nvim-telescope/telescope.nvim'}
 
 -- Code Versioning
+paq {'lewis6991/gitsigns.nvim'}
 
 -- File Explorer
 paq {'kyazdani42/nvim-tree.lua'}
