@@ -13,7 +13,7 @@ vim.api.nvim_set_keymap('i', '<C-s>', '<ESC>:w<CR>', opts)
 
 -- Quit
 vim.api.nvim_set_keymap('n', '<C-q>', ':q<CR>', opts)
-vim.api.nvim_set_keymap('i', 'jk', '<ESC><CR>', opts)
+vim.api.nvim_set_keymap('i', 'hh', '<ESC><CR>', opts)
 
 -- Better Tabbing
 vim.api.nvim_set_keymap('v', '<S-TAB>', '<gv', opts)
