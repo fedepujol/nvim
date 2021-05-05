@@ -21,7 +21,6 @@ vim.cmd("hi StatusLineNc guifg='#161616'")
 ---------------------------------------------------------------
 ------------------------ Left Section  ------------------------
 ---------------------------------------------------------------
-
 gLineSection.left[1] = {
     CustomIcon = {
         provider = function()
@@ -77,6 +76,7 @@ gLineSection.mid[1] = {
         provider = function ()
             return ' '
         end,
+		condition = condition.buffer_not_empty,
         highlight = { colors.black3, colors.black3 },
     }
 }
@@ -87,6 +87,7 @@ gLineSection.mid[2] = {
             local count = vim.lsp.diagnostic.get_count(0, [[Error]])
             return ' '..count
         end,
+		condition = condition.buffer_not_empty,
         highlight = { colors.red4, colors.black3 }
     }
 }
@@ -96,6 +97,7 @@ gLineSection.mid[3] = {
         provider = function ()
             return ' '
         end,
+        condition = condition.buffer_not_empty,
         highlight = { colors.black3, colors.black3 },
     }
 }
@@ -106,6 +108,7 @@ gLineSection.mid[4] = {
             local count = vim.lsp.diagnostic.get_count(0, [[Warning]])
             return ' '..count
         end,
+        condition = condition.buffer_not_empty,
         highlight = { colors.yellow3, colors.black3 }
     }
 }
@@ -115,6 +118,7 @@ gLineSection.mid[5] = {
         provider = function ()
             return ' '
         end,
+        condition = condition.buffer_not_empty,
         highlight = { colors.black3, colors.black3 },
     }
 }
@@ -125,6 +129,7 @@ gLineSection.mid[6] = {
             local count = vim.lsp.diagnostic.get_count(0, [[Info]])
             return ' '..count
         end,
+        condition = condition.buffer_not_empty,
         highlight = { colors.green5, colors.black3 },
     }
 }
