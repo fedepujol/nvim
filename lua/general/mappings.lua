@@ -25,9 +25,6 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', opts)
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', opts)
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', opts)
 
--- Split Help vertical
-vim.api.nvim_command("ca h vert h")
-
 -- Move cursor line up or down
 vim.api.nvim_set_keymap('n', '<C-M-k>', ':normal! dd2kp<CR>', opts)
 vim.api.nvim_set_keymap('n', '<C-M-j>', ':normal! ddp<CR>', opts)
