@@ -2,7 +2,7 @@
 Hello there fellow stranger! This is my custom config to make NeoVim into a VSCode replacement. 
 
 ## Index
-- [Included](#included)
+- [Features](#features)
 - [Prerequisite](#prerequisite)
 	- [Installation](#installation)
 	- [Dependencies](#dependencies)
