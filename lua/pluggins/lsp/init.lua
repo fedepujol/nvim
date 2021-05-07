@@ -12,7 +12,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 		underline = true,
 		virtual_text = {
 			prefix = '',
-			spacing = 2
+			spacing = 4
 		},
 		signs = true,
 	}
