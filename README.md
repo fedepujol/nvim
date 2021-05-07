@@ -34,6 +34,8 @@ Also a very minimal colorscheme to make everything look a little bit nicer and c
 - A Patched Font (Pick your font of choice from the [nerdFont](https://github.com/ryanoasis/nerd-fonts) guys)
 
 - If you're a Windows user, you may want to download [windows terminal](https://github.com/Microsoft/Terminal) to be able to see the icons.
+I've couldn't find a workaround with the `cmd` and `PowerShell`.
+
 ### Installation
 Currently there is not a custom installation script (for now). To use this config, clone the repo:
 
