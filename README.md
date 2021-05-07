@@ -8,7 +8,9 @@ Hello there fellow stranger! This is my custom config to make NeoVim into a VSCo
 	- [Dependencies](#dependencies)
 	- [First Launch](#first-launch)
 	- [LSP](#lsp)
+- [Project Structure](#project-structure)
 - [Pluggins](#pluggins)
+- [Keybindings](#keybindings)
 
 ## Features
 - Code Completion
@@ -31,6 +33,7 @@ Also a very minimal colorscheme to make everything look a little bit nicer and c
 - [Paq-nvim](https://github.com/savq/paq-nvim) (minimal package manager for neovim written in Lua).
 - A Patched Font (Pick your font of choice from the [nerdFont](https://github.com/ryanoasis/nerd-fonts) guys)
 
+- If you're a Windows user, you may want to download [windows terminal](https://github.com/Microsoft/Terminal) to be able to see the icons.
 ### Installation
 Currently there is not a custom installation script (for now). To use this config, clone the repo:
 
@@ -90,3 +93,20 @@ To manage all of them you have `Paq`. Here are a few useful commands
 ```
 :PaqUpdate
 ```
+
+### Project Structure
+The structure in this config is as follows:
+```text
+
+:folder ~/.config/nvim 
+├── :folder lua/
+	├── :folder general/
+	├── :folder pluggins/
+		├── :folder barbar/
+		...
+		├── :lua init.lua 
+		└── :lua settings.lua 
+	└── :folder theme/
+└─ :lua init.lua
+```
+
