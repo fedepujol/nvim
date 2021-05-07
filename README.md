@@ -29,6 +29,7 @@ Also a very minimal colorscheme to make everything look a little bit nicer and c
 ## Prerequisite
 - Neovim version 0.5.0 (not released yet) or above. Use [nightly](https://github.com/neovim/neovim/releases) builds.
 - [Paq-nvim](https://github.com/savq/paq-nvim) (minimal package manager for neovim written in Lua).
+- A Patched Font (Pick your font of choice from the [nerdFont](https://github.com/ryanoasis/nerd-fonts) guys)
 
 ### Installation
 Currently there is not a custom installation script (for now). To use this config, clone the repo:
