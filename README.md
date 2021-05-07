@@ -96,17 +96,21 @@ To manage all of them you have `Paq`. Here are a few useful commands
 
 ### Project Structure
 The structure in this config is as follows:
+
 ```text
-
-:folder ~/.config/nvim 
-├── :folder lua/
-	├── :folder general/
-	├── :folder pluggins/
-		├── :folder barbar/
-		...
-		├── :lua init.lua 
-		└── :lua settings.lua 
-	└── :folder theme/
-└─ :lua init.lua
+📁 ~/.config/nvim 
+├── 📁 lua/
+│	├── 📁 general/
+│	│	├── 📝 general.lua
+│	├── 📁 pluggins/
+│	│	├── 📁 barbar/
+│	│	...
+│	│	├── 📝 init.lua 
+│	│	└── 📝 settings.lua 
+│	└── 📁 theme/
+│		├── 📁 compe
+│		...
+│		├── 📝 colors.lua 
+│		└── 📝 init.lua 
+└─ 📝 init.lua
 ```
-
