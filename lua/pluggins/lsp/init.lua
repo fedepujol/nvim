@@ -7,6 +7,8 @@ vim.api.nvim_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', 
 vim.api.nvim_set_keymap('n', '<space>D', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<S-M-f>', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+vim.cmd("sign define LspDiagnosticsSignHint numhl= text=H linehl=")
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 		underline = true,
@@ -20,28 +22,28 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 vim.lsp.protocol.CompletionItemKind = {
 	" (text)",
-    " (method)",
+    " (method)",
     " (function)",
-    " (constructor)",
-    " (field)",
-    " (variable)",
-    "C (class)",
-    "I (interface)",
-    "m (module)",
-    " (property)",
-    "U (unit)",
-    " (value)",
-    " (enum)",
+    "襁 (constructor)",
+    " (field)",
+    " (variable)",
+    " (class)",
+    "壟(interface)",
+    " (module)",
+    " (property)",
+    " (unit)",
+    " (value)",
+    " (enum)",
     " (keyword)",
     " (snippet)",
     " (color)",
     " (file)",
-    "壟(reference)",
+    " (reference)",
     " (folder)",
-    " (enummember)",
-    " (constant)",
-    "ﳤ (struct)",
+    "ﱔ (enummember)",
+    " (constant)",
+    "ﴰ (struct)",
     " (event)",
-    " (operator)",
-    "<T> (typeparameter)"
+    "駱 (operator)",
+    " (typeparameter)"
 }
