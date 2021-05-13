@@ -10,7 +10,7 @@ saga.init_lsp_saga{
 local opts = {noremap = true, silent = true}
 
 -- Lsp Finder (find cursor word definition and reference)
-vim.api.nvim_set_keymap('n', 'lf', ':Lspsaga lsp_finder<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gh', ':Lspsaga lsp_finder<CR>', opts)
 
 -- Code Actions (Organize imports, import missing libraries, etc)
 vim.api.nvim_set_keymap('n', '<leader>ca', ':Lspsaga code_action<CR>', opts)
@@ -26,5 +26,5 @@ vim.api.nvim_set_keymap('n', 'gs', ':Lspsaga signature_help<CR>', opts)
 
 -- Diagnostics
 vim.api.nvim_set_keymap('n', '<leader>cd', ':Lspsaga show_line_diagnostics<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-n>', ':', opts)
-vim.api.nvim_set_keymap('n', '<C-m>', ':', opts)
+vim.api.nvim_set_keymap('n', '<C-n>', "<CMD>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<C-m>', "<CMD>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>", opts)
