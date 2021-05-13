@@ -8,30 +8,13 @@ local condition = require('galaxyline.condition')
 local colors = require('theme.colors')
 local icon = require('pluggins.galaxyline.providers.icon')
 local vimMode = require('pluggins.galaxyline.providers.mode')
-local treesitter = require('nvim-treesitter')
+local devicons = require('nvim-web-devicons')
 
 local distro = 'arch'
-
-local patterns = {
-	ni = { reg = '//.*$', icon = ''},
-	bracket = { reg = '%s*[%[%(%{]*%s*$', icon = ''},
-	se = { reg = '%(.*%)', icon = ''},
-	cur = { reg = '%s*=>%s*$', icon = '  '},
-	async = { reg = '^async%s*', icon = '  '},
-	static = { reg = '^static%s*', icon = ' '},
-	functions = { reg = '^function%s*', icon = '  '},
-	class = { reg = '^class%s*', icon = '  '},
-	extends = {reg = '%s*extends.*$', icon = '  '},
-}
 
 vim.cmd("hi Statusline guifg='#161616'")
 vim.cmd("hi StatusLineNc guifg='#161616'")
 
-function treeUtils(line)
-	for _, p in pairs(patterns) do
-		line = line:gsub(p.reg, p.icon) end
-	return line
-end
 ---------------------------------------------------------------
 ------------------------ Left Section  ------------------------
 ---------------------------------------------------------------
@@ -117,19 +100,42 @@ gLineSection.left[6] = {
 -----------------------  Mid Section   ------------------------
 ---------------------------------------------------------------
 gLineSection.mid[0] = {
-	TreeSitter = {
-		provider = function()
-			return treesitter.statusline({
-				indicator_size = 80,
-				type_patterns = {'class', 'function', 'method'},
-				transform_fn = treeUtils,
-				separator = ' > '
-			})
-			end,
+    Branch = {
+        provider = 'GitBranch',
+        condition = condition.buffer_not_empty,
+		icon = ' ',
+        highlight = { colors.pink5, colors.black3 }
+    }
+}
+
+gLineSection.mid[1] = {
+	Added = {
+		provider = 'DiffAdd',
 		condition = condition.buffer_not_empty,
+		icon = '+',
+		separator = ' ',
+        highlight = { colors.green1, colors.black3 },
+        separator_highlight = { colors.white, colors.black3 },
 	}
 }
 
+gLineSection.mid[2] = {
+	Modified = {
+		provider = 'DiffModified',
+		condition = condition.buffer_not_empty,
+		icon = '~',
+        highlight = { colors.orange3, colors.black3 }
+	}
+}
+
+gLineSection.mid[3] = {
+	Remove = {
+		provider = 'DiffRemove',
+		condition = condition.buffer_not_empty,
+		icon = '-',
+        highlight = { colors.red5, colors.black3 }
+	}
+}
 ---------------------------------------------------------------
 ----------------------- Right Section  ------------------------
 ---------------------------------------------------------------
@@ -147,35 +153,18 @@ gLineSection.right[1] = {
         provider = 'FileIcon',
 		condition = condition.buffer_not_empty,
 		separator = ' | ',
-        highlight = { colors.fg, colors.black3 }
+		highlight = { devicons.get_color(vim.fn.expand('%:e')), colors.black3 },
+		separator_highlight = { colors.white, colors.black3 }
     }
 }
 
 gLineSection.right[2] = {
 	FileTypeName = {
-		provider = function() return vim.fn.expand('%:e') end,
+		provider = 'FileTypeName',
 		condition = condition.buffer_not_empty,
 		highlight = { colors.white, colors.black3 },
 		separator_highlight = { colors.white, colors.black3 },
 	}
-}
-
-gLineSection.right[3] = {
-    FileFormat = {
-        provider = 'FileFormat',
-	separator = ' | ',
-        highlight = {colors.white, colors.black3 },
-	separator_highlight = { colors.white, colors.black3 }
-    }
-}
-
-gLineSection.right[4] = {
-    FileEncode = {
-		provider = 'FileEncode',
-        separator = ' |',
-        highlight = { colors.white, colors.black3 },
-        separator_highlight = { colors.white, colors.black3 }
-   },
 }
 
 gLineSection.right[5] = {
