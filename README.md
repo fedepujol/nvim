@@ -29,12 +29,15 @@ Hello there fellow stranger! This is my custom config to make NeoVim into a VSCo
 Also a very minimal colorscheme to make everything look a little bit nicer and custom key bindings.
 
 ## Prerequisite
+### Windows
+- You need to install a compiler to work with TreeSitter. The one I've used was LLVM.
+- If you're a Windows user, you may want to download [windows terminal](https://github.com/Microsoft/Terminal) to be able to see the icons.
+I've couldn't find a workaround with the `cmd` and `PowerShell`.
+- Most of the pluggins in here wont work out of the box for Windows, you may have to implements some workarrounds.
+
 - Neovim version 0.5.0 (not released yet) or above. Use [nightly](https://github.com/neovim/neovim/releases) builds.
 - [Paq-nvim](https://github.com/savq/paq-nvim) (minimal package manager for neovim written in Lua).
 - A Patched Font (Pick your font of choice from the [nerdFont](https://github.com/ryanoasis/nerd-fonts) guys)
-
-- If you're a Windows user, you may want to download [windows terminal](https://github.com/Microsoft/Terminal) to be able to see the icons.
-I've couldn't find a workaround with the `cmd` and `PowerShell`.
 
 ### Installation
 Currently there is not a custom installation script (for now). To use this config, clone the repo:
