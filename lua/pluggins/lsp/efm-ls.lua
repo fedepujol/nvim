@@ -4,37 +4,20 @@ local markdownPandoc = {
 	formatCommand = 'pandoc -f markdown -t gfm -sp --tab-stop=4'
 }
 
-local html = {
-	formatCommand = './node_modules/.bin/prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser html'
-}
-
-local css = {
-	formatCommand = './node_modules/.bin/prettier ${--tab-width:tabWidth} ${--single-quote:singleQuote} --parser css'
-}
-
-local json = {
-	formatCommand = './node_modules/.bin/prettier ${--tab-width:tabWidth} --parser json'
-}
-
-local lua = {
-	formatCommand = 'lua-format -i',
-	formatStdin = true,
-}
+local prettier = "~/node_modules/.bin/prettier --parser"
 
 require('lspconfig').efm.setup{
+	cmd = { "~/go/bin/efm-langserver" },
 	init_options = {
 		documentFormatting = true,
-		hover = true,
-		documentSymbol = true,
-		codeAction = true,
 	},
+	filetypes = {'css', 'html', 'json', 'markdown'},
 	settings = {
 		rootMarkers = {".git/"},
 		languages = {
-			css = css,
-			html = html,
-			json = json,
-			lua = lua,
+			css = { formatCommand = prettier..' css' },
+			html = { formatCommand = prettier..' html' },
+			json = { formatCommand = prettier..' json' },
 			markdown = markdownPandoc,
 		}
 	}
