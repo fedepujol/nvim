@@ -4,11 +4,11 @@
 ---------------------------------------------------------------
 local gLineSection = require('galaxyline').section
 local condition = require('galaxyline.condition')
+local file_info = require('galaxyline.provider_fileinfo')
 
 local colors = require('theme.colors')
 local icon = require('pluggins.galaxyline.providers.icon')
 local vimMode = require('pluggins.galaxyline.providers.mode')
-local devicons = require('nvim-web-devicons')
 
 local distro = 'arch'
 
@@ -40,14 +40,22 @@ gLineSection.left[1] = {
 }
 
 gLineSection.left[2] = {
-    FileName = {
-        provider = 'FileName',
+    FileIcon = {
+        provider = 'FileIcon',
         condition = condition.buffer_not_empty,
-        highlight = { colors.white, colors.black3 },
+        highlight = { file_info.get_file_icon_color, colors.black3 },
     }
 }
 
 gLineSection.left[3] = {
+    FileName = {
+        provider = 'FileName',
+        condition = condition.buffer_not_empty,
+        highlight = { file_info.get_file_icon_color, colors.black3 },
+    }
+}
+
+gLineSection.left[4] = {
     FileSize = {
         provider = 'FileSize',
         condition = condition.buffer_not_empty,
@@ -56,7 +64,7 @@ gLineSection.left[3] = {
     }
 }
 
-gLineSection.left[4] = {
+gLineSection.left[5] = {
     DiagnosticInfo  = {
         provider = function ()
 			local wc = vim.lsp.diagnostic.get_count(0, [[Warning]])
@@ -70,7 +78,7 @@ gLineSection.left[4] = {
     }
 }
 
-gLineSection.left[5] = {
+gLineSection.left[6] = {
     DiagnosticError  = {
         provider = function()
             local count = vim.lsp.diagnostic.get_count(0, [[Error]])
@@ -83,7 +91,7 @@ gLineSection.left[5] = {
     }
 }
 
-gLineSection.left[6] = {
+gLineSection.left[7] = {
     DiagnosticWarn  = {
         provider = function ()
             local count = vim.lsp.diagnostic.get_count(0, [[Warning]])
@@ -144,42 +152,38 @@ gLineSection.right[0] = {
         provider = 'GetLspClient',
         condition = condition.buffer_not_empty,
         icon = ' ',
-        highlight = { colors.white, colors.black3 },
+        highlight = { colors.white, colors.black3},
+        separator_highlight = {colors.white, colors.black3}
     }
 }
 
 gLineSection.right[1] = {
-    FileIcon = {
-        provider = 'FileIcon',
+    LineNumber = {
+        provider = function() return vim.fn.line('.') end,
 		condition = condition.buffer_not_empty,
-		separator = ' | ',
-		highlight = { devicons.get_color(vim.fn.expand('%:e')), colors.black3 },
-		separator_highlight = { colors.white, colors.black3 }
+		separator = '| ',
+        highlight = { colors.white, colors.black3},
+        separator_highlight = {colors.white, colors.black3}
     }
 }
 
 gLineSection.right[2] = {
-	FileTypeName = {
-		provider = 'FileTypeName',
+    ColNumber = {
+        provider = function() return vim.fn.col('.') end,
 		condition = condition.buffer_not_empty,
-		highlight = { colors.white, colors.black3 },
-		separator_highlight = { colors.white, colors.black3 },
-	}
-}
-
-gLineSection.right[5] = {
-    CurrentLine = {
-        provider = function () return vim.fn.line('.') end,
-        separator = ' | ',
-        highlight = {colors.white, colors.black3 },
-        separator_highlight = {colors.white, colors.black3 }
+		separator = ', ',
+        highlight = { colors.white, colors.black3},
+        separator_highlight = {colors.white, colors.black3}
     }
 }
 
-gLineSection.right[6] = {
-    LineColumn = {
-        provider = function() return vim.fn.col('.')..' ' end,
-        separator = ', ',
-        highlight = {colors.white, colors.black3 },
-        separator_highlight = {colors.white, colors.black3 } }
+gLineSection.right[3] = {
+    LinePercent = {
+        provider = 'LinePercent',
+		condition = condition.buffer_not_empty,
+        separator = '| ',
+        highlight = { colors.white, colors.black3},
+        separator_highlight = {colors.white, colors.black3}
+    }
 }
+
