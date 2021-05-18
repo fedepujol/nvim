@@ -4,7 +4,7 @@ local opts = {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<space>D', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>d', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 vim.cmd("sign define LspDiagnosticsSignHint numhl= text=H linehl=")
@@ -47,3 +47,27 @@ vim.lsp.protocol.CompletionItemKind = {
     "駱 (operator)",
     " (typeparameter)"
 }
+
+local lsp_config = {}
+
+local function documentHighlight(client, bufnr)
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec([[
+			hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+			hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+			hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+			augroup lsp_document_highlight
+				autocmd! * <buffer>
+				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+			augroup END
+		]], false)
+    end
+end
+
+function lsp_config.common_on_attach(client, bufnr)
+	documentHighlight(client, bufnr)
+end
+
+return lsp_config
