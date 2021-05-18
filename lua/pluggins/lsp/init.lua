@@ -48,7 +48,6 @@ vim.lsp.protocol.CompletionItemKind = {
     " (typeparameter)"
 }
 
-local lsp_config = {}
 
 local function documentHighlight(client, bufnr)
     -- Set autocommands conditional on server_capabilities
@@ -65,6 +64,19 @@ local function documentHighlight(client, bufnr)
 		]], false)
     end
 end
+
+local lsp_config = {
+	data_dir = vim.fn.stdpath('data'),
+	config_dir = function()
+		if vim.fn.has("mac") == 1 then
+			return ""
+		elseif vim.fn.has("unix") == 1 then
+			return ""
+		elseif vim.fn.has("win32") == 1 then
+			return "C:/Users/fedet/AppData/Roaming/"
+		end
+	end,
+}
 
 function lsp_config.common_on_attach(client, bufnr)
 	documentHighlight(client, bufnr)
