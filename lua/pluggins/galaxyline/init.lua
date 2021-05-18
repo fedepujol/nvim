@@ -158,8 +158,18 @@ gLineSection.right[0] = {
 }
 
 gLineSection.right[1] = {
+    LinePercent = {
+        provider = 'LinePercent',
+		condition = condition.buffer_not_empty,
+        separator = ' |',
+        highlight = { colors.white, colors.black3},
+        separator_highlight = {colors.white, colors.black3}
+    }
+}
+
+gLineSection.right[2] = {
     LineNumber = {
-        provider = function() return vim.fn.line('.') end,
+        provider = function() return 'L: '..vim.fn.line('.') end,
 		condition = condition.buffer_not_empty,
 		separator = '| ',
         highlight = { colors.white, colors.black3},
@@ -167,21 +177,11 @@ gLineSection.right[1] = {
     }
 }
 
-gLineSection.right[2] = {
+gLineSection.right[3] = {
     ColNumber = {
-        provider = function() return vim.fn.col('.') end,
+        provider = function() return 'C: '..vim.fn.col('.')..' ' end,
 		condition = condition.buffer_not_empty,
 		separator = ', ',
-        highlight = { colors.white, colors.black3},
-        separator_highlight = {colors.white, colors.black3}
-    }
-}
-
-gLineSection.right[3] = {
-    LinePercent = {
-        provider = 'LinePercent',
-		condition = condition.buffer_not_empty,
-        separator = '| ',
         highlight = { colors.white, colors.black3},
         separator_highlight = {colors.white, colors.black3}
     }
