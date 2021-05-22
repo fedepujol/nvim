@@ -9,6 +9,7 @@ require('pluggins.galaxyline')
 require('pluggins.telescope')
 require('pluggins.nvim-tree')
 require('pluggins.gitsigns')
+require('pluggins.which-key')
 
 -- LSP
 require('pluggins.lsp.bash-ls')
