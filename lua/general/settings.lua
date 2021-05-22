@@ -6,6 +6,8 @@ local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
 
+vim.cmd(':colo fpcolor')
+
 -- Global Options
 o.background = "dark"                   				-- Tell NVim the background color
 o.backup = false                        				-- No backup file when written
