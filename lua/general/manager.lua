@@ -23,8 +23,9 @@ paq {'norcalli/nvim-colorizer.lua'}
 paq {'hrsh7th/nvim-compe'}
 paq {'hrsh7th/vim-vsnip'}
 
--- Colors
+-- Treesitter
 paq {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+paq {'nvim-treesitter/playground'}
 
 -- StatusLine
 paq {'glepnir/galaxyline.nvim', branch = 'main'}
@@ -39,3 +40,6 @@ paq {'lewis6991/gitsigns.nvim'}
 
 -- File Explorer
 paq {'kyazdani42/nvim-tree.lua'}
+
+-- WhichKey
+paq {'folke/which-key.nvim'}
