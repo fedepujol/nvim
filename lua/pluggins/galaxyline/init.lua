@@ -6,14 +6,11 @@ local gLineSection = require('galaxyline').section
 local condition = require('galaxyline.condition')
 local file_info = require('galaxyline.provider_fileinfo')
 
-local colors = require('theme.colors')
+local colors = require('pluggins.galaxyline.providers.colors')
 local icon = require('pluggins.galaxyline.providers.icon')
 local vimMode = require('pluggins.galaxyline.providers.mode')
 
 local distro = 'arch'
-
-vim.cmd("hi Statusline guifg='#161616'")
-vim.cmd("hi StatusLineNc guifg='#161616'")
 
 ---------------------------------------------------------------
 ------------------------ Left Section  ------------------------

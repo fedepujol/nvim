@@ -1,5 +1,5 @@
 -- Icon Provider
-local colors = require('theme.colors')
+local colors = require('pluggins.galaxyline.providers.colors')
 
 local Icon = {
     distros = {
