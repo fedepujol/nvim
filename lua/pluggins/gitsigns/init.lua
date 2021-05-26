@@ -19,8 +19,3 @@ require('gitsigns').setup {
   use_decoration_api = true,
 }
 
-vim.api.nvim_exec([[
-    hi GitSignsAdd    guibg=#36B739 guifg=#262626
-    hi GitSignsChange guibg=#EB9800 guifg=#262626 
-    hi GitSignsDelete guibg=#890000 guifg=#262626 
-]], false)
