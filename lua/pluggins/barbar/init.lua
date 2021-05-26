@@ -16,4 +16,5 @@ vim.api.nvim_set_keymap('n', '<M-c>', ':BufferClose<CR>', opts)
 vim.api.nvim_exec([[
 	let bufferline = get(g:, 'bufferline', {})
 	let bufferline.animation = v:false
+	let bufferline.maximum_padding = 2
 ]], false)
