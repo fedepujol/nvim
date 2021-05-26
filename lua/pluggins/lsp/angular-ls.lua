@@ -3,8 +3,9 @@
 local lsp = require('pluggins.lsp')
 
 require('lspconfig').angularls.setup{
-	cmd = {lsp.data_dir..'/lspinstall/angular/node_modules/@angular/language-server/bin/ngserver', '--stdio'},
+	cmd = {lsp.data_dir..'/lspinstall/angular/node_modules/@angular/ngserver.cmd', '--stdio'},
 	filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx" },
-	on_attach = lsp.common_on_attach
+	root_dir = require('lspconfig/util').root_pattern{'angular.json', '.git'},
+	on_attach = lsp.common_on_attach,
 }
 
