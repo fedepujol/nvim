@@ -12,6 +12,7 @@ paq {'kabouzeid/nvim-lspinstall'}
 
 -- Icons
 paq {'kyazdani42/nvim-web-devicons'}
+paq {'fedepujol/fpcolor'}
 
 -- Buffer Bar (Find a better replace/write one)
 paq {'romgrk/barbar.nvim'}
