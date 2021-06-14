@@ -1,5 +1,4 @@
 -- WhichKey
-
 require('which-key').setup {
 	plugins = {
 		spelling = {
