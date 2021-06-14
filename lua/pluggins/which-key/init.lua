@@ -3,11 +3,10 @@
 require('which-key').setup {
 	plugins = {
 		spelling = {
-			enable = true,
-			suggestions = 20
+			enable = false,
 		},
 		presets = {
-			operators = true,
+			operators = false,
 			motions = true,
 			text_objects = true,
 			widnows = true,
@@ -18,12 +17,15 @@ require('which-key').setup {
 	},
 	key_labels = {
 		["<space>"] = "SPC",
-		["<cr>"] = "RET",
-		["<tab>"] = "TAB",
+		["<CR>"] = "RET",
+		["<Tab>"] = "TAB",
+		["<leader>"] = "LEAD"
 	},
 	window = {
 		border = "none",
 		position = "bottom",
 	},
-	show_help = true
+	show_help = true,
+	hidden = {'<silent>', '<cmd>', '<CMD>', '<CR>', 'lua', '^:'}
+
 }
