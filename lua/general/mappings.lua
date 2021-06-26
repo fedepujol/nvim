@@ -1,19 +1,12 @@
 -- General Mappings
 local opts = { noremap = true }
 
--- Use ALT + hjkl to resize windows
-vim.api.nvim_set_keymap('n', '<M-j>', ':resize -2<CR>', opts)
-vim.api.nvim_set_keymap('n', '<M-k>', ':resize +2<CR>', opts)
-vim.api.nvim_set_keymap('n', '<M-h>', ':vertical resize -2<CR>', opts)
-vim.api.nvim_set_keymap('n', '<M-l>', ':vertical resize +2<CR>', opts)
-
 -- Save
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', opts)
 vim.api.nvim_set_keymap('i', '<C-s>', '<ESC>:w<CR>', opts)
 
 -- Quit
 vim.api.nvim_set_keymap('n', '<C-q>', ':q<CR>', opts)
-vim.api.nvim_set_keymap('i', 'hh', '<ESC><CR>', opts)
 
 -- Better Tabbing
 vim.api.nvim_set_keymap('v', '<S-TAB>', '<gv', opts)
