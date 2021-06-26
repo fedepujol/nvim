@@ -25,18 +25,3 @@ require('nvim-treesitter.configs').setup {
 		},
 	}
 }
-
-vim.api.nvim_exec([[
-	hi clear default
-	hi default link TSText PreProc
-	hi default link TSProperty Constant
-	hi default link TSConstBuiltin Constant
-	hi default link TSStringScape String
-	hi default link TSFuncBuiltin Function
-	hi default link TSFuncMacro Function
-	hi default link TSConstructor Type
-	hi default link TSNamespace PreProc
-	hi default link TSSymbol PreProc
-	hi default link TSKeyword Repeat
-	hi default link TSVariableBuiltin Boolean
-]], false)

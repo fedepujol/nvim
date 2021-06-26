@@ -25,6 +25,5 @@ require('which-key').setup {
 		position = "bottom",
 	},
 	show_help = true,
-	hidden = {'<silent>', '<cmd>', '<CMD>', '<CR>', 'lua', '^:'}
-
+	hidden = {'<silent>', '<cmd>', '<CMD>', '<CR>', 'lua', '^:'},
 }

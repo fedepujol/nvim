@@ -26,5 +26,5 @@ vim.api.nvim_set_keymap('n', 'gs', ':Lspsaga signature_help<CR>', opts)
 
 -- Diagnostics
 vim.api.nvim_set_keymap('n', '<leader>cd', ':Lspsaga show_line_diagnostics<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-n>', "<CMD>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>", opts)
-vim.api.nvim_set_keymap('n', '<C-m>', "<CMD>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<C-n>', "<Cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<C-m>', "<Cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>", opts)
