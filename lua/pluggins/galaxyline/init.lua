@@ -31,6 +31,11 @@ gLineSection.left[1] = {
 			return '  '..vimMode.getModeAlias()..' '
 		end,
 		separator = ' ',
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
 		highlight = { colors.white, colors.black3 },
 		separator_highlight = {colors.white, colors.black3},
 	}
@@ -39,7 +44,11 @@ gLineSection.left[1] = {
 gLineSection.left[2] = {
 	FileIcon = {
 		provider = 'FileIcon',
-		condition = condition.buffer_not_empty,
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
 		highlight = { file_info.get_file_icon_color, colors.black3 },
 	}
 }
@@ -70,7 +79,11 @@ gLineSection.left[5] = {
 				return ''
 			end
 		end,
-		condition = condition.buffer_not_empty,
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
 		highlight = { colors.green5, colors.black3 },
 	}
 }
@@ -107,7 +120,11 @@ gLineSection.left[7] = {
 gLineSection.mid[0] = {
 	Branch = {
 		provider = 'GitBranch',
-		condition = condition.buffer_not_empty,
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
 		icon = ' ',
 		highlight = { colors.pink5, colors.black3 }
 	}
@@ -147,9 +164,13 @@ gLineSection.mid[3] = {
 gLineSection.right[0] = {
 	IconLsp = {
 		provider = function()
-			return ''
+			return ''
 		end,
-		condition = condition.buffer_not_empty,
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
 		highlight = { colors.black4, colors.black3},
 		separator = ' ',
 		separator_highlight = {colors.black4, colors.black3}
@@ -159,8 +180,12 @@ gLineSection.right[0] = {
 gLineSection.right[1] = {
 	GetLspClient  = {
 		provider = 'GetLspClient',
-		condition = condition.buffer_not_empty,
-		icon = ' ',
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
+		icon = '  ',
 		highlight = { colors.gray3, colors.black4},
 	}
 }
@@ -168,9 +193,13 @@ gLineSection.right[1] = {
 gLineSection.right[2] = {
 	IconLC = {
 		provider = function()
-			return ''
+			return ''
 		end,
-		condition = condition.buffer_not_empty,
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
 		highlight = { colors.pink6, colors.black4},
 		separator = ' ',
 		separator_highlight = {colors.gray3, colors.black4}
@@ -190,8 +219,12 @@ gLineSection.right[3] = {
 			end
 			return ' '..l..'.'..c
 		end,
-		condition = condition.buffer_not_empty,
-		separator = 'Lc ',
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
+		separator = ' Lc ',
 		highlight = { colors.pink6, colors.black4},
 		separator_highlight = {colors.black4, colors.pink6}
 	}
@@ -200,9 +233,13 @@ gLineSection.right[3] = {
 gLineSection.right[4] = {
 	IconLP = {
 		provider = function()
-			return ''
+			return ''
 		end,
-		condition = condition.buffer_not_empty,
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 50)
+			return bNE() and bW
+		end,
 		highlight = { colors.green5, colors.black4},
 		separator = ' ',
 		separator_highlight = {colors.pink6, colors.black4}
@@ -227,9 +264,13 @@ gLineSection.right[5] = {
 			end
 			return ' '..result..'% '
 		end,
-		condition = condition.buffer_not_empty,
+		condition = function()
+			local bNE = condition.buffer_not_empty
+			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
+			return bNE() and bW
+		end,
 		highlight = { colors.green5, colors.black4},
-		separator = ' ',
+		separator = '  ',
 		separator_highlight = {colors.black4, colors.green5}
 	}
 }
