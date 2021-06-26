@@ -8,7 +8,7 @@ local lsp = require('pluggins.lsp')
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require('lspconfig').html.setup{
-	cmd = {"node", lsp.data_dir.."/lspinstall/html/vscode-html/html-language-features/server/dist/node/htmlServerMain.js", "--stdio"},
+	cmd = {lsp.lsp_dir.."/vscode-extracted/vscode-html-language-server.cmd", "--stdio"},
     capabilities = capabilities,
 	on_attach = lsp.common_on_attach,
 }

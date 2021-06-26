@@ -3,7 +3,8 @@
 local lsp = require('pluggins.lsp')
 
 require 'lspconfig'.jsonls.setup {
-	cmd = {'node',  lsp.data_dir..'/json/vscode-json/json-language-features/server/dist/node/jsonServerMain.js', '--stdio'},
+	cmd = {lsp.lsp_dir..'/vscode-extracted/vscode-json-language-server.cmd', '--stdio'},
+	on_attach = lsp.common_on_attach,
 	root_dir = require('lspconfig/util').root_pattern{'.git', vim.fn.getcwd()},
     commands = {
       Format = {

@@ -66,7 +66,7 @@ local function documentHighlight(client, bufnr)
 end
 
 local lsp_config = {
-	data_dir = vim.fn.stdpath('data'),
+	lsp_dir = vim.fn.stdpath('data')..'/lspinstall',
 	config_dir = function()
 		if vim.fn.has("mac") == 1 then
 			return ""
@@ -76,6 +76,7 @@ local lsp_config = {
 			return "C:/Users/fedet/AppData/Roaming/"
 		end
 	end,
+	root_pattern = require('lspconfig/util').root_pattern
 }
 
 function lsp_config.common_on_attach(client, bufnr)

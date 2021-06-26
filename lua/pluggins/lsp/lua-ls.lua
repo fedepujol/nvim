@@ -1,4 +1,5 @@
 -- Lua LSP
+local lsp = require('pluggins.lsp')
 local system_name
 local sumneko_root_path = ""
 local sumneko_binary = ""
@@ -13,7 +14,7 @@ else
 	print("Unsupported system")
 end
 
-sumneko_root_path = vim.fn.stdpath("config")..'/lua-language-server'
+sumneko_root_path = lsp.lsp_dir..'/sumneko_lua'
 sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
 require('lspconfig').sumneko_lua.setup{
