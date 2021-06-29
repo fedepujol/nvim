@@ -31,11 +31,6 @@ gLineSection.left[1] = {
 			return '  '..vimMode.getModeAlias()..' '
 		end,
 		separator = ' ',
-		condition = function()
-			local bNE = condition.buffer_not_empty
-			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
-			return bNE() and bW
-		end,
 		highlight = { colors.white, colors.black3 },
 		separator_highlight = {colors.white, colors.black3},
 	}
