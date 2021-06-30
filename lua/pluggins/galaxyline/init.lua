@@ -116,9 +116,9 @@ gLineSection.mid[0] = {
 	Branch = {
 		provider = 'GitBranch',
 		condition = function()
-			local bNE = condition.buffer_not_empty
+			local gDir = condition.check_git_workspace
 			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
-			return bNE() and bW
+			return gDir() and bW
 		end,
 		icon = ' ',
 		highlight = { colors.pink5, colors.black3 }
