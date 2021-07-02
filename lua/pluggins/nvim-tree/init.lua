@@ -15,7 +15,7 @@ vim.g.nvim_tree_indent_markers = 1 				-- Show indent marks
 vim.g.nvim_tree_lsp_diagnostics = 0 			-- Dont show LspDiagnostics info in sign column
 vim.g.nvim_tree_side = 'left' 					-- Tree side
 vim.g.nvim_tree_special_files = specialFiles 	-- List of elements that gets highlight with NvimTreeSpecialFile
-vim.g.nvim_tree_width = 30 						-- Default Tree Width
+vim.g.nvim_tree_width = 60 						-- Default Tree Width
 vim.g.nvim_tree_width_allow_resize = 1 			-- Will resize the tree when opening a file
 
 -- Redefined NvimTree icons for git information
