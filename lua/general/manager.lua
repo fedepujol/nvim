@@ -7,7 +7,6 @@ paq {'savq/paq-nvim', opt = true}
 
 -- Lsp
 paq {'neovim/nvim-lspconfig'}
-paq {'glepnir/lspsaga.nvim'}
 paq {'kabouzeid/nvim-lspinstall'}
 
 -- Icons
