@@ -12,7 +12,7 @@ require('telescope').setup{
 		prompt_prefix = '~ ',
 		selection_caret = '> ',
 		sorting_strategy = 'ascending',
-		layout_strategy = 'horizontal',
+		layout_strategy = 'vertical',
 		layout_config= {
 			prompt_position = 'top',
 			horizontal = {
@@ -38,9 +38,5 @@ vim.api.nvim_set_keymap('n', '<C-f>g', "<CMD>lua require('telescope.builtin').li
 vim.api.nvim_set_keymap('n', '<C-f>h', "<CMD>lua require('telescope.builtin').help_tags()<CR>", opts)
 vim.api.nvim_set_keymap('n', '<C-f>c', "<CMD>lua require('telescope.builtin').grep_string()<CR>", opts)
 -- KeyMaps Search
-vim.api.nvim_set_keymap('n', '<C-k><C-s>', "<CMD>lua require('telescope.builtin').keymaps()<CR>", opts)
--- Git Search
-vim.api.nvim_set_keymap('n', '<C-g>c', "<CMD>lua require('telescope.builtin').git_bcommits()<CR>", opts)
-vim.api.nvim_set_keymap('n', '<C-g>b', "<CMD>lua require('telescope.builtin').git_branches()<CR>", opts)
-vim.api.nvim_set_keymap('n', '<C-g>s', "<CMD>lua require('telescope.builtin').git_status()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<C-f>k', "<CMD>lua require('telescope.builtin').keymaps()<CR>", opts)
 
