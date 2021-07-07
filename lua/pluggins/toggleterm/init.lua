@@ -6,6 +6,7 @@ require('toggleterm').setup{
 	direction = 'horizontal',
 	persist_size = true,
 	close_on_exit = true,
+	shell = "bash"
 }
 
 vim.api.nvim_set_keymap('n', '<leader>t', "<cmd>exe v:count1 . 'ToggleTerm'<CR>", {noremap = true, silent = true})
