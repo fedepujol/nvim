@@ -1,45 +1,52 @@
--- Settings Paq
+-- Setting Paq
 
 -- Paq Init
-vim.cmd 'packadd paq-nvim'
-local paq = require 'paq-nvim'.paq
-paq {'savq/paq-nvim', opt = true}
+require('paq') {
+	'savq/paq-nvim';
 
--- Lsp
-paq {'neovim/nvim-lspconfig'}
-paq {'kabouzeid/nvim-lspinstall'}
+	-- Lsp
+	'neovim/nvim-lspconfig';
+	'kabouzeid/nvim-lspinstall';
+	'glepnir/lspsaga.nvim';
 
--- Icons
-paq {'kyazdani42/nvim-web-devicons'}
-paq {'fedepujol/fpcolor'}
+	-- Icons
+	'kyazdani42/nvim-web-devicons';
+	'fedepujol/fpcolor';
 
--- Buffer Bar (Find a better replace/write one)
-paq {'romgrk/barbar.nvim'}
+	-- Buffer Bar (Find a better replace/write one)
+	'romgrk/barbar.nvim';
 
--- Hex/RGB/Color Handler
-paq {'norcalli/nvim-colorizer.lua'}
+	-- Hex/RGB/Color Handler
+	'norcalli/nvim-colorizer.lua';
 
--- Completion
-paq {'hrsh7th/nvim-compe'}
-paq {'hrsh7th/vim-vsnip'}
+	-- Completion
+	'hrsh7th/nvim-compe';
+	'hrsh7th/vim-vsnip';
 
--- Treesitter
-paq {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-paq {'nvim-treesitter/playground'}
+	-- Treesitter
+	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
+	'nvim-treesitter/playground';
 
--- StatusLine
-paq {'glepnir/galaxyline.nvim', branch = 'main'}
+	-- StatusLine
+	{'glepnir/galaxyline.nvim', branch = 'main'};
 
--- Search/FZF
-paq {'nvim-lua/plenary.nvim'}
-paq {'nvim-lua/popup.nvim'}
-paq {'nvim-telescope/telescope.nvim'}
+	-- Search/FZF
+	'nvim-lua/plenary.nvim';
+	'nvim-lua/popup.nvim';
+	'nvim-telescope/telescope.nvim';
 
--- Code Versioning
-paq {'lewis6991/gitsigns.nvim'}
+	-- Code Versioning
+	'lewis6991/gitsigns.nvim';
 
--- File Explorer
-paq {'kyazdani42/nvim-tree.lua'}
+	-- Comment
+	'b3nj5m1n/kommentary';
 
--- WhichKey
-paq {'folke/which-key.nvim'}
+	-- File Explorer
+	'kyazdani42/nvim-tree.lua';
+
+	-- WhichKey
+	'folke/which-key.nvim';
+
+	-- Terminal
+	'akinsho/nvim-toggleterm.lua';
+}
