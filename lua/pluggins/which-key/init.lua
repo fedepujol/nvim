@@ -34,13 +34,22 @@ wk.register({
 	['|'] = {
 		name = "General Settings",
 		k = {"<cmd>lua require('telescope.builtin').keymaps()<CR>", "Keymaps"},
+		c = {":checkhealth which_key<CR>", "Search Conflicting Keymaps"},
 		h = {":checkhealth<CR>", "Neovim Healt"},
 	},
 	g = {
 		name = "Git",
-		j = {"<cmd>lua require('gitsigns').next_hunk()<CR>", "Next Hunk"},
-		J = {"<cmd>lua require('gitsigns').prev_hunk()<CR>", "Prev Hunk"},
-		p = {"<cmd>lua require('gitsigns').preview_hunk()<CR>", "Preview Hunk"},
+		h = {
+			name = "Hunk",
+			j = {"<cmd>lua require('gitsigns').next_hunk()<CR>", "Next Hunk"},
+			J = {"<cmd>lua require('gitsigns').prev_hunk()<CR>", "Prev Hunk"},
+			p = {"<cmd>lua require('gitsigns').preview_hunk()<CR>", "Preview Hunk"},
+			r = {"<cmd>lua require('gitsigns').reset_hunk()<CR>", "Reset Hunk"},
+			R = {"<cmd>lua require('gitsigns').reset_buffer()<CR>", "Reset Buffer"},
+			s = {"<cmd>lua require('gitsigns').stage_hunk()<CR>", "Stage Hunk"},
+			S = {"<cmd>lua require('gitsigns').stage_buffer()<CR>", "Stage Buffer"}
+		},	
+		l = {"<cmd>lua require('gitsigns').blame_line(true)<CR>", "Blame"},
 		b = {"<cmd>lua require('telescope.builtin').git_branches()<CR>", "Checkout Branch"},
 		s = {"<cmd>lua require('telescope.builtin').git_status()<CR>", "Status"},
 		c = {"<cmd>lua require('telescope.builtin').git_bcommits()<CR>", "Branch Commits"}
@@ -49,7 +58,6 @@ wk.register({
 		name = "LSP",
 		i = {":LspInfo<CR>", "Info"},
 		H = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
-		d = { '<Cmd>lua vim.lsp.buf.definition()<CR>', "Go To Definition"},
 		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', "Go to Implementation"},
 		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', "Document Symbol"},
 		c = { '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', "Show Code Actions"},
@@ -57,8 +65,11 @@ wk.register({
 		f = { '<Cmd>lua vim.lsp.buf.formatting()<CR>', "Format"},
 		r = { '<cmd>lua vim.lsp.buf.references()<CR>', "Show References"},
 		h = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', "Get Signature Help"},
-		n = { '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = "single"}})<CR>', "Next Diagnostic"},
-		p = { '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = "single"}})<CR>', "Prev. Diagnostic"},
+		d = {
+			name = "Diagnostics",
+			n = { '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = "single"}})<CR>', "Next Diagnostic"},
+			p = { '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = "single"}})<CR>', "Prev. Diagnostic"}
+		},
 	},
 	s = {
 		name = "TreeSitter",
