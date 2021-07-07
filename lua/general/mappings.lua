@@ -23,7 +23,6 @@ vim.api.nvim_set_keymap('n', '<C-M-k>', ':normal! dd2kp<CR>', opts)
 vim.api.nvim_set_keymap('n', '<C-M-j>', ':normal! ddp<CR>', opts)
 
 -- Terminal
-vim.api.nvim_set_keymap('n', '<C-A-t>', ':below 20sp term://bash<CR>', opts)
 vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-N><C-w>h', { noremap = true})
 vim.api.nvim_set_keymap('t', '<A-j>', '<C-\\><C-N><C-w>j', { noremap = true})
