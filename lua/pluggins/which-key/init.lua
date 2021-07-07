@@ -33,9 +33,9 @@ local wk = require('which-key')
 wk.register({
 	['|'] = {
 		name = "General Settings",
-		k = {"<cmd>lua require('telescope.builtin').keymaps()<CR>", "Keymaps"},
+		k = {"<cmd>lua require('telescope.builtin').keymaps()<CR>", "Show Keymaps"},
 		c = {":checkhealth which_key<CR>", "Search Conflicting Keymaps"},
-		h = {":checkhealth<CR>", "Neovim Healt"},
+		h = {":checkhealth<CR>", "Neovim Health"},
 	},
 	g = {
 		name = "Git",
