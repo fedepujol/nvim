@@ -1,6 +1,6 @@
 -- ToggleTerma Setup
 require('toggleterm').setup{
-	size = 20,
+	size = 12,
 	hide_numbers = true,
 	start_in_insert = false,
 	direction = 'horizontal',
@@ -9,4 +9,4 @@ require('toggleterm').setup{
 	shell = "bash"
 }
 
-vim.api.nvim_set_keymap('n', '<leader>t', "<cmd>exe v:count1 . 'ToggleTerm'<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>t', "<cmd>:ToggleTerm<CR>", {noremap = true, silent = true})
