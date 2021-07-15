@@ -71,7 +71,7 @@ gLineSection.left[5] = {
 			local wc = vim.lsp.diagnostic.get_count(0, [[Warning]])
 			local ec = vim.lsp.diagnostic.get_count(0, [[Error]])
 			if wc + ec == 0 then
-				return ''
+				return ' '
 			end
 		end,
 		condition = function()
@@ -219,7 +219,7 @@ gLineSection.right[3] = {
 			local bW = ((vim.api.nvim_win_get_width(0) / 2) > 40)
 			return bNE() and bW
 		end,
-		separator = ' Lc ',
+		separator = ' ',
 		highlight = { colors.pink6, colors.black4},
 		separator_highlight = {colors.black4, colors.pink6}
 	}
@@ -265,7 +265,7 @@ gLineSection.right[5] = {
 			return bNE() and bW
 		end,
 		highlight = { colors.green5, colors.black4},
-		separator = '  ',
+		separator = ' ',
 		separator_highlight = {colors.black4, colors.green5}
 	}
 }
