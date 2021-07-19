@@ -22,8 +22,11 @@ require('telescope').setup{
 				mirror = false,
 			},
 		},
-		shorten_path = true,
+		path_display = {
+			'absolute'
+		},
 		use_less = true,
+		file_ignore_patterns = {'./node_modules'},
 		set_env = {["COLORTERM"] = "truecolor"},
 	}
 }
