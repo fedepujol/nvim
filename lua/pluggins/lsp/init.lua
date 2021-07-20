@@ -73,15 +73,6 @@ end
 
 local lsp_config = {
 	lsp_dir = vim.fn.stdpath('data')..'/lspinstall',
-	config_dir = function()
-		if vim.fn.has("mac") == 1 then
-			return ""
-		elseif vim.fn.has("unix") == 1 then
-			return ""
-		elseif vim.fn.has("win32") == 1 then
-			return "C:/Users/fedet/AppData/Roaming/"
-		end
-	end,
 	root_pattern = require('lspconfig/util').root_pattern
 }
 
