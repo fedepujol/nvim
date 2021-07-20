@@ -23,6 +23,7 @@ require('telescope').setup{
 			},
 		},
 		path_display = {
+			"shorten",
 			'absolute'
 		},
 		use_less = true,
