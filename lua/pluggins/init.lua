@@ -1,4 +1,5 @@
 -- Pluggin Init
+require('pluggins.manager')
 require('pluggins.barbar')
 require('pluggins.colorizer')
 require('pluggins.compe')
