@@ -1,6 +1,5 @@
 -- General Configs
-require('pluggins.settings')
-require('general')
+require('core')
 
 -- Plugins
 require('pluggins')
