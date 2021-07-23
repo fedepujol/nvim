@@ -145,11 +145,11 @@ These are the pluggins included:
 |[kommentary](https://github.com/b3nj5m1n/kommentary)|Neovim commenting plugin, written in lua.|
 |[nvim-compe](https://github.com/hrsh7th/nvim-compe)|Auto completion plugin for nvim.|
 |[nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)|Provides the missing :LspInstall for nvim-lspconfig.|
-|[nvim-lspsaga](https://github.com/glepnir/lspsaga.nvim)||
-|[nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)||
+|[nvim-lspsaga](https://github.com/glepnir/lspsaga.nvim)|Provides LSP actions with a highly performant UI.|
+|[nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)|A File-Explorer tree for NeoVim written in Lua.|
 |[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)|Nvim Treesitter configurations and abstraction layer.|
 |[nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)|A neovim lua plugin to help easily manage multiple terminal windows.|
-|[nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)||
+|[nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)|Lua fork of vim-web-devicons for NeoVim.|
 |[playground](https://github.com/nvim-treesitter/playground)|Treesitter playground integrated into Neovim.|
 |[telescope](https://github.com/nvim-telescope/telescope.nvim)|Find, Filter, Preview, Pick. All lua, all the time.|
 |[vim-vsnip](https://github.com/hrsh7th/vim-vsnip)|Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.|
