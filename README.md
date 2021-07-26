@@ -20,7 +20,6 @@ into a VSCode replacement or IDE. For now it has the following:
 -   [Installation](#installation)
     -   [First Launch](#first-launch)
     -   [LSP](#lsp)
--   [Pluggins](#pluggins)
 -   [Structure](#structure)
     -   [Overview](#overview)
     -   [TreeSitter Queries](#treesitter-queries)
@@ -111,60 +110,6 @@ If you are in Windows, you’ve got to do it manually (see
     \*This tells `npm` to install the LSP in the folder you are
     currently on.
 
-## Paq (Plugin Manager)
-
-To manage all of them you have `Paq` (very minimal pluggin manager). It
-has a few commands to interact with. - PaqInstall - PaqUpdate - PaqClean
-
-#### Install a new Pluggin
-
-To install new pluggins you have to do 2 things: 1. Add the new pluggin
-in the `manager.lua` 2. Re-start neovim 3. Run the following command:
-
-    :PaqInstall name-of-pluggin-to-install
-
-#### Remove/Uninstall a pluggin
-
-If you wish to remove a few pluggins. Follow this steps: 1. Remove the
-pluggin from `manager.lua` 2. Re-start neovim 3. Run the following
-command:
-
-    :PaqClean
-
-#### Update a Pluggin
-
-Just run the following command:
-
-    :PaqUpdate
-
-#### More Info
-
-If you want more info about how `Paq` works and other commands, go and
-visit [the project page](https://github.com/savq/paq-nvim).
-
-## Pluggins
-
-These are the pluggins included:
-
-| Name                                                                  | Description                                                                                                   |
-|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| [barbar](https://github.com/romgrk/barbar.nvim)                       | Tabs, as understood by any other editor.                                                                      |
-| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)           | The fastest Neovim colorizer.                                                                                 |
-| [galaxyline](https://github.com/glepnir/galaxyline.nvim)              | Light-weight and Super Fast statusline plugin written in lua.                                                 |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                | Super fast git decorations implemented purely in lua/teal.                                                    |
-| [kommentary](https://github.com/b3nj5m1n/kommentary)                  | Neovim commenting plugin, written in lua.                                                                     |
-| [nvim-compe](https://github.com/hrsh7th/nvim-compe)                   | Auto completion plugin for nvim.                                                                              |
-| [nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)        | Provides the missing :LspInstall for nvim-lspconfig.                                                          |
-| [nvim-lspsaga](https://github.com/glepnir/lspsaga.nvim)               | Provides LSP actions with a highly performant UI.                                                             |
-| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)              | A File-Explorer tree for NeoVim written in Lua.                                                               |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Nvim Treesitter configurations and abstraction layer.                                                         |
-| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)     | A neovim lua plugin to help easily manage multiple terminal windows.                                          |
-| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)  | Lua fork of vim-web-devicons for NeoVim.                                                                      |
-| [playground](https://github.com/nvim-treesitter/playground)           | Treesitter playground integrated into Neovim.                                                                 |
-| [telescope](https://github.com/nvim-telescope/telescope.nvim)         | Find, Filter, Preview, Pick. All lua, all the time.                                                           |
-| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                     | Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.                                        |
-| [which-key](https://github.com/folke/which-key.nvim)                  | Lua plugin for Neovim 0.5 that displays a popup with possible key bindings of the command you started typing. |
-
 ## Structure
 
 ``` text
@@ -195,14 +140,14 @@ The way the folder structure works is as `Lua modules`. Every folder has
 an `init.lua` that is required outside. In the `init.lua` you `require`
 the files you want to export.
 
-For example in `./init.lua` you'll have something like this:
+For example in `./init.lua` you’ll have something like this:
 
 ``` lua
 require('core')
 require('pluggins')
 ```
 
-And in core's `init.lua`:
+And in core’s `init.lua`:
 
 ``` lua
 require('core.mappings')
@@ -225,7 +170,7 @@ So, if you wanted to create the following sub-structure under `core`:
     └── 📝 settings.lua
 ```
 
-You'll need to create a `init.lua` under `newFolder1` and `newFolder2`.
+You’ll need to create a `init.lua` under `newFolder1` and `newFolder2`.
 Then required it in `core/init.lua`:
 
 ``` text
@@ -270,7 +215,7 @@ require('newFolder2')
 ### TreeSitter Queries
 
 In here goes your custom, language specific, queries for `treesitter`.
-I've created one for `HTML` that helps me in `Angular`.
+I’ve created one for `HTML` that helps me in `Angular`.
 
 -   Folder: `after/queries/`
 
@@ -288,6 +233,66 @@ Custom keybindings
 
 ### Pluggins
 
-To control the pluggins you've got a few files:
+These are the pluggins included:
 
--   `lua/pluggins/manager.lua`
+| Name                                                                  | Description                                                                                                   |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| [barbar](https://github.com/romgrk/barbar.nvim)                       | Tabs, as understood by any other editor.                                                                      |
+| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)           | The fastest Neovim colorizer.                                                                                 |
+| [galaxyline](https://github.com/glepnir/galaxyline.nvim)              | Light-weight and Super Fast statusline plugin written in lua.                                                 |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                | Super fast git decorations implemented purely in lua/teal.                                                    |
+| [kommentary](https://github.com/b3nj5m1n/kommentary)                  | Neovim commenting plugin, written in lua.                                                                     |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)            | Autopairs for NeoVim written in Lua.                                                                          |
+| [nvim-compe](https://github.com/hrsh7th/nvim-compe)                   | Auto completion plugin for nvim.                                                                              |
+| [nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)        | Provides the missing :LspInstall for nvim-lspconfig.                                                          |
+| [nvim-lspsaga](https://github.com/glepnir/lspsaga.nvim)               | Provides LSP actions with a highly performant UI.                                                             |
+| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)              | A File-Explorer tree for NeoVim written in Lua.                                                               |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Nvim Treesitter configurations and abstraction layer.                                                         |
+| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)     | A neovim lua plugin to help easily manage multiple terminal windows.                                          |
+| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)  | Lua fork of vim-web-devicons for NeoVim.                                                                      |
+| [playground](https://github.com/nvim-treesitter/playground)           | Treesitter playground integrated into Neovim.                                                                 |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)         | Find, Filter, Preview, Pick. All lua, all the time.                                                           |
+| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                     | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format.                                        |
+| [which-key](https://github.com/folke/which-key.nvim)                  | Lua plugin for Neovim 0.5 that displays a popup with possible key bindings of the command you started typing. |
+
+To control the pluggins you’ve got a few files:
+
+-   `lua/pluggins/manager.lua`: Add/Remove the pluggins from this file.
+-   `lua/pluggins/init.lua`: Add/Remove the module configuration.
+
+And `Paq` (Plugin Manager).
+
+#### Paq (Plugin Manager)
+
+To manage all of them you have `Paq` (very minimal pluggin manager). It
+has a few commands to interact with. - PaqInstall - PaqUpdate - PaqClean
+
+##### Install a new Pluggin
+
+To install new pluggins you have to do 2 things: 1. Add the new pluggin
+in the `manager.lua` 2. Re-start neovim 3. Run the following command:
+
+    :PaqInstall name-of-pluggin-to-install
+
+##### Remove/Uninstall a pluggin
+
+If you wish to remove a few pluggins. Follow this steps:
+
+1.  Remove the pluggin from `lua/pluggins/manager.lua`
+
+2.  Re-start neovim
+
+3.  Run the following command:
+
+    :PaqClean
+
+#### Update a Pluggin
+
+Just run the following command:
+
+    :PaqUpdate
+
+#### More Info
+
+If you want more info about how `Paq` works and other commands, go and
+visit [the project page](https://github.com/savq/paq-nvim).
