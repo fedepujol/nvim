@@ -22,6 +22,7 @@ require('paq') {
 	-- Completion
 	'hrsh7th/nvim-compe';
 	'hrsh7th/vim-vsnip';
+	'windwp/nvim-autopairs';
 
 	-- Treesitter
 	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
