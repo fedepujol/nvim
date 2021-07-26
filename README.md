@@ -273,10 +273,15 @@ has a few commands to interact with. - PaqInstall - PaqUpdate - PaqClean
 
 #### Install a new Pluggin
 
-To install new pluggins you have to do 2 things: 1. Add the new pluggin
-in the `manager.lua` 2. Re-start neovim 3. Run the following command:
+To install new pluggins you have to do 3 things: 
 
-    :PaqInstall name-of-pluggin-to-install
+1. Add the new pluggin in the `manager.lua`
+
+2. Re-start Neovim
+
+3. Run the following command:
+
+        :PaqInstall name-of-pluggin-to-install
 
 #### Remove/Uninstall a pluggin
 
@@ -288,7 +293,7 @@ If you wish to remove a few pluggins. Follow this steps:
 
 3.  Run the following command:
 
-    :PaqClean
+        :PaqClean
 
 #### Update a Pluggin
 
