@@ -25,7 +25,7 @@ into a VSCode replacement or IDE. For now it has the following:
     -   [TreeSitter Queries](#treesitter-queries)
     -   [Settings](#settings)
     -   [Keybindings](#keybindings)
-    -   [Pluggins](#pluggins)
+-   [Pluggins](#pluggins)
 
 ## Prerequisite
 
@@ -227,11 +227,15 @@ Every setting you want to change about NeoVim goes in here.
 
 ### Keybindings
 
-Custom keybindings
+NeoVim related keybindings
 
 -   File: `lua/core/mappings.lua`
 
-### Pluggins
+Pluggins keybindings:
+
+-   File: `lua/pluggins/which-key/init.lua`
+
+## Pluggins
 
 These are the pluggins included:
 
@@ -262,19 +266,19 @@ To control the pluggins you’ve got a few files:
 
 And `Paq` (Plugin Manager).
 
-#### Paq (Plugin Manager)
+### Paq (Plugin Manager)
 
 To manage all of them you have `Paq` (very minimal pluggin manager). It
 has a few commands to interact with. - PaqInstall - PaqUpdate - PaqClean
 
-##### Install a new Pluggin
+#### Install a new Pluggin
 
 To install new pluggins you have to do 2 things: 1. Add the new pluggin
 in the `manager.lua` 2. Re-start neovim 3. Run the following command:
 
     :PaqInstall name-of-pluggin-to-install
 
-##### Remove/Uninstall a pluggin
+#### Remove/Uninstall a pluggin
 
 If you wish to remove a few pluggins. Follow this steps:
 
