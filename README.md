@@ -15,11 +15,12 @@ into a VSCode replacement or IDE. For now it has the following:
 
 ## Index
 
--   [Prerequisite](#prerequisite)
+-   [Requirements](#requirements)
     -   [Dependencies](#dependencies)
 -   [Installation](#installation)
     -   [First Launch](#first-launch)
     -   [LSP](#lsp)
+    -   [Formatters](#formatters)
 -   [Structure](#structure)
     -   [Overview](#overview)
     -   [TreeSitter Queries](#treesitter-queries)
@@ -27,7 +28,7 @@ into a VSCode replacement or IDE. For now it has the following:
     -   [Keybindings](#keybindings)
 -   [Pluggins](#pluggins)
 
-## Prerequisite
+## Requirements
 
 -   Neovim v0.5 or [nightly](https://github.com/neovim/neovim/releases)
     builds.
@@ -40,11 +41,30 @@ into a VSCode replacement or IDE. For now it has the following:
 
 ### Dependencies
 
-In order to complete the installation of the lsp’s you will need the
-following packages: - `npm` - `go` - `ninja`
+#### LSP
 
-Most of the LSP use `npm`. `Go` and `ninja` are used for the `efm` and
+In order to complete the installation of any lsp, you’ll need the
+following packages:
+
+-   `npm`
+-   `go`
+-   `ninja`
+
+Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and
 `lua`.
+
+-   `ripgrep`: for Telescope
+-   `lazygit`: for Lazygit integration
+
+#### Formatters
+
+| Package     | Language   |
+|-------------|------------|
+| js-beautify | HTML, CSS  |
+| prettier    | JSON, YAML |
+| lua-format  | Lua        |
+| pandoc      | markdown   |
+| eslint_d    | TypeScript |
 
 ### Windows
 
@@ -85,9 +105,10 @@ you’re in Linux, to download the lsp’s, you must type:
 If you are in Windows, you’ve got to do it manually (see
 [pr](https://github.com/kabouzeid/nvim-lspinstall/pull/96))
 
-1.  Go to the [CONFIG.MD]() of the LspConfig project and search for the
-    ones you want to install (almost everyone has a npm command to
-    install it).
+1.  Go to the
+    [CONFIG.MD](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md)
+    and search for the ones you want to install (almost everyone has a
+    npm command to install it).
 
 2.  Go to your config dir (AppData/…./nvim-data/lspinstall).
 
@@ -107,8 +128,8 @@ If you are in Windows, you’ve got to do it manually (see
 
         npm i --prefix . @angular/language-service
 
-    \*This tells `npm` to install the LSP in the folder you are
-    currently on.
+    This tells `npm` to install the LSP in the folder you are currently
+    on.
 
 ## Structure
 
@@ -273,15 +294,15 @@ has a few commands to interact with. - PaqInstall - PaqUpdate - PaqClean
 
 #### Install a new Pluggin
 
-To install new pluggins you have to do 3 things: 
+To install new pluggins you have to do 3 things:
 
-1. Add the new pluggin in the `manager.lua`
+1.  Add the new pluggin in the `manager.lua`
 
-2. Re-start Neovim
+2.  Re-start Neovim
 
-3. Run the following command:
+3.  Run the following command:
 
-        :PaqInstall name-of-pluggin-to-install
+         :PaqInstall name-of-pluggin-to-install
 
 #### Remove/Uninstall a pluggin
 
