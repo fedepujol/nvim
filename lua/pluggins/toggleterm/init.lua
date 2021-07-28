@@ -1,4 +1,6 @@
 -- ToggleTerma Setup
+local wk = require('which-key')
+
 require('toggleterm').setup{
 	size = 15,
 	hide_numbers = true,
@@ -20,7 +22,6 @@ require('toggleterm').setup{
 }
 
 vim.api.nvim_set_keymap('n', '<leader>t', "<cmd>:ToggleTerm<CR>", {noremap = true, silent = true})
-
 
 local Terminal = require('toggleterm.terminal').Terminal
 
@@ -46,8 +47,17 @@ local lazygit = Terminal:new({
 	end,
 })
 
-function _lazygit_toggle()
+function lazygit_toggle()
 	lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap('n', '<leader>gl', '<cmd>lua _lazygit_toggle()<CR>', {noremap = true, silent = true})
+wk.register({
+	t = {
+		name = "Terminal",
+		n = {'<cmd>:ToggleTerm<CR>', "Toggle Term"}
+	},
+	g = {
+		l = {'<cmd>lua lazygit_toggle()<CR>', 'Lazygit'}
+	}
+}, {mode = 'n', prefix = '<leader>', noremap = true, silent = true})
+

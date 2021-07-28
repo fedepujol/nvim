@@ -49,10 +49,13 @@ wk.register({
 			s = {"<cmd>lua require('gitsigns').stage_hunk()<CR>", "Stage Hunk"},
 			S = {"<cmd>lua require('gitsigns').stage_buffer()<CR>", "Stage Buffer"}
 		},	
-		l = {"<cmd>lua require('gitsigns').blame_line(true)<CR>", "Blame"},
-		b = {"<cmd>lua require('telescope.builtin').git_branches()<CR>", "Checkout Branch"},
+		c = {
+			name = "Checkout",
+			b = {"<cmd>lua require('telescope.builtin').git_branches()<CR>", "Checkout Branch"},
+			c = {"<cmd>lua require('telescope.builtin').git_bcommits()<CR>", "Checkout Commits"}
+		},
+		b = {"<cmd>lua require('gitsigns').blame_line(true)<CR>", "Blame"},
 		s = {"<cmd>lua require('telescope.builtin').git_status()<CR>", "Status"},
-		c = {"<cmd>lua require('telescope.builtin').git_bcommits()<CR>", "Branch Commits"}
 	},
 	l = {
 		name = "LSP",
