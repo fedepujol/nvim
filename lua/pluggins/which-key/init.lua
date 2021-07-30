@@ -54,13 +54,12 @@ wk.register({
 			b = {"<cmd>lua require('telescope.builtin').git_branches()<CR>", "Checkout Branch"},
 			c = {"<cmd>lua require('telescope.builtin').git_bcommits()<CR>", "Checkout Commits"}
 		},
-		b = {"<cmd>lua require('gitsigns').blame_line(true)<CR>", "Blame"},
 		s = {"<cmd>lua require('telescope.builtin').git_status()<CR>", "Status"},
 	},
 	l = {
 		name = "LSP",
 		i = {":LspInfo<CR>", "Info"},
-		H = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
+		H = { "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "Hover"},
 		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', "Go to Implementation"},
 		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', "Document Symbol"},
 		c = { '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', "Show Code Actions"},
