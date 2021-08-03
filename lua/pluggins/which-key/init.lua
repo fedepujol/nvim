@@ -36,6 +36,10 @@ wk.register({
 		k = {"<cmd>lua require('telescope.builtin').keymaps()<CR>", "Show Keymaps"},
 		c = {":checkhealth which_key<CR>", "Search Conflicting Keymaps"},
 		h = {":checkhealth<CR>", "Neovim Health"},
+		f = {
+			name = "Custom Functions",
+			d = {':normal!$x', "Delete last character"},
+		}
 	},
 	g = {
 		name = "Git",
