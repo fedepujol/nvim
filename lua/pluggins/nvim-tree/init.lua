@@ -2,7 +2,6 @@
 local specialFiles = {'README.md', 'Makefile', 'MAKEFILE'}
 local ignored = {'.git', 'node_modules'}
 
-vim.g.nvim_tree_add_trailing = 1 				-- Append a trailing dash to folders
 vim.g.nvim_tree_auto_close = 1 					-- Closes the tree when its the last window
 vim.g.nvim_tree_auto_open = 0 					-- Open NvimTree when typing vim $DIR or vim
 vim.g.nvim_tree_follow = 1 						-- Allows the cursor to be updated when entering another buffer
