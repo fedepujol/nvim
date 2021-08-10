@@ -18,10 +18,6 @@ vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', opts)
 vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', opts)
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', opts)
 
--- Move cursor line up or down
-vim.api.nvim_set_keymap('n', '<C-M-k>', ':normal! dd2kp<CR>', opts)
-vim.api.nvim_set_keymap('n', '<C-M-j>', ':normal! ddp<CR>', opts)
-
 -- Terminal
 vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<A-h>', '<C-\\><C-N><C-w>h', { noremap = true})

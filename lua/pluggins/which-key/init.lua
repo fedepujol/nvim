@@ -36,10 +36,11 @@ wk.register({
 		k = {"<cmd>lua require('telescope.builtin').keymaps()<CR>", "Show Keymaps"},
 		c = {":checkhealth which_key<CR>", "Search Conflicting Keymaps"},
 		h = {":checkhealth<CR>", "Neovim Health"},
-		f = {
-			name = "Custom Functions",
-			d = {':normal!$x', "Delete last character"},
-		}
+	},
+	f = {
+		name = "Functions",
+		d = {':normal!$x<CR>', "Delete last character"},
+		a = {':normal!ggvG$<CR>', "Select all"},
 	},
 	g = {
 		name = "Git",
@@ -52,7 +53,7 @@ wk.register({
 			R = {"<cmd>lua require('gitsigns').reset_buffer()<CR>", "Reset Buffer"},
 			s = {"<cmd>lua require('gitsigns').stage_hunk()<CR>", "Stage Hunk"},
 			S = {"<cmd>lua require('gitsigns').stage_buffer()<CR>", "Stage Buffer"}
-		},	
+		},
 		c = {
 			name = "Checkout",
 			b = {"<cmd>lua require('telescope.builtin').git_branches()<CR>", "Checkout Branch"},
@@ -83,3 +84,11 @@ wk.register({
 		i = {":TSInstallInfo<CR>", "Install Info"},
 	}
 }, {mode = 'n', prefix = '<leader>', noremap = true, silent = true})
+
+wk.register({
+	f = {
+		name = "Custom Functions",
+		d = {':normal!$x<CR>', "Delete last character"},
+		r = {"<cmd>:lua RemoveEmptyLines()<CR>", "Remove Emtpy Lines"}
+	}
+}, {mode = 'v', prefix = '<leader>', noremap = true, silent = true})
