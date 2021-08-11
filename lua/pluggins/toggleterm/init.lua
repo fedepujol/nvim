@@ -26,8 +26,7 @@ local lazygit = Terminal:new({
 	cmd = 'lazygit',
 	direction = 'window',
 	on_open = function(term)
-		vim.cmd('startinsert!')
-		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>Close<CR>', {noremap = true, silent = true})
+		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>Close<CR>', { noremap = true, silent = true })
 	end,
 	on_close = function(term)
 		print('LayGit Finished')
@@ -41,7 +40,7 @@ end
 wk.register({
 	t = {
 		name = "Terminal",
-		n = {'<cmd>:ToggleTerm<CR>', "Toggle Term"}
+		i = {'<cmd>:ToggleTerm<CR>', "New/Toggle Term"},
 	},
 	g = {
 		l = {'<cmd>lua lazygit_toggle()<CR>', 'Lazygit'}
