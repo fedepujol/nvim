@@ -10,6 +10,11 @@ require('toggleterm').setup{
 	persist_size = true,
 	close_on_exit = true,
 	shell = "bash",
+}
+
+local lazygit = Terminal:new({
+	cmd = 'lazygit',
+	direction = 'float',
 	float_opts = {
 		border = "rounded",
 		width = 150,
@@ -19,13 +24,9 @@ require('toggleterm').setup{
 			border = "Normal",
 			background = "Normal"
 		}
-	}
-}
-
-local lazygit = Terminal:new({
-	cmd = 'lazygit',
-	direction = 'window',
+	},
 	on_open = function(term)
+		vim.cmd('startinsert!')
 		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>Close<CR>', { noremap = true, silent = true })
 	end,
 	on_close = function(term)
@@ -37,13 +38,40 @@ function lazygit_toggle()
 	lazygit:toggle()
 end
 
+local diff = Terminal:new({
+	cmd = 'git diff',
+	direction = 'float',
+	float_opts = {
+		border = "rounded",
+		width = vim.api.nvim_win_get_width(0),
+		height = vim.api.nvim_win_get_height(0),
+		winblend = 3,
+		highlights = {
+			border = "Normal",
+			background = "Normal"
+		}
+	},
+	on_open = function(term)
+		vim.cmd("startinsert!")
+		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', 'q', {noremap = true, silent = true })
+	end,
+	on_close = function(term)
+		print('Finished')
+	end,
+})
+
+function diff_toggle()
+	diff:toggle()
+end
+
 wk.register({
 	t = {
 		name = "Terminal",
 		i = {'<cmd>:ToggleTerm<CR>', "New/Toggle Term"},
 	},
 	g = {
-		l = {'<cmd>lua lazygit_toggle()<CR>', 'Lazygit'}
+		l = {'<cmd>lua lazygit_toggle()<CR>', 'Lazygit'},
+		d = {'<cmd>lua diff_toggle()<CR>', 'DiffView'}
 	}
 }, {mode = 'n', prefix = '<leader>', noremap = true, silent = true})
 
