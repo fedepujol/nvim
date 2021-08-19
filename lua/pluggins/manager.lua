@@ -13,7 +13,7 @@ require('paq') {
 	'kyazdani42/nvim-web-devicons';
 	'fedepujol/fpcolor';
 
-	-- Buffer Bar (Find a better replace/write one)
+	-- Buffer Bar
 	'romgrk/barbar.nvim';
 
 	-- Hex/RGB/Color Handler
@@ -50,4 +50,7 @@ require('paq') {
 
 	-- Terminal
 	'akinsho/nvim-toggleterm.lua';
+
+	-- UI
+	'MunifTanjim/nui.nvim';
 }
