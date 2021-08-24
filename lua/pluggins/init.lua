@@ -13,7 +13,6 @@ require('pluggins.nvim-tree')
 require('pluggins.gitsigns')
 require('pluggins.which-key')
 require('pluggins.toggleterm')
-require('pluggins.nui-nvim')
 
 -- LSP
 require('pluggins.lsp.angular-ls')
