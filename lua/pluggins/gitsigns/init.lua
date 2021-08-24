@@ -13,7 +13,11 @@ require('gitsigns').setup {
 		interval = 1000
 	},
 	current_line_blame = true,
-	current_line_blame_position = 'eol',
+	current_line_blame_opts = {
+		virt_text = true,
+		virt_text_pos = 'eol',
+		delay = 2000
+	},
 	current_line_blame_formatter = function(name, blame_info, opts)
 		if blame_info.author == name then
 			blame_info.author = 'You'

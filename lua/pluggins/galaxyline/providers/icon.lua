@@ -6,7 +6,7 @@ local Icon = {
         ['alpine'] = { icon = '', colors = { colors.blue0, colors.white}},
         ['arch'] = { icon = '', colors = { colors.blue1, colors.black3 }},
         ['centos'] = { icon = '', colors = { colors.white, colors.black3 }},
-        ['debian'] = { icon = '', colors = { colors.red0, colors.white}},
+        ['debian'] = { icon = '', colors = { colors.white, colors.black3}},
         ['fedora'] = { icon = '', colors = { colors.blue0, colors.white}},
         ['freebsd'] = { icon = '', colors = { colors.red2, colors.black3 }},
         ['gentoo'] = { icon = '', colors = { colors.white, colors.black3 }},
@@ -46,5 +46,6 @@ end
 function Icon.getColor(os)
     return Icon.getDistro(os).colors
 end
+
 
 return Icon

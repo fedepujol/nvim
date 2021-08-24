@@ -10,7 +10,7 @@ local colors = require('pluggins.galaxyline.providers.colors')
 local icon = require('pluggins.galaxyline.providers.icon')
 local vimMode = require('pluggins.galaxyline.providers.mode')
 
-local distro = 'arch'
+local distro = 'debian'
 
 ---------------------------------------------------------------
 ------------------------ Left Section  ------------------------
