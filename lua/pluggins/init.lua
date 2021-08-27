@@ -2,7 +2,6 @@
 require('pluggins.manager')
 require('pluggins.barbar')
 require('pluggins.colorizer')
-require('pluggins.compe')
 require('pluggins.lsp')
 require('pluggins.lspsaga')
 require('pluggins.autopairs')
@@ -14,6 +13,7 @@ require('pluggins.gitsigns')
 require('pluggins.which-key')
 require('pluggins.toggleterm')
 require('pluggins.nui-nvim')
+require('pluggins.nvim-cmp')
 
 -- LSP
 require('pluggins.lsp.angular-ls')

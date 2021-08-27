@@ -11,6 +11,8 @@ require('paq') {
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons';
+
+	-- Colorschemes
 	'fedepujol/fpcolor';
 
 	-- Buffer Bar
@@ -20,8 +22,14 @@ require('paq') {
 	'norcalli/nvim-colorizer.lua';
 
 	-- Completion
-	'hrsh7th/nvim-compe';
+	'hrsh7th/nvim-cmp';
+	'hrsh7th/cmp-buffer';
+	'hrsh7th/cmp-nvim-lua';
+	'hrsh7th/cmp-nvim-lsp';
+	'hrsh7th/cmp-path';
 	'hrsh7th/vim-vsnip';
+
+	-- AutoPairs
 	'windwp/nvim-autopairs';
 
 	-- Treesitter
