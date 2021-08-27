@@ -44,5 +44,6 @@ require('lspconfig').sumneko_lua.setup{
 			},
 	 	},
 	},
+	capabilities = lsp.capabilities
 }
 

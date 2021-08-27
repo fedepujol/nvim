@@ -12,4 +12,5 @@ require('lspconfig').tsserver.setup{
 			update_in_insert = true,
 		})
 	},
+	capabilities = lsp.capabilities
 }

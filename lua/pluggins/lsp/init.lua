@@ -10,8 +10,6 @@ vim.api.nvim_set_keymap('n', 'sh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', 
 vim.api.nvim_set_keymap('n', 'dn', '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = "single"}})<CR>', opts)
 vim.api.nvim_set_keymap('n', 'dp', '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = "single"}})<CR>', opts)
 
-vim.cmd("sign define LspDiagnosticsSignHint numhl= text=H linehl=")
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 		underline = false,
@@ -25,6 +23,22 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 		border = 'single'
 	}
 )
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
 
 vim.lsp.protocol.CompletionItemKind = {
 	" (text)",
@@ -54,8 +68,7 @@ vim.lsp.protocol.CompletionItemKind = {
     " (typeparameter)"
 }
 
-
-local function documentHighlight(client, bufnr)
+local function documentHighlight(client, _)
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec([[
@@ -73,7 +86,8 @@ end
 
 local lsp_config = {
 	lsp_dir = vim.fn.stdpath('data')..'/lspinstall',
-	root_pattern = require('lspconfig/util').root_pattern
+	root_pattern = require('lspconfig/util').root_pattern,
+	capabilities = capabilities
 }
 
 function lsp_config.common_on_attach(client, bufnr)

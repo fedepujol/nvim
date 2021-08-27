@@ -9,5 +9,6 @@ require('lspconfig').vimls.setup{
         diagnostic = {
             enable = true
         }
-    }
+    },
+	capabilities = lsp.capabilities
 }
