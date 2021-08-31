@@ -40,7 +40,7 @@ wk.register({
 	f = {
 		name = "Functions",
 		d = {':normal!$x<CR>', "Delete last character"},
-		a = {':normal!ggvG$<CR>', "Select all"},
+		a = {':normal!gg0vG$<CR>', "Select all"},
 	},
 	g = {
 		name = "Git",
@@ -77,6 +77,10 @@ wk.register({
 			n = { '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = "single"}})<CR>', "Next Diagnostic"},
 			p = { '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = "single"}})<CR>', "Prev. Diagnostic"}
 		},
+	},
+	r = {
+		name = "Run commands",
+		l = {':luafile %<CR>', 'Run luafile'}
 	},
 	s = {
 		name = "TreeSitter",
