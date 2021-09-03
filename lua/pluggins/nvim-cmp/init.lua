@@ -23,7 +23,8 @@ cmp.setup{
 		{ name = "buffer" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "path" }
+		{ name = "path" },
+		{ name = 'vsnip' }
 	},
 	formatting = {
 		format = function(_, vim_item)
@@ -39,3 +40,4 @@ cmp.setup{
 		end
 	}
 }
+
