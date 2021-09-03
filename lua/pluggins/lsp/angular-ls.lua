@@ -8,7 +8,7 @@ local new_cmd = {angular_dir..'/ngserver.cmd', '--tsProbeLocations', typescript,
 
 require('lspconfig').angularls.setup{
 	cmd = new_cmd,
-	on_new_config = function(new_config, new_root_dir)
+	on_new_config = function(new_config, _)
 		new_config.cmd = new_cmd
 	end,
 	on_attach = lsp.common_on_attach,

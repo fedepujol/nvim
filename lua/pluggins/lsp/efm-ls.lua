@@ -24,7 +24,7 @@ require('lspconfig').efm.setup{
 				{ formatCommand = "pandoc -f markdown -t gfm -sp --tab-stop=4", formatStdin = true }
 			},
 			typescript = {
-				{ 
+				{
 					lintCommand = "eslint_d -f visualStudio --stdin -stdin-filename ${INPUT}",
 					lintIgnoreExitCode = true,
 					lintStdin = true,
