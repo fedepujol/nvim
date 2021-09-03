@@ -12,8 +12,8 @@ require('telescope').setup{
 		prompt_prefix = '~ ',
 		selection_caret = '> ',
 		sorting_strategy = 'ascending',
-		layout_strategy = 'vertical',
-		layout_config= {
+		layout_strategy = 'horizontal',
+		layout_config = {
 			prompt_position = 'top',
 			horizontal = {
 				mirror = false,
@@ -21,6 +21,7 @@ require('telescope').setup{
 			vertical = {
 				mirror = false,
 			},
+			preview_width = 110
 		},
 		path_display = {
 			"shorten",
