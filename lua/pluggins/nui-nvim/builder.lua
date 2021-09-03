@@ -1,25 +1,24 @@
 local Menu = require('nui.menu')
 local Input = require('nui.input')
 
-local Builder = { cmds = {}, eval = '', title = '' }
+local Builder = { cmds = {} }
 
 function Builder:new(o)
 	o = o or {}
 	setmetatable(o, self)
 	self.__index = self
-	self.cmds = o.cmds 
-	self.eval = o.eval 
-	self.title = o.title 
-	return o 
+	self.cmds = o.cmds
+	return o
 end
 
 function Builder:findCmd(desc)
 	local cmd = nil
-	local tbl = vim.tbl_values(self.cmds)
 
-	for _, value in ipairs(tbl) do
-		if value.menu:lower() == desc:lower() then
-			cmd = value.cmd
+	for _, value in pairs(Builder.cmds) do
+		for _, val in ipairs(value) do
+			if val.menu:lower() == desc:lower() then
+				cmd = val.cmd
+			end
 		end
 	end
 
@@ -38,6 +37,10 @@ function Builder:build_popup()
 		border = {
 			style = "rounded",
 			highlight = "Normal:Normal",
+			text = {
+				top = "Select Command",
+				top_align = "center"
+			}
 		},
 		position = "50%",
 		size = {
@@ -52,7 +55,7 @@ function Builder:build_input_opts()
 		border = {
 			style = "rounded",
 			text = {
-				top = "["..self.title.."]",
+				top = "[Install]",
 				top_align = "left"
 			},
 		},
@@ -78,17 +81,29 @@ function Builder:build_input(desc)
 end
 
 function Builder:build_menu()
-	local tab = {}
+	local lines_tab = {}
+	local c_tab = {}
 
-	for	_, value in pairs(Builder.cmds) do
-		table.insert(tab, Menu.item(value.menu))
+	for index, value in pairs(Builder.cmds) do
+		table.insert(lines_tab, Menu.separator(string.sub(index, 1, 1):upper()..string.sub(index, 2)))
+		for _, val in ipairs(value) do
+			table.insert(lines_tab, Menu.item(val.menu))
+		end
+	end
+
+	for idx, value in pairs(Builder.cmds) do
+		table.insert(c_tab, value.eval)
+		for _, val in ipairs(value) do
+			table.insert(val, idx)
+			table.insert(c_tab, val)
+		end
 	end
 
 	return Menu(Builder:build_popup(), {
-		lines = tab,
+		lines = lines_tab,
 		separator = {
 			char = '-',
-			text_align = 'left',
+			text_align = 'center',
 		},
 		max_width = 20,
 		keymap = {
@@ -98,10 +113,13 @@ function Builder:build_menu()
 			submit = {"<CR>"}
 		},
 		on_close = function()
-			vim.api.nvim_notify('Selection cancelled', 3, {})
+			vim.api.nvim_notify('Selection cancelled', 2, {})
 		end,
 		on_submit = function(value)
-			if value.text:find(Builder.eval) ~= nil then
+			local index = value._index
+			local eval_index = c_tab[index][1]
+			local eval = Builder.cmds[eval_index].eval
+			if eval(value.text) then
 				Builder:build_input(value.text)
 			else
 				local cmd = Builder:findCmd(value.text)
