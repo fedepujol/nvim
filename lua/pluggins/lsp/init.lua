@@ -71,14 +71,43 @@ local function documentHighlight(client, _)
     end
 end
 
-local lsp_config = {
-	lsp_dir = vim.fn.stdpath('data')..'/lspinstall',
+Lsp = {
+	dir = vim.fn.stdpath('data')..'/lspinstall',
 	root_pattern = require('lspconfig/util').root_pattern,
-	capabilities = capabilities
+	capabilities = capabilities,
+	is_windows = function()
+		return false
+	end,
 }
 
-function lsp_config.common_on_attach(client, bufnr)
+function Lsp.common_on_attach(client, bufnr)
 	documentHighlight(client, bufnr)
 end
 
-return lsp_config
+local function getOS()
+	local system_name = ''
+	if vim.fn.has("mac") == 1 then
+		system_name = "macOS"
+	elseif vim.fn.has("unix") == 1 then
+		system_name = "Linux"
+	elseif vim.fn.has("win32") == 1 then
+		system_name = "Windows"
+	else
+		print("Unsupported system")
+	end
+	return system_name
+end
+
+function Lsp.is_windows()
+	return getOS():lower() == 'windows'
+end
+
+function Lsp.is_mac()
+	return getOS():lower() == 'macos'
+end
+
+function Lsp.is_linux()
+	return getOS():lower() == 'linux'
+end
+
+return Lsp

@@ -3,7 +3,7 @@
 local lsp = require('pluggins.lsp')
 
 require('lspconfig').efm.setup{
-	cmd = { lsp.lsp_dir.."/efm/efm-langserver" },
+	cmd = { lsp.dir.."/efm/efm-langserver" },
 	init_options = { documentFormatting = true },
 	settings = {
 		rootMarkers = {'.git/', 'package.json'},

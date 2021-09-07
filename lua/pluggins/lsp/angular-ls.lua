@@ -1,7 +1,7 @@
 -- Angular LSP
 -- npm i -g @angular/language-server
 local lsp = require('pluggins.lsp')
-local angular_dir = lsp.lsp_dir..'/angular'
+local angular_dir = lsp.dir..'/angular'
 local typescript = angular_dir..'/node_modules/typescript/lib'
 local ngLanguageS = angular_dir..'/node_modules/@angular/language-service'
 local new_cmd = {angular_dir..'/ngserver.cmd', '--tsProbeLocations', typescript, '--ngProbeLocations', ngLanguageS, '--stdio'}

@@ -5,7 +5,7 @@
 local lsp = require('pluggins.lsp')
 
 require('lspconfig').html.setup{
-	cmd = {lsp.lsp_dir.."/vscode-extracted/vscode-html-language-server.cmd", "--stdio"},
+	cmd = {lsp.dir.."/vscode-extracted/vscode-html-language-server.cmd", "--stdio"},
     capabilities = lsp.capabilities,
 	on_attach = lsp.common_on_attach,
 }
