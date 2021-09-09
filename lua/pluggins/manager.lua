@@ -13,7 +13,7 @@ require('paq') {
 	'kyazdani42/nvim-web-devicons';
 
 	-- Colorschemes
-	'fedepujol/fpcolor';
+	'fedepujol/nv-themes';
 
 	-- Buffer Bar
 	'romgrk/barbar.nvim';
