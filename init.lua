@@ -5,4 +5,4 @@ require('core')
 require('pluggins')
 
 -- Change The Colorscheme
-vim.cmd(':colo fpcolor')
+vim.cmd(':colo vcdark')
