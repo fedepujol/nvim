@@ -29,7 +29,9 @@ local lazygit = Terminal:new({
 		vim.cmd('startinsert!')
 		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>Close<CR>', { noremap = true, silent = true })
 	end,
-	on_close = function(term)
+	on_close = function(_)
+		local nvtree = require('nvim-tree')
+		nvtree.refresh()
 		print('LayGit Finished')
 	end,
 })
@@ -55,7 +57,7 @@ local diff = Terminal:new({
 		vim.cmd("startinsert!")
 		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', 'q', {noremap = true, silent = true })
 	end,
-	on_close = function(term)
+	on_close = function(_)
 		print('Finished')
 	end,
 })
