@@ -87,6 +87,11 @@ function MoveLine(direction)
 	end
 end
 
+-- RemoveEmptyLines
+-- Removes all empty lines from a range seleciton
+-- select_begin: line number of first selected line
+-- select_end: line number of current cursor position
+-- selection: selected range from select_begin to select_end
 function RemoveEmptyLines()
 	local select_begin = nil
 	local select_end = nil
