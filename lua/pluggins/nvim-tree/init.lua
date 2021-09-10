@@ -40,4 +40,26 @@ vim.g.nvim_tree_icons = {
 	},
 }
 
-vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true })
+function ToggleTree()
+	local nvim_tree = require('nvim-tree.view')
+	if nvim_tree.win_open() then
+		Close()
+	else
+		Open()
+	end
+end
+
+function Open()
+	-- Get the width from NvimTree on runtime
+	local nvim_tree_width = require('nvim-tree.view').View.width
+	require('bufferline.state').set_offset(nvim_tree_width, 'FileTree')
+	require('nvim-tree').find_file(true)
+end
+
+function Close()
+	require('bufferline.state').set_offset(0)
+	require('nvim-tree').close()
+end
+
+-- vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-b>', '<cmd>lua ToggleTree()<CR>', { noremap = true })
