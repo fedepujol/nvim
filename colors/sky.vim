@@ -56,10 +56,10 @@ hi SpellCap guifg=#fab144 ctermfg=215 guibg=NONE ctermbg=NONE gui=underline cter
 hi SpellLocal guifg=#70c0ff ctermfg=75 guibg=NONE ctermbg=NONE gui=underline cterm=underline
 hi SpellRare guifg=#9ebfe0 ctermfg=146 guibg=NONE ctermbg=NONE gui=underline cterm=underline
 hi Statement guifg=#a454ae ctermfg=133 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi StatusLine guifg=#e2e5fb ctermfg=189 guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
-hi StatusLineNC guifg=#9ebfe0 ctermfg=146 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi StatusLineTerm guifg=#e2e5fb ctermfg=189 guibg=#001933 ctermbg=234 gui=NONE cterm=NONE
-hi StatusLineTermNC guifg=#a454ae ctermfg=133 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi StatusLine guifg=NONE ctermfg=NONE guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
+hi StatusLineNC guifg=#9ebfe0 ctermfg=146 guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
+hi StatusLineTerm guifg=NONE ctermfg=NONE guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
+hi StatusLineTermNC guifg=#9ebfe0 ctermfg=146 guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
 hi String guifg=#fb877e ctermfg=210 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Structure guifg=#feb674 ctermfg=216 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi TabLine guifg=#b0b8bf ctermfg=250 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -148,9 +148,9 @@ hi BufferInactiveSign guifg=NONE ctermfg=NONE guibg=#000e16 ctermbg=232 gui=NONE
 hi BufferInactiveTarget guifg=NONE ctermfg=NONE guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
 hi BufferTabpages guifg=NONE ctermfg=NONE guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
 hi BufferTabpageFill guifg=NONE ctermfg=NONE guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
-hi GitSignsAdd guifg=#37f0e4 ctermfg=86 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi GitSignsChange guifg=#fbbe39 ctermfg=215 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-hi GitSignsDelete guifg=#e74c3c ctermfg=167 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi GitSignsAdd guifg=#37f0e4 ctermfg=86 guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
+hi GitSignsChange guifg=#fbbe39 ctermfg=215 guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
+hi GitSignsDelete guifg=#e74c3c ctermfg=167 guibg=#000e16 ctermbg=232 gui=NONE cterm=NONE
 hi GitSignsCurrentLineBlame guifg=#70c0ff ctermfg=75 guibg=#011826 ctermbg=233 gui=NONE cterm=NONE
 hi LspDiagnosticsFloatingError guifg=#ff5635 ctermfg=203 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi LspDiagnosticsFloatingHint guifg=NONE ctermfg=NONE guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
