@@ -5,4 +5,4 @@ require('core')
 require('pluggins')
 
 -- Change The Colorscheme
-vim.cmd(':colo vcdark')
+vim.cmd(':colo sky')
