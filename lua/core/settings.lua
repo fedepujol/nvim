@@ -13,7 +13,6 @@ o.clipboard = "unnamedplus" 							-- Copy-Paste between Neovim and everything e
 o.cmdheight = 2 										-- More space to display messages
 o.completeopt = "menuone,noselect"						-- Set for nvim-compe. Comma-separated options for insert mode.
 o.encoding = "UTF-8"									-- Encoding used internally
-o.guicursor = "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20" 	-- Change Cursor to be a line instead of a block
 o.hidden = true											-- Buffers becomes hidden when abandoned
 o.hlsearch = false 										-- Highlighting search
 o.laststatus = 2 										-- Influence if the last window should have a statusline. 2 -> always.
