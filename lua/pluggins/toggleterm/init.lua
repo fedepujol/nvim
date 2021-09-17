@@ -1,6 +1,12 @@
 -- ToggleTerma Setup
 local wk = require('which-key')
 local Terminal = require('toggleterm.terminal').Terminal
+local lsp = require('pluggins.lsp')
+local shell = vim.o.shell
+
+if lsp.is_windows() then
+	shell = "bash"
+end
 
 require('toggleterm').setup{
 	size = 15,
@@ -9,7 +15,7 @@ require('toggleterm').setup{
 	direction = 'horizontal', -- vertical | float | window
 	persist_size = true,
 	close_on_exit = true,
-	shell = "bash",
+	shell = shell,
 }
 
 local lazygit = Terminal:new({
