@@ -30,7 +30,7 @@ hi ErrorMsg guifg=#d40909 ctermfg=160 guibg=NONE ctermbg=NONE gui=NONE cterm=NON
 hi Exception guifg=#c12d28 ctermfg=124 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Float guifg=#96e098 ctermfg=114 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi FoldColumn guifg=#9cdcfe ctermfg=153 guibg=#1e1e1e ctermbg=234 gui=NONE cterm=NONE
-hi Folded guifg=#9cdcfe ctermfg=153 guibg=#6c6c6c ctermbg=242 gui=italic cterm=italic
+hi Folded guifg=#9cdcfe ctermfg=153 guibg=#1e1e1e ctermbg=234 gui=italic cterm=italic
 hi Function guifg=#dcdcaa ctermfg=187 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Identifier guifg=#4ec9b0 ctermfg=79 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi Include guifg=#b667b1 ctermfg=133 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
