@@ -1,5 +1,6 @@
 -- Move Nodes using Treesitter
 local ts_utils = require('nvim-treesitter.ts_utils')
+local wk = require('which-key')
 
 local function get_cur_node()
 	local node = ts_utils.get_node_at_cursor()
@@ -57,8 +58,15 @@ function Delete()
 end
 
 
-vim.api.nvim_set_keymap('n', '<leader>fm', '<Cmd>:lua Up()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fn', '<Cmd>:lua Down()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fs', '<Cmd>:lua Select()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ft', '<Cmd>:lua Delete()<CR>', { noremap = true })
+wk.register({
+	f = {
+		n = {
+			name = "Nodes",
+			u = {"<cmd>lua Up()<CR>", "Move node up"},
+			d = {"<cmd>lua Down()<CR>", "Move node down"},
+			s = {"<cmd>lua Select()<CR>", "Select node"},
+			x = {"<cmd>lua Delete()<CR>", "Delete Node"},
+		}
+	}
+}, { mode = 'n', prefix = '<leader>', noremap = true, silent = true })
 

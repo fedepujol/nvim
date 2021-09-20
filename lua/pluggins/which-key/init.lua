@@ -92,7 +92,7 @@ wk.register({
 wk.register({
 	f = {
 		name = "Custom Functions",
-		d = {':normal!$x<CR>', "Delete last character"},
-		r = {"<cmd>:lua RemoveEmptyLines()<CR>", "Remove Emtpy Lines"}
+		l = {':normal!$x<CR>', "Delete last character"},
+		e = {"<cmd>:lua RemoveEmptyLines()<CR>", "Remove Emtpy Lines"}
 	}
 }, {mode = 'v', prefix = '<leader>', noremap = true, silent = true})

@@ -1,3 +1,3 @@
 -- Load functions
-require('core.functions.move_lines')
-require('core.functions.move_nodes')
+require('core.functions.lines')
+require('core.functions.nodes')
