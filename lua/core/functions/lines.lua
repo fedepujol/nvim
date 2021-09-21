@@ -113,6 +113,8 @@ function RemoveEmptyLines()
 	vim.api.nvim_win_set_cursor(0, { select_begin, 0 })
 end
 
+vim.api.nvim_set_keymap('n', '<C-A-k>', "<Cmd>lua MoveLine('k')<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-A-j>', "<Cmd>lua MoveLine('j')<CR>", { noremap = true, silent = true })
 
 wk.register({
 	f = {
