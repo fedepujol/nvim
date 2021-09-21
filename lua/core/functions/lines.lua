@@ -32,15 +32,48 @@ function Move(cursor, start_pos, end_pos, dir)
 
 	-- Swap current with target
 	if dir > 0 then
-		vim.api.nvim_buf_set_lines(0, start_pos, end_pos, true, { current_line })
-		vim.api.nvim_buf_set_lines(0, end_pos, cursor_line, true, target_line)
-		else if dir < 0 then
-			vim.api.nvim_buf_set_lines(0, start_pos - 1, end_pos - 1, true, target_line)
+		if vim.fn.mode():byte() == 86 or vim.fn.mode():byte() == 118 then
+            local vSRow = vim.fn.line('v')
+			local vERow= vim.api.nvim_win_get_cursor(0)[1]
+            vim.api.nvim_buf_set_text(0, vSRow - 1, 0, vERow, 0, {''})
+			--[[ local select_begin = vim.fn.line('v')
+			local select_end = vim.api.nvim_win_get_cursor(0)[1]
+			if select_begin > select_end then
+				local aux = select_begin
+				select_begin = select_end
+				select_end = aux
+			end
+			local vBlock = vim.api.nvim_buf_get_lines(0, select_begin - 1, select_end, true)
+			local vTarget = vim.api.nvim_buf_get_lines(0, select_begin - 2, select_begin - 1, true)
+
+			print("Empty lines range", select_begin - 2, select_end - 1)
+			print("Insert block range", select_begin - 2, select_end - 2)
+			print("Insert line range", select_end - 1, select_end - 1)
+
+			vim.api.nvim_buf_set_lines(0, select_begin - 2, select_end, true, {''})
+			vim.api.nvim_buf_set_lines(0, select_begin - 2, select_end - 2, true, vBlock)
+			vim.api.nvim_buf_set_lines(0, select_end - 1, select_end - 1, true, vTarget)
+			vim.api.nvim_exec(":normal! "..(select_begin - 1).."ggV"..(select_end - 1).."gg", false) ]]
+		else
 			vim.api.nvim_buf_set_lines(0, start_pos, end_pos, true, { current_line })
+			vim.api.nvim_buf_set_lines(0, end_pos, cursor_line, true, target_line)
+		end
+		else if dir < 0 then
+			if vim.fn.mode():byte() == 86 or vim.fn.mode():byte() == 118 then
+				local select_begin = vim.fn.line('v')
+				local select_end = vim.api.nvim_win_get_cursor(0)[1]
+				local vBlock = vim.api.nvim_buf_get_lines(0, select_begin -1, select_end, true)
+				print(vim.inspect(vBlock))
+				--[[ vim.api.nvim_buf_set_lines(0, start_pos - 1, end_pos - 1, true, target_line)
+				vim.api.nvim_buf_set_lines(0, end_pos, cursor_line, true, { vBlock }) ]]
+			else
+				vim.api.nvim_buf_set_lines(0, start_pos - 1, end_pos - 1, true, target_line)
+				vim.api.nvim_buf_set_lines(0, start_pos, end_pos, true, { current_line })
+			end
 		end
 	end
 	-- Set cursor position
-	vim.api.nvim_win_set_cursor(0, { end_pos, cursor[2] })
+	-- vim.api.nvim_win_set_cursor(0, { end_pos, cursor[2] })
 end
 
 function MoveLine(direction)
@@ -115,6 +148,8 @@ end
 
 vim.api.nvim_set_keymap('n', '<C-A-k>', "<Cmd>lua MoveLine('k')<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-A-j>', "<Cmd>lua MoveLine('j')<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-A-k>', "<Cmd>lua MoveLine('k')<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-A-j>', "<Cmd>lua MoveLine('j')<CR>", { noremap = true, silent = true })
 
 wk.register({
 	f = {
