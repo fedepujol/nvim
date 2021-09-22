@@ -1,6 +1,4 @@
 -- Usefull Functions
--- Log Levels: trace, debug, info, warn, error (0..4)
-local wk = require('which-key')
 DOWN = -1
 UP = 1
 
@@ -89,7 +87,7 @@ function MoveLine(direction)
 	-- Get current cursor position
 	local cursor_position = vim.api.nvim_win_get_cursor(0)
 	local line = cursor_position[1]
-	local valid_directions = {'j', 'k'}
+	local valid_directions = {DOWN, UP}
 	local res = nil
 
 	if direction == nil then
@@ -105,22 +103,22 @@ function MoveLine(direction)
 	end
 
 	-- Edge Case
-	if line == 1 and direction == 'j' then
+	if line == 1 and direction < 0 then
 		Move(cursor_position, line, line + 1, DOWN)
 		return
 	end
-	if line == last_line and direction == 'k' then
+	if line == last_line and direction > 0 then
 		Move(cursor_position, line - 2, line -1, UP)
 		return
 	end
 
 	-- General Case
 	if line > 1 and line < last_line then
-		if direction == 'j' then
+		if direction < 0 then
 			Move(cursor_position, line, line + 1, DOWN)
 			return
 		end
-		if direction == 'k' then
+		if direction > 0 then
 			Move(cursor_position, line - 2, line - 1, UP)
 			return
 		end
@@ -152,17 +150,7 @@ function RemoveEmptyLines()
 	vim.api.nvim_win_set_cursor(0, { select_begin, 0 })
 end
 
-vim.api.nvim_set_keymap('n', '<C-A-k>', "<Cmd>lua MoveLine('k')<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-A-j>', "<Cmd>lua MoveLine('j')<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-A-k>', "<Cmd>lua MoveLine('k')<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-A-j>', "<Cmd>lua MoveLine('j')<CR>", { noremap = true, silent = true })
-
-wk.register({
-	f = {
-		l = {
-			name = "Lines",
-			u = {"<cmd>lua MoveLine('k')<CR>", "Move line up"},
-			d = {"<cmd>lua MoveLine('j')<CR>", "Move line down"},
-		}
-	}
-}, { mode = 'n', prefix = '<leader>', noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-A-k>', "<Cmd>lua MoveLine(1)<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-A-j>', "<Cmd>lua MoveLine(-1)<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-A-k>', "<Cmd>lua MoveLine(1)<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-A-j>', "<Cmd>lua MoveLine(-1)<CR>", { noremap = true, silent = true })
