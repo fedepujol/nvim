@@ -62,4 +62,7 @@ require('paq') {
 
 	-- UI
 	'MunifTanjim/nui.nvim';
+
+	-- Misc
+	'fedepujol/move.nvim';
 }
