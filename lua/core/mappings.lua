@@ -26,7 +26,7 @@ vim.api.nvim_set_keymap('t', '<A-k>', '<C-\\><C-N><C-w>k', { noremap = true})
 vim.api.nvim_set_keymap('t', '<A-l>', '<C-\\><C-N><C-w>l', { noremap = true})
 
 -- Move Line/Block
-vim.api.nvim_set_keymap('n', '<C-A-j>', "<Cmd>lua MoveLine(1)<CR>", { noremap = true, silent = true, nowait = true })
-vim.api.nvim_set_keymap('n', '<C-A-k>', "<Cmd>lua MoveLine(-1)<CR>", { noremap = true, silent = true, nowait = true })
-vim.api.nvim_set_keymap('v', '<C-A-j>', "<Cmd>lua MoveBlock(1)<CR>", { noremap = true, silent = true, nowait = true })
-vim.api.nvim_set_keymap('v', '<C-A-k>', "<Cmd>lua MoveBlock(-1)<CR>", { noremap = true, silent = true, nowait = true })
+vim.api.nvim_set_keymap('n', '<C-A-j>', ":MoveLine(1)<CR>", { noremap = true, silent = true, nowait = true })
+vim.api.nvim_set_keymap('n', '<C-A-k>', ":MoveLine(-1)<CR>", { noremap = true, silent = true, nowait = true })
+vim.api.nvim_set_keymap('v', '<C-A-j>', ":MoveBlock(1)<CR>", { noremap = true, silent = true, nowait = true })
+vim.api.nvim_set_keymap('v', '<C-A-k>', ":MoveBlock(-1)<CR>", { noremap = true, silent = true, nowait = true })
