@@ -1,0 +1,28 @@
+-- Own version of kind
+vim.lsp.protocol.CompletionItemKind = {
+	" (text)",
+    " (method)",
+    " (function)",
+    "襁 (constructor)",
+    " (field)",
+    " (variable)",
+    " (class)",
+    "壟(interface)",
+    " (module)",
+    " (property)",
+    " (unit)",
+    " (value)",
+    " (enum)",
+    " (keyword)",
+    " (snippet)",
+    " (color)",
+    " (file)",
+    " (reference)",
+    " (folder)",
+    "ﱔ (enummember)",
+    " (constant)",
+    "ﴰ (struct)",
+    " (event)",
+    "駱 (operator)",
+    " (typeparameter)"
+}
