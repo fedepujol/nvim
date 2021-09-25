@@ -1,6 +1,6 @@
 -- TSServer LSP
 -- npm i -g typescript typescript-language-server
-local lsp = require('pluggins.lsp')
+local lsp = require('pluggins.lsp.config')
 
 require('lspconfig').tsserver.setup{
 	cmd = {lsp.dir..'/tsserver/typescript-language-server.cmd', '--stdio'},

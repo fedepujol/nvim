@@ -1,12 +1,11 @@
 -- Vim LSP
 -- npm i -g vim-language-server
-local lsp = require('pluggins.lsp')
+local lsp = require('pluggins.lsp.config')
 
 local cmd = '/vim'
-if lsp.is_windows() then
+if lsp.isOS('windows') then
 	cmd = cmd..'/vim-language-server.cmd'
-end
-if lsp.is_linux() then
+elseif lsp.isOS('linux') then
 	cmd = cmd..'/node_modules/.bin/vim-language-server'
 end
 

@@ -1,6 +1,6 @@
 -- CSS LSP
 -- npm i -g vscode-css-languageserver-bin
-local lsp = require('pluggins.lsp')
+local lsp = require('pluggins.lsp.config')
 
 require 'lspconfig'.cssls.setup{
 	cmd = {lsp.dir..'/vscode-extracted/vscode-css-language-server.cmd'},

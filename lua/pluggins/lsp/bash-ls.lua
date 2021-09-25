@@ -1,5 +1,5 @@
 -- Bash LSP
-local lsp = require('pluggins.lsp')
+local lsp = require('pluggins.lsp.config')
 
 require('lspconfig').bashls.setup{
 	cmd = {lsp.dir..'/bash/node_modules/.bin/bash-language-server', 'start'},

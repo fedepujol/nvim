@@ -1,6 +1,6 @@
 -- EFM LSP
 -- go get github.com/mattn/efm-language
-local lsp = require('pluggins.lsp')
+local lsp = require('pluggins.lsp.config')
 
 require('lspconfig').efm.setup{
 	cmd = { lsp.dir.."/efm/efm-langserver" },

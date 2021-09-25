@@ -1,17 +1,17 @@
 -- Lua LSP
-local lsp = require('pluggins.lsp')
+local lsp = require('pluggins.lsp.config')
 local system_name
 local sumneko_root_path = ""
 local sumneko_binary = ""
 
-if vim.fn.has("mac") == 1 then
-	system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-	system_name = "Linux"
-elseif vim.fn.has("win32") == 1 then
-	system_name = "Windows"
+if lsp.isOS('macos') then
+	system_name = 'macOS'
+elseif lsp.isOS('linux') then
+	system_name = 'Linux'
+elseif lsp.isOS('windows') then
+	system_name = 'Windows'
 else
-	print("Unsupported system")
+	print('Unsupported')
 end
 
 sumneko_root_path = lsp.dir..'/sumneko_lua'

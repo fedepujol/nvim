@@ -1,10 +1,10 @@
 -- ToggleTerma Setup
 local wk = require('which-key')
 local Terminal = require('toggleterm.terminal').Terminal
-local lsp = require('pluggins.lsp')
+local lsp = require('pluggins.lsp.config')
 local shell = vim.o.shell
 
-if lsp.is_windows() then
+if lsp.isOS('windows') then
 	shell = "bash"
 end
 
