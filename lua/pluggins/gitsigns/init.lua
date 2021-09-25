@@ -9,8 +9,9 @@ require('gitsigns').setup {
 	},
 	numhl = false,
 	linehl = false,
-	watch_index = {
-		interval = 1000
+	watch_gitdir = {
+		interval = 1000,
+		follow_files = true
 	},
 	current_line_blame = true,
 	current_line_blame_opts = {
