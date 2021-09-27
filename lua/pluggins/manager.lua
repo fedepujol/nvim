@@ -6,8 +6,8 @@ require('paq') {
 
 	-- Lsp
 	'neovim/nvim-lspconfig';
-	'kabouzeid/nvim-lspinstall';
 	'glepnir/lspsaga.nvim';
+	'williamboman/nvim-lsp-installer';
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons';
