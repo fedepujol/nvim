@@ -39,11 +39,20 @@ local function isOS(target)
 	return os ~= '' and os:lower() == target
 end
 
+local function osPrefix()
+	local prefix = ''
+	if isOS('windows') then
+		prefix = '.cmd'
+	end
+	return prefix
+end
+
 Lsp = {
-	dir = vim.fn.stdpath('data')..'/lspinstall',
+	dir = vim.fn.stdpath('data')..'/lsp_servers',
 	root_pattern = require('lspconfig/util').root_pattern,
 	capabilities = capabilities,
-	isOS = isOS
+	isOS = isOS,
+	prefix = osPrefix
 }
 
 function Lsp.common_on_attach(client, bufnr)

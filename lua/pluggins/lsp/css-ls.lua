@@ -3,7 +3,7 @@
 local lsp = require('pluggins.lsp.config')
 
 require 'lspconfig'.cssls.setup{
-	cmd = {lsp.dir..'/vscode-extracted/vscode-css-language-server.cmd'},
+	cmd = { lsp.dir..'/vscode-langservers-extracted/node_modules/.bin/vscode-css-language-server'..lsp.prefix() },
 	on_attach = lsp.common_on_attach,
     filetypes = {"css", "scss", "less"},
     settings = {

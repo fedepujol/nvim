@@ -14,7 +14,7 @@ else
 	print('Unsupported')
 end
 
-sumneko_root_path = lsp.dir..'/sumneko_lua'
+sumneko_root_path = lsp.dir..'/sumneko_lua/extension/server'
 sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
 require('lspconfig').sumneko_lua.setup{

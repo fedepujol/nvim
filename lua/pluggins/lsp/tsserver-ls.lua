@@ -3,7 +3,7 @@
 local lsp = require('pluggins.lsp.config')
 
 require('lspconfig').tsserver.setup{
-	cmd = {lsp.dir..'/tsserver/typescript-language-server.cmd', '--stdio'},
+	cmd = { lsp.dir..'/tsserver/node_modules/.bin/typescript-language-server'..lsp.prefix(), '--stdio' },
 	on_attach = lsp.common_on_attach,
 	handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
