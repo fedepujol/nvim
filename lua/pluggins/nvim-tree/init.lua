@@ -2,19 +2,12 @@
 local specialFiles = {'README.md', 'Makefile', 'MAKEFILE'}
 local ignored = {'.git', 'node_modules'}
 
-vim.g.nvim_tree_auto_close = 1 					-- Closes the tree when its the last window
-vim.g.nvim_tree_auto_open = 0 					-- Open NvimTree when typing vim $DIR or vim
-vim.g.nvim_tree_follow = 1 						-- Allows the cursor to be updated when entering another buffer
-vim.g.nvim_tree_disable_netrw = 1 				-- Disables netrw
 vim.g.nvim_tree_git_hl = 1 						-- Enable git hightlights
 vim.g.nvim_tree_group_empty = 1 				-- Compact folders that only contain a single folder
 vim.g.nvim_tree_hide_dotfiles = 0 				-- Hide dotfiles
 vim.g.nvim_tree_ignore = ignored 				-- Tell NvimTree to ingore this
 vim.g.nvim_tree_indent_markers = 1 				-- Show indent marks
-vim.g.nvim_tree_lsp_diagnostics = 0 			-- Dont show LspDiagnostics info in sign column
-vim.g.nvim_tree_side = 'left' 					-- Tree side
 vim.g.nvim_tree_special_files = specialFiles 	-- List of elements that gets highlight with NvimTreeSpecialFile
-vim.g.nvim_tree_width = 60 						-- Default Tree Width
 
 -- Redefined NvimTree icons for git information
 -- and Folders
@@ -31,6 +24,8 @@ vim.g.nvim_tree_icons = {
 		ignored = "I",
 	},
 	folder = {
+		arrow_open = "",
+		arrow_close = "",
 		default = "",
 		open = "",
 		empty = "",
@@ -40,26 +35,30 @@ vim.g.nvim_tree_icons = {
 	},
 }
 
-function ToggleTree()
-	local nvim_tree = require('nvim-tree.view')
-	if nvim_tree.win_open() then
-		Close()
-	else
-		Open()
-	end
-end
+require('nvim-tree').setup {
+	disable_netrw = true, 		-- Disables NetRW completely
+	hijack_netrw = true, 		-- Hijack NetRW window on startup
+	open_on_setup = false, 		-- Dont open the tree when running this function
+	ignore_fg_on_setup = {}, 	-- Not open on setup if the filetype is in the list
+	auto_close = false, 		-- Dont close Neovim when the tree is the last window
+	open_on_tab = false, 		-- Open the tree when changing/opening a new tab
+	hijack_cursor = false,		-- Hijack the cursor to put it at the start of the filename
+	update_cwd = true, 			-- Updates the tree on :DirChanged
+	lsp_diagnostics = false, 	-- Dont show diagnostics in the sign-column
+	update_focused_file = {
+		enable = true, 			-- Allow the cursor to be updated when entering another buffer
+		update_cwd = false,
+		ignore_list = {}
+	},
+	system_open = {
+		cmd = nil,
+		args = {}
+	},
+	view = {
+		width = 30,				-- Default width of the tree
+		side = 'left', 			-- Default side of the tree
+		auto_resize = true, 	-- Resize the tree when open a file
+	}
+}
 
-function Open()
-	-- Get the width from NvimTree on runtime
-	local nvim_tree_width = require('nvim-tree.view').View.width
-	require('bufferline.state').set_offset(nvim_tree_width, 'FileTree')
-	require('nvim-tree').find_file(true)
-end
-
-function Close()
-	require('bufferline.state').set_offset(0)
-	require('nvim-tree').close()
-end
-
--- vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-b>', '<cmd>lua ToggleTree()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true })
