@@ -1,17 +1,17 @@
 # NeoVim Config
 
 Hello there fellow stranger! This is my custom config to make NeoVim
-into a VSCode replacement or IDE. For now it has the following:
+into a VSCode replacement. You'll find the following:
 
 -   Code Completion
 -   File Explorer
 -   Git Integration
 -   Icons
--   Builtin LSP
+-   LSP's
 -   Snippets
 -   Statusline
 -   Tabline
--   Terminal Integration
+-   Terminal Wrapper 
 
 ## Index
 
@@ -55,6 +55,7 @@ Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and
 
 -   `ripgrep`: for Telescope
 -   `lazygit`: for Lazygit integration
+-   `delta`: for diffview
 
 #### Formatters
 
@@ -65,12 +66,6 @@ Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and
 | lua-format  | Lua        |
 | pandoc      | markdown   |
 | eslint_d    | TypeScript |
-
-### Windows
-
--   You need to install a compiler to work with TreeSitter. The one I’ve
-    used was LLVM.
--   `lspinstall` won’t work. You’ve have to do it yourself.
 
 ## Installation
 
@@ -97,39 +92,16 @@ finished, restart neovim.
 
 #### LSP
 
-In this config I’ve included several lsp’s (bash, css, html, etc.). If
-you’re in Linux, to download the lsp’s, you must type:
+In this config I’ve included several lsp’s (bash, css, html, etc.),
+to download the lsp’s, you must type:
 
-    :LspInstall bash
+    :LspInstall bashls
 
-If you are in Windows, you’ve got to do it manually (see
-[pr](https://github.com/kabouzeid/nvim-lspinstall/pull/96))
+To view all available LSP's to download, type:
 
-1.  Go to the
-    [CONFIG.MD](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md)
-    and search for the ones you want to install (almost everyone has a
-    npm command to install it).
+	:LspInstallInfo
 
-2.  Go to your config dir (AppData/…./nvim-data/lspinstall).
-
-3.  Create the folder with the name of the LSP:
-
-    -   Windows
-
-              MD angularls
-
-    -   Linux
-
-              mkdir angularls
-
-4.  `cd` into that folder and execute the command. Most of the commands
-    with `npm` have a `-g` flag, this will install it globally in your
-    system. If you don’t want that you could do this instead:
-
-        npm i --prefix . @angular/language-service
-
-    This tells `npm` to install the LSP in the folder you are currently
-    on.
+If you want an Lsp that it's not listed, check custom installation [methods](https://github.com/williamboman/nvim-lsp-installer/blob/main/CUSTOM_SERVERS.md).
 
 ## Structure
 
@@ -260,25 +232,26 @@ Pluggins keybindings:
 
 These are the pluggins included:
 
-| Name                                                                  | Description                                                                                                   |
-|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| [barbar](https://github.com/romgrk/barbar.nvim)                       | Tabs, as understood by any other editor.                                                                      |
-| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)           | The fastest Neovim colorizer.                                                                                 |
-| [galaxyline](https://github.com/glepnir/galaxyline.nvim)              | Light-weight and Super Fast statusline plugin written in lua.                                                 |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                | Super fast git decorations implemented purely in lua/teal.                                                    |
-| [kommentary](https://github.com/b3nj5m1n/kommentary)                  | Neovim commenting plugin, written in lua.                                                                     |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)            | Autopairs for NeoVim written in Lua.                                                                          |
-| [nvim-compe](https://github.com/hrsh7th/nvim-compe)                   | Auto completion plugin for nvim.                                                                              |
-| [nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)        | Provides the missing :LspInstall for nvim-lspconfig.                                                          |
-| [nvim-lspsaga](https://github.com/glepnir/lspsaga.nvim)               | Provides LSP actions with a highly performant UI.                                                             |
-| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)              | A File-Explorer tree for NeoVim written in Lua.                                                               |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Nvim Treesitter configurations and abstraction layer.                                                         |
-| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)     | A neovim lua plugin to help easily manage multiple terminal windows.                                          |
-| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)  | Lua fork of vim-web-devicons for NeoVim.                                                                      |
-| [playground](https://github.com/nvim-treesitter/playground)           | Treesitter playground integrated into Neovim.                                                                 |
-| [telescope](https://github.com/nvim-telescope/telescope.nvim)         | Find, Filter, Preview, Pick. All lua, all the time.                                                           |
-| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                     | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format.                                        |
-| [which-key](https://github.com/folke/which-key.nvim)                  | Lua plugin for Neovim 0.5 that displays a popup with possible key bindings of the command you started typing. |
+| Name                                                                     | Description                                                                                                   |
+|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| [barbar](https://github.com/romgrk/barbar.nvim)                          | Tabs, as understood by any other editor.                                                                      |
+| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)              | The fastest Neovim colorizer.                                                                                 |
+| [galaxyline](https://github.com/glepnir/galaxyline.nvim)                 | Light-weight and Super Fast statusline plugin written in lua.                                                 |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                   | Super fast git decorations implemented purely in lua/teal.                                                    |
+| [kommentary](https://github.com/b3nj5m1n/kommentary)                     | Neovim commenting plugin, written in lua.                                                                     |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)               | Autopairs for NeoVim written in Lua.                                                                          |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                          | A completion plugin for neovim coded in Lua.                                                                  |
+| [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) | Companion plugin for nvim-lspconfig that allows you to seamlessly install LSP servers locally.                |
+| [nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)           | Provides the missing :LspInstall for nvim-lspconfig.                                                          |
+| [nvim-lspsaga](https://github.com/glepnir/lspsaga.nvim)                  | Provides LSP actions with a highly performant UI.                                                             |
+| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)        | A neovim lua plugin to help easily manage multiple terminal windows.                                          |
+| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)                 | A File-Explorer tree for NeoVim written in Lua.                                                               |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)    | Nvim Treesitter configurations and abstraction layer.                                                         |
+| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)     | Lua fork of vim-web-devicons for NeoVim.                                                                      |
+| [playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim.                                                                 |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)            | Find, Filter, Preview, Pick. All lua, all the time.                                                           |
+| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                        | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format.                                        |
+| [which-key](https://github.com/folke/which-key.nvim)                     | Lua plugin for Neovim 0.5 that displays a popup with possible key bindings of the command you started typing. |
 
 To control the pluggins you’ve got a few files:
 
