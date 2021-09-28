@@ -81,23 +81,22 @@ this config, clone the repo:
 
 ### First Launch
 
-In the first launch of neovim, you will be notified with a lot of
+In the first launch, you'll be notified with a lot of
 errors. Mainly because the config needs the pluggins to be install and
 currently there are none. To correct this errors, type:
 
-    :PlugInstall
+    :PaqInstall
 
 This will tell `Paq` to download the missing pluggins. After `Paq` has
 finished, restart neovim.
 
 #### LSP
 
-In this config I’ve included several lsp’s (bash, css, html, etc.),
-to download the lsp’s, you must type:
+I’ve included several lsp’s (bash, css, html, etc.), to download the lsp’s, just type:
 
     :LspInstall bashls
 
-To view all available LSP's to download, type:
+To view all available LSP's to download:
 
 	:LspInstallInfo
 
@@ -262,8 +261,15 @@ And `Paq` (Plugin Manager).
 
 ### Paq (Plugin Manager)
 
-To manage all of them you have `Paq` (very minimal pluggin manager). It
-has a few commands to interact with. - PaqInstall - PaqUpdate - PaqClean
+To manage all of them you have `Paq` (minimal pluggin manager). It
+has a few commands to interact with. 
+
+- PaqInstall 
+- PaqUpdate 
+- PaqClean
+- PaqSync (runs PaqInstall-PaqUpdate-PaqClean)
+- PaqList
+- PaqRunHooks
 
 #### Install a new Pluggin
 
