@@ -1,17 +1,17 @@
 # NeoVim Config
 
 Hello there fellow stranger! This is my custom config to make NeoVim
-into a VSCode replacement. You'll find the following:
+into a VSCode replacement. You’ll find the following:
 
 -   Code Completion
 -   File Explorer
 -   Git Integration
 -   Icons
--   LSP's
+-   LSP’s
 -   Snippets
 -   Statusline
 -   Tabline
--   Terminal Wrapper 
+-   Terminal Wrapper
 
 ## Index
 
@@ -81,9 +81,9 @@ this config, clone the repo:
 
 ### First Launch
 
-In the first launch, you'll be notified with a lot of
-errors. Mainly because the config needs the pluggins to be install and
-currently there are none. To correct this errors, type:
+In the first launch, you’ll be notified with a lot of errors. Mainly
+because the config needs the pluggins to be install and currently there
+are none. To correct this errors, type:
 
     :PaqInstall
 
@@ -92,15 +92,17 @@ finished, restart neovim.
 
 #### LSP
 
-I’ve included several lsp’s (bash, css, html, etc.), to download the lsp’s, just type:
+I’ve included several lsp’s (bash, css, html, etc.), to download the
+lsp’s, just type:
 
     :LspInstall bashls
 
-To view all available LSP's to download:
+To view all available LSP’s to download:
 
-	:LspInstallInfo
+    :LspInstallInfo
 
-If you want an Lsp that it's not listed, check custom installation [methods](https://github.com/williamboman/nvim-lsp-installer/blob/main/CUSTOM_SERVERS.md).
+If you want an Lsp that it’s not listed, check custom installation
+[methods](https://github.com/williamboman/nvim-lsp-installer/blob/main/CUSTOM_SERVERS.md).
 
 ## Structure
 
@@ -261,15 +263,15 @@ And `Paq` (Plugin Manager).
 
 ### Paq (Plugin Manager)
 
-To manage all of them you have `Paq` (minimal pluggin manager). It
-has a few commands to interact with. 
+To manage all of them you have `Paq` (minimal pluggin manager). It has a
+few commands to interact with.
 
-- PaqInstall 
-- PaqUpdate 
-- PaqClean
-- PaqSync (runs PaqInstall-PaqUpdate-PaqClean)
-- PaqList
-- PaqRunHooks
+-   PaqInstall
+-   PaqUpdate
+-   PaqClean
+-   PaqSync (runs PaqInstall-PaqUpdate-PaqClean)
+-   PaqList
+-   PaqRunHooks
 
 #### Install a new Pluggin
 
