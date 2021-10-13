@@ -26,7 +26,7 @@ local Icon = {
     }
 }
 
-function Icon.getDistro(os)
+Icon.getDistro = function(os)
     if os ~= nil then
         local di = Icon.distros[os]
         if di == nil then
@@ -39,13 +39,12 @@ function Icon.getDistro(os)
     end
 end
 
-function Icon.getIcon(os)
+Icon.getIcon = function(os)
     return Icon.getDistro(os).icon
 end
 
-function Icon.getColor(os)
+Icon.getColor = function(os)
     return Icon.getDistro(os).colors
 end
-
 
 return Icon
