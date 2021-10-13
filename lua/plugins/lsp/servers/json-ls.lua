@@ -1,6 +1,6 @@
 -- JSON LSP
 -- npm i -g vscode-json-languageserver
-local lsp = require('pluggins.lsp.config')
+local lsp = require('plugins.lsp.config')
 
 require 'lspconfig'.jsonls.setup {
 	cmd = { lsp.dir..'/vscode-langservers-extracted/node_modules/.bin/vscode-json-language-server'..lsp.prefix(), '--stdio' },

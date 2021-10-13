@@ -1,6 +1,6 @@
 -- EFM LSP
 -- go get github.com/mattn/efm-language
-local lsp = require('pluggins.lsp.config')
+local lsp = require('plugins.lsp.config')
 
 require('lspconfig').efm.setup{
 	cmd = { lsp.dir.."/efm/efm-langserver" },
@@ -23,20 +23,10 @@ require('lspconfig').efm.setup{
 			markdown = {
 				{ formatCommand = "pandoc -f markdown -t gfm -sp --tab-stop=4", formatStdin = true }
 			},
-			typescript = {
-				{
-					lintCommand = "eslint_d -f visualStudio --stdin -stdin-filename ${INPUT}",
-					lintIgnoreExitCode = true,
-					lintStdin = true,
-					lintFormats = {"%f:%l:%c, %m"},
-					formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-					formatStdin = true
-				}
-			},
 			yaml = {
 				{ formatCommand = "prettier --use-tabs --tab-width=4 --stdin-filepath ${INPUT}", formatStdin = true }
 			}
 		},
 	},
-	filetypes = {'css', 'html', 'json', 'lua', 'markdown', 'typescript', 'yaml'},
+	filetypes = {'css', 'html', 'json', 'lua', 'markdown', 'yaml'},
 }

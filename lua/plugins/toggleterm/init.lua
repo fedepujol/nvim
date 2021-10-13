@@ -1,7 +1,7 @@
 -- ToggleTerma Setup
 local wk = require('which-key')
 local Terminal = require('toggleterm.terminal').Terminal
-local lsp = require('pluggins.lsp.config')
+local lsp = require('plugins.lsp.config')
 local shell = vim.o.shell
 
 if lsp.isOS('windows') then

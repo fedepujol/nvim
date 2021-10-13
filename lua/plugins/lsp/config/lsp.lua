@@ -47,16 +47,17 @@ local function osPrefix()
 	return prefix
 end
 
+local function common_on_attach(client, bufnr)
+	documentHighlight(client, bufnr)
+end
+
 Lsp = {
 	dir = vim.fn.stdpath('data')..'/lsp_servers',
 	root_pattern = require('lspconfig/util').root_pattern,
 	capabilities = capabilities,
+	common_on_attach = common_on_attach,
 	isOS = isOS,
-	prefix = osPrefix
+	prefix = osPrefix,
 }
-
-function Lsp.common_on_attach(client, bufnr)
-	documentHighlight(client, bufnr)
-end
 
 return Lsp

@@ -1,6 +1,6 @@
 -- Yaml LSP
 -- npm i -g yaml-language-server
-local lsp = require('pluggins.lsp.config')
+local lsp = require('plugins.lsp.config')
 
 require('lspconfig').yamlls.setup{
 	cmd = { lsp.dir..'/yaml/node_modules/.bin/yaml-language-server'..lsp.prefix(), '--stdio' },

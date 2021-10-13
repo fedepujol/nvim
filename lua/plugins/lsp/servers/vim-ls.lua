@@ -1,6 +1,6 @@
 -- Vim LSP
 -- npm i -g vim-language-server
-local lsp = require('pluggins.lsp.config')
+local lsp = require('plugins.lsp.config')
 
 require('lspconfig').vimls.setup {
 	cmd = { lsp.dir..'/vim/node_modules/.bin/vim-language-server'..lsp.prefix(), '--stdio' },

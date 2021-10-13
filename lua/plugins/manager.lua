@@ -20,6 +20,7 @@ require('paq') {
 
 	-- Hex/RGB/Color Handler
 	'norcalli/nvim-colorizer.lua';
+	'rktjmp/lush.nvim';
 
 	-- Completion
 	'hrsh7th/nvim-cmp';
@@ -38,7 +39,8 @@ require('paq') {
 	'nvim-treesitter/playground';
 
 	-- StatusLine
-	{'glepnir/galaxyline.nvim', branch = 'main'};
+	-- {'glepnir/galaxyline.nvim', branch = 'main'};
+	'famiu/feline.nvim';
 
 	-- Search/FZF
 	'nvim-lua/plenary.nvim';

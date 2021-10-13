@@ -1,5 +1,5 @@
 -- Lua LSP
-local lsp = require('pluggins.lsp.config')
+local lsp = require('plugins.lsp.config')
 local system_name
 local sumneko_root_path = ""
 local sumneko_binary = ""

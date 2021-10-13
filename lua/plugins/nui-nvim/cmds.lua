@@ -1,4 +1,4 @@
-local Builder = require('pluggins.nui-nvim.builder')
+local Builder = require('plugins.nui-nvim.builder')
 
 local tbl = {
 	angular = {
