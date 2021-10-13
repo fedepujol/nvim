@@ -8,7 +8,7 @@
 --
 -- _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
-local COLORS = {
+local Colors = {
     -- Generals
     white = '#FFFFFF',
 
@@ -102,4 +102,4 @@ local COLORS = {
     orange7 = '#FFC589',
 }
 
-return COLORS
+return Colors

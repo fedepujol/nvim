@@ -1,5 +1,5 @@
 -- ViMode Provider
-local colors = require('pluggins.galaxyline.providers.colors')
+local colors = require('plugins.statusline.cprov.colors')
 
 local VMode = {
     mode_aliases = {

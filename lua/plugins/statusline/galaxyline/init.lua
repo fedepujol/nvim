@@ -6,9 +6,9 @@ local gLineSection = require('galaxyline').section
 local condition = require('galaxyline.condition')
 local file_info = require('galaxyline.provider_fileinfo')
 
-local colors = require('pluggins.galaxyline.providers.colors')
-local icon = require('pluggins.galaxyline.providers.icon')
-local vimMode = require('pluggins.galaxyline.providers.mode')
+local colors = require('plugins.galaxyline.providers.colors')
+local icon = require('plugins.galaxyline.providers.icon')
+local vimMode = require('plugins.galaxyline.providers.mode')
 
 local distro = 'debian'
 
