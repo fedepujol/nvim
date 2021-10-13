@@ -39,7 +39,6 @@ require('paq') {
 	'nvim-treesitter/playground';
 
 	-- StatusLine
-	-- {'glepnir/galaxyline.nvim', branch = 'main'};
 	'famiu/feline.nvim';
 
 	-- Search/FZF
