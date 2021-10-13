@@ -2,7 +2,7 @@
 require('core')
 
 -- Plugins
-require('pluggins')
+require('plugins')
 
 -- Change The Colorscheme
 vim.cmd(':colo vcdark')
