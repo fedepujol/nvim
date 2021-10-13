@@ -45,7 +45,9 @@ require('nvim-tree').setup {
 	open_on_tab = false, 		-- Open the tree when changing/opening a new tab
 	hijack_cursor = false,		-- Hijack the cursor to put it at the start of the filename
 	update_cwd = true, 			-- Updates the tree on :DirChanged
-	lsp_diagnostics = false, 	-- Dont show diagnostics in the sign-column
+	diagnostics = {
+		enable = false,
+	},
 	update_focused_file = { 	-- Update the focused file on 'BufEnter', un-collapses the folder recursively until it finds the file
 		enable = true, 			-- Allow the cursor to be updated when entering another buffer
 		update_cwd = false,
