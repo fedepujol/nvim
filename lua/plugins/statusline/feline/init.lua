@@ -2,6 +2,9 @@
 local viMode = require('plugins.statusline.cprov.mode')
 local colors = require('plugins.statusline.cprov.colors')
 local file = require('plugins.statusline.cprov.file')
+local icon = require('plugins.statusline.cprov.icon')
+
+local os = 'arch'
 
 local components = {
 	active = {},
@@ -16,7 +19,27 @@ table.insert(components.active, {})
 -- One part inactive statusline
 table.insert(components.inactive, {})
 
+components.inactive[1][1] = {
+	provider = function()
+		return ' '..icon.getIcon(os)
+	end,
+	hl = {
+		fg = icon.getColor(os).fg,
+		bg = icon.getColor(os).bg
+	}
+}
+
 components.active[1][1] = {
+	provider = function()
+		return ' '..icon.getIcon(os)
+	end,
+	hl = {
+		fg = icon.getColor(os).fg,
+		bg = icon.getColor(os).bg
+	}
+}
+
+components.active[1][2] = {
 	provider = function()
 		return ' '..viMode.getModeAlias()..' '
 	end,
@@ -30,7 +53,7 @@ components.active[1][1] = {
 	left_sep = ' '
 }
 
-components.active[1][2] = {
+components.active[1][3] = {
 	provider = {
 		name = 'file_info',
 		hl = function()
@@ -42,26 +65,26 @@ components.active[1][2] = {
 	left_sep = ' ',
 }
 
-components.active[1][3] = {
+components.active[1][4] = {
 	provider = 'diagnostic_errors',
 	hl = {
 		fg = 'red'
 	},
 	icon = ''
 }
-components.active[1][4] = {
+components.active[1][5] = {
 	provider = 'diagnostic_warnings',
 	hl = {
 		fg = 'yellow'
 	}
 }
-components.active[1][5] = {
+components.active[1][6] = {
 	provider = 'diagnostic_hints',
 	hl = {
 		fg = 'fg'
 	}
 }
-components.active[1][6] = {
+components.active[1][7] = {
 	provider = 'diagnostic_info',
 	hl = {
 		fg = 'green'
@@ -69,7 +92,10 @@ components.active[1][6] = {
 }
 
 components.active[2][1] = {
-	provider = 'git_branch'
+	provider = 'git_branch',
+	hl = {
+		fg = 'git_pink',
+	}
 }
 components.active[2][2] = {
 	provider = 'git_diff_added',
@@ -98,17 +124,30 @@ components.active[2][4] = {
 
 components.active[3][1] = {
 	provider = file.lsp_client,
-	icon = ''
+	icon = '',
+	left_sep = 'left_filled',
+	hl = {
+		fg = 'lsp_gray',
+		bg = 'gray',
+	}
 }
 components.active[3][2] = {
 	provider = file.position,
 	icon = ' ',
-	left_sep = ' '
+	left_sep = 'left_filled',
+	hl = {
+		fg = 'pink',
+		bg = 'gray'
+	}
 }
 components.active[3][3] = {
-	provider = file.porcentage,
+	provider = file.percentage,
 	icon = ' ',
-	left_sep = ' ',
+	left_sep = 'left_filled',
+	hl = {
+		fg = 'green',
+		bg = 'gray'
+	}
 }
 
 require('feline').setup{
@@ -120,6 +159,10 @@ require('feline').setup{
 		green = colors.green5,
 		yellow = colors.yellow3,
 		orange = colors.orange3,
+		pink = colors.pink6,
+		git_pink = colors.pink5,
+		gray = colors.black4,
+		lsp_gray = colors.gray3,
 		git_green = colors.green1,
 		git_red = colors.red5,
 	},

@@ -1,34 +1,23 @@
 local M = {}
 
-local function addPrefix(value, prefix)
-	if value < 10 then
-		value = prefix..value
-	end
-	return value
-end
-
 M.position = function()
-	local l, c = unpack(vim.api.nvim_win_get_cursor(0))
-	c = addPrefix(c, '0')
-	l = addPrefix(l, '0')
-	return l..'.'..c
+	return string.format('%02d.%02d', unpack(vim.api.nvim_win_get_cursor(0)))
 end
 
 -- Doesn't work with feline
-M.porcentage = function()
+M.percentage = function()
 	local cL = vim.fn.line('.')
 	local tL = vim.fn.line('$')
 
 	if cL == 1 then
 		return "Top "
-	elseif cL == vim.fn.line('$') then
+	elseif cL == tL then
 		return "Bot "
 	end
 
 	local result, _ = math.modf((cL / tL) * 100)
-	result = addPrefix(result, '0')
 
-	return string.format('%d', result)..'%'
+	return string.format('%02d', result)..'%'
 end
 
 M.lsp_client = function()
