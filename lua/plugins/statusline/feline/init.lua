@@ -4,7 +4,7 @@ local colors = require('plugins.statusline.cprov.colors')
 local file = require('plugins.statusline.cprov.file')
 local icon = require('plugins.statusline.cprov.icon')
 
-local os = 'arch'
+local os = 'freebsd'
 
 local components = {
 	active = {},
@@ -24,8 +24,8 @@ components.inactive[1][1] = {
 		return ' '..icon.getIcon(os)
 	end,
 	hl = {
-		fg = icon.getColor(os).fg,
-		bg = icon.getColor(os).bg
+		fg = icon.getColor(os)[1],
+		bg = icon.getColor(os)[2],
 	}
 }
 
@@ -34,8 +34,8 @@ components.active[1][1] = {
 		return ' '..icon.getIcon(os)
 	end,
 	hl = {
-		fg = icon.getColor(os).fg,
-		bg = icon.getColor(os).bg
+		fg = icon.getColor(os)[1],
+		bg = icon.getColor(os)[2],
 	}
 }
 
@@ -79,7 +79,6 @@ components.active[1][5] = {
 	}
 }
 components.active[1][6] = {
-	provider = 'diagnostic_hints',
 	hl = {
 		fg = 'fg'
 	}
@@ -132,18 +131,42 @@ components.active[3][1] = {
 	}
 }
 components.active[3][2] = {
+	provider = ' ',
+	hl = {
+		fg = 'gray',
+		bg = 'pink'
+	},
+	left_sep = {
+		str = 'left_filled',
+		hl = {
+			fg = 'pink',
+			bg = 'gray'
+		}
+	}
+}
+components.active[3][3] = {
 	provider = file.position,
-	icon = ' ',
-	left_sep = 'left_filled',
 	hl = {
 		fg = 'pink',
 		bg = 'gray'
 	}
 }
-components.active[3][3] = {
+components.active[3][4] = {
+	provider = ' ',
+	hl = {
+		fg = 'gray',
+		bg = 'green'
+	},
+	left_sep = {
+		str = 'left_filled',
+		hl = {
+			fg = 'green',
+			bg = 'gray'
+		}
+	}
+}
+components.active[3][5] = {
 	provider = file.percentage,
-	icon = ' ',
-	left_sep = 'left_filled',
 	hl = {
 		fg = 'green',
 		bg = 'gray'
