@@ -66,7 +66,11 @@ components.active[1][3] = {
 }
 
 components.active[1][4] = {
-	provider = 'diagnostic_errors',
+	provider = function()
+		local count = 0
+		count = vim.lsp.diagnostic.get_count(0, [[Error]])
+		return count > 0 and ' '..string.format('%d', count) or ''
+	end,
 	hl = {
 		fg = 'red'
 	},
