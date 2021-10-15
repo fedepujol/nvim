@@ -19,6 +19,7 @@ table.insert(components.active, {})
 -- One part inactive statusline
 table.insert(components.inactive, {})
 
+-- Icon
 components.inactive[1][1] = {
 	provider = function()
 		return ' '..icon.getIcon(os)
@@ -29,6 +30,7 @@ components.inactive[1][1] = {
 	}
 }
 
+-- Vim Mode
 components.active[1][1] = {
 	provider = function()
 		return ' '..icon.getIcon(os)
@@ -38,7 +40,6 @@ components.active[1][1] = {
 		bg = icon.getColor(os)[2],
 	}
 }
-
 components.active[1][2] = {
 	provider = function()
 		return ' '..viMode.getModeAlias()..' '
@@ -53,19 +54,23 @@ components.active[1][2] = {
 	left_sep = ' '
 }
 
+-- File Info
 components.active[1][3] = {
-	provider = {
-		name = 'file_info',
-		hl = function()
-			return {
-				fg = 'fg'
-			}
-		end,
+	provider = 'file_info',
+	hl = {
+		fg = 'fg'
 	},
 	left_sep = ' ',
 }
-
 components.active[1][4] = {
+	provider = 'file_size',
+	hl = {
+		fg = 'fg'
+	},
+}
+
+-- Diagnostics
+components.active[1][5] = {
 	provider = function()
 		local count = 0
 		count = vim.lsp.diagnostic.get_count(0, [[Error]])
@@ -76,24 +81,25 @@ components.active[1][4] = {
 	},
 	icon = ''
 }
-components.active[1][5] = {
+components.active[1][6] = {
 	provider = 'diagnostic_warnings',
 	hl = {
 		fg = 'yellow'
 	}
 }
-components.active[1][6] = {
+components.active[1][7] = {
 	hl = {
 		fg = 'fg'
 	}
 }
-components.active[1][7] = {
+components.active[1][8] = {
 	provider = 'diagnostic_info',
 	hl = {
 		fg = 'green'
 	}
 }
 
+-- Git Info
 components.active[2][1] = {
 	provider = 'git_branch',
 	hl = {
@@ -125,6 +131,7 @@ components.active[2][4] = {
 	icon = '~'
 }
 
+-- Lsp info
 components.active[3][1] = {
 	provider = file.lsp_client,
 	icon = '',
@@ -134,6 +141,8 @@ components.active[3][1] = {
 		bg = 'gray',
 	}
 }
+
+-- Position
 components.active[3][2] = {
 	provider = ' ',
 	hl = {
@@ -155,6 +164,8 @@ components.active[3][3] = {
 		bg = 'gray'
 	}
 }
+
+-- Percentage
 components.active[3][4] = {
 	provider = ' ',
 	hl = {
@@ -177,6 +188,7 @@ components.active[3][5] = {
 	}
 }
 
+-- Setup
 require('feline').setup{
 	components = components,
 	colors = {
