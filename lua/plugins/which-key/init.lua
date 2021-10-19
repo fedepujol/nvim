@@ -37,6 +37,25 @@ wk.register({
 		c = {":checkhealth which_key<CR>", "Search Conflicting Keymaps"},
 		h = {":checkhealth<CR>", "Neovim Health"},
 	},
+	b = {
+		name = 'Buffers',
+		c = {
+			name = 'Close',
+			a = {':BufferCloseAllButCurrent', "All But Current"},
+			c = {':BufferClose!', "Current Buffer"},
+			l = {':BufferCloseBuffersLeft', "All Left Buffers"},
+			p = {':BufferCloseAllButPinned', "All But Pinned"},
+			r = {':BufferCloseBuffersRight', "All Right Buffers"},
+		},
+		s = {
+			name = 'Sort',
+			b = {':BufferOrderByBufferNumber', "Buffer Number"},
+			d = {':BufferOrderByDirectory', "Directory"},
+			l = {':BufferOrderByLanguage', "Language"},
+			w = {':BufferOrderByWindowNumber', "Window Number"}
+		},
+		p = {':BufferPick', "Pick"}
+	},
 	f = {
 		name = "Functions",
 		d = {':normal!$x<CR>', "Delete last character"},
