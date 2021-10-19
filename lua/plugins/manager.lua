@@ -50,7 +50,7 @@ require('paq') {
 	'lewis6991/gitsigns.nvim';
 
 	-- Comment
-	'b3nj5m1n/kommentary';
+	'numToStr/Comment.nvim';
 
 	-- File Explorer
 	'kyazdani42/nvim-tree.lua';
