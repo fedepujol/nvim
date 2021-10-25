@@ -6,7 +6,6 @@ require('paq') {
 
 	-- Lsp
 	'neovim/nvim-lspconfig';
-	'glepnir/lspsaga.nvim';
 	'williamboman/nvim-lsp-installer';
 
 	-- Icons
@@ -46,7 +45,7 @@ require('paq') {
 	'nvim-lua/popup.nvim';
 	'nvim-telescope/telescope.nvim';
 
-	-- Code Versioning
+	-- Git Integration
 	'lewis6991/gitsigns.nvim';
 
 	-- Comment
@@ -55,13 +54,14 @@ require('paq') {
 	-- File Explorer
 	'kyazdani42/nvim-tree.lua';
 
-	-- WhichKey
+	-- Key Mappings
 	'folke/which-key.nvim';
+	'max397574/better-escape.nvim';
 
 	-- Terminal
 	'akinsho/nvim-toggleterm.lua';
 
-	-- UI
+	-- UI Components
 	'MunifTanjim/nui.nvim';
 
 	-- Misc
