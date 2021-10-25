@@ -67,6 +67,7 @@ components.active[1][4] = {
 	hl = {
 		fg = 'fg'
 	},
+	right_sep = ' '
 }
 
 -- Diagnostics
