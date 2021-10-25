@@ -41,20 +41,20 @@ wk.register({
 		name = 'Buffers',
 		c = {
 			name = 'Close',
-			a = {':BufferCloseAllButCurrent', "All But Current"},
-			c = {':BufferClose!', "Current Buffer"},
-			l = {':BufferCloseBuffersLeft', "All Left Buffers"},
-			p = {':BufferCloseAllButPinned', "All But Pinned"},
-			r = {':BufferCloseBuffersRight', "All Right Buffers"},
+			a = {':BufferCloseAllButCurrent<CR>', "All But Current"},
+			c = {':BufferClose!<CR>', "Current Buffer"},
+			l = {':BufferCloseBuffersLeft<CR>', "All Left Buffers"},
+			p = {':BufferCloseAllButPinned<CR>', "All But Pinned"},
+			r = {':BufferCloseBuffersRight<CR>', "All Right Buffers"},
 		},
 		s = {
 			name = 'Sort',
-			b = {':BufferOrderByBufferNumber', "Buffer Number"},
-			d = {':BufferOrderByDirectory', "Directory"},
-			l = {':BufferOrderByLanguage', "Language"},
-			w = {':BufferOrderByWindowNumber', "Window Number"}
+			b = {':BufferOrderByBufferNumber<CR>', "Buffer Number"},
+			d = {':BufferOrderByDirectory<CR>', "Directory"},
+			l = {':BufferOrderByLanguage<CR>', "Language"},
+			w = {':BufferOrderByWindowNumber<CR>', "Window Number"}
 		},
-		p = {':BufferPick', "Pick"}
+		p = {':BufferPick<CR>', "Pick"}
 	},
 	f = {
 		name = "Functions",
@@ -83,18 +83,18 @@ wk.register({
 	l = {
 		name = "LSP",
 		i = {":LspInfo<CR>", "Info"},
-		H = { "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "Hover"},
+		H = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
 		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', "Go to Implementation"},
 		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', "Document Symbol"},
-		c = { '<cmd>lua require("lspsaga.codeaction").code_action()<CR>', "Show Code Actions"},
+		c = { '<cmd>lua vim.lsp.buf.code_action()<CR>', "Show Code Actions"},
 		t = { '<Cmd>lua vim.lsp.buf.type_definition()<CR>', "Go to Type-Definition"},
 		f = { '<Cmd>lua vim.lsp.buf.formatting()<CR>', "Format"},
 		r = { '<cmd>lua vim.lsp.buf.references()<CR>', "Show References"},
 		h = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', "Get Signature Help"},
 		d = {
 			name = "Diagnostics",
-			n = { '<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = "single"}})<CR>', "Next Diagnostic"},
-			p = { '<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = "single"}})<CR>', "Prev. Diagnostic"}
+			n = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', "Next Diagnostic"},
+			p = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', "Prev. Diagnostic"}
 		},
 	},
 	r = {
