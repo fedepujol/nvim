@@ -109,6 +109,10 @@ wk.register({
 }, {mode = 'n', prefix = '<leader>', noremap = true, silent = true})
 
 wk.register({
+	r = {
+		name = 'Run',
+		l = {':luafile %<CR>', 'Run Luafile'},
+	},
 	f = {
 		name = "Custom Functions",
 		l = {':normal!$x<CR>', "Delete last character"},
