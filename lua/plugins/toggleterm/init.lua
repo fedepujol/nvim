@@ -9,10 +9,10 @@ if lsp.isOS('windows') then
 end
 
 require('toggleterm').setup{
-	size = 15,
+	size = 17,
 	hide_numbers = true,
 	start_in_insert = false,
-	direction = 'horizontal', -- vertical | float | window
+	direction = 'horizontal', -- vertical | float | tab
 	persist_size = true,
 	close_on_exit = true,
 	shell = shell,
@@ -20,17 +20,7 @@ require('toggleterm').setup{
 
 local lazygit = Terminal:new({
 	cmd = 'lazygit',
-	direction = 'float',
-	float_opts = {
-		border = "rounded",
-		width = 150,
-		height = 40,
-		winblend = 3,
-		highlights = {
-			border = "Normal",
-			background = "Normal"
-		}
-	},
+	direction = 'tab',
 	on_open = function(term)
 		vim.cmd('startinsert!')
 		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>Close<CR>', { noremap = true, silent = true })
@@ -38,7 +28,6 @@ local lazygit = Terminal:new({
 	on_close = function(_)
 		local nvtree = require('nvim-tree')
 		nvtree.refresh()
-		print('LayGit Finished')
 	end,
 })
 
@@ -48,17 +37,7 @@ end
 
 local diff = Terminal:new({
 	cmd = 'git diff',
-	direction = 'float',
-	float_opts = {
-		border = "rounded",
-		width = vim.api.nvim_win_get_width(0),
-		height = vim.api.nvim_win_get_height(0),
-		winblend = 3,
-		highlights = {
-			border = "Normal",
-			background = "Normal"
-		}
-	},
+	direction = 'tab',
 	on_open = function(term)
 		vim.cmd("startinsert!")
 		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', 'q', {noremap = true, silent = true })
