@@ -17,14 +17,14 @@ cmp.setup{
 		["<C-SPACE>"] = cmp.mapping.complete(),
 		["<ESC>"] = cmp.mapping.close(),
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
 	},
 	sources = {
-		{ name = "buffer" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
+		{ name = 'vsnip' },
 		{ name = "path" },
-		{ name = 'vsnip' }
+		{ name = "buffer", keyword_length = 5 },
 	},
 	formatting = {
 		format = function(_, vim_item)
@@ -38,6 +38,9 @@ cmp.setup{
 			end
 			return vim_item
 		end
+	},
+	experimental = {
+		ghost_text = true
 	}
 }
 

@@ -56,8 +56,8 @@ wk.register({
 		},
 		p = {':BufferPick<CR>', "Pick"}
 	},
-	f = {
-		name = "Functions",
+	u = {
+		name = "Utilities",
 		d = {':normal!$x<CR>', "Delete last character"},
 		a = {':normal!gg0vG$<CR>', "Select all"},
 	},
@@ -113,8 +113,8 @@ wk.register({
 		name = 'Run',
 		l = {':luafile %<CR>', 'Run Luafile'},
 	},
-	f = {
-		name = "Custom Functions",
+	u = {
+		name = "Utilities",
 		l = {':normal!$x<CR>', "Delete last character"},
 		e = {"<cmd>:lua RemoveEmptyLines()<CR>", "Remove Emtpy Lines"}
 	}
