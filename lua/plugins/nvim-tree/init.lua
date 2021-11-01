@@ -59,11 +59,6 @@ require('nvim-tree').setup {
 		update_cwd = false,
 		ignore_list = {'node_modules'}
 	},
-	update_to_buf_dir = {		-- Hijacks new directory buffers when they are opened
-		enable = true,
-		auto_open = false,
-		ignore_list = { 'node_modules', '.vscode' }
-	},
 	system_open = {
 		cmd = nil,
 		args = {}
