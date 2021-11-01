@@ -50,6 +50,10 @@ require('nvim-tree').setup {
 	diagnostics = {
 		enable = false,			-- Show diagnostic on the left side of the tree
 	},
+	update_to_buf_dir = { 		-- Hijacks new directory buffers when they are opened
+		enable = true,
+		auto_open = true
+	},
 	update_focused_file = { 	-- Update the focused file on 'BufEnter', un-collapses the folder recursively until it finds the file
 		enable = true, 			-- Allow the cursor to be updated when entering another buffer
 		update_cwd = false,
@@ -58,6 +62,7 @@ require('nvim-tree').setup {
 	update_to_buf_dir = {		-- Hijacks new directory buffers when they are opened
 		enable = true,
 		auto_open = false,
+		ignore_list = { 'node_modules', '.vscode' }
 	},
 	system_open = {
 		cmd = nil,
