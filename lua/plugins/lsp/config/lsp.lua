@@ -2,6 +2,7 @@
 Lsp = {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local function documentHighlight(client, _)
@@ -34,30 +35,27 @@ local function getOS()
 	return system_name
 end
 
-local function isOS(target)
+Lsp.isOS = function(target)
 	local os = getOS()
 	return os ~= '' and os:lower() == target
 end
 
-local function osPrefix()
-	local prefix = ''
-	if isOS('windows') then
-		prefix = '.cmd'
+Lsp.prefix = function()
+	local osPrefix = ''
+	if Lsp.isOS('windows') then
+		osPrefix = '.cmd'
 	end
-	return prefix
+	return osPrefix
 end
 
-local function common_on_attach(client, bufnr)
+Lsp.common_on_attach = function(client, bufnr)
 	documentHighlight(client, bufnr)
 end
 
-Lsp = {
-	dir = vim.fn.stdpath('data')..'/lsp_servers',
-	root_pattern = require('lspconfig/util').root_pattern,
-	capabilities = capabilities,
-	common_on_attach = common_on_attach,
-	isOS = isOS,
-	prefix = osPrefix,
-}
+Lsp.dir = vim.fn.stdpath('data')..'/lsp_servers'
+
+Lsp.root_pattern = require('lspconfig/util').root_pattern
+
+Lsp.capabilities = capabilities
 
 return Lsp

@@ -1,19 +1,19 @@
 local border = {
-	{ "╭", "Normal"},
-	{ "─", "Normal"},
-	{ "╮", "Normal"},
-	{ "│", "Normal"},
-	{ "╯", "Normal"},
-	{ "─", "Normal"},
-	{ "╰", "Normal"},
-	{ "│", "Normal"}
+	{ "╭", "FloatBorder"},
+	{ "─", "FloatBorder"},
+	{ "╮", "FloatBorder"},
+	{ "│", "FloatBorder"},
+	{ "╯", "FloatBorder"},
+	{ "─", "FloatBorder"},
+	{ "╰", "FloatBorder"},
+	{ "│", "FloatBorder"}
 }
 -- Handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 		underline = false,
 		virtual_text = {
-			source = 'always',
+			sources = 'always',
 		},
 		signs = true,
 	}
