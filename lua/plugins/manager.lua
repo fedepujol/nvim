@@ -61,9 +61,6 @@ require('paq') {
 	-- Terminal
 	'akinsho/nvim-toggleterm.lua';
 
-	-- UI Components
-	'MunifTanjim/nui.nvim';
-
 	-- Misc
 	'fedepujol/move.nvim';
 }
