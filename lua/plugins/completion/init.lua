@@ -1,7 +1,7 @@
 -- Nvim-CMP
 local cmp = require('cmp')
 
-cmp.setup{
+cmp.setup({
 	snippet = {
 		expand = function(args)
 			vim.fn['vsnip#anonymous'](args.body)
@@ -24,7 +24,7 @@ cmp.setup{
 		{ name = "nvim_lua" },
 		{ name = 'vsnip' },
 		{ name = "path" },
-		{ name = "buffer", keyword_length = 5 },
+		{ name = "buffer" },
 	},
 	formatting = {
 		format = function(_, vim_item)
@@ -39,8 +39,5 @@ cmp.setup{
 			return vim_item
 		end
 	},
-	experimental = {
-		ghost_text = true
-	}
-}
+})
 

@@ -1,8 +1,8 @@
 -- Feline setup
-local viMode = require('plugins.statusline.cprov.mode')
-local colors = require('plugins.statusline.cprov.colors')
-local file = require('plugins.statusline.cprov.file')
-local icon = require('plugins.statusline.cprov.icon')
+local viMode = require('plugins.ui-components.statusline.cprov.mode')
+local colors = require('plugins.ui-components.statusline.cprov.colors')
+local file = require('plugins.ui-components.statusline.cprov.file')
+local icon = require('plugins.ui-components.statusline.cprov.icon')
 
 local os = 'freebsd'
 

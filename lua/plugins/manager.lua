@@ -7,19 +7,15 @@ require('paq') {
 	-- Lsp
 	'neovim/nvim-lspconfig';
 	'williamboman/nvim-lsp-installer';
+	{'tami5/lspsaga.nvim', branch = 'nvim51'};
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons';
 
-	-- Colorschemes
-	'fedepujol/nv-themes';
-
-	-- Buffer Bar
-	'romgrk/barbar.nvim';
-
-	-- Hex/RGB/Color Handler
+	-- Colors
 	'norcalli/nvim-colorizer.lua';
 	'rktjmp/lush.nvim';
+	'fedepujol/nv-themes';
 
 	-- Completion
 	'hrsh7th/nvim-cmp';
@@ -28,17 +24,12 @@ require('paq') {
 	'hrsh7th/cmp-nvim-lsp';
 	'hrsh7th/cmp-path';
 	'hrsh7th/cmp-vsnip';
-	'hrsh7th/vim-vsnip';
 
-	-- AutoPairs
-	'windwp/nvim-autopairs';
-
-	-- Treesitter
-	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
-	'nvim-treesitter/playground';
-
-	-- StatusLine
+	-- UI Components
 	'famiu/feline.nvim';
+	'romgrk/barbar.nvim';
+	'kyazdani42/nvim-tree.lua';
+	'akinsho/nvim-toggleterm.lua';
 
 	-- Search/FZF
 	'nvim-lua/plenary.nvim';
@@ -48,19 +39,18 @@ require('paq') {
 	-- Git Integration
 	'lewis6991/gitsigns.nvim';
 
-	-- Comment
+	-- Treesitter
+	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
+	'nvim-treesitter/playground';
+	'p00f/nvim-ts-rainbow';
+
+	-- Editor Functionality
 	'numToStr/Comment.nvim';
+	'windwp/nvim-autopairs';
+	'abecodes/tabout.nvim';
+	'fedepujol/move.nvim';
 
-	-- File Explorer
-	'kyazdani42/nvim-tree.lua';
-
-	-- Key Mappings
+	-- Keys
 	'folke/which-key.nvim';
 	'max397574/better-escape.nvim';
-
-	-- Terminal
-	'akinsho/nvim-toggleterm.lua';
-
-	-- Misc
-	'fedepujol/move.nvim';
 }

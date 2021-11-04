@@ -86,7 +86,7 @@ wk.register({
 		H = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
 		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', "Go to Implementation"},
 		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', "Document Symbol"},
-		c = { '<cmd>lua vim.lsp.buf.code_action()<CR>', "Show Code Actions"},
+		c = { ':Lspsaga code_action<CR>', "Show Code Actions"},
 		t = { '<Cmd>lua vim.lsp.buf.type_definition()<CR>', "Go to Type-Definition"},
 		f = { '<Cmd>lua vim.lsp.buf.formatting()<CR>', "Format"},
 		r = { '<cmd>lua vim.lsp.buf.references()<CR>', "Show References"},
@@ -96,6 +96,7 @@ wk.register({
 			n = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', "Next Diagnostic"},
 			p = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', "Prev. Diagnostic"}
 		},
+		p = {':Lspsaga preview_definition<CR>', 'Preview Definition'}
 	},
 	r = {
 		name = "Run commands",

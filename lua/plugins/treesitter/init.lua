@@ -6,6 +6,11 @@ require('nvim-treesitter.configs').setup {
     highlight = {
         enable = true,    -- false will disable the whole extension
     },
+	rainbow = {
+		enable = true,
+		extended_mode = false,
+		max_file_lines = nil,
+	},
 	playground = {
 		enable = true,
 		disable = {},
