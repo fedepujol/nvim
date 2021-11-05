@@ -8,4 +8,3 @@ vim.api.nvim_set_keymap('n', 'sh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', 
 vim.api.nvim_set_keymap('n', 'ca', ':Lspsaga code_action<CR>', opts)
 vim.api.nvim_set_keymap('n', 'dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', 'pd', ':Lspsaga preview_definition<CR>', opts)
