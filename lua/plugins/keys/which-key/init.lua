@@ -36,6 +36,8 @@ wk.register({
 		k = {"<cmd>lua require('telescope.builtin').keymaps()<CR>", "Show Keymaps"},
 		c = {":checkhealth which_key<CR>", "Search Conflicting Keymaps"},
 		h = {":checkhealth<CR>", "Neovim Health"},
+		v = {":Telescope vim_options<CR>", "Vim Options"},
+		o = {":CmpStatus<CR>", "Completion Status"},
 	},
 	b = {
 		name = 'Buffers',
@@ -89,7 +91,7 @@ wk.register({
 		c = { ':Lspsaga code_action<CR>', "Show Code Actions"},
 		t = { '<Cmd>lua vim.lsp.buf.type_definition()<CR>', "Go to Type-Definition"},
 		f = { '<Cmd>lua vim.lsp.buf.formatting()<CR>', "Format"},
-		r = { '<cmd>lua vim.lsp.buf.references()<CR>', "Show References"},
+		r = { ':Telescope lsp_references<CR>', "Show References"},
 		h = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', "Get Signature Help"},
 		d = {
 			name = "Diagnostics",

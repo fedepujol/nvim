@@ -23,7 +23,6 @@ require('telescope').setup{
 			vertical = {
 				mirror = false,
 			},
-			preview_width = 110
 		},
 		path_display = {
 			shorten = 4,
@@ -42,7 +41,8 @@ vim.api.nvim_set_keymap('n', '<C-p>', "<CMD>lua require('telescope.builtin').fin
 wk.register({
 	name = 'Find',
 	b = {'<cmd>lua require("telescope.builtin").buffers()<CR>', 'Buffers'},
-	o = {'<cmd>lua require("telescope.builtin").oldfiles()<CR>', 'Old files'},
+	c = {'<cmd>:Telescope commands<CR>', 'Commands'},
 	g = {'<cmd>lua require("telescope.builtin").live_grep()<CR>', 'Live Grep'},
 	h = {'<cmd>lua require("telescope.builtin").help_tags()<CR>', 'Help Tags'},
+	o = {'<cmd>lua require("telescope.builtin").oldfiles()<CR>', 'Old files'},
 }, { mode = 'n', prefix = '<C-f>', noremap = true, silent = true })
