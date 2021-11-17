@@ -32,12 +32,15 @@ require('paq') {
 	'hrsh7th/cmp-path';
 	'hrsh7th/cmp-vsnip';
 	'hrsh7th/vim-vsnip';
+	'hrsh7th/cmp-nvim-lsp-document-symbol';
+	'hrsh7th/cmp-cmdline';
 
 	-- UI Components
 	'famiu/feline.nvim';
 	'romgrk/barbar.nvim';
 	'kyazdani42/nvim-tree.lua';
 	'akinsho/nvim-toggleterm.lua';
+	'mg979/vim-visual-multi';
 
 	-- Search/FZF
 	'nvim-lua/plenary.nvim';
