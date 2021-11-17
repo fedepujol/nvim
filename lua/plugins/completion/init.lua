@@ -49,6 +49,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = 'vsnip' },
 		{ name = "path" },
+		{ name = "cmdline" },
 		{ name = "buffer" },
 	},
 	formatting = {
@@ -66,3 +67,14 @@ cmp.setup({
 	},
 })
 
+cmp.setup.cmdline('/', {
+ 	sources = cmp.config.sources({
+		{ name = "nvim_lsp_document_symbol" },
+	})
+})
+
+cmp.setup.cmdline(':', {
+	sources = cmp.config.sources({
+		{ name = 'cmdline' },
+	})
+})
