@@ -65,7 +65,6 @@ Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and
 | prettier    | JSON, YAML |
 | lua-format  | Lua        |
 | pandoc      | markdown   |
-| eslint_d    | TypeScript |
 
 ## Installation
 
@@ -117,16 +116,29 @@ If you want an Lsp that it’s not listed, check custom installation
 |   |   ├── 📝 mappings.lua
 |   |   └── 📝 settings.lua
 │   └── 📁 pluggins/
-│       ├── 📁 barbar/
-│       ├── 📁 colorizer/
+│       ├── 📁 colors/
+│       ├── 📁 completion/
 │       ...
 │       ├── 📁 lsp/
 │       ...
-│       ├── 📁 which-key/
 |       ├── 📝 manager.lua
 │       └── 📝 init.lua
 └─ 📝 init.lua
 ```
+
+### Plugin Folder Structure
+
+| Folder Name    | Description                                   |
+|----------------|-----------------------------------------------|
+| colors/        | Every color related plugin                    |
+| completion/    | Completion system                             |
+| ef/            | Editor functions (autopairs, comment, tabout) |
+| git/           | Git Integration                               |
+| keys/          | Plugins related to keymapping                 |
+| lsp/           | Lsp config and servers                        |
+| telescope/     | Telescope                                     |
+| treesiter/     | Treesitter functionality                      |
+| ui-components/ | UI Plugins (File-Manager, Statusline, etc)    |
 
 ### Overview
 
@@ -233,26 +245,32 @@ Pluggins keybindings:
 
 These are the pluggins included:
 
-| Name                                                                     | Description                                                                                                   |
-|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| [barbar](https://github.com/romgrk/barbar.nvim)                          | Tabs, as understood by any other editor.                                                                      |
-| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)              | The fastest Neovim colorizer.                                                                                 |
-| [galaxyline](https://github.com/glepnir/galaxyline.nvim)                 | Light-weight and Super Fast statusline plugin written in lua.                                                 |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                   | Super fast git decorations implemented purely in lua/teal.                                                    |
-| [kommentary](https://github.com/b3nj5m1n/kommentary)                     | Neovim commenting plugin, written in lua.                                                                     |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)               | Autopairs for NeoVim written in Lua.                                                                          |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                          | A completion plugin for neovim coded in Lua.                                                                  |
-| [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) | Companion plugin for nvim-lspconfig that allows you to seamlessly install LSP servers locally.                |
-| [nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)           | Provides the missing :LspInstall for nvim-lspconfig.                                                          |
-| [nvim-lspsaga](https://github.com/glepnir/lspsaga.nvim)                  | Provides LSP actions with a highly performant UI.                                                             |
-| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)        | A neovim lua plugin to help easily manage multiple terminal windows.                                          |
-| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)                 | A File-Explorer tree for NeoVim written in Lua.                                                               |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)    | Nvim Treesitter configurations and abstraction layer.                                                         |
-| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)     | Lua fork of vim-web-devicons for NeoVim.                                                                      |
-| [playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim.                                                                 |
-| [telescope](https://github.com/nvim-telescope/telescope.nvim)            | Find, Filter, Preview, Pick. All lua, all the time.                                                           |
-| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                        | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format.                                        |
-| [which-key](https://github.com/folke/which-key.nvim)                     | Lua plugin for Neovim 0.5 that displays a popup with possible key bindings of the command you started typing. |
+| Name                                                                     | Description                                                            |
+|--------------------------------------------------------------------------|------------------------------------------------------------------------|
+| [Comment](https://github.com/numToStr/Comment.nvim)                      | Neovim commenting plugin, written in lua.                              |
+| [barbar](https://github.com/romgrk/barbar.nvim)                          | Tabs, as understood by any other editor.                               |
+| [better-escape](https://github.com/max397574/better-escape.nvim)         |                                                                        |
+| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)              | The fastest Neovim colorizer.                                          |
+| [feline](https://github.com/famiu/feline.nvim)                           | Light-weight and Super Fast statusline plugin written in lua.          |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                   | Super fast git decorations implemented purely in lua/teal.             |
+| [lush](https://github.com/rktjmp/lush.nvim)                              |                                                                        |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)               | Autopairs for NeoVim written in Lua.                                   |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                          | A completion plugin for neovim coded in Lua.                           |
+| [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) | Install LSP servers.                                                   |
+| [nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)           |                                                                        |
+| [nvim-lspsaga](https://github.com/tami5/lspsaga.nvim)                    | Provides LSP actions with a highly performant UI.                      |
+| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)        | A neovim lua plugin to help easily manage multiple terminal windows.   |
+| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)                 | A File-Explorer tree for NeoVim written in Lua.                        |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)    | Nvim Treesitter configurations and abstraction layer.                  |
+| [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)               |                                                                        |
+| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)     | Lua fork of vim-web-devicons for NeoVim.                               |
+| [playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim.                          |
+| [shipwright](htpps://github.com/rkjmp/shipwright.nvim)                   |                                                                        |
+| [tabout.nvim](https://github.com/abecodes/tabout.nvim)                   |                                                                        |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)            | Find, Filter, Preview, Pick. All lua, all the time.                    |
+| [vim-visual-multi](https://github.com/mg979/vim-visual-multi)            |                                                                        |
+| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                        | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format. |
+| [which-key](https://github.com/folke/which-key.nvim)                     | Popup with possible key bindings of the command you started typing.    |
 
 To control the pluggins you’ve got a few files:
 
