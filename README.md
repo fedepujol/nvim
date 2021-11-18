@@ -249,26 +249,26 @@ These are the pluggins included:
 |--------------------------------------------------------------------------|------------------------------------------------------------------------|
 | [Comment](https://github.com/numToStr/Comment.nvim)                      | Neovim commenting plugin, written in lua.                              |
 | [barbar](https://github.com/romgrk/barbar.nvim)                          | Tabs, as understood by any other editor.                               |
-| [better-escape](https://github.com/max397574/better-escape.nvim)         |                                                                        |
+| [better-escape](https://github.com/max397574/better-escape.nvim)         | Escape from insert mode without delay when typing                      |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)              | The fastest Neovim colorizer.                                          |
 | [feline](https://github.com/famiu/feline.nvim)                           | Light-weight and Super Fast statusline plugin written in lua.          |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                   | Super fast git decorations implemented purely in lua/teal.             |
-| [lush](https://github.com/rktjmp/lush.nvim)                              |                                                                        |
+| [lush](https://github.com/rktjmp/lush.nvim)                              | Define Neovim themes as a DSL in lua, with real-time feedback.         |
 | [nvim-autopairs](https://github.com/windwp/nvim-autopairs)               | Autopairs for NeoVim written in Lua.                                   |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                          | A completion plugin for neovim coded in Lua.                           |
 | [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) | Install LSP servers.                                                   |
-| [nvim-lspconfig](https://github.com/kabouzeid/nvim-lspinstall)           |                                                                        |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)               | Quickstart configurations for the Nvim LSP client                      |
 | [nvim-lspsaga](https://github.com/tami5/lspsaga.nvim)                    | Provides LSP actions with a highly performant UI.                      |
 | [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)        | A neovim lua plugin to help easily manage multiple terminal windows.   |
 | [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)                 | A File-Explorer tree for NeoVim written in Lua.                        |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)    | Nvim Treesitter configurations and abstraction layer.                  |
-| [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)               |                                                                        |
+| [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)               | Rainbow parentheses for neovim using tree-sitter                       |
 | [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)     | Lua fork of vim-web-devicons for NeoVim.                               |
 | [playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim.                          |
-| [shipwright](htpps://github.com/rkjmp/shipwright.nvim)                   |                                                                        |
-| [tabout.nvim](https://github.com/abecodes/tabout.nvim)                   |                                                                        |
+| [shipwright](htpps://github.com/rktjmp/shipwright.nvim)                  | Ship it wright this time, formerly LushBuild.                          |
+| [tabout.nvim](https://github.com/abecodes/tabout.nvim)                   | tabout plugin for neovim                                               |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)            | Find, Filter, Preview, Pick. All lua, all the time.                    |
-| [vim-visual-multi](https://github.com/mg979/vim-visual-multi)            |                                                                        |
+| [vim-visual-multi](https://github.com/mg979/vim-visual-multi)            | Multiple cursors plugin for vim/neovim                                 |
 | [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                        | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format. |
 | [which-key](https://github.com/folke/which-key.nvim)                     | Popup with possible key bindings of the command you started typing.    |
 
