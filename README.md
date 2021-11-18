@@ -1,7 +1,7 @@
 # NeoVim Config
 
-Hello there fellow stranger! This is my custom config to make NeoVim
-into a VSCode replacement. You’ll find the following:
+Hello there fellow stranger! This is my custom config for NeoVim,
+it has been tested in Windows and Linux.
 
 -   Code Completion
 -   File Explorer
@@ -130,15 +130,15 @@ If you want an Lsp that it’s not listed, check custom installation
 
 | Folder Name    | Description                                   |
 |----------------|-----------------------------------------------|
-| colors/        | Every color related plugin                    |
-| completion/    | Completion system                             |
-| ef/            | Editor functions (autopairs, comment, tabout) |
-| git/           | Git Integration                               |
-| keys/          | Plugins related to keymapping                 |
-| lsp/           | Lsp config and servers                        |
-| telescope/     | Telescope                                     |
-| treesiter/     | Treesitter functionality                      |
-| ui-components/ | UI Plugins (File-Manager, Statusline, etc)    |
+| 📁colors        | Every color related plugin                    |
+| 📁completion    | Completion system                             |
+| 📁ef            | Editor functions (autopairs, comment, tabout) |
+| 📁git           | Git Integration                               |
+| 📁keys          | Plugins related to keymapping                 |
+| 📁lsp           | Lsp config and servers                        |
+| 📁telescope     | Telescope                                     |
+| 📁treesiter     | Treesitter functionality                      |
+| 📁ui-components | UI Plugins (File-Manager, Statusline, etc)    |
 
 ### Overview
 
@@ -265,7 +265,7 @@ These are the pluggins included:
 | [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)               | Rainbow parentheses for neovim using tree-sitter                       |
 | [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)     | Lua fork of vim-web-devicons for NeoVim.                               |
 | [playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim.                          |
-| [shipwright](htpps://github.com/rktjmp/shipwright.nvim)                  | Ship it wright this time, formerly LushBuild.                          |
+| [shipwright](https://github.com/rktjmp/shipwright.nvim)                  | Ship it wright this time, formerly LushBuild.                          |
 | [tabout.nvim](https://github.com/abecodes/tabout.nvim)                   | tabout plugin for neovim                                               |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)            | Find, Filter, Preview, Pick. All lua, all the time.                    |
 | [vim-visual-multi](https://github.com/mg979/vim-visual-multi)            | Multiple cursors plugin for vim/neovim                                 |
