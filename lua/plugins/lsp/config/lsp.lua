@@ -53,7 +53,7 @@ end
 
 Lsp.dir = vim.fn.stdpath('data')..'/lsp_servers'
 
-Lsp.root_pattern = require('lspconfig/util').root_pattern
+Lsp.root_pattern = require('lspconfig.util').root_pattern
 
 Lsp.capabilities = capabilities
 
