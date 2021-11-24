@@ -34,6 +34,7 @@ require('paq') {
 	'hrsh7th/vim-vsnip';
 	'hrsh7th/cmp-nvim-lsp-document-symbol';
 	'hrsh7th/cmp-cmdline';
+	'mattn/emmet-vim';
 
 	-- UI Components
 	'famiu/feline.nvim';
