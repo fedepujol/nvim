@@ -1,7 +1,9 @@
 # NeoVim Config
 
 Hello there fellow stranger! This is my custom config for NeoVim,
-it has been tested in Windows and Linux.
+it has been tested on Linux and Windows.
+
+It provides the following:
 
 -   Code Completion
 -   File Explorer
