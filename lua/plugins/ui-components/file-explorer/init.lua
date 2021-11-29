@@ -1,4 +1,5 @@
 -- Nvim Tree Settings
+vim.g.nvim_tree_git_hl = 1  	 	 	 	 	-- Enable git highlight for git attributes
 vim.g.nvim_tree_group_empty = 1 				-- Compact folders that only contain a single folder
 vim.g.nvim_tree_indent_markers = 1 				-- Show indent marks
 vim.g.nvim_tree_special_files = {				-- List of elements that gets highlight with NvimTreeSpecialFile
