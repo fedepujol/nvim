@@ -1,6 +1,4 @@
 -- Nvim Tree Settings
-vim.g.nvim_tree_git_hl = 1 						-- Enable git hightlights
-vim.g.nvim_tree_gitignore = 1					-- Ignore files
 vim.g.nvim_tree_group_empty = 1 				-- Compact folders that only contain a single folder
 vim.g.nvim_tree_indent_markers = 1 				-- Show indent marks
 vim.g.nvim_tree_special_files = {				-- List of elements that gets highlight with NvimTreeSpecialFile
@@ -47,6 +45,11 @@ require('nvim-tree').setup {
 	open_on_tab = false, 		-- Open the tree when changing/opening a new tab
 	hijack_cursor = true,		-- Hijack the cursor to put it at the start of the filename
 	update_cwd = true, 			-- Updates the tree on :DirChanged
+	git = {
+		enable = true,  	 	-- Enable git integration
+		ignore = true,  	 	-- Ignore files based on .gitignore
+		timeout = 500,  	 	-- Kill git process after time
+	},
 	diagnostics = {
 		enable = false,			-- Show diagnostic on the left side of the tree
 	},
