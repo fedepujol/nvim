@@ -1,3 +1,5 @@
+vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white]])
+
 local border = {
 	{ "╭", "FloatBorder"},
 	{ "─", "FloatBorder"},
@@ -8,25 +10,29 @@ local border = {
 	{ "╰", "FloatBorder"},
 	{ "│", "FloatBorder"}
 }
+
 -- Handlers
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
-		virtual_text = {
-			spacing = 4
-		},
-		underline = true,
-		signs = true,
-	}
-)
+vim.lsp.diagnostic.config = {
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_on_insert = false,
+	source = 'always',
+	severity_sort = false,
+}
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-	vim.lsp.handlers.hover, {
-		border = border
-	}
-)
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(
+		vim.lsp.handlers.hover, {
+			border = border
+		}
+	),
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-	vim.lsp.handlers.signature_help, {
-		border = border
-	}
-)
+	["textDocument/signatureHelp"] = vim.lsp.with(
+		vim.lsp.handlers.signature_help, {
+			border = border
+		}
+	)
+}
+
+return handlers

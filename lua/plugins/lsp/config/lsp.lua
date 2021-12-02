@@ -5,21 +5,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local function documentHighlight(client, _)
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
-			hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-			hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-			hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-			augroup lsp_document_highlight
-				autocmd! * <buffer>
-				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-			augroup END
-		]], false)
-    end
-end
-
 local function getOS()
 	local system_name = ''
 	if vim.fn.has("mac") == 1 then
@@ -47,8 +32,29 @@ Lsp.prefix = function()
 	return osPrefix
 end
 
-Lsp.common_on_attach = function(client, bufnr)
-	documentHighlight(client, bufnr)
+Lsp.on_attach = function(client, bufnr)
+	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+	local function buf_set_options(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+	-- Enable completion triggered by <c-x><c-o>
+	buf_set_options('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+	-- Mappings
+	local opts = { noremap = true, silent = true }
+
+	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	buf_set_keymap('n', 'sh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+	buf_set_keymap('n', 'D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	buf_set_keymap('n', 'ca', ':Lspsaga code_action<CR>', opts)
+	buf_set_keymap('n', 'dl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+	buf_set_keymap('n', 'dn', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+	buf_set_keymap('n', 'dp', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+	buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+	buf_set_keymap('n', '<C-A>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
 end
 
 Lsp.dir = vim.fn.stdpath('data')..'/lsp_servers'
@@ -56,5 +62,7 @@ Lsp.dir = vim.fn.stdpath('data')..'/lsp_servers'
 Lsp.root_pattern = require('lspconfig.util').root_pattern
 
 Lsp.capabilities = capabilities
+
+Lsp.handlers = require('plugins.lsp.config.handler')
 
 return Lsp
