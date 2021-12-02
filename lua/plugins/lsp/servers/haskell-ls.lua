@@ -4,5 +4,8 @@
 local lsp = require('plugins.lsp.config')
 
 require('lspconfig').hls.setup {
-	root_dir = lsp.root_pattern('.git', '*.hs')
+	root_dir = lsp.root_pattern('.git', '*.hs'),
+	on_attach = lsp.on_attach,
+	capabilities = lsp.capabilities,
+	handlers = lsp.handlers
 }

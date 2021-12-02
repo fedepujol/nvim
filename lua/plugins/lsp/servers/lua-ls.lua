@@ -23,10 +23,10 @@ require('lspconfig').sumneko_lua.setup{
 		Lua = {
 			runtime = {
 				-- Tell the language server which versin of Lua you're using (most likely LuaJIT in the case of Neovim)
-	 			version = 'LuaJIT',
-	 			-- Setup your lua path
-	 			path = vim.split(package.path, '.')
-	 		},
+				version = 'LuaJIT',
+				-- Setup your lua path
+				path = vim.split(package.path, '.')
+			},
 			diagnostics = {
 				-- Get the language server to recognize the 'vim' global
 				globals = {'vim'}
@@ -42,8 +42,10 @@ require('lspconfig').sumneko_lua.setup{
 			telemetry = {
 				enable = false,
 			},
-	 	},
+		},
 	},
-	capabilities = lsp.capabilities
+	on_attach = lsp.on_attach,
+	capabilities = lsp.capabilities,
+	handlers = lsp.handlers,
 }
 

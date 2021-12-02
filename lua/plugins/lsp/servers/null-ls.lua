@@ -33,5 +33,5 @@ null_ls.config({ debug = true })
 null_ls.register(tslint)
 
 require('lspconfig')['null-ls'].setup({
-	on_attach = require('plugins.lsp.config').common_on_attach
+	on_attach = require('plugins.lsp.config').on_attach
 })

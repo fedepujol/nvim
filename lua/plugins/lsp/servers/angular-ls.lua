@@ -11,7 +11,8 @@ require('lspconfig').angularls.setup{
 	on_new_config = function(new_config)
 		new_config.cmd = new_cmd
 	end,
-	on_attach = lsp.common_on_attach,
-	capabilities = lsp.capabilities
+	on_attach = lsp.on_attach,
+	capabilities = lsp.capabilities,
+	handlers = lsp.handlers
 }
 
