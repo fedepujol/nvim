@@ -13,7 +13,7 @@ require('paq') {
 	-- Lsp
 	'neovim/nvim-lspconfig';
 	'williamboman/nvim-lsp-installer';
-	{'tami5/lspsaga.nvim', branch = 'nvim51'};
+	{'tami5/lspsaga.nvim'};
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons';
