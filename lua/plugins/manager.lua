@@ -42,6 +42,7 @@ require('paq') {
 	'kyazdani42/nvim-tree.lua';
 	'akinsho/nvim-toggleterm.lua';
 	'mg979/vim-visual-multi';
+	'MunifTanjim/nui.nvim';
 
 	-- Search/FZF
 	'nvim-lua/plenary.nvim';

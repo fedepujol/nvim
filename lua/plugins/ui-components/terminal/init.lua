@@ -26,8 +26,7 @@ local lazygit = Terminal:new({
 		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>Close<CR>', { noremap = true, silent = true })
 	end,
 	on_close = function(_)
-		local nvtree = require('nvim-tree')
-		nvtree.refresh()
+		vim.cmd(':NvimTreeRefresh<CR>')
 	end,
 })
 
