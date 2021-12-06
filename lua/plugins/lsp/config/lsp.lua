@@ -32,7 +32,7 @@ Lsp.prefix = function()
 	return osPrefix
 end
 
-Lsp.on_attach = function(client, bufnr)
+Lsp.on_attach = function(_, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 	local function buf_set_options(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
