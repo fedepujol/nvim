@@ -50,7 +50,7 @@ cmp.setup({
 		{ name = 'vsnip' },
 		{ name = "path" },
 		{ name = "cmdline" },
-		{ name = "buffer" },
+		{ name = "buffer", keyword_length = 5, max_item_count = 5  },
 	},
 	formatting = {
 		format = function(_, vim_item)
