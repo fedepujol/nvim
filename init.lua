@@ -5,4 +5,4 @@ require('core')
 require('plugins')
 
 -- Change The Colorscheme
-vim.cmd(':colo cosmos')
+vim.cmd(':colo nv-cosmos')
