@@ -5,6 +5,34 @@ local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
+local kind_icons = {
+	Class = "",
+	Color = "",
+	Constant = " ",
+	Constructor = "襁 ",
+	Enum = " ",
+	EnumMember = "ﱔ ",
+	Event = " ",
+	Field = " ",
+	File = " ",
+	Folder = " ",
+	Function = " ",
+	Interface = "壟",
+	Keyword = " ",
+	Method = " ",
+	Module = " ",
+	Operator = "駱 ",
+	Property = " ",
+	Reference = " ",
+	Snippet = " ",
+	Struct = "ﴰ ",
+	Text = " ",
+	TypeParameter = " ",
+	Unit = " ",
+	Value = " ",
+	Variable = " ",
+}
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -31,7 +59,7 @@ cmp.setup({
 			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
 				feedkey("<Plug>(vsnip-jump-prev)", "")
 			else
-			 	fallback()
+				fallback()
 			end
 		end, {'i', 's'}),
 		["<C-SPACE>"] = cmp.mapping.complete(),
@@ -48,22 +76,22 @@ cmp.setup({
 		{ name = "buffer", keyword_length = 5, max_item_count = 5  },
 	},
 	formatting = {
-		format = function(_, vim_item)
-			local itemKind = vim.lsp.protocol.CompletionItemKind
-
-			for index, value in ipairs(itemKind) do
-				local a = value:lower():find(vim_item.kind:lower())
-				if a ~= nil then
-					vim_item.kind = itemKind[index]
-				end
-			end
+		format = function(entry, vim_item)
+			vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+			vim_item.menu = ({
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[Lua]",
+				vsnip = "[VSnip]",
+				path = "[Path]",
+				buffer = "[Buffer]",
+			})[entry.source.name]
 			return vim_item
 		end
 	},
 })
 
 cmp.setup.cmdline('/', {
- 	sources = cmp.config.sources({
+	sources = cmp.config.sources({
 		{ name = "nvim_lsp_document_symbol" },
 	})
 })
