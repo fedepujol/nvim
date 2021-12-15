@@ -76,15 +76,8 @@ cmp.setup({
 		{ name = "buffer", keyword_length = 5, max_item_count = 5  },
 	},
 	formatting = {
-		format = function(entry, vim_item)
+		format = function(_, vim_item)
 			vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-			vim_item.menu = ({
-				nvim_lsp = "[LSP]",
-				nvim_lua = "[Lua]",
-				vsnip = "[VSnip]",
-				path = "[Path]",
-				buffer = "[Buffer]",
-			})[entry.source.name]
 			return vim_item
 		end
 	},
