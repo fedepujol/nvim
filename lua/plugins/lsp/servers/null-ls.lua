@@ -29,9 +29,9 @@ local tslint = {
 	})
 }
 
-null_ls.config({ debug = true })
-null_ls.register(tslint)
-
-require('lspconfig')['null-ls'].setup({
-	on_attach = require('plugins.lsp.config').on_attach
+null_ls.setup({
+	sources = tslint,
+	debug = true,
+	on_attach = require('plugins.lsp.config').on_attach,
+	default_timeout = 50000,
 })
