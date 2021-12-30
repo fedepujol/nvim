@@ -14,6 +14,7 @@ require('paq') {
 	'neovim/nvim-lspconfig';
 	'williamboman/nvim-lsp-installer';
 	{'tami5/lspsaga.nvim'};
+	'jose-elias-alvarez/null-ls.nvim';
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons';
@@ -37,7 +38,7 @@ require('paq') {
 	'mattn/emmet-vim';
 
 	-- UI Components
-	'famiu/feline.nvim';
+	'feline-nvim/feline.nvim';
 	'romgrk/barbar.nvim';
 	'kyazdani42/nvim-tree.lua';
 	'akinsho/nvim-toggleterm.lua';
