@@ -192,7 +192,7 @@ components.active[3][5] = {
 -- Setup
 require('feline').setup{
 	components = components,
-	colors = {
+	theme = {
 		fg = '#D0D0D0',
 		bg = colors.black3,
 		red = colors.red4,
