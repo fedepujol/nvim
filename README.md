@@ -28,7 +28,7 @@ It provides the following:
     -   [TreeSitter Queries](#treesitter-queries)
     -   [Settings](#settings)
     -   [Keybindings](#keybindings)
--   [Pluggins](#pluggins)
+-   [Plugins](#plugins)
 
 ## Requirements
 
@@ -274,16 +274,16 @@ These are the pluggins included:
 | [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                        | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format. |
 | [which-key](https://github.com/folke/which-key.nvim)                     | Popup with possible key bindings of the command you started typing.    |
 
-To control the pluggins you’ve got a few files:
+To control the plugins you’ve got a few files:
 
--   `lua/pluggins/manager.lua`: Add/Remove the pluggins from this file.
--   `lua/pluggins/init.lua`: Add/Remove the module configuration.
+-   `lua/plugins/manager.lua`: Add/Remove the plugins from this file.
+-   `lua/plugins/init.lua`: Add/Remove the module configuration.
 
 And `Paq` (Plugin Manager).
 
 ### Paq (Plugin Manager)
 
-To manage all of them you have `Paq` (minimal pluggin manager). It has a
+To manage all of them you have `Paq` (minimal plugin manager). It has a
 few commands to interact with.
 
 -   PaqInstall
@@ -293,23 +293,23 @@ few commands to interact with.
 -   PaqList
 -   PaqRunHooks
 
-#### Install a new Pluggin
+#### Install a new Plugin
 
-To install new pluggins you have to do 3 things:
+To install new plugins you have to do 3 things:
 
-1.  Add the new pluggin in the `manager.lua`
+1.  Add the new plugin in the `manager.lua`
 
 2.  Re-start Neovim
 
 3.  Run the following command:
 
-         :PaqInstall name-of-pluggin-to-install
+         :PaqInstall name-of-plugin-to-install
 
-#### Remove/Uninstall a pluggin
+#### Remove/Uninstall a plugin
 
-If you wish to remove a few pluggins. Follow this steps:
+If you wish to remove a few plugins. Follow this steps:
 
-1.  Remove the pluggin from `lua/pluggins/manager.lua`
+1.  Remove the plugin from `lua/plugins/manager.lua`
 
 2.  Re-start neovim
 
@@ -317,7 +317,7 @@ If you wish to remove a few pluggins. Follow this steps:
 
         :PaqClean
 
-#### Update a Pluggin
+#### Update a Plugin
 
 Just run the following command:
 
