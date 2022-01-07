@@ -73,15 +73,11 @@ components.active[1][4] = {
 
 -- Diagnostics
 components.active[1][5] = {
-	provider = function()
-		local count = 0
-		count = vim.lsp.diagnostic.get_count(0, [[Error]])
-		return count > 0 and ' '..string.format('%d', count) or ''
-	end,
+	provider = 'diagnostic_errors',
 	hl = {
 		fg = 'red'
 	},
-	icon = ''
+	icon = ' '
 }
 components.active[1][6] = {
 	provider = 'diagnostic_warnings',
