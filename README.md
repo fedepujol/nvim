@@ -83,12 +83,12 @@ this config, clone the repo:
 ### First Launch
 
 In the first launch, you’ll be notified with a lot of errors. Mainly
-because the config needs the pluggins to be install and currently there
+because the config needs the plugins to be install and currently there
 are none. To correct this errors, type:
 
     :PaqInstall
 
-This will tell `Paq` to download the missing pluggins. After `Paq` has
+This will tell `Paq` to download the missing plugins. After `Paq` has
 finished, restart neovim.
 
 #### LSP
@@ -117,7 +117,7 @@ If you want an Lsp that it’s not listed, check custom installation
 |   |   ├── 📝 init.lua
 |   |   ├── 📝 mappings.lua
 |   |   └── 📝 settings.lua
-│   └── 📁 pluggins/
+│   └── 📁 plugins/
 │       ├── 📁 colors/
 │       ├── 📁 completion/
 │       ...
@@ -152,7 +152,7 @@ For example in `./init.lua` you’ll have something like this:
 
 ``` lua
 require('core')
-require('pluggins')
+require('plugins')
 ```
 
 And in core’s `init.lua`:
@@ -241,7 +241,7 @@ NeoVim related keybindings
 
 Pluggins keybindings:
 
--   File: `lua/pluggins/which-key/init.lua`
+-   File: `lua/plugins/which-key/init.lua`
 
 ## Plugins
 
