@@ -32,7 +32,7 @@ It provides the following:
 
 ## Requirements
 
--   Neovim v0.5 or [nightly](https://github.com/neovim/neovim/releases)
+-   Neovim v0.6.1 or [nightly](https://github.com/neovim/neovim/releases)
     builds.
 -   A Patched Font (Pick your font of choice from the
     [NerdFonts](https://github.com/ryanoasis/nerd-fonts) guys)
