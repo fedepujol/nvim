@@ -243,9 +243,9 @@ Pluggins keybindings:
 
 -   File: `lua/pluggins/which-key/init.lua`
 
-## Pluggins
+## Plugins
 
-These are the pluggins included:
+These are the plugins included:
 
 | Name                                                                     | Description                                                            |
 |--------------------------------------------------------------------------|------------------------------------------------------------------------|
