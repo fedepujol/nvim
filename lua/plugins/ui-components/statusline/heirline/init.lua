@@ -14,7 +14,7 @@ local Space = { provider = " " }
 local os = 'freebsd'
 local OSIcon = {
 	provider = function()
-		return ' '..icon.getIcon(os)
+		return ' '..icon.getIcon(os)..' '
 	end,
 	hl = {
 		fg = icon.getColor(os)[1],
@@ -116,8 +116,8 @@ local Diagnostics = {
 	condition = conditions.has_diagnostics,
 
 	static = {
-		error_icon = 'E',
-		warn_icon = 'W',
+		error_icon = '',
+		warn_icon = '',
 		info_icon = 'I',
 		hint_icon = 'H'
 	},
@@ -166,15 +166,21 @@ local Git = {
 	end,
 	{
 		provider = function(self)
+			return " "..self.status_dict.head..' '
+		end,
+		hl = { fg = '#EC407A'},
+	},
+	{
+		provider = function(self)
 			local count = self.status_dict.added or 0
-			return count > 0 and ('+'..count)
+			return count > 0 and ('+'..count)..' '
 		end,
 		hl = { fg = '#00C251' }
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.removed or 0
-			return count > 0 and ('-'..count)
+			return count > 0 and ('-'..count)..' '
 		end,
 		hl = { fg = '#FF4B14' }
 	},
@@ -185,11 +191,6 @@ local Git = {
 		end,
 		hl = { fg = '#FF950A' }
 	},
-}
-
--- Cursor Position
-local Ruler = {
-	provider = '%2l:%2c'
 }
 
 -- Lsp
@@ -204,10 +205,61 @@ local Lsp = {
 	end
 }
 
-local statusline = {
-	OSIcon, Space, ViMode,
-	Space, fileNameBlock, Space, fileSize, Space,
-	Diagnostics, Align, Git, Align, Lsp, Space, Ruler
+-- Cursor Position
+local Ruler = {
+	provider = '%2l.%2c'
 }
 
-require('heirline').setup(statusline)
+local Percentage = {
+	provider = '%P'
+}
+
+-- Config
+local MainLine = {
+	OSIcon, ViMode, Space, fileNameBlock, Space, fileSize, Space, Diagnostics, Align,
+	Git, Align,
+	Lsp, Space, Ruler, Space, Percentage, Space
+}
+
+local FileType = {
+	provider = function()
+		return string.upper(vim.bo.filetype)
+	end,
+}
+
+local SpecialLine = {
+	condition = function()
+		return conditions.buffer_matches({
+			buftype = {'nofile', 'help', 'quickfix'},
+			filetype = {'^git.*', 'fugitive'},
+		}) or (not conditions.is_active())
+	end,
+	OSIcon, Space, FileType, Align, Ruler, Space, Percentage
+}
+
+local TerminalName = {
+	provider = function()
+		local tName = vim.api.nvim_buf_get_name(0)
+		-- Remove Prefix
+		tName = string.gsub(tName, '.*/%d+:', '')
+		-- Remove Suffix
+		tName = string.gsub(tName, '&.*', '')
+		return " "..string.sub(tName, 1, 1):upper()..string.sub(tName, 2)
+	end,
+}
+
+local TerminalLine = {
+	condition = function()
+		return conditions.buffer_matches({
+			buftype = { 'terminal' }
+		})
+	end,
+	OSIcon, Space, ViMode, Space, TerminalName, Align, Ruler, Space, Percentage, Space
+}
+
+local StatusLines = {
+	stop_at_first = true,
+	SpecialLine, TerminalLine, MainLine,
+}
+
+require('heirline').setup(StatusLines)
