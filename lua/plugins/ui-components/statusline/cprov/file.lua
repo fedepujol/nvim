@@ -17,7 +17,7 @@ M.percentage = function()
 
 	local result, _ = math.modf((cL / tL) * 100)
 
-	return ' '..string.format('%02d', result)..'%'
+	return ' '..string.format('%02d', result)..'%%'
 end
 
 M.lsp_client = function()

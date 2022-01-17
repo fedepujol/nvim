@@ -6,6 +6,7 @@ local ndIcons = require('nvim-web-devicons')
 -- Custom Providers
 local viMode = require('plugins.ui-components.statusline.cprov.mode')
 local icon = require('plugins.ui-components.statusline.cprov.icon')
+local cFile = require('plugins.ui-components.statusline.cprov.file')
 
 local Align = { provider = "%=" }
 local Space = { provider = " " }
@@ -211,14 +212,28 @@ local Ruler = {
 }
 
 local Percentage = {
-	provider = '%P'
+	provider = function()
+		local cL = vim.fn.line('.')
+		local tL = vim.fn.line('$')
+
+		if cL == 1 then
+			return " Top "
+		elseif cL == tL then
+			return " Bot "
+		end
+
+		local result, _ = math.modf((cL / tL) * 100)
+		local percentage = string.format('%02d', result)
+
+		return percentage..'%%'
+	end,
 }
 
 -- Config
 local MainLine = {
 	OSIcon, ViMode, Space, fileNameBlock, Space, fileSize, Space, Diagnostics, Align,
 	Git, Align,
-	Lsp, Space, Ruler, Space, Percentage, Space
+	Lsp, Space, Ruler, Space, Percentage
 }
 
 local FileType = {
