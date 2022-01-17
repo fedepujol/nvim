@@ -39,10 +39,10 @@ require('paq') {
 
 	-- UI Components
 	'feline-nvim/feline.nvim';
+	'rebelot/heirline.nvim';
 	'romgrk/barbar.nvim';
 	'kyazdani42/nvim-tree.lua';
 	'akinsho/nvim-toggleterm.lua';
-	'mg979/vim-visual-multi';
 	'MunifTanjim/nui.nvim';
 
 	-- Search/FZF
@@ -63,6 +63,7 @@ require('paq') {
 	'windwp/nvim-autopairs';
 	'abecodes/tabout.nvim';
 	'fedepujol/move.nvim';
+	'mg979/vim-visual-multi';
 
 	-- Keys
 	'folke/which-key.nvim';
