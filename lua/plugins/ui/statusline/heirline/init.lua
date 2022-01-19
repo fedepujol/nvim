@@ -201,13 +201,13 @@ local Lsp = {
 		for _, _ in ipairs(vim.lsp.buf_get_clients(0)) do
 			count = count + 1
 		end
-		return 'Lsp ['..count..']'
+		return ' Lsp ['..count..']'
 	end
 }
 
 -- Cursor Position
 local Ruler = {
-	provider = '%2l.%2c'
+	provider = ' %2l.%2c'
 }
 
 local Percentage = {
@@ -216,15 +216,15 @@ local Percentage = {
 		local tL = vim.fn.line('$')
 
 		if cL == 1 then
-			return " Top "
+			return " Top"
 		elseif cL == tL then
-			return " Bot "
+			return " Bot"
 		end
 
 		local result, _ = math.modf((cL / tL) * 100)
 		local percentage = string.format('%02d', result)
 
-		return percentage..'%%'
+		return ' '..percentage..'%%'
 	end,
 }
 
@@ -232,7 +232,7 @@ local Percentage = {
 local MainLine = {
 	OSIcon, ViMode, Space, fileNameBlock, Space, fileSize, Space, Diagnostics, Align,
 	Git, Align,
-	Lsp, Space, Ruler, Space, Percentage
+	Lsp, Space, Ruler, Space, Percentage, Space
 }
 
 local FileType = {
@@ -248,7 +248,7 @@ local SpecialLine = {
 			filetype = {'^git.*', 'fugitive'},
 		}) or (not conditions.is_active())
 	end,
-	OSIcon, Space, FileType, Align, Ruler, Space, Percentage
+	OSIcon, Space, FileType, Align, { condition = conditions.is_active, Ruler, Space, Percentage }
 }
 
 local TerminalName = {
