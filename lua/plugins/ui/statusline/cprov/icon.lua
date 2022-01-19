@@ -1,5 +1,5 @@
 -- Icon Provider
-local colors = require('plugins.ui-components.statusline.cprov.colors')
+local colors = require('plugins.ui.statusline.cprov.colors')
 
 local Icon = {
     distros = {

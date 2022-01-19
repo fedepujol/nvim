@@ -4,9 +4,8 @@ local utils = require('heirline.utils')
 local ndIcons = require('nvim-web-devicons')
 
 -- Custom Providers
-local viMode = require('plugins.ui-components.statusline.cprov.mode')
-local icon = require('plugins.ui-components.statusline.cprov.icon')
-local cFile = require('plugins.ui-components.statusline.cprov.file')
+local viMode = require('plugins.ui.statusline.cprov.mode')
+local icon = require('plugins.ui.statusline.cprov.icon')
 
 local Align = { provider = "%=" }
 local Space = { provider = " " }

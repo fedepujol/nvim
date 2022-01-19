@@ -38,7 +38,6 @@ require('paq') {
 	'mattn/emmet-vim';
 
 	-- UI Components
-	'feline-nvim/feline.nvim';
 	'rebelot/heirline.nvim';
 	'romgrk/barbar.nvim';
 	'kyazdani42/nvim-tree.lua';

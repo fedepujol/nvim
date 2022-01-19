@@ -140,7 +140,7 @@ If you want an Lsp that it’s not listed, check custom installation
 | 📁lsp           | Lsp config and servers                        |
 | 📁telescope     | Telescope                                     |
 | 📁treesiter     | Treesitter functionality                      |
-| 📁ui-components | UI Plugins (File-Manager, Statusline, etc)    |
+| 📁ui            | UI Plugins (File-Manager, Statusline, etc)    |
 
 ### Overview
 
@@ -253,7 +253,7 @@ These are the plugins included:
 | [barbar](https://github.com/romgrk/barbar.nvim)                          | Tabs, as understood by any other editor.                               |
 | [better-escape](https://github.com/max397574/better-escape.nvim)         | Escape from insert mode without delay when typing                      |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)              | The fastest Neovim colorizer.                                          |
-| [feline](https://github.com/famiu/feline.nvim)                           | Light-weight and Super Fast statusline plugin written in lua.          |
+| [heirline](https://github.com/rebelot/heirline.nvim)                     | No-nonsense Neovim Statusline plugin made in Lua.                      |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                   | Super fast git decorations implemented purely in lua/teal.             |
 | [lush](https://github.com/rktjmp/lush.nvim)                              | Define Neovim themes as a DSL in lua, with real-time feedback.         |
 | [nvim-autopairs](https://github.com/windwp/nvim-autopairs)               | Autopairs for NeoVim written in Lua.                                   |
