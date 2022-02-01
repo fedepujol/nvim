@@ -1,21 +1,10 @@
 -- Lua LSP
 local lsp = require('plugins.lsp.config')
-local system_name
 local sumneko_root_path = ""
 local sumneko_binary = ""
 
-if lsp.isOS('macos') then
-	system_name = 'macOS'
-elseif lsp.isOS('linux') then
-	system_name = 'Linux'
-elseif lsp.isOS('windows') then
-	system_name = 'Windows'
-else
-	print('Unsupported')
-end
-
 sumneko_root_path = lsp.dir..'/sumneko_lua/extension/server'
-sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+sumneko_binary = sumneko_root_path.."/bin/lua-language-server"
 
 require('lspconfig').sumneko_lua.setup{
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
