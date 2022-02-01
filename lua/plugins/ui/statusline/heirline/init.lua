@@ -162,34 +162,34 @@ local Git = {
 		self.status_dict = vim.b.gitsigns_status_dict
 		self.has_changes = self.status_dict.added ~= 0 or
 		 	self.status_dict.removed ~= 0 or
-			self.status_dict.changed ~= 0
+		 	self.status_dict.changed ~= 0
 	end,
 	{
 		provider = function(self)
 			return " "..self.status_dict.head..' '
 		end,
-		hl = { fg = '#EC407A'},
+		hl = { fg = utils.get_highlight('PreProc').fg },
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.added or 0
 			return count > 0 and ('+'..count)..' '
 		end,
-		hl = { fg = '#00C251' }
+		hl = { fg = utils.get_highlight('DiffAdd').fg }
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.removed or 0
 			return count > 0 and ('-'..count)..' '
 		end,
-		hl = { fg = '#FF4B14' }
+		hl = { fg = utils.get_highlight('DiffDelete').fg }
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.changed or 0
 			return count > 0 and ('~'..count)
 		end,
-		hl = { fg = '#FF950A' }
+		hl = { fg = utils.get_highlight('DiffChange').fg }
 	},
 }
 
@@ -202,12 +202,18 @@ local Lsp = {
 			count = count + 1
 		end
 		return ' Lsp ['..count..']'
-	end
+	end,
+	hl = {
+		fg = utils.get_highlight('Type').fg
+	}
 }
 
 -- Cursor Position
 local Ruler = {
-	provider = ' %2l.%2c'
+	provider = ' %2l.%2c',
+	hl = {
+		fg = utils.get_highlight('Special').fg
+	}
 }
 
 local Percentage = {
@@ -226,6 +232,9 @@ local Percentage = {
 
 		return ' '..percentage..'%%'
 	end,
+	hl = {
+		fg = utils.get_highlight('StorageClass').fg,
+	}
 }
 
 -- Config
@@ -272,8 +281,28 @@ local TerminalLine = {
 }
 
 local StatusLines = {
+	hl = function()
+		if conditions.is_active() then
+			return {
+				fg = utils.get_highlight('StatusLine').fg,
+				bg = utils.get_highlight('StatusLine').bg
+			}
+		else
+			return {
+				fg = utils.get_highlight('StatusLineNC').fg,
+				bg = utils.get_highlight('StatusLineNC').bg
+			}
+		end
+	end,
 	stop_at_first = true,
 	SpecialLine, TerminalLine, MainLine,
 }
+
+vim.cmd([[
+	augroup heirline
+		autocmd!
+		autocmd ColorScheme * lua require('heirline').reset_highlights(); vim.cmd('luafile lua/plugins/ui/statusline/heirline/init.lua')
+	augroup END
+]])
 
 require('heirline').setup(StatusLines)
