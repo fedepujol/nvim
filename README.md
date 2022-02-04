@@ -55,10 +55,9 @@ In order to complete the installation of any lsp, you’ll need the following
 packages:
 
 -   `npm`
--   `go`
 -   `ninja`
 
-Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and `lua`.
+Most of the LSP’s use `npm`. `ninja` is used for `lua`.
 
 -   `ripgrep`: for Telescope
 -   `lazygit`: for Lazygit integration
