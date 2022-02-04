@@ -19,6 +19,9 @@ vim.lsp.diagnostic.config = {
 	update_on_insert = false,
 	source = 'always',
 	severity_sort = false,
+	float = {
+		source = 'always'
+	}
 }
 
 local handlers = {
