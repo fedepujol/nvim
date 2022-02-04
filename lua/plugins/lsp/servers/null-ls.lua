@@ -54,5 +54,5 @@ null_ls.setup({
 	sources = sources,
 	debug = true,
 	on_attach = require('plugins.lsp.config').on_attach,
-	default_timeout = 50000,
+	default_timeout = 1000,
 })
