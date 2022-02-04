@@ -3,6 +3,10 @@ local lsp = require('plugins.lsp.config')
 local sumneko_root_path = ""
 local sumneko_binary = ""
 
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
 sumneko_root_path = lsp.dir..'/sumneko_lua/extension/server'
 sumneko_binary = sumneko_root_path.."/bin/lua-language-server"
 
@@ -14,7 +18,7 @@ require('lspconfig').sumneko_lua.setup{
 				-- Tell the language server which versin of Lua you're using (most likely LuaJIT in the case of Neovim)
 				version = 'LuaJIT',
 				-- Setup your lua path
-				path = vim.split(package.path, '.')
+				path = runtime_path,
 			},
 			diagnostics = {
 				-- Get the language server to recognize the 'vim' global
@@ -22,10 +26,7 @@ require('lspconfig').sumneko_lua.setup{
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
-				library = {
-					[vim.fn.expand('$VIMRUNTIME/lua')] = true,
-					[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-				},
+				library = vim.api.nvim_get_runtime_file('', true),
 			},
 			-- Do not send telemetry data
 			telemetry = {
