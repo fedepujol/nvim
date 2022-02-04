@@ -3,6 +3,25 @@ local null_ls = require('null-ls')
 local helpers = require('null-ls.helpers')
 local builtins = require('null-ls.builtins')
 
+local jsBeautify = helpers.make_builtin({
+	name = 'jsBeautify',
+	method = null_ls.methods.FORMATTING,
+	filetypes = { 'html', 'css' },
+	generator_opts = {
+		command = 'html-beautify',
+		args = {
+			'-t',
+			'-n',
+			'-m 5',
+			'-w 100',
+			'--type',
+			'$FILEEXT'
+		},
+		to_stdin = true,
+	},
+	factory = helpers.formatter_factory
+})
+
 local tslint = helpers.make_builtin({
 	name = 'tslint',
 	method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
@@ -40,6 +59,7 @@ local tslint = helpers.make_builtin({
 
 local sources = {
 	-- Formatters
+	jsBeautify,
 	builtins.formatting.markdownlint,
 	-- Diagnostics
 	builtins.diagnostics.jsonlint,
