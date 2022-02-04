@@ -3,46 +3,6 @@ local null_ls = require('null-ls')
 local helpers = require('null-ls.helpers')
 local builtins = require('null-ls.builtins')
 
-local htmlBeautify = helpers.make_builtin({
-	name = 'htmlBeautify',
-	method = null_ls.methods.FORMATTING,
-	filetypes = { 'html' },
-	generator_opts = {
-		command = 'html-beautify',
-		args = helpers.range_formatting_args_factory({
-			'-t',
-			'-n',
-			'-w 110',
-			'-m 0',
-			"$FILENAME"
-		}),
-		to_stdin = true,
-	},
-	factory = helpers.formatter_factory
-})
-
-local pandoc = helpers.make_builtin({
-	name = 'pandoc',
-	method = null_ls.methods.FORMATTING,
-	filetypes = { 'markdown' },
-	generator_opts = {
-		command = 'pandoc',
-		args = helpers.range_formatting_args_factory({
-			'-f',
-			'markdown',
-			'-t',
-			'-gfm',
-			'-p',
-			"$FILENAME"
-		}),
-		on_output = function(params)
-			print(vim.inspect(params))
-		end,
-		to_stdin = true,
-	},
-	factory = helpers.formatter_factory
-})
-
 local tslint = helpers.make_builtin({
 	name = 'tslint',
 	method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
@@ -80,15 +40,7 @@ local tslint = helpers.make_builtin({
 
 local sources = {
 	-- Formatters
-	htmlBeautify,
-	pandoc,
-	builtins.formatting.prettier.with({
-		filetypes = { 'yaml' },
-		extra_args = {
-			'--use-tabs',
-			'-tab-width=4',
-		}
-	}),
+	builtins.formatting.markdownlint,
 	-- Diagnostics
 	builtins.diagnostics.jsonlint,
 	builtins.diagnostics.markdownlint,
