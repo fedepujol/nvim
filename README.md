@@ -1,7 +1,7 @@
 # NeoVim Config
 
-Hello there fellow stranger! This is my custom config for NeoVim,
-it has been tested on Linux and Windows.
+Hello there fellow stranger! This is my custom config for NeoVim, it has been
+tested on Linux and Windows.
 
 It provides the following:
 
@@ -19,9 +19,9 @@ It provides the following:
 
 -   [Requirements](#requirements)
     -   [Dependencies](#dependencies)
--   [Installation](#installation)
+-   [Install](#install)
     -   [First Launch](#first-launch)
-    -   [LSP](#lsp)
+    -   [LSP Install](#lsp-install)
     -   [Formatters](#formatters)
 -   [Structure](#structure)
     -   [Overview](#overview)
@@ -36,24 +36,29 @@ It provides the following:
     builds.
 -   A Patched Font (Pick your font of choice from the
     [NerdFonts](https://github.com/ryanoasis/nerd-fonts) guys)
--   Terminal emulator capable of using a patched font (For Windows you
-    may try [Windows Terminal](https://github.com/Microsoft/Terminal)).
--   [Paq-nvim](https://github.com/savq/paq-nvim) (minimal package
-    manager for neovim written in Lua).
+-   Terminal emulator capable of using a patched font (For Windows you may try
+    [Windows Terminal](https://github.com/Microsoft/Terminal)).
+-   [Paq-nvim](https://github.com/savq/paq-nvim) (minimal package manager for
+    neovim written in Lua).
+
+If you're using this configuration with NeoVim 0.6/0.6.1, you'll have to deal
+with the formatters outputing wrong `eol` in `Windows` files (fileformats=dos).
+There's an issue on NeoVim which is already merge.
+
+The solution is to use a nightly build (v0.7.0).
 
 ### Dependencies
 
 #### LSP
 
-In order to complete the installation of any lsp, you’ll need the
-following packages:
+In order to complete the installation of any lsp, you’ll need the following
+packages:
 
 -   `npm`
 -   `go`
 -   `ninja`
 
-Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and
-`lua`.
+Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and `lua`.
 
 -   `ripgrep`: for Telescope
 -   `lazygit`: for Lazygit integration
@@ -61,40 +66,74 @@ Most of the LSP’s use `npm`. `Go` and `ninja` are used for the `efm` and
 
 #### Formatters
 
-| Package     | Language   |
-|-------------|------------|
-| js-beautify | HTML, CSS  |
-| prettier    | JSON, YAML |
-| lua-format  | Lua        |
-| pandoc      | markdown   |
+| Package          | Language  |
+|------------------|-----------|
+| js-beautify      | HTML, CSS |
+| prettier         | YAML      |
+| lua-format       | Lua       |
+| markdownlint-cli | markdown  |
 
-## Installation
+If you like `pandoc` more than `markdownlint-cli` as a markdown formatter, you
+could change it. All you need to do is create the following configuration in
+`lua/plugins/lsp/servers/null-ls.lua`:
 
-Currently there is not a custom installation script (for now). To use
-this config, clone the repo:
+``` lua
+local pandoc = helpers.make_builtin({
+    name = 'pandoc',
+    method = null_ls.methods.FORMATTING,
+    filetypes = { 'markdown' },
+    generator_opts = {
+        command = 'pandoc',
+        args = {
+            '-f', 'gfm',
+            '-t', 'gfm',
+            '--columns=80'
+        },
+        to_stdin = true,
+    },
+    factory = helpers.formatter_factory
+})
 
-    git clone https://github.com/fedepujol/nvim.git
+local sources = {
+--...
+   pandoc,
+}
+```
 
--   **Windows**
-    -   Place it inside your `~.\AppData\Local\` folder.
--   **Linux**
-    -   Place it inside your `.config/` folder.
+and comment the line `builtins.formatting.markdownlint`
+
+## Install
+
+Currently there is not a custom installation script (for now). To use this
+config follow this steps:
+
+-   Windows
+
+    -   Open a `CMD`/`PowerShell`/`Bash`
+    -   Navigate to `~\AppData\Local` (C:\\Users\\your_user\\AppData\\Local)
+    -   Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
+
+-   Linux
+
+    -   Open a terminal (it depends on your distribution)
+    -   Navigate to `~/.config/`
+    -   Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
 
 ### First Launch
 
-In the first launch, you’ll be notified with a lot of errors. Mainly
-because the config needs the plugins to be install and currently there
-are none. To correct this errors, type:
+In the first launch, you’ll be notified with a lot of errors. Mainly because the
+config needs the plugins to be install and currently there are none. To correct
+this, type:
 
     :PaqInstall
 
-This will tell `Paq` to download the missing plugins. After `Paq` has
-finished, restart neovim.
+This will tell `Paq` to download all the plugins. After `Paq` has finished,
+restart neovim.
 
-#### LSP
+#### LSP Install
 
-I’ve included several lsp’s (bash, css, html, etc.), to download the
-lsp’s, just type:
+I’ve included several lsp’s configurations (bash, css, html, etc.), to download
+the lsp, just type:
 
     :LspInstall bashls
 
@@ -130,23 +169,23 @@ If you want an Lsp that it’s not listed, check custom installation
 
 ### Plugin Folder Structure
 
-| Folder Name    | Description                                   |
-|----------------|-----------------------------------------------|
-| 📁colors        | Every color related plugin                    |
-| 📁completion    | Completion system                             |
-| 📁ef            | Editor functions (autopairs, comment, tabout) |
-| 📁git           | Git Integration                               |
-| 📁keys          | Plugins related to keymapping                 |
-| 📁lsp           | Lsp config and servers                        |
-| 📁telescope     | Telescope                                     |
-| 📁treesiter     | Treesitter functionality                      |
-| 📁ui            | UI Plugins (File-Manager, Statusline, etc)    |
+| Folder Name  | Description                                   |
+|--------------|-----------------------------------------------|
+| 📁colors     | Every color related plugin                    |
+| 📁completion | Completion system                             |
+| 📁ef         | Editor functions (autopairs, comment, tabout) |
+| 📁git        | Git Integration                               |
+| 📁keys       | Plugins related to keymapping                 |
+| 📁lsp        | Lsp config and servers                        |
+| 📁telescope  | Telescope                                     |
+| 📁treesiter  | Treesitter functionality                      |
+| 📁ui         | UI Plugins (File-Manager, Statusline, etc)    |
 
 ### Overview
 
-The way the folder structure works is as `Lua modules`. Every folder has
-an `init.lua` that is required outside. In the `init.lua` you `require`
-the files you want to export.
+The way the folder structure works is as `Lua modules`. Every folder has an
+`init.lua` that is required outside. In the `init.lua` you `require` the files
+you want to export.
 
 For example in `./init.lua` you’ll have something like this:
 
@@ -178,8 +217,8 @@ So, if you wanted to create the following sub-structure under `core`:
     └── 📝 settings.lua
 ```
 
-You’ll need to create a `init.lua` under `newFolder1` and `newFolder2`.
-Then required it in `core/init.lua`:
+You’ll need to create a `init.lua` under `newFolder1` and `newFolder2`. Then
+required it in `core/init.lua`:
 
 ``` text
 📁 lua
@@ -222,8 +261,8 @@ require('newFolder2')
 
 ### TreeSitter Queries
 
-In here goes your custom, language specific, queries for `treesitter`.
-I’ve created one for `HTML` that helps me in `Angular`.
+In here goes your custom-language-specific queries for `treesitter`. I’ve
+created one for `HTML` that helps me with `Angular`.
 
 -   Folder: `after/queries/`
 
@@ -283,8 +322,8 @@ And `Paq` (Plugin Manager).
 
 ### Paq (Plugin Manager)
 
-To manage all of them you have `Paq` (minimal plugin manager). It has a
-few commands to interact with.
+To manage all of them you have `Paq` (minimal plugin manager). It has a few
+commands to interact with.
 
 -   PaqInstall
 -   PaqUpdate
@@ -325,5 +364,5 @@ Just run the following command:
 
 #### More Info
 
-If you want more info about how `Paq` works and other commands, go and
-visit [the project page](https://github.com/savq/paq-nvim).
+If you want more info about how `Paq` works and other commands, go and visit
+[the project page](https://github.com/savq/paq-nvim).
