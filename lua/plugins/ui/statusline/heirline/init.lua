@@ -294,7 +294,7 @@ local StatusLines = {
 			}
 		end
 	end,
-	stop_at_first = true,
+	init = utils.pick_child_on_condition,
 	SpecialLine, TerminalLine, MainLine,
 }
 
