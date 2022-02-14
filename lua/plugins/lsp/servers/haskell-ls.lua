@@ -4,8 +4,16 @@
 local lsp = require('plugins.lsp.config')
 
 require('lspconfig').hls.setup {
-	root_dir = lsp.root_pattern('.git', '*.hs'),
+	-- cmd = { lsp.dir..'/haskell/haskell-language-server-9.0.2', '--lsp' },
+	filetypes = { 'haskell', 'lhaskell' },
+	root_dir = lsp.root_pattern('*.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '*.hs'),
+	settings = {
+		haskell = {
+			formattinProvider = "ormolu"
+		}
+	},
 	on_attach = lsp.on_attach,
 	capabilities = lsp.capabilities,
-	handlers = lsp.handlers
+	handlers = lsp.handlers,
+	single_file_support = true
 }
