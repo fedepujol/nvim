@@ -23,11 +23,10 @@ It provides the following:
     - [Optionals](#optionals)
 - [Installation](#installation)
   - [First Launch](#first-launch)
-  - [LSP](#lsp)
+  - [Language Server Protocol](#language-server-protocol)
     - [Install](#install)
     - [Configuration](#configuration)
-    - [Formatters/Linters](#formatters/linters)
-    - [Linters](#linters)
+    - [Formatters and Linters](#formatters-and-linters)
 - [Structure](#structure)
   - [Overview](#overview)
 - [TreeSitter Queries](#treesitter-queries)
@@ -148,20 +147,24 @@ this, type:
 This will tell `Paq` to download all the plugins. After `Paq` has finished,
 restart neovim.
 
-### LSP
+### Language Server Protocol
+
+Neovim has integrated a lot of cool features, one of them is the ability to 
+interact with `language servers` to get some auto-completions, diagnostics and
+more based on the language you're using.
 
 #### Install
 
-To install an LSP you'll use the plugin `nvim-lsp-installer` by typing:
+To install a server you'll use the plugin `nvim-lsp-installer` by typing:
 
 ```text
-    :LspInstall name-of-server
+:LspInstall name-of-server
 ```
 
 To view all available servers to download and managed the ones you've got:
 
 ```text
-    :LspInstallInfo
+:LspInstallInfo
 ```
 
 If you want an Lsp that it’s not listed, check custom installation
@@ -172,16 +175,32 @@ If you want an Lsp that it’s not listed, check custom installation
 I’ve included several lsp’s configuration files (bash, css, html, etc.) under
 `lua/plugins/lsp/servers`.
 
-This files are maintained in `nvim-lspconfig` repo. You'll find the configurations
+This files are maintained in `nvim-lspconfig` repo. There you'll find the configurations
 for several servers. If you want one, just take the config and change some of
-the default values to make it work. A lot of the times you'll face something like:
+the default values to make it work. A lot of the times, you'll have something like this:
 
 ```lua
 require('lspconfig').tsserver.setup({})
-
 ```
 
-#### Formatter/Linter
+The `setup` function already has default values, which in most cases works out of the box.
+But you'll need to change the `cmd` option which tells where is the server file to execute it:
+
+```lua
+require('lspconfig').tsserver.setup({
+	cmd = { 'path-to-server'},
+)
+```
+
+Then install the server:
+
+```text
+:LspInstall tsserver
+```
+
+And you're ready to go!
+
+#### Formatters and Linters
 
 Depending on the Language server, it may or may not include a formatter/linter.
 
