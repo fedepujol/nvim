@@ -5,40 +5,45 @@ tested on Linux and Windows.
 
 It provides the following:
 
--   Code Completion
--   File Explorer
--   Git Integration
--   Icons
--   LSP’s
--   Snippets
--   Statusline
--   Tabline
--   Terminal Wrapper
+- Code Completion
+- File Explorer
+- Git Integration
+- Icons
+- LSP’s
+- Snippets
+- Statusline
+- Tabline
+- Terminal Wrapper
 
 ## Index
 
--   [Requirements](#requirements)
-    -   [Dependencies](#dependencies)
--   [Install](#install)
-    -   [First Launch](#first-launch)
-    -   [LSP Install](#lsp-install)
-    -   [Formatters](#formatters)
--   [Structure](#structure)
-    -   [Overview](#overview)
-    -   [TreeSitter Queries](#treesitter-queries)
-    -   [Settings](#settings)
-    -   [Keybindings](#keybindings)
--   [Plugins](#plugins)
+- [Requirements](#requirements)
+  - [Dependencies](#dependencies)
+    - [Essentials](#essentials)
+    - [Optionals](#optionals)
+- [Installation](#installation)
+  - [First Launch](#first-launch)
+  - [LSP](#lsp)
+    - [Install](#install)
+    - [Configuration](#configuration)
+    - [Formatters/Linters](#formatters/linters)
+    - [Linters](#linters)
+- [Structure](#structure)
+  - [Overview](#overview)
+- [TreeSitter Queries](#treesitter-queries)
+- [Settings](#settings)
+- [Keybindings](#keybindings)
+- [Plugins](#plugins)
 
 ## Requirements
 
--   Neovim v0.6.1 or [nightly](https://github.com/neovim/neovim/releases)
+- Neovim v0.6.1 or [nightly](https://github.com/neovim/neovim/releases)
     builds.
--   A Patched Font (Pick your font of choice from the
+- A Patched Font (Pick your font of choice from the
     [NerdFonts](https://github.com/ryanoasis/nerd-fonts) guys)
--   Terminal emulator capable of using a patched font (For Windows you may try
+- Terminal emulator capable of using a patched font (For Windows you may try
     [Windows Terminal](https://github.com/Microsoft/Terminal)).
--   [Paq-nvim](https://github.com/savq/paq-nvim) (minimal package manager for
+- [Paq-nvim](https://github.com/savq/paq-nvim) (minimal package manager for
     neovim written in Lua).
 
 If you're using this configuration with NeoVim 0.6/0.6.1, you'll have to deal
@@ -49,28 +54,40 @@ The solution is to use a nightly build (v0.7.0).
 
 ### Dependencies
 
-#### LSP
-
-In order to complete the installation of any lsp, you’ll need the following
+In order to complete the installation process of this config, you’ll need the following
 packages:
 
--   `npm`
--   `ninja`
+#### Essentials
 
-Most of the LSP’s use `npm`. `ninja` is used for `lua`.
+This packages are for the most common use of plugins such as `Telescope`
+and if you want to install and use Lsp's.
 
--   `ripgrep`: for Telescope
--   `lazygit`: for Lazygit integration
--   `delta`: for diffview
+| Category   | Package          |  Use       |
+|------------|------------------|------------|
+| Lsp        | NPM              | Install    |
+| Lsp        | Ninja            | Install    |
+| Plugin     | ripgrep          | Telescope  |
 
-#### Formatters
+#### Optionals
 
-| Package          | Language  |
-|------------------|-----------|
-| js-beautify      | HTML, CSS |
-| prettier         | YAML      |
-| lua-format       | Lua       |
-| markdownlint-cli | markdown  |
+To enhanced your experience with this configuration, I'll suggest to
+download the following:
+
+| Category   | Package          |  Use       |
+|------------|------------------|------------|
+| Formatter  | Prettier         | YAML       |
+| Formatter  | js-beautify      | HTML, CSS  |
+| Formatter  | lua-format       | Lua        |
+| Formatter  | markdownlint-cli | Markdown   |
+| Linter     | JsonLint         | Json       |
+| Linter     | Shellcheck       | shell      |
+| Linter     | Vint             | VimScript  |
+| Linter     | YamlLint         | YAML       |
+| Plugin     | delta            | Delta      |
+| Plugin     | lazygit          | Lazygit    |
+
+You could use other formatters and linters too! or skip the download
+if you don't interact with those languages at all.
 
 If you like `pandoc` more than `markdownlint-cli` as a markdown formatter, you
 could change it. All you need to do is create the following configuration in
@@ -99,24 +116,24 @@ local sources = {
 }
 ```
 
-and comment the line `builtins.formatting.markdownlint`
+And comment the line `builtins.formatting.markdownlint`
 
-## Install
+## Installation
 
 Currently there is not a custom installation script (for now). To use this
 config follow this steps:
 
--   Windows
+- Windows
 
-    -   Open a `CMD`/`PowerShell`/`Bash`
-    -   Navigate to `~\AppData\Local` (C:\\Users\\your_user\\AppData\\Local)
-    -   Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
+  - Open a `CMD`/`PowerShell`/`Bash`
+  - Navigate to `~\AppData\Local` (C:\\Users\\your_user\\AppData\\Local)
+  - Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
 
--   Linux
+- Linux
 
-    -   Open a terminal (it depends on your distribution)
-    -   Navigate to `~/.config/`
-    -   Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
+  - Open a terminal (it depends on your distribution)
+  - Navigate to `~/.config/`
+  - Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
 
 ### First Launch
 
@@ -124,24 +141,53 @@ In the first launch, you’ll be notified with a lot of errors. Mainly because t
 config needs the plugins to be install and currently there are none. To correct
 this, type:
 
-    :PaqInstall
+```text
+:PaqInstall
+```
 
 This will tell `Paq` to download all the plugins. After `Paq` has finished,
 restart neovim.
 
-#### LSP Install
+### LSP
 
-I’ve included several lsp’s configurations (bash, css, html, etc.), to download
-the lsp, just type:
+#### Install
 
-    :LspInstall bashls
+To install an LSP you'll use the plugin `nvim-lsp-installer` by typing:
 
-To view all available LSP’s to download:
+```text
+    :LspInstall name-of-server
+```
 
+To view all available servers to download and managed the ones you've got:
+
+```text
     :LspInstallInfo
+```
 
 If you want an Lsp that it’s not listed, check custom installation
 [methods](https://github.com/williamboman/nvim-lsp-installer/blob/main/CUSTOM_SERVERS.md).
+
+#### Configuration
+
+I’ve included several lsp’s configuration files (bash, css, html, etc.) under
+`lua/plugins/lsp/servers`.
+
+This files are maintained in `nvim-lspconfig` repo. You'll find the configurations
+for several servers. If you want one, just take the config and change some of
+the default values to make it work. A lot of the times you'll face something like:
+
+```lua
+require('lspconfig').tsserver.setup({})
+
+```
+
+#### Formatter/Linter
+
+Depending on the Language server, it may or may not include a formatter/linter.
+
+If you want to configure an additional formatter/linter for an specific language,
+you should check [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) to integrate them into the mix.
+Also see `/lua/plugins/lsp/servers/null-ls.lua`.
 
 ## Structure
 
@@ -235,21 +281,21 @@ required it in `core/init.lua`:
     └── 📝 settings.lua
 ```
 
--   `core/newFolder1/init.lua`
+- `core/newFolder1/init.lua`
 
 ``` lua
 require('newFolder1.newFile011')
 require('newFolder1.newFile012')
 ```
 
--   `core/newFolder2/init.lua`
+- `core/newFolder2/init.lua`
 
 ``` lua
 require('newFolder2.newFile021')
 require('newFolder2.newFile022')
 ```
 
--   `core/init.lua`
+- `core/init.lua`
 
 ``` lua
 require('core.mappings')
@@ -258,64 +304,65 @@ require('newFolder1')
 require('newFolder2')
 ```
 
-### TreeSitter Queries
+## TreeSitter Queries
+
+- Folder: `after/queries/`
 
 In here goes your custom-language-specific queries for `treesitter`. I’ve
 created one for `HTML` that helps me with `Angular`.
 
--   Folder: `after/queries/`
+## Settings
 
-### Settings
+- File: `lua/core/settings.lua`
 
 Every setting you want to change about NeoVim goes in here.
 
--   File: `lua/core/settings.lua`
-
-### Keybindings
+## Keybindings
 
 NeoVim related keybindings
 
--   File: `lua/core/mappings.lua`
+- File: `lua/core/mappings.lua`
 
 Pluggins keybindings:
 
--   File: `lua/plugins/which-key/init.lua`
+- File: `lua/plugins/which-key/init.lua`
 
 ## Plugins
 
 These are the plugins included:
 
-| Name                                                                     | Description                                                            |
-|--------------------------------------------------------------------------|------------------------------------------------------------------------|
-| [Comment](https://github.com/numToStr/Comment.nvim)                      | Neovim commenting plugin, written in lua.                              |
-| [barbar](https://github.com/romgrk/barbar.nvim)                          | Tabs, as understood by any other editor.                               |
-| [better-escape](https://github.com/max397574/better-escape.nvim)         | Escape from insert mode without delay when typing                      |
-| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)              | The fastest Neovim colorizer.                                          |
-| [heirline](https://github.com/rebelot/heirline.nvim)                     | No-nonsense Neovim Statusline plugin made in Lua.                      |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                   | Super fast git decorations implemented purely in lua/teal.             |
-| [lush](https://github.com/rktjmp/lush.nvim)                              | Define Neovim themes as a DSL in lua, with real-time feedback.         |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)               | Autopairs for NeoVim written in Lua.                                   |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                          | A completion plugin for neovim coded in Lua.                           |
-| [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) | Install LSP servers.                                                   |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)               | Quickstart configurations for the Nvim LSP client                      |
-| [nvim-lspsaga](https://github.com/tami5/lspsaga.nvim)                    | Provides LSP actions with a highly performant UI.                      |
-| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)        | A neovim lua plugin to help easily manage multiple terminal windows.   |
-| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)                 | A File-Explorer tree for NeoVim written in Lua.                        |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)    | Nvim Treesitter configurations and abstraction layer.                  |
-| [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)               | Rainbow parentheses for neovim using tree-sitter                       |
-| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)     | Lua fork of vim-web-devicons for NeoVim.                               |
-| [playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim.                          |
-| [shipwright](https://github.com/rktjmp/shipwright.nvim)                  | Ship it wright this time, formerly LushBuild.                          |
-| [tabout.nvim](https://github.com/abecodes/tabout.nvim)                   | tabout plugin for neovim                                               |
-| [telescope](https://github.com/nvim-telescope/telescope.nvim)            | Find, Filter, Preview, Pick. All lua, all the time.                    |
-| [vim-visual-multi](https://github.com/mg979/vim-visual-multi)            | Multiple cursors plugin for vim/neovim                                 |
-| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                        | Snippet plugin for vim/nvim that supports LSP/VSCode’s snippet format. |
-| [which-key](https://github.com/folke/which-key.nvim)                     | Popup with possible key bindings of the command you started typing.    |
+| Name                                                                     |
+|--------------------------------------------------------------------------|
+| [Comment](https://github.com/numToStr/Comment.nvim)                      |
+| [barbar](https://github.com/romgrk/barbar.nvim)                          |
+| [better-escape](https://github.com/max397574/better-escape.nvim)         |
+| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)              |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                   |
+| [heirline](https://github.com/rebelot/heirline.nvim)                     |
+| [lush](https://github.com/rktjmp/lush.nvim)                              |
+| [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim)            |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)               |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                          |
+| [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)               |
+| [nvim-lspsaga](https://github.com/tami5/lspsaga.nvim)                    |
+| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)        |
+| [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)                 |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)    |
+| [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)               |
+| [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)     |
+| [playground](https://github.com/nvim-treesitter/playground)              |
+| [shipwright](https://github.com/rktjmp/shipwright.nvim)                  |
+| [tabout.nvim](https://github.com/abecodes/tabout.nvim)                   |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)            |
+| [vim-visual-multi](https://github.com/mg979/vim-visual-multi)            |
+| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                        |
+| [which-key](https://github.com/folke/which-key.nvim)                     |
 
 To control the plugins you’ve got a few files:
 
--   `lua/plugins/manager.lua`: Add/Remove the plugins from this file.
--   `lua/plugins/init.lua`: Add/Remove the module configuration.
+- `lua/plugins/manager.lua`: Add/Remove the plugins from this file.
+- `lua/plugins/init.lua`: Add/Remove the module configuration.
 
 And `Paq` (Plugin Manager).
 
@@ -324,42 +371,48 @@ And `Paq` (Plugin Manager).
 To manage all of them you have `Paq` (minimal plugin manager). It has a few
 commands to interact with.
 
--   PaqInstall
--   PaqUpdate
--   PaqClean
--   PaqSync (runs PaqInstall-PaqUpdate-PaqClean)
--   PaqList
--   PaqRunHooks
+- PaqInstall
+- PaqUpdate
+- PaqClean
+- PaqSync (runs PaqInstall-PaqUpdate-PaqClean)
+- PaqList
+- PaqRunHooks
 
 #### Install a new Plugin
 
 To install new plugins you have to do 3 things:
 
-1.  Add the new plugin in the `manager.lua`
+1. Add the new plugin in the `manager.lua`
 
-2.  Re-start Neovim
+2. Re-start Neovim
 
-3.  Run the following command:
+3. Run the following command:
 
-         :PaqInstall name-of-plugin-to-install
+```text
+    :PaqInstall name-of-plugin-to-install
+```
 
 #### Remove/Uninstall a plugin
 
 If you wish to remove a few plugins. Follow this steps:
 
-1.  Remove the plugin from `lua/plugins/manager.lua`
+1. Remove the plugin from `lua/plugins/manager.lua`
 
-2.  Re-start neovim
+2. Re-start neovim
 
-3.  Run the following command:
+3. Run the following command:
 
-        :PaqClean
+```text
+   :PaqClean
+```
 
 #### Update a Plugin
 
 Just run the following command:
 
+```text
     :PaqUpdate
+```
 
 #### More Info
 
