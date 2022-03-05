@@ -8,7 +8,6 @@ vim.g.nvim_tree_special_files = {				-- List of elements that gets highlight wit
 	['Makefile'] = true,
 	['MAKEFILE'] = true,
 }
-vim.g.nvim_tree_disable_window_picker = 1		-- Disable the window picker
 vim.g.nvim_tree_create_in_closed_folder = 1		-- Create a file inside a closed folder
 
 -- Redefined NvimTree icons for git information
@@ -45,19 +44,11 @@ require('nvim-tree').setup {
 	auto_close = true, 			-- Close Neovim when the tree is the last window
 	open_on_tab = false, 		-- Open the tree when changing/opening a new tab
 	hijack_cursor = true,		-- Hijack the cursor to put it at the start of the filename
+	hijack_directories = {
+		enable = true, 	 	 	-- Hijacks new directory buffers whe they are open
+		auto_open = true  	 	-- Opens the tree if it was previously closed
+	},
 	update_cwd = true, 			-- Updates the tree on :DirChanged
-	git = {
-		enable = true,  	 	-- Enable git integration
-		ignore = true,  	 	-- Ignore files based on .gitignore
-		timeout = 500,  	 	-- Kill git process after time
-	},
-	diagnostics = {
-		enable = false,			-- Show diagnostic on the left side of the tree
-	},
-	update_to_buf_dir = { 		-- Hijacks new directory buffers when they are opened
-		enable = true,
-		auto_open = true
-	},
 	update_focused_file = { 	-- Update the focused file on 'BufEnter', un-collapses the folder recursively until it finds the file
 		enable = true, 			-- Allow the cursor to be updated when entering another buffer
 		update_cwd = false,
@@ -67,6 +58,14 @@ require('nvim-tree').setup {
 		cmd = nil,
 		args = {}
 	},
+	diagnostics = {
+		enable = false,			-- Show diagnostic on the left side of the tree
+	},
+	git = {
+		enable = true,  	 	-- Enable git integration
+		ignore = true,  	 	-- Ignore files based on .gitignore
+		timeout = 500,  	 	-- Kill git process after time
+	},
 	view = {
 		hide_root_folder = false,	-- Hide path of current working directory
 		width = 55,					-- Default width of the tree. Works only with side left|right
@@ -74,10 +73,32 @@ require('nvim-tree').setup {
 		side = 'left', 				-- Default side of the tree. left|right|top|bottom
 		auto_resize = true, 		-- Resize the tree when open a file (doesn't work)
 	},
+	update_to_buf_dir = { 		-- Hijacks new directory buffers when they are opened
+		enable = true,
+		auto_open = true
+	},
 	filters = {
 		dotfiles = false, 										-- Hide dotfiles
 		custom = { '.git', 'node_modules', '.vscode' },			-- Custom list of string that will not be shown
-	}
+	},
+	actions = {
+		change_dir = {
+			enable = true, -- Change the working directory when changing directories in the tree
+			global = false -- Use :cd instead of :lcd when changing directories. Cause issues with update_cwd
+		},
+		open_file = {
+			quite_on_open = false, -- Close the explorer when opening a file
+			resize_window = false, -- Resize the tree when opening a file
+			window_picker = {
+				enable = true, -- Enable feature
+				chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', -- String to use as identifier for window picker
+				exclude = { -- List of buffers to not be selectable
+					filetype = { 'notify', 'packer', 'qf', 'diff', 'fugitive', 'fugitiveblame' },
+					buftype = { 'nofile', 'terminal', 'help' }
+				}
+			}
+		}
+	},
 }
 
 vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true })
