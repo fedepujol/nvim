@@ -49,6 +49,7 @@ require('paq') {
 	'nvim-lua/plenary.nvim';
 	'nvim-lua/popup.nvim';
 	'nvim-telescope/telescope.nvim';
+	{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'};
 
 	-- Git Integration
 	'lewis6991/gitsigns.nvim';

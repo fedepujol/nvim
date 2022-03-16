@@ -33,6 +33,8 @@ require('telescope').setup{
 	}
 }
 
+require('telescope').load_extension('fzf')
+
 local opts = { noremap = true }
 
 -- File Search
