@@ -13,9 +13,9 @@ require('paq') {
 	-- Lsp
 	'neovim/nvim-lspconfig';
 	'williamboman/nvim-lsp-installer';
-	{'tami5/lspsaga.nvim'};
 	'jose-elias-alvarez/null-ls.nvim';
 	'j-hui/fidget.nvim';
+	'weilbith/nvim-code-action-menu';
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons';

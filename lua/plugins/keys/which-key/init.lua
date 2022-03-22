@@ -88,7 +88,7 @@ wk.register({
 		H = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
 		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', "Go to Implementation"},
 		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', "Document Symbol"},
-		c = { ':Lspsaga code_action<CR>', "Show Code Actions"},
+		c = { ':CodeActionMenu<CR>', "Show Code Actions"},
 		t = { '<Cmd>lua vim.lsp.buf.type_definition()<CR>', "Go to Type-Definition"},
 		f = { '<Cmd>lua vim.lsp.buf.formatting()<CR>', "Format"},
 		r = { ':Telescope lsp_references<CR>', "Show References"},
