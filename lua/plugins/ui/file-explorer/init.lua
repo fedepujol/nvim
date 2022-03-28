@@ -41,7 +41,6 @@ require('nvim-tree').setup {
 	hijack_netrw = true, 		-- Hijack NetRW window on startup
 	open_on_setup = false, 		-- Dont open the tree when running this function
 	ignore_fg_on_setup = {}, 	-- Not open on setup if the filetype is in the list
-	auto_close = true, 			-- Close Neovim when the tree is the last window
 	open_on_tab = false, 		-- Open the tree when changing/opening a new tab
 	hijack_cursor = true,		-- Hijack the cursor to put it at the start of the filename
 	hijack_directories = {
@@ -64,7 +63,7 @@ require('nvim-tree').setup {
 	git = {
 		enable = true,  	 	-- Enable git integration
 		ignore = true,  	 	-- Ignore files based on .gitignore
-		timeout = 500,  	 	-- Kill git process after time
+		timeout = 400,  	 	-- Kill git process after time
 	},
 	view = {
 		hide_root_folder = false,	-- Hide path of current working directory
@@ -100,5 +99,7 @@ require('nvim-tree').setup {
 		}
 	},
 }
+
+vim.cmd([[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]])
 
 vim.api.nvim_set_keymap('n', '<C-b>', ':NvimTreeToggle<CR>', { noremap = true })
