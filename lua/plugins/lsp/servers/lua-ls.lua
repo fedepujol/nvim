@@ -11,7 +11,7 @@ sumneko_root_path = lsp.dir..'/sumneko_lua/extension/server'
 sumneko_binary = sumneko_root_path.."/bin/lua-language-server"
 
 require('lspconfig').sumneko_lua.setup{
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua", '--preview'},
 	settings = {
 		Lua = {
 			runtime = {
@@ -32,6 +32,15 @@ require('lspconfig').sumneko_lua.setup{
 			telemetry = {
 				enable = false,
 			},
+			format = {
+				enable = true,
+				-- Format options here
+				-- value must be string
+				defaultConfig = {
+					indent_style = "tab",
+					indent_size = '4'
+				}
+			}
 		},
 	},
 	on_attach = lsp.on_attach,
