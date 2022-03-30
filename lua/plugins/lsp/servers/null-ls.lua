@@ -8,9 +8,9 @@ local jsBeautify = helpers.make_builtin({
 	method = null_ls.methods.FORMATTING,
 	filetypes = { 'html', 'css' },
 	generator_opts = {
-		command = 'html-beautify',
+		command = 'js-beautify',
 		args = {
-			'-t',
+			'-s 2',
 			'-n',
 			'-m 5',
 			'-w 100',
@@ -74,5 +74,5 @@ null_ls.setup({
 	sources = sources,
 	debug = true,
 	on_attach = require('plugins.lsp.config').on_attach,
-	default_timeout = 1000,
+	default_timeout = 9000,
 })

@@ -1,9 +1,9 @@
 -- Setting Paq
 
-local install_path = vim.fn.stdpath('data')..'/site/pack/paqs/start/paq-nvim'
+local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
+	vim.fn.system({ 'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path })
 end
 
 -- Paq Init
@@ -50,13 +50,13 @@ require('paq') {
 	'nvim-lua/plenary.nvim';
 	'nvim-lua/popup.nvim';
 	'nvim-telescope/telescope.nvim';
-	{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'};
+	{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' };
 
 	-- Git Integration
 	'lewis6991/gitsigns.nvim';
 
 	-- Treesitter
-	{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'};
+	{ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' };
 	'nvim-treesitter/playground';
 	'p00f/nvim-ts-rainbow';
 

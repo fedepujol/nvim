@@ -47,7 +47,7 @@ cmp.setup({
 		["<TAB>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif vim.fn["vsnip#available"](1) ~=0 then
+			elseif vim.fn["vsnip#available"](1) ~= 0 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
 			else
 				fallback()
@@ -73,7 +73,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = 'vsnip' },
 		{ name = "path" },
-		{ name = "buffer", keyword_length = 5, max_item_count = 5  },
+		{ name = "buffer", keyword_length = 5, max_item_count = 5 },
 	},
 	formatting = {
 		format = function(_, vim_item)

@@ -1,14 +1,14 @@
 -- Nvim Tree Settings
-vim.g.nvim_tree_git_hl = 1  	 	 	 	 	-- Enable git highlight for git attributes
-vim.g.nvim_tree_group_empty = 1 				-- Compact folders that only contain a single folder
-vim.g.nvim_tree_indent_markers = 1 				-- Show indent marks
-vim.g.nvim_tree_special_files = {				-- List of elements that gets highlight with NvimTreeSpecialFile
+vim.g.nvim_tree_git_hl = 1 -- Enable git highlight for git attributes
+vim.g.nvim_tree_group_empty = 1 -- Compact folders that only contain a single folder
+vim.g.nvim_tree_indent_markers = 1 -- Show indent marks
+vim.g.nvim_tree_special_files = { -- List of elements that gets highlight with NvimTreeSpecialFile
 	['README.md'] = true,
 	['readme.md'] = true,
 	['Makefile'] = true,
 	['MAKEFILE'] = true,
 }
-vim.g.nvim_tree_create_in_closed_folder = 1		-- Create a file inside a closed folder
+vim.g.nvim_tree_create_in_closed_folder = 1 -- Create a file inside a closed folder
 
 -- Redefined NvimTree icons for git information
 -- and Folders
@@ -37,48 +37,48 @@ vim.g.nvim_tree_icons = {
 }
 
 require('nvim-tree').setup {
-	disable_netrw = true, 		-- Disables NetRW completely
-	hijack_netrw = true, 		-- Hijack NetRW window on startup
-	open_on_setup = false, 		-- Dont open the tree when running this function
-	ignore_fg_on_setup = {}, 	-- Not open on setup if the filetype is in the list
-	open_on_tab = false, 		-- Open the tree when changing/opening a new tab
-	hijack_cursor = true,		-- Hijack the cursor to put it at the start of the filename
+	disable_netrw = true, -- Disables NetRW completely
+	hijack_netrw = true, -- Hijack NetRW window on startup
+	open_on_setup = false, -- Dont open the tree when running this function
+	ignore_fg_on_setup = {}, -- Not open on setup if the filetype is in the list
+	open_on_tab = false, -- Open the tree when changing/opening a new tab
+	hijack_cursor = true, -- Hijack the cursor to put it at the start of the filename
 	hijack_directories = {
-		enable = true, 	 	 	-- Hijacks new directory buffers whe they are open
-		auto_open = true  	 	-- Opens the tree if it was previously closed
+		enable = true, -- Hijacks new directory buffers whe they are open
+		auto_open = true -- Opens the tree if it was previously closed
 	},
-	update_cwd = true, 			-- Updates the tree on :DirChanged
-	update_focused_file = { 	-- Update the focused file on 'BufEnter', un-collapses the folder recursively until it finds the file
-		enable = true, 			-- Allow the cursor to be updated when entering another buffer
+	update_cwd = true, -- Updates the tree on :DirChanged
+	update_focused_file = { -- Update the focused file on 'BufEnter', un-collapses the folder recursively until it finds the file
+		enable = true, -- Allow the cursor to be updated when entering another buffer
 		update_cwd = false,
-		ignore_list = {'node_modules'}
+		ignore_list = { 'node_modules' }
 	},
 	system_open = {
 		cmd = nil,
 		args = {}
 	},
 	diagnostics = {
-		enable = false,			-- Show diagnostic on the left side of the tree
+		enable = false, -- Show diagnostic on the left side of the tree
 	},
 	git = {
-		enable = true,  	 	-- Enable git integration
-		ignore = true,  	 	-- Ignore files based on .gitignore
-		timeout = 400,  	 	-- Kill git process after time
+		enable = true, -- Enable git integration
+		ignore = true, -- Ignore files based on .gitignore
+		timeout = 400, -- Kill git process after time
 	},
 	view = {
-		hide_root_folder = false,	-- Hide path of current working directory
-		width = 55,					-- Default width of the tree. Works only with side left|right
-		height = 30, 				-- Defaul height of the tree. Works only with side top|bottom
-		side = 'left', 				-- Default side of the tree. left|right|top|bottom
-		auto_resize = true, 		-- Resize the tree when open a file (doesn't work)
+		hide_root_folder = false, -- Hide path of current working directory
+		width = 55, -- Default width of the tree. Works only with side left|right
+		height = 30, -- Defaul height of the tree. Works only with side top|bottom
+		side = 'left', -- Default side of the tree. left|right|top|bottom
+		auto_resize = true, -- Resize the tree when open a file (doesn't work)
 	},
-	update_to_buf_dir = { 		-- Hijacks new directory buffers when they are opened
+	update_to_buf_dir = { -- Hijacks new directory buffers when they are opened
 		enable = true,
 		auto_open = true
 	},
 	filters = {
-		dotfiles = false, 										-- Hide dotfiles
-		custom = { '.git', 'node_modules', '.vscode' },			-- Custom list of string that will not be shown
+		dotfiles = false, -- Hide dotfiles
+		custom = { '.git', 'node_modules', '.vscode' }, -- Custom list of string that will not be shown
 	},
 	actions = {
 		change_dir = {

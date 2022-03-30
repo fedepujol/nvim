@@ -3,38 +3,38 @@ local Modes = {}
 local colors = require('plugins.ui.statusline.cprov.colors')
 
 Modes.mode_aliases = {
-	[19] = { alias = 'S-BLOCK', color = { fg = colors.black0, bg = colors.gray5 }},
-	[22] = { alias = 'V-BLOCK', color = { fg = colors.black0, bg = colors.orange5 }},
-	[82] = { alias = 'REPLACE', color = { fg = colors.white, bg = colors.red3 }},
-	[83] = { alias = 'S-LINE', color = { fg = colors.black0, bg = colors.gray3 }},
-	[86] = { alias = 'V-LINE', color = { fg = colors.black0, bg = colors.orange4 }},
-	[99] = { alias = 'COMMAND', color = { fg = colors.white, bg = colors.purple3 }},
-	[105] = { alias = 'INSERT', color = { fg = colors.white, bg = colors.green0 }},
-	[110] = { alias = 'NORMAL', color = { fg = colors.white, bg = colors.blue0 }},
-	[114] = { alias = 'OP-PENDING', color = { fg = colors.black0, bg = colors.gray6 }},
-	[115] = { alias = 'SELECT', color = { fg = colors.black0, bg = colors.gray1 }},
-	[116] = { alias = 'TERMINAL', color = { fg = colors.white, bg = colors.yellow1 }},
-	[118] = { alias = 'VISUAL', color = { fg = colors.white, bg = colors.orange0 }},
+	[19] = { alias = 'S-BLOCK', color = { fg = colors.black0, bg = colors.gray5 } },
+	[22] = { alias = 'V-BLOCK', color = { fg = colors.black0, bg = colors.orange5 } },
+	[82] = { alias = 'REPLACE', color = { fg = colors.white, bg = colors.red3 } },
+	[83] = { alias = 'S-LINE', color = { fg = colors.black0, bg = colors.gray3 } },
+	[86] = { alias = 'V-LINE', color = { fg = colors.black0, bg = colors.orange4 } },
+	[99] = { alias = 'COMMAND', color = { fg = colors.white, bg = colors.purple3 } },
+	[105] = { alias = 'INSERT', color = { fg = colors.white, bg = colors.green0 } },
+	[110] = { alias = 'NORMAL', color = { fg = colors.white, bg = colors.blue0 } },
+	[114] = { alias = 'OP-PENDING', color = { fg = colors.black0, bg = colors.gray6 } },
+	[115] = { alias = 'SELECT', color = { fg = colors.black0, bg = colors.gray1 } },
+	[116] = { alias = 'TERMINAL', color = { fg = colors.white, bg = colors.yellow1 } },
+	[118] = { alias = 'VISUAL', color = { fg = colors.white, bg = colors.orange0 } },
 }
 
 local getCurrentMode = function()
-    local cMode = Modes.mode_aliases[vim.fn.mode():byte()]
-    if cMode == nil then
-        -- If mode is not mapped, show the mode() and the byte convertion
-        cMode = {
-            alias = vim.fn.mode()..' '..vim.fn.mode():byte(),
-            color = { fg = colors.white, bg = colors.red7 }
-        }
-    end
-    return cMode
+	local cMode = Modes.mode_aliases[vim.fn.mode():byte()]
+	if cMode == nil then
+		-- If mode is not mapped, show the mode() and the byte convertion
+		cMode = {
+			alias = vim.fn.mode() .. ' ' .. vim.fn.mode():byte(),
+			color = { fg = colors.white, bg = colors.red7 }
+		}
+	end
+	return cMode
 end
 
 Modes.getModeAlias = function()
-    return getCurrentMode().alias
+	return getCurrentMode().alias
 end
 
 Modes.getModeColor = function()
-    return getCurrentMode().color
+	return getCurrentMode().color
 end
 
 return Modes

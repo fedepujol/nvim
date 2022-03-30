@@ -14,7 +14,7 @@ local Space = { provider = " " }
 local os = 'freebsd'
 local OSIcon = {
 	provider = function()
-		return ' '..icon.getIcon(os)..' '
+		return ' ' .. icon.getIcon(os) .. ' '
 	end,
 	hl = {
 		fg = icon.getColor(os)[1],
@@ -25,7 +25,7 @@ local OSIcon = {
 -- ViMode
 local ViMode = {
 	provider = function()
-		return ' '..viMode.getModeAlias()..' '
+		return ' ' .. viMode.getModeAlias() .. ' '
 	end,
 	hl = function()
 		return {
@@ -56,7 +56,7 @@ local fileIcon = {
 }
 
 local fileName = {
-	provider = function (self)
+	provider = function(self)
 		local filename = vim.fn.fnamemodify(self.filename, ':t')
 		if filename == '' then
 			return 'Undefined'
@@ -99,7 +99,7 @@ local fileSize = {
 
 		fSize = (fSize < 0 and 0) or fSize
 		if fSize <= 0 then
-			return '0'..suffix[1]
+			return '0' .. suffix[1]
 		end
 
 		while fSize >= 1024 do
@@ -123,32 +123,32 @@ local Diagnostics = {
 	},
 
 	init = function(self)
-		self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR } )
-		self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN } )
-		self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT } )
-		self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO } )
+		self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+		self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+		self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+		self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
 	end,
 	{
 		provider = function(self)
-			return self.errors > 0 and (self.error_icon ..' '.. self.errors .. ' ')
+			return self.errors > 0 and (self.error_icon .. ' ' .. self.errors .. ' ')
 		end,
 		hl = { fg = utils.get_highlight('DiagnosticError').fg }
 	},
 	{
 		provider = function(self)
-			return self.warnings > 0 and (self.warn_icon ..' '.. self.warnings.. ' ')
+			return self.warnings > 0 and (self.warn_icon .. ' ' .. self.warnings .. ' ')
 		end,
 		hl = { fg = utils.get_highlight('DiagnosticWarn').fg }
 	},
 	{
 		provider = function(self)
-			return self.info > 0 and (self.info_icon ..' '.. self.info.. ' ')
+			return self.info > 0 and (self.info_icon .. ' ' .. self.info .. ' ')
 		end,
 		hl = { fg = utils.get_highlight('DiagnosticInfo').fg }
 	},
 	{
 		provider = function(self)
-			return self.hints > 0 and (self.hint_icon ..' '.. self.hints.. ' ')
+			return self.hints > 0 and (self.hint_icon .. ' ' .. self.hints .. ' ')
 		end,
 		hl = { fg = utils.get_highlight('DiagnosticHint').fg }
 	}
@@ -161,33 +161,33 @@ local Git = {
 	init = function(self)
 		self.status_dict = vim.b.gitsigns_status_dict
 		self.has_changes = self.status_dict.added ~= 0 or
-		 	self.status_dict.removed ~= 0 or
-		 	self.status_dict.changed ~= 0
+			self.status_dict.removed ~= 0 or
+			self.status_dict.changed ~= 0
 	end,
 	{
 		provider = function(self)
-			return " "..self.status_dict.head..' '
+			return " " .. self.status_dict.head .. ' '
 		end,
 		hl = { fg = utils.get_highlight('PreProc').fg },
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.added or 0
-			return count > 0 and ('+'..count)..' '
+			return count > 0 and ('+' .. count) .. ' '
 		end,
 		hl = { fg = utils.get_highlight('DiffAdd').fg }
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.removed or 0
-			return count > 0 and ('-'..count)..' '
+			return count > 0 and ('-' .. count) .. ' '
 		end,
 		hl = { fg = utils.get_highlight('DiffDelete').fg }
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.changed or 0
-			return count > 0 and ('~'..count)
+			return count > 0 and ('~' .. count)
 		end,
 		hl = { fg = utils.get_highlight('DiffChange').fg }
 	},
@@ -201,7 +201,7 @@ local Lsp = {
 		for _, _ in ipairs(vim.lsp.buf_get_clients(0)) do
 			count = count + 1
 		end
-		return ' Lsp ['..count..']'
+		return ' Lsp [' .. count .. ']'
 	end,
 	hl = {
 		fg = utils.get_highlight('Type').fg
@@ -230,7 +230,7 @@ local Percentage = {
 		local result, _ = math.modf((cL / tL) * 100)
 		local percentage = string.format('%02d', result)
 
-		return ' '..percentage..'%%'
+		return ' ' .. percentage .. '%%'
 	end,
 	hl = {
 		fg = utils.get_highlight('StorageClass').fg,
@@ -253,8 +253,8 @@ local FileType = {
 local SpecialLine = {
 	condition = function()
 		return conditions.buffer_matches({
-			buftype = {'nofile', 'help', 'quickfix'},
-			filetype = {'^git.*', 'fugitive'},
+			buftype = { 'nofile', 'help', 'quickfix' },
+			filetype = { '^git.*', 'fugitive' },
 		}) or (not conditions.is_active())
 	end,
 	OSIcon, Space, FileType, Align, { condition = conditions.is_active, Ruler, Space, Percentage }
@@ -267,7 +267,7 @@ local TerminalName = {
 		tName = string.gsub(tName, '.*/%d+:', '')
 		-- Remove Suffix
 		tName = string.gsub(tName, '&.*', '')
-		return " "..string.sub(tName, 1, 1):upper()..string.sub(tName, 2)
+		return " " .. string.sub(tName, 1, 1):upper() .. string.sub(tName, 2)
 	end,
 }
 

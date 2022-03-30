@@ -1,11 +1,11 @@
 -- GitSigns
 require('gitsigns').setup {
 	signs = {
-		add          = {hl = 'GitSignsAdd'   , text = '│' },
-		change       = {hl = 'GitSignsChange', text = '│' },
-		delete       = {hl = 'GitSignsDelete', text = '>' },
-		topdelete    = {hl = 'GitSignsDelete', text = '‾' },
-		changedelete = {hl = 'GitSignsChange', text = '~' },
+		add          = { hl = 'GitSignsAdd', text = '│' },
+		change       = { hl = 'GitSignsChange', text = '│' },
+		delete       = { hl = 'GitSignsDelete', text = '>' },
+		topdelete    = { hl = 'GitSignsDelete', text = '‾' },
+		changedelete = { hl = 'GitSignsChange', text = '~' },
 	},
 	numhl = false,
 	linehl = false,
@@ -40,7 +40,7 @@ require('gitsigns').setup {
 
 		text = string.format('%s, %s - %s', blame_info.author, date_time, blame_info.summary)
 
-		return {{' '..text, 'GitSignsCurrentLineBlame'}}
+		return { { ' ' .. text, 'GitSignsCurrentLineBlame' } }
 	end,
 	sign_priority = 6,
 	update_debounce = 100,

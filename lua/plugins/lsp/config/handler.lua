@@ -1,14 +1,14 @@
 vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white]])
 
 local border = {
-	{ "╭", "FloatBorder"},
-	{ "─", "FloatBorder"},
-	{ "╮", "FloatBorder"},
-	{ "│", "FloatBorder"},
-	{ "╯", "FloatBorder"},
-	{ "─", "FloatBorder"},
-	{ "╰", "FloatBorder"},
-	{ "│", "FloatBorder"}
+	{ "╭", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "╮", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "╯", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "╰", "FloatBorder" },
+	{ "│", "FloatBorder" }
 }
 
 -- Handlers

@@ -1,7 +1,7 @@
 local M = {}
 
 M.position = function()
-	return ' '..string.format('%02d.%02d', unpack(vim.api.nvim_win_get_cursor(0)))..' '
+	return ' ' .. string.format('%02d.%02d', unpack(vim.api.nvim_win_get_cursor(0))) .. ' '
 end
 
 -- Doesn't work with feline
@@ -17,7 +17,7 @@ M.percentage = function()
 
 	local result, _ = math.modf((cL / tL) * 100)
 
-	return ' '..string.format('%02d', result)..'%%'
+	return ' ' .. string.format('%02d', result) .. '%%'
 end
 
 M.lsp_client = function()
@@ -30,8 +30,8 @@ M.lsp_client = function()
 		lsps = lsps + 1
 	end
 
-	local res = ' ('..string.format('%d', lsps)..') '
-	return lsp_name == '' and res or res..lsp_name..' '
+	local res = ' (' .. string.format('%d', lsps) .. ') '
+	return lsp_name == '' and res or res .. lsp_name .. ' '
 end
 
 return M
