@@ -8,7 +8,7 @@ if lsp.isOS('windows') then
 	shell = "bash"
 end
 
-require('toggleterm').setup{
+require('toggleterm').setup {
 	size = 17,
 	hide_numbers = true,
 	start_in_insert = false,
@@ -40,7 +40,7 @@ local diff = Terminal:new({
 	direction = 'tab',
 	on_open = function(term)
 		vim.cmd("startinsert!")
-		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', 'q', {noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', 'q', { noremap = true, silent = true })
 	end,
 	on_close = function(_)
 		print('Finished')
@@ -54,11 +54,10 @@ end
 wk.register({
 	t = {
 		name = "Terminal",
-		i = {'<cmd>:ToggleTerm<CR>', "New/Toggle Term"},
+		i = { '<cmd>:ToggleTerm<CR>', "New/Toggle Term" },
 	},
 	g = {
-		l = {'<cmd>lua lazygit_toggle()<CR>', 'Lazygit'},
-		d = {'<cmd>lua diff_toggle()<CR>', 'DiffView'}
+		l = { '<cmd>lua lazygit_toggle()<CR>', 'Lazygit' },
+		d = { '<cmd>lua diff_toggle()<CR>', 'DiffView' }
 	}
-}, {mode = 'n', prefix = '<leader>', noremap = true, silent = true})
-
+}, { mode = 'n', prefix = '<leader>', noremap = true, silent = true })
