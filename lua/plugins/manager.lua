@@ -41,8 +41,9 @@ require('paq') {
 
 	-- UI Components
 	'rebelot/heirline.nvim';
-	'romgrk/barbar.nvim';
+	{'romgrk/barbar.nvim', branch = 'v2.x'};
 	'kyazdani42/nvim-tree.lua';
+	'nvim-neo-tree/neo-tree.nvim';
 	'akinsho/nvim-toggleterm.lua';
 	'MunifTanjim/nui.nvim';
 
