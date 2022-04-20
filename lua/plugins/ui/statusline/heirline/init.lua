@@ -7,8 +7,8 @@ local ndIcons = require('nvim-web-devicons')
 local viMode = require('plugins.ui.statusline.cprov.mode')
 local icon = require('plugins.ui.statusline.cprov.icon')
 
-local Align = { provider = "%=" }
-local Space = { provider = " " }
+local Align = { provider = '%=' }
+local Space = { provider = ' ' }
 
 -- OSIcon
 local os = 'freebsd'
@@ -19,7 +19,7 @@ local OSIcon = {
 	hl = {
 		fg = icon.getColor(os)[1],
 		bg = icon.getColor(os)[2],
-	}
+	},
 }
 
 -- ViMode
@@ -32,13 +32,13 @@ local ViMode = {
 			fg = viMode.getModeColor().fg,
 			bg = viMode.getModeColor().bg,
 		}
-	end
+	end,
 }
 
 local fileNameBlock = {
 	init = function(self)
 		self.filename = vim.api.nvim_buf_get_name(0)
-	end
+	end,
 }
 
 local fileIcon = {
@@ -48,11 +48,11 @@ local fileIcon = {
 		self.icon, self.icon_color = ndIcons.get_icon_color(filename, extension, { default = true })
 	end,
 	provider = function(self)
-		return self.icon and (self.icon .. " ")
+		return self.icon and (self.icon .. ' ')
 	end,
 	hl = function(self)
 		return { fg = self.icon_color }
-	end
+	end,
 }
 
 local fileName = {
@@ -74,21 +74,18 @@ local fileFlags = {
 			if vim.bo.modified then
 				return '*'
 			end
-		end
+		end,
 	},
 	{
 		provider = function()
 			if not vim.bo.modifiable or vim.bo.readonly then
-				return ""
+				return ''
 			end
-		end
-	}
+		end,
+	},
 }
 
-fileNameBlock = utils.insert(fileNameBlock,
-	fileIcon, fileName, unpack(fileFlags),
-	{ provider = '%<' }
-)
+fileNameBlock = utils.insert(fileNameBlock, fileIcon, fileName, unpack(fileFlags), { provider = '%<' })
 
 -- File Size
 local fileSize = {
@@ -108,7 +105,7 @@ local fileSize = {
 		end
 
 		return string.format('%.2g%s', fSize, suffix[i])
-	end
+	end,
 }
 
 -- Diagnostics
@@ -119,7 +116,7 @@ local Diagnostics = {
 		error_icon = '',
 		warn_icon = '',
 		info_icon = 'I',
-		hint_icon = 'H'
+		hint_icon = 'H',
 	},
 
 	init = function(self)
@@ -132,26 +129,26 @@ local Diagnostics = {
 		provider = function(self)
 			return self.errors > 0 and (self.error_icon .. ' ' .. self.errors .. ' ')
 		end,
-		hl = { fg = utils.get_highlight('DiagnosticError').fg }
+		hl = { fg = utils.get_highlight('DiagnosticError').fg },
 	},
 	{
 		provider = function(self)
 			return self.warnings > 0 and (self.warn_icon .. ' ' .. self.warnings .. ' ')
 		end,
-		hl = { fg = utils.get_highlight('DiagnosticWarn').fg }
+		hl = { fg = utils.get_highlight('DiagnosticWarn').fg },
 	},
 	{
 		provider = function(self)
 			return self.info > 0 and (self.info_icon .. ' ' .. self.info .. ' ')
 		end,
-		hl = { fg = utils.get_highlight('DiagnosticInfo').fg }
+		hl = { fg = utils.get_highlight('DiagnosticInfo').fg },
 	},
 	{
 		provider = function(self)
 			return self.hints > 0 and (self.hint_icon .. ' ' .. self.hints .. ' ')
 		end,
-		hl = { fg = utils.get_highlight('DiagnosticHint').fg }
-	}
+		hl = { fg = utils.get_highlight('DiagnosticHint').fg },
+	},
 }
 
 -- Git
@@ -160,13 +157,11 @@ local Git = {
 
 	init = function(self)
 		self.status_dict = vim.b.gitsigns_status_dict
-		self.has_changes = self.status_dict.added ~= 0 or
-			self.status_dict.removed ~= 0 or
-			self.status_dict.changed ~= 0
+		self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
 	end,
 	{
 		provider = function(self)
-			return " " .. self.status_dict.head .. ' '
+			return ' ' .. self.status_dict.head .. ' '
 		end,
 		hl = { fg = utils.get_highlight('PreProc').fg },
 	},
@@ -175,21 +170,21 @@ local Git = {
 			local count = self.status_dict.added or 0
 			return count > 0 and ('+' .. count) .. ' '
 		end,
-		hl = { fg = utils.get_highlight('DiffAdd').fg }
+		hl = { fg = utils.get_highlight('DiffAdd').fg },
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.removed or 0
 			return count > 0 and ('-' .. count) .. ' '
 		end,
-		hl = { fg = utils.get_highlight('DiffDelete').fg }
+		hl = { fg = utils.get_highlight('DiffDelete').fg },
 	},
 	{
 		provider = function(self)
 			local count = self.status_dict.changed or 0
 			return count > 0 and ('~' .. count)
 		end,
-		hl = { fg = utils.get_highlight('DiffChange').fg }
+		hl = { fg = utils.get_highlight('DiffChange').fg },
 	},
 }
 
@@ -204,16 +199,16 @@ local Lsp = {
 		return ' Lsp [' .. count .. ']'
 	end,
 	hl = {
-		fg = utils.get_highlight('Type').fg
-	}
+		fg = utils.get_highlight('Type').fg,
+	},
 }
 
 -- Cursor Position
 local Ruler = {
 	provider = ' %2l.%2c',
 	hl = {
-		fg = utils.get_highlight('Special').fg
-	}
+		fg = utils.get_highlight('Special').fg,
+	},
 }
 
 local Percentage = {
@@ -222,9 +217,9 @@ local Percentage = {
 		local tL = vim.fn.line('$')
 
 		if cL == 1 then
-			return " Top"
+			return ' Top'
 		elseif cL == tL then
-			return " Bot"
+			return ' Bot'
 		end
 
 		local result, _ = math.modf((cL / tL) * 100)
@@ -234,14 +229,28 @@ local Percentage = {
 	end,
 	hl = {
 		fg = utils.get_highlight('StorageClass').fg,
-	}
+	},
 }
 
 -- Config
 local MainLine = {
-	OSIcon, ViMode, Space, fileNameBlock, Space, fileSize, Space, Diagnostics, Align,
-	Git, Align,
-	Lsp, Space, Ruler, Space, Percentage, Space
+	OSIcon,
+	ViMode,
+	Space,
+	fileNameBlock,
+	Space,
+	fileSize,
+	Space,
+	Diagnostics,
+	Align,
+	Git,
+	Align,
+	Lsp,
+	Space,
+	Ruler,
+	Space,
+	Percentage,
+	Space,
 }
 
 local FileType = {
@@ -257,7 +266,11 @@ local SpecialLine = {
 			filetype = { '^git.*', 'fugitive' },
 		}) or (not conditions.is_active())
 	end,
-	OSIcon, Space, FileType, Align, { condition = conditions.is_active, Ruler, Space, Percentage }
+	OSIcon,
+	Space,
+	FileType,
+	Align,
+	{ condition = conditions.is_active, Ruler, Space, Percentage },
 }
 
 local TerminalName = {
@@ -267,17 +280,26 @@ local TerminalName = {
 		tName = string.gsub(tName, '.*/%d+:', '')
 		-- Remove Suffix
 		tName = string.gsub(tName, '&.*', '')
-		return " " .. string.sub(tName, 1, 1):upper() .. string.sub(tName, 2)
+		return ' ' .. string.sub(tName, 1, 1):upper() .. string.sub(tName, 2)
 	end,
 }
 
 local TerminalLine = {
 	condition = function()
 		return conditions.buffer_matches({
-			buftype = { 'terminal' }
+			buftype = { 'terminal' },
 		})
 	end,
-	OSIcon, Space, ViMode, Space, TerminalName, Align, Ruler, Space, Percentage, Space
+	OSIcon,
+	Space,
+	ViMode,
+	Space,
+	TerminalName,
+	Align,
+	Ruler,
+	Space,
+	Percentage,
+	Space,
 }
 
 local StatusLines = {
@@ -285,17 +307,19 @@ local StatusLines = {
 		if conditions.is_active() then
 			return {
 				fg = utils.get_highlight('StatusLine').fg,
-				bg = utils.get_highlight('StatusLine').bg
+				bg = utils.get_highlight('StatusLine').bg,
 			}
 		else
 			return {
 				fg = utils.get_highlight('StatusLineNC').fg,
-				bg = utils.get_highlight('StatusLineNC').bg
+				bg = utils.get_highlight('StatusLineNC').bg,
 			}
 		end
 	end,
 	init = utils.pick_child_on_condition,
-	SpecialLine, TerminalLine, MainLine,
+	SpecialLine,
+	TerminalLine,
+	MainLine,
 }
 
 vim.cmd([[

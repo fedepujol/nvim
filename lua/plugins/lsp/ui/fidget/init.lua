@@ -9,7 +9,7 @@ require('fidget').setup({
 	},
 	align = {
 		bottom = true,
-		right = true
+		right = true,
 	},
 	timer = { -- Time units in ms
 		spinner_rate = 60, -- FPS for spinner animation
@@ -19,22 +19,20 @@ require('fidget').setup({
 	window = {
 		relative = 'win', -- Where to anchor (window or editor)
 		blend = 100, -- &winblend for win option
-		zindex = nil -- zindex value for window
+		zindex = nil, -- zindex value for window
 	},
 	fmt = {
 		leftpad = true, -- right-justified text in fidget
 		stack_upwards = true, -- list of tasks grows upwards
 		max_width = 0, -- maximum width of the figdet box
 		fidget = function(name, spinner)
-			return string.format("%s %s", spinner, name)
+			return string.format('%s %s', spinner, name)
 		end,
 		task = function(name, message, percentage)
-			return string.format("%s%s [%s]", message,
-				percentage and string.format(" (%s%%)", percentage) or "",
-			name)
+			return string.format('%s%s [%s]', message, percentage and string.format(' (%s%%)', percentage) or '', name)
 		end,
 	},
 	debug = {
-		logging = false
-	}
+		logging = false,
+	},
 })

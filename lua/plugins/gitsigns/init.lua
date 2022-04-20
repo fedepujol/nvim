@@ -1,23 +1,23 @@
 -- GitSigns
-require('gitsigns').setup {
+require('gitsigns').setup({
 	signs = {
-		add          = { hl = 'GitSignsAdd', text = '│' },
-		change       = { hl = 'GitSignsChange', text = '│' },
-		delete       = { hl = 'GitSignsDelete', text = '>' },
-		topdelete    = { hl = 'GitSignsDelete', text = '‾' },
+		add = { hl = 'GitSignsAdd', text = '│' },
+		change = { hl = 'GitSignsChange', text = '│' },
+		delete = { hl = 'GitSignsDelete', text = '>' },
+		topdelete = { hl = 'GitSignsDelete', text = '‾' },
 		changedelete = { hl = 'GitSignsChange', text = '~' },
 	},
 	numhl = false,
 	linehl = false,
 	watch_gitdir = {
 		interval = 1000,
-		follow_files = true
+		follow_files = true,
 	},
 	current_line_blame = true,
 	current_line_blame_opts = {
 		virt_text = true,
 		virt_text_pos = 'eol',
-		delay = 2000
+		delay = 2000,
 	},
 	current_line_blame_formatter = function(name, blame_info, opts)
 		if blame_info.author == name then
@@ -50,6 +50,6 @@ require('gitsigns').setup {
 		style = 'minimal',
 		relative = 'cursor',
 		row = 0,
-		col = 1
+		col = 1,
 	},
-}
+})

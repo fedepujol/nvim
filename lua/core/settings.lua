@@ -7,17 +7,17 @@ local bo = vim.bo
 local wo = vim.wo
 
 -- Global Options
-o.background = "dark" -- Tell NVim the background color
+o.background = 'dark' -- Tell NVim the background color
 o.backup = false -- No backup file when written
-o.clipboard = "unnamedplus" -- Copy-Paste between Neovim and everything else
+o.clipboard = 'unnamedplus' -- Copy-Paste between Neovim and everything else
 o.cmdheight = 2 -- More space to display messages
-o.completeopt = "menuone,noselect" -- Set for nvim-compe. Comma-separated options for insert mode.
-o.encoding = "UTF-8" -- Encoding used internally
+o.completeopt = 'menuone,noselect' -- Set for nvim-compe. Comma-separated options for insert mode.
+o.encoding = 'UTF-8' -- Encoding used internally
 o.hidden = true -- Buffers becomes hidden when abandoned
 o.hlsearch = false -- Highlighting search
 o.laststatus = 3 -- Influence if the last window should have a statusline. 2 -> always.
-o.listchars = "tab:│ ,lead:.,trail:.,extends:>,precedes:<" -- Make tabs appear as | in the editor
-o.mouse = "a" -- Enables mouse support
+o.listchars = 'tab:│ ,lead:.,trail:.,extends:>,precedes:<' -- Make tabs appear as | in the editor
+o.mouse = 'a' -- Enables mouse support
 o.pumheight = 10 -- Maximum number of items to show in Pop-ups
 o.ruler = true -- Show line and column numbers of the cursor position
 o.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
@@ -34,10 +34,10 @@ o.writebackup = false -- No backup file
 -- Buffer Options
 bo.autoindent = true -- Copy indent from current line when starting a new line
 bo.expandtab = true -- Converts tabs into spaces
-bo.fileencoding = "UTF-8" -- Encoding fot the current buffer. Conversion done with iconv()
+bo.fileencoding = 'UTF-8' -- Encoding fot the current buffer. Conversion done with iconv()
 vim.cmd('set shiftwidth=4') -- Change number of spaces inserted for indentation
 bo.smartindent = true -- Smart autoindenting when starting a new line
-bo.syntax = "ON" -- Enable syntax
+bo.syntax = 'ON' -- Enable syntax
 vim.cmd('set tabstop=4') -- Set Tab to 4 spaces
 bo.softtabstop = -1 -- Length to use when editing text (0 for 'tabstop', -1 for 'shiftwidth')
 
@@ -49,4 +49,4 @@ wo.number = true -- Line numbers
 wo.signcolumn = 'yes' -- Always show the SignColumn
 wo.wrap = false -- Display long lines as such
 
-vim.cmd("filetype plugin indent on")
+vim.cmd('filetype plugin indent on')

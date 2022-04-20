@@ -10,9 +10,9 @@ M.percentage = function()
 	local tL = vim.fn.line('$')
 
 	if cL == 1 then
-		return " Top "
+		return ' Top '
 	elseif cL == tL then
-		return " Bot "
+		return ' Bot '
 	end
 
 	local result, _ = math.modf((cL / tL) * 100)

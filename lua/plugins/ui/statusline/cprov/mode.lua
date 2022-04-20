@@ -23,7 +23,7 @@ local getCurrentMode = function()
 		-- If mode is not mapped, show the mode() and the byte convertion
 		cMode = {
 			alias = vim.fn.mode() .. ' ' .. vim.fn.mode():byte(),
-			color = { fg = colors.white, bg = colors.red7 }
+			color = { fg = colors.white, bg = colors.red7 },
 		}
 	end
 	return cMode

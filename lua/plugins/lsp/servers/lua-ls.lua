@@ -1,17 +1,17 @@
 -- Lua LSP
 local lsp = require('plugins.lsp.config')
-local sumneko_root_path = ""
-local sumneko_binary = ""
+local sumneko_root_path = ''
+local sumneko_binary = ''
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-sumneko_root_path = lsp.dir..'/sumneko_lua/extension/server'
-sumneko_binary = sumneko_root_path.."/bin/lua-language-server"
+sumneko_root_path = lsp.dir .. '/sumneko_lua/extension/server'
+sumneko_binary = sumneko_root_path .. '/bin/lua-language-server'
 
-require('lspconfig').sumneko_lua.setup{
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua", '--preview'},
+require('lspconfig').sumneko_lua.setup({
+	cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
 	settings = {
 		Lua = {
 			runtime = {
@@ -22,7 +22,7 @@ require('lspconfig').sumneko_lua.setup{
 			},
 			diagnostics = {
 				-- Get the language server to recognize the 'vim' global
-				globals = {'vim'}
+				globals = { 'vim' },
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
@@ -32,19 +32,9 @@ require('lspconfig').sumneko_lua.setup{
 			telemetry = {
 				enable = false,
 			},
-			format = {
-				enable = true,
-				-- Format options here
-				-- value must be string
-				defaultConfig = {
-					indent_style = "tab",
-					indent_size = '4'
-				}
-			}
 		},
 	},
 	on_attach = lsp.on_attach,
 	capabilities = lsp.capabilities,
 	handlers = lsp.handlers,
-}
-
+})

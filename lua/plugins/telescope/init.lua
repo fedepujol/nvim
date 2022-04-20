@@ -1,7 +1,7 @@
 local wk = require('which-key')
 
 -- Telescope
-require('telescope').setup {
+require('telescope').setup({
 	defaults = {
 		vimgrep_arguments = {
 			'rg',
@@ -9,7 +9,7 @@ require('telescope').setup {
 			'--with-filename',
 			'--line-number',
 			'--column',
-			'--smart-case'
+			'--smart-case',
 		},
 		prompt_prefix = '~ ',
 		selection_caret = '> ',
@@ -29,9 +29,9 @@ require('telescope').setup {
 		},
 		use_less = true,
 		file_ignore_patterns = { './node_modules' },
-		set_env = { ["COLORTERM"] = "truecolor" },
-	}
-}
+		set_env = { ['COLORTERM'] = 'truecolor' },
+	},
+})
 
 require('telescope').load_extension('fzf')
 

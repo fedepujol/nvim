@@ -1,2 +1,2 @@
 -- Docker LSP
-require('lspconfig').dockerls.setup {}
+require('lspconfig').dockerls.setup({})

@@ -7,14 +7,14 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local function getOS()
 	local system_name = ''
-	if vim.fn.has("mac") == 1 then
-		system_name = "macOS"
-	elseif vim.fn.has("unix") == 1 then
-		system_name = "Linux"
-	elseif vim.fn.has("win32") == 1 then
-		system_name = "Windows"
+	if vim.fn.has('mac') == 1 then
+		system_name = 'macOS'
+	elseif vim.fn.has('unix') == 1 then
+		system_name = 'Linux'
+	elseif vim.fn.has('win32') == 1 then
+		system_name = 'Windows'
 	else
-		print("Unsupported system")
+		print('Unsupported system')
 	end
 	return system_name
 end
@@ -33,9 +33,13 @@ Lsp.prefix = function()
 end
 
 Lsp.on_attach = function(_, bufnr)
-	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
 
-	local function buf_set_options(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	local function buf_set_options(...)
+		vim.api.nvim_buf_set_option(bufnr, ...)
+	end
 
 	-- Enable completion triggered by <c-x><c-o>
 	buf_set_options('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -55,7 +59,6 @@ Lsp.on_attach = function(_, bufnr)
 	buf_set_keymap('n', 'dp', '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "single" }})<CR>', opts)
 	buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 	buf_set_keymap('n', '<C-A>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
 
 Lsp.dir = vim.fn.stdpath('data') .. '/lsp_servers'

@@ -1,14 +1,14 @@
 -- Vim LSP
 local lsp = require('plugins.lsp.config')
 
-require('lspconfig').vimls.setup {
+require('lspconfig').vimls.setup({
 	cmd = { lsp.dir .. '/vim/node_modules/.bin/vim-language-server' .. lsp.prefix(), '--stdio' },
 	on_attach = lsp.on_attach,
 	init_options = {
 		diagnostic = {
-			enable = true
-		}
+			enable = true,
+		},
 	},
 	capabilities = lsp.capabilities,
-	handlers = lsp.handlers
-}
+	handlers = lsp.handlers,
+})

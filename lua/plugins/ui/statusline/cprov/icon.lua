@@ -23,7 +23,7 @@ local Icon = {
 		['ubuntu'] = { icon = '', colors = { colors.orange4, colors.black3 } },
 		['unknown'] = { icon = '', colors = { colors.black3, colors.red0 } },
 		['windows'] = { icon = '', colors = { colors.white, colors.black3 } },
-	}
+	},
 }
 
 Icon.getDistro = function(os)
