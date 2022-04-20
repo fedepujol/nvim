@@ -15,11 +15,11 @@ local jsBeautify = helpers.make_builtin({
 			'-m 5',
 			'-w 100',
 			'--type',
-			'$FILEEXT'
+			'$FILEEXT',
 		},
 		to_stdin = true,
 	},
-	factory = helpers.formatter_factory
+	factory = helpers.formatter_factory,
 })
 
 local tslint = helpers.make_builtin({
@@ -33,7 +33,7 @@ local tslint = helpers.make_builtin({
 			'json',
 			'-p',
 			vim.fn.getcwd(),
-			'$FILENAME'
+			'$FILENAME',
 		},
 		to_stdin = true,
 		from_stderr = true,
@@ -47,27 +47,30 @@ local tslint = helpers.make_builtin({
 					end_col = value.endPosition.character + 1,
 					end_row = value.endPosition.line + 1,
 					message = value.failure,
-					severity = 2
+					severity = 2,
 				}
 				table.insert(diagnostics, diagnostic)
 			end
 			return diagnostics
 		end,
 	},
-	factory = helpers.generator_factory
+	factory = helpers.generator_factory,
 })
 
 local sources = {
 	-- Formatters
 	jsBeautify,
 	builtins.formatting.markdownlint,
+	builtins.formatting.stylua.with({
+		extra_args = { '--config-path', vim.fn.stdpath('config') .. '/stylua.toml' },
+	}),
 	-- Diagnostics
 	builtins.diagnostics.jsonlint,
 	builtins.diagnostics.markdownlint,
 	builtins.diagnostics.shellcheck,
 	tslint,
 	builtins.diagnostics.vint,
-	builtins.diagnostics.yamllint
+	builtins.diagnostics.yamllint,
 }
 
 null_ls.setup({
