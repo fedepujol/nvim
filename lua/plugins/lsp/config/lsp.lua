@@ -49,16 +49,16 @@ Lsp.on_attach = function(_, bufnr)
 
 	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	buf_set_keymap('n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 	buf_set_keymap('n', 'sh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 	buf_set_keymap('n', 'D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 	buf_set_keymap('n', 'ca', ':CodeActionMenu<CR>', opts)
+	buf_set_keymap('n', 'dr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 	buf_set_keymap('n', 'dl', '<cmd>lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>', opts)
 	buf_set_keymap('n', 'dn', '<cmd>lua vim.diagnostic.goto_next({ float = { border = "single" }})<CR>', opts)
 	buf_set_keymap('n', 'dp', '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "single" }})<CR>', opts)
 	buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	buf_set_keymap('n', '<C-A>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 Lsp.dir = vim.fn.stdpath('data') .. '/lsp_servers'
