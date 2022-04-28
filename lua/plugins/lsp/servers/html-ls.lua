@@ -7,4 +7,6 @@ require('lspconfig').html.setup({
 	on_attach = lsp.on_attach,
 	capabilities = lsp.capabilities,
 	handlers = lsp.handlers,
+	provideFormatter = true,
+	single_file_support = true
 })

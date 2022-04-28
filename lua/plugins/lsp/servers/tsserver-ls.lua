@@ -6,4 +6,5 @@ require('lspconfig').tsserver.setup({
 	on_attach = lsp.on_attach,
 	capabilities = lsp.capabilities,
 	handlers = lsp.handlers,
+	hostInfo = "neovim"
 })
