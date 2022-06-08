@@ -33,7 +33,7 @@ require('telescope').setup({
 	},
 })
 
-require('telescope').load_extension('fzf')
+-- require('telescope').load_extension('fzf')
 
 local opts = { noremap = true }
 

@@ -1,5 +1,4 @@
 -- Setting Paq
-
 local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then

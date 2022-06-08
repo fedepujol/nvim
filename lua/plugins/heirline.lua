@@ -1,11 +1,160 @@
+-- Custom Providers
+local M = {}
+
+M.colors = {
+	white = '#FFFFFF',
+
+	black0 = '#000000',
+	black3 = '#161616',
+
+	blue0 = '#0D47A1',
+	blue1 = '#1565C0',
+
+	green0 = '#247B22',
+	green3 = '#36B739',
+	green4 = '#69D36B',
+	green5 = '#87DC89',
+
+	gray1 = '#808080',
+	gray3 = '#B1B1B1',
+	gray5 = '#D8D8D8',
+	gray6 = '#E2E2E2',
+
+	red0 = '#890000',
+	red2 = '#D80000',
+	red3 = '#EB0000',
+	red5 = '#FF1414',
+	red7 = '#FF3B3B',
+
+	yellow1 = '#9D9D00',
+
+	purple3 = '#800080',
+
+	orange0 = '#764C00',
+	orange4 = '#FFAC14',
+	orange5 = '#FFB327',
+}
+
+M.icons = {
+	distros = {
+		['alpine'] = { icon = '', colors = { M.colors.blue0, M.colors.white } },
+		['arch'] = { icon = '', colors = { M.colors.blue1, M.colors.black3 } },
+		['centos'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['debian'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['fedora'] = { icon = '', colors = { M.colors.blue0, M.colors.white } },
+		['freebsd'] = { icon = '', colors = { M.colors.red2, M.colors.black3 } },
+		['gentoo'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['linux'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['macos'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['manjaro'] = { icon = '', colors = { M.colors.green3, M.colors.black3 } },
+		['mageia'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['mandriva'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['mint'] = { icon = '', colors = { M.colors.green4, M.colors.black3 } },
+		['nixos'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+		['opensuse'] = { icon = '', colors = { M.colors.green5, M.colors.black3 } },
+		['raspberry'] = { icon = '', colors = { M.colors.red5, M.colors.black3 } },
+		['redhat'] = { icon = '', colors = { M.colors.red5, M.colors.black3 } },
+		['ubuntu'] = { icon = '', colors = { M.colors.orange4, M.colors.black3 } },
+		['unknown'] = { icon = '', colors = { M.colors.black3, M.colors.red0 } },
+		['windows'] = { icon = '', colors = { M.colors.white, M.colors.black3 } },
+	},
+}
+
+M.mode_aliases = {
+	[19] = { alias = 'S-BLOCK', color = { fg = M.colors.black0, bg = M.colors.gray5 } },
+	[22] = { alias = 'V-BLOCK', color = { fg = M.colors.black0, bg = M.colors.orange5 } },
+	[82] = { alias = 'REPLACE', color = { fg = M.colors.white, bg = M.colors.red3 } },
+	[83] = { alias = 'S-LINE', color = { fg = M.colors.black0, bg = M.colors.gray3 } },
+	[86] = { alias = 'V-LINE', color = { fg = M.colors.black0, bg = M.colors.orange4 } },
+	[99] = { alias = 'COMMAND', color = { fg = M.colors.white, bg = M.colors.purple3 } },
+	[105] = { alias = 'INSERT', color = { fg = M.colors.white, bg = M.colors.green0 } },
+	[110] = { alias = 'NORMAL', color = { fg = M.colors.white, bg = M.colors.blue0 } },
+	[114] = { alias = 'OP-PENDING', color = { fg = M.colors.black0, bg = M.colors.gray6 } },
+	[115] = { alias = 'SELECT', color = { fg = M.colors.black0, bg = M.colors.gray1 } },
+	[116] = { alias = 'TERMINAL', color = { fg = M.colors.white, bg = M.colors.yellow1 } },
+	[118] = { alias = 'VISUAL', color = { fg = M.colors.white, bg = M.colors.orange0 } },
+}
+
+M.getDistro = function(os)
+	if os ~= nil then
+		local di = M.icons.distros[os]
+		if di == nil then
+			return M.icons.distros.unknown
+		else
+			return di
+		end
+	else
+		return M.icons.distros.unknown
+	end
+end
+
+M.getIcon = function(os)
+	return M.getDistro(os).icon
+end
+
+M.getColor = function(os)
+	return M.getDistro(os).colors
+end
+
+
+local getCurrentMode = function()
+	local cMode = M.mode_aliases[vim.fn.mode():byte()]
+	if cMode == nil then
+		-- If mode is not mapped, show the mode() and the byte convertion
+		cMode = {
+			alias = vim.fn.mode() .. ' ' .. vim.fn.mode():byte(),
+			color = { fg = M.colors.white, bg = M.colors.red7 },
+		}
+	end
+	return cMode
+end
+
+M.getModeAlias = function()
+	return getCurrentMode().alias
+end
+
+M.getModeColor = function()
+	return getCurrentMode().color
+end
+
+M.position = function()
+	return ' ' .. string.format('%02d.%02d', unpack(vim.api.nvim_win_get_cursor(0))) .. ' '
+end
+
+-- Doesn't work with feline
+M.percentage = function()
+	local cL = vim.fn.line('.')
+	local tL = vim.fn.line('$')
+
+	if cL == 1 then
+		return ' Top '
+	elseif cL == tL then
+		return ' Bot '
+	end
+
+	local result, _ = math.modf((cL / tL) * 100)
+
+	return ' ' .. string.format('%02d', result) .. '%%'
+end
+
+M.lsp_client = function()
+	local lsps = 0
+	local lsp_name = ''
+	for _, client in pairs(vim.lsp.buf_get_clients(0)) do
+		if lsp_name == '' then
+			lsp_name = client.name
+		end
+		lsps = lsps + 1
+	end
+
+	local res = ' (' .. string.format('%d', lsps) .. ') '
+	return lsp_name == '' and res or res .. lsp_name .. ' '
+end
+
 -- Heirline
 local conditions = require('heirline.conditions')
 local utils = require('heirline.utils')
 local ndIcons = require('nvim-web-devicons')
-
--- Custom Providers
-local viMode = require('plugins.ui.statusline.cprov.mode')
-local icon = require('plugins.ui.statusline.cprov.icon')
 
 local Align = { provider = '%=' }
 local Space = { provider = ' ' }
@@ -14,23 +163,23 @@ local Space = { provider = ' ' }
 local os = 'freebsd'
 local OSIcon = {
 	provider = function()
-		return ' ' .. icon.getIcon(os) .. ' '
+		return ' ' .. M.getIcon(os) .. ' '
 	end,
 	hl = {
-		fg = icon.getColor(os)[1],
-		bg = icon.getColor(os)[2],
+		fg = M.getColor(os)[1],
+		bg = M.getColor(os)[2],
 	},
 }
 
 -- ViMode
 local ViMode = {
 	provider = function()
-		return ' ' .. viMode.getModeAlias() .. ' '
+		return ' ' .. M.getModeAlias() .. ' '
 	end,
 	hl = function()
 		return {
-			fg = viMode.getModeColor().fg,
-			bg = viMode.getModeColor().bg,
+			fg = M.getModeColor().fg,
+			bg = M.getModeColor().bg,
 		}
 	end,
 }
@@ -191,6 +340,7 @@ local Git = {
 -- Lsp
 local Lsp = {
 	condition = conditions.lsp_attached,
+	-- update = { 'LspAttach', 'LspDetach' },
 	provider = function()
 		local count = 0
 		for _, _ in ipairs(vim.lsp.buf_get_clients(0)) do
@@ -330,3 +480,4 @@ vim.cmd([[
 ]])
 
 require('heirline').setup(StatusLines)
+

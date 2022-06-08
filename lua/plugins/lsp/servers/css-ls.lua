@@ -1,11 +1,10 @@
 -- CSS LSP
 local lsp = require('plugins.lsp.config')
+local config = lsp.build_config()
 
 require('lspconfig').cssls.setup({
-	cmd = { lsp.dir .. '/cssls/node_modules/.bin/vscode-css-language-server' .. lsp.prefix() },
-	on_attach = lsp.on_attach,
-	capabilities = lsp.capabilities,
-	handlers = lsp.handlers,
+	on_attach = config.on_attach,
+	capabilities = config.capabilities,
 	filetypes = { 'css', 'scss', 'less' },
 	settings = {
 		css = {

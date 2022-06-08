@@ -1,8 +1,9 @@
 local lsp = require('plugins.lsp.config')
+local config = lsp.build_config()
 
 require('lspconfig').emmet_ls.setup({
-	cmd = { lsp.dir .. '/emmet_ls/node_modules/.bin/emmet-ls' .. lsp.prefix(), '--stdio' },
+	on_attach = config.on_attach,
+	capabilities = config.capabilities,
 	filtypes = { 'html', 'css' },
-	root_dir = lsp.root_pattern({ '.git', '*.html', '*.css' }),
-	capabilities = lsp.capabilities,
+	root_dir = config.root_pattern({ '.git', '*.html', '*.css' }),
 })

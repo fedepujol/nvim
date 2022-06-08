@@ -1,10 +1,11 @@
 -- JSON LSP
 local lsp = require('plugins.lsp.config')
+local config = lsp.build_config()
 
 require('lspconfig').jsonls.setup({
-	cmd = { lsp.dir .. '/jsonls/node_modules/.bin/vscode-json-language-server' .. lsp.prefix(), '--stdio' },
-	on_attach = lsp.on_attach,
-	root_dir = require('lspconfig/util').root_pattern({ '.git', vim.fn.getcwd() }),
+	on_attach = config.on_attach,
+	capabilities = lsp.capabilities,
+	root_dir = config.root_pattern({ '.git', vim.fn.getcwd() }),
 	commands = {
 		Format = {
 			function()
@@ -12,6 +13,4 @@ require('lspconfig').jsonls.setup({
 			end,
 		},
 	},
-	capabilities = lsp.capabilities,
-	handlers = lsp.handlers,
 })

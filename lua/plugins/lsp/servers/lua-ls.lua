@@ -1,17 +1,12 @@
 -- Lua LSP
 local lsp = require('plugins.lsp.config')
-local sumneko_root_path = ''
-local sumneko_binary = ''
-
+local config = lsp.build_config()
 local runtime_path = vim.split(package.path, ';')
+
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-sumneko_root_path = lsp.dir .. '/sumneko_lua/extension/server'
-sumneko_binary = sumneko_root_path .. '/bin/lua-language-server'
-
 require('lspconfig').sumneko_lua.setup({
-	cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
 	settings = {
 		Lua = {
 			runtime = {
@@ -34,7 +29,6 @@ require('lspconfig').sumneko_lua.setup({
 			},
 		},
 	},
-	on_attach = lsp.on_attach,
-	capabilities = lsp.capabilities,
-	handlers = lsp.handlers,
+	on_attach = config.on_attach,
+	capabilities = config.capabilities,
 })

@@ -1,10 +1,9 @@
 local lsp = require('plugins.lsp.config')
+local config = lsp.build_config()
 
 require('lspconfig').pylsp.setup({
-	cmd = { lsp.dir .. '/pylsp/venv/bin/pylsp' },
 	filetypes = { 'python' },
-	on_attach = lsp.on_attach,
-	capabilities = lsp.capabilities,
-	handlers = lsp.handlers,
+	on_attach = config.on_attach,
+	capabilities = config.capabilities,
 	single_file_support = true,
 })

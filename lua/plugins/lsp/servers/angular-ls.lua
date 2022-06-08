@@ -1,5 +1,7 @@
 -- Angular LSP
 local lsp = require('plugins.lsp.config')
+local config = lsp.build_config()
+
 local angular_dir = lsp.dir .. '/angularls/node_modules'
 local ngLangSvc = angular_dir .. '/@angular/language-service'
 local typescript = angular_dir .. '/typescript/lib'
@@ -17,7 +19,6 @@ require('lspconfig').angularls.setup({
 	on_new_config = function(new_config)
 		new_config.cmd = new_cmd
 	end,
-	on_attach = lsp.on_attach,
-	capabilities = lsp.capabilities,
-	handlers = lsp.handlers,
+	on_attach = config.on_attach,
+	capabilities = config.capabilities,
 })

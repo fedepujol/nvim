@@ -1,5 +1,5 @@
 -- Nvim-Lsp-Installer
-require('nvim-lsp-installer').settings({
+require('nvim-lsp-installer').setup({
 	ui = {
 		icons = {
 			server_installed = '﫟',

@@ -8,4 +8,4 @@ require('plugins')
 vim.cmd(':colo nv-cosmos')
 
 -- Init HeirLine so it takes the colors
-require('plugins.ui.statusline.heirline')
+require('plugins.heirline')
