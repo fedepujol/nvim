@@ -98,6 +98,7 @@ require('neo-tree').setup({
 		},
 	},
 	filesystem = {
+		group_empty_dirs = true,
 		renderers = {
 			directory = {
 				{ 'indent' },
