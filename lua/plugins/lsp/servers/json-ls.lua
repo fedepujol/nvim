@@ -13,4 +13,29 @@ require('lspconfig').jsonls.setup({
 			end,
 		},
 	},
+	settings = {
+		json = {
+			validate = {
+				enable = true,
+			},
+			schemas = {
+				{
+					fileMatch = { 'package.json' },
+					url = 'https://json.schemastore.org/package.json'
+				},
+				{
+					fileMatch = { 'tsconfig*.json' },
+					url = 'https://json.schemastore.org/tsconfig.json'
+				},
+				{
+					fileMatch = { 'tslint.json' },
+					url = 'https://json.schemastore.org/tsling.json'
+				},
+				{
+					fileMatch = { '.angular-cli.json' },
+					url = 'https://json.schemastore.org/.angular-cli.json'
+				},
+			}
+		}
+	}
 })
