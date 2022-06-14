@@ -10,7 +10,7 @@ local jar = jdtls .. '/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-06
 local config_sys = jdtls .. '/config_win'
 local root_markers = { 'gradlew', 'mvnw', '.git' }
 local root_dir = require('jdtls.setup').find_root(root_markers)
-local workspace = home .. '/eclipse-workspace/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
+local workspace = home .. '/Workspace/java/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
 config.cmd = {
 	-- 💀
