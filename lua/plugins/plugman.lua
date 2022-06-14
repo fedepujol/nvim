@@ -15,6 +15,8 @@ require('paq')({
 	'jose-elias-alvarez/null-ls.nvim',
 	'j-hui/fidget.nvim',
 	'weilbith/nvim-code-action-menu',
+	'mfussenegger/nvim-jdtls';
+	'mfussenegger/nvim-dap';
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons',
