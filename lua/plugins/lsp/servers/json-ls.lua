@@ -29,11 +29,11 @@ require('lspconfig').jsonls.setup({
 				},
 				{
 					fileMatch = { 'tslint.json' },
-					url = 'https://json.schemastore.org/tsling.json'
+					url = 'https://json.schemastore.org/tslint.json'
 				},
 				{
 					fileMatch = { '.angular-cli.json' },
-					url = 'https://json.schemastore.org/.angular-cli.json'
+					url = 'https://json.schemastore.org/angular-cli.json'
 				},
 			}
 		}
