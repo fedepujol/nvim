@@ -13,6 +13,7 @@ o.clipboard = 'unnamedplus' -- Copy-Paste between Neovim and everything else
 o.cmdheight = 2 -- More space to display messages
 o.completeopt = 'menuone,noselect' -- Set for nvim-compe. Comma-separated options for insert mode.
 o.encoding = 'UTF-8' -- Encoding used internally
+o.fillchars = 'fold: ,foldopen:,foldsep: ,foldclose:'
 o.hidden = true -- Buffers becomes hidden when abandoned
 o.hlsearch = false -- Highlighting search
 o.laststatus = 3 -- Influence if the last window should have a statusline. 2 -> always.
@@ -48,5 +49,8 @@ wo.list = true -- Always show Tabs
 wo.number = true -- Line numbers
 wo.signcolumn = 'yes' -- Always show the SignColumn
 wo.wrap = false -- Display long lines as such
+wo.foldcolumn = '2'
+wo.foldlevel = 99
+wo.foldenable = true
 
 vim.cmd('filetype plugin indent on')
