@@ -1,7 +1,7 @@
 -- Plugin Init
 require('plugins.plugman')
-require('plugins.barbar')
 require('plugins.neo-tree')
+require('plugins.barbar')
 require('plugins.completion')
 require('plugins.betterescape')
 require('plugins.telescope')
@@ -16,3 +16,4 @@ require('plugins.dressing')
 require('plugins.treesitter')
 require('plugins.fidget')
 require('plugins.colorizer')
+require('plugins.autopais')
