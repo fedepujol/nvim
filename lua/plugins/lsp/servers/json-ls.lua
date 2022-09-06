@@ -35,6 +35,18 @@ require('lspconfig').jsonls.setup({
 					fileMatch = { '.angular-cli.json' },
 					url = 'https://json.schemastore.org/angular-cli.json'
 				},
+				{
+					fileMatch = { 'angular.json'},
+					url = 'https://raw.githubusercontent.com/angular/angular-cli/master/packages/angular/cli/lib/config/workspace-schema.json'
+				},
+				{
+					fileMatch = { '.eslintrc' },
+					url = 'https://json.schemastore.org/eslintrc.json'
+				},
+				{
+					fileMatch = { '.vsconfig '},
+					url = 'https://json.schemastore.org/vsconfig.json'
+				}
 			}
 		}
 	}
