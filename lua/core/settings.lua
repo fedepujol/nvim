@@ -1,7 +1,6 @@
 -- Settings
 -- For more information about the options use :h 'option'.
 -- E.g. :h 'background'
-
 local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
@@ -10,7 +9,6 @@ local wo = vim.wo
 o.background = 'dark' -- Tell NVim the background color
 o.backup = false -- No backup file when written
 o.clipboard = 'unnamedplus' -- Copy-Paste between Neovim and everything else
-o.cmdheight = 2 -- More space to display messages
 o.completeopt = 'menuone,noselect' -- Set for nvim-compe. Comma-separated options for insert mode.
 o.encoding = 'UTF-8' -- Encoding used internally
 o.fillchars = 'fold: ,foldopen:,foldsep: ,foldclose:'
@@ -36,21 +34,22 @@ o.writebackup = false -- No backup file
 bo.autoindent = true -- Copy indent from current line when starting a new line
 bo.expandtab = true -- Converts tabs into spaces
 bo.fileencoding = 'UTF-8' -- Encoding fot the current buffer. Conversion done with iconv()
-vim.cmd('set shiftwidth=4') -- Change number of spaces inserted for indentation
 bo.smartindent = true -- Smart autoindenting when starting a new line
-bo.syntax = 'ON' -- Enable syntax
-vim.cmd('set tabstop=4') -- Set Tab to 4 spaces
 bo.softtabstop = -1 -- Length to use when editing text (0 for 'tabstop', -1 for 'shiftwidth')
+bo.swapfile = false -- No SwapFile
+bo.syntax = 'ON' -- Enable syntax
+vim.cmd('set shiftwidth=4') -- Change number of spaces inserted for indentation
+vim.cmd('set tabstop=4') -- Set Tab to 4 spaces
 
 -- Window Options
 wo.conceallevel = 0 -- Determine how text with the "conceal" attribute is shown. 0 -> As text
 wo.cursorline = true -- Enable hightlightning of the current line
+wo.foldcolumn = '2'
+wo.foldlevel = 99
+wo.foldenable = true
 wo.list = true -- Always show Tabs
 wo.number = true -- Line numbers
 wo.signcolumn = 'yes' -- Always show the SignColumn
 wo.wrap = false -- Display long lines as such
-wo.foldcolumn = '2'
-wo.foldlevel = 99
-wo.foldenable = true
 
 vim.cmd('filetype plugin indent on')
