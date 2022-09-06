@@ -56,6 +56,7 @@ require('paq')({
 
 	-- Git Integration
 	'lewis6991/gitsigns.nvim',
+	'sindrets/diffview.nvim';
 
 	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
