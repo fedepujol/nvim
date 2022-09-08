@@ -84,7 +84,11 @@ wk.register({
 	},
 	l = {
 		name = 'LSP',
-		i = { ':LspInfo<CR>', 'Info' },
+		i = {
+			name = 'Info',
+			i = { ':LspInfo<CR>', 'Info' },
+			l = { ':LspInstallInfo<CR>', 'List Install Servers' },
+		},
 		H = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
 		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', 'Go to Implementation' },
 		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document Symbol' },
