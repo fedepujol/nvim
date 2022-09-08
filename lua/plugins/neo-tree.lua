@@ -186,4 +186,4 @@ require('neo-tree').setup({
 	},
 })
 
-vim.api.nvim_set_keymap('n', '<C-b>', ':NeoTreeShow<CR>', { noremap = true })
+vim.keymap.set('n', '<C-b>', ':NeoTreeShow<CR>', { noremap = true })

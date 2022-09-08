@@ -38,7 +38,7 @@ require('telescope').setup({
 local opts = { noremap = true }
 
 -- File Search
-vim.api.nvim_set_keymap('n', '<C-p>', "<CMD>lua require('telescope.builtin').find_files({previewer = false})<CR>", opts)
+vim.keymap.set('n', '<C-p>', "<CMD>lua require('telescope.builtin').find_files({previewer = false})<CR>", opts)
 
 wk.register({
 	name = 'Find',
