@@ -2,8 +2,9 @@
 vim.g.bufferline = {
 	animation = false, -- Enable animations
 	auto_hide = false, -- Enable autohidding the bar when there is a single buffer
-	clickable = true, -- Enables clickable tabs. (Left-click goto buffer, middle-click closes)
+	tabpages = false, -- Enable current/total tabpages indicator
 	closable = true, -- Enables close button
+	clickable = true, -- Enables clickable tabs. (Left-click goto buffer, middle-click closes)
 	icon_separator_active = '|', -- Separator icon for active tabs
 	icon_separator_inactive = '|', -- Separator icon for inactive tabs
 	icons = true, -- Enable icons
@@ -11,7 +12,6 @@ vim.g.bufferline = {
 	insert_at_start = false, -- Enables open new buffer at the start. Has priority over insert_at_end. (Defualts to false -> open after current)
 	maximum_length = 20, -- Maximum buffer name length
 	no_name_title = 'Undefined', -- Sets the name of unnamed buffers. Only a static string is valid.
-	tabpages = false, -- Enable current/total tabpages indicator
 }
 
 local opts = { noremap = true, silent = true }
