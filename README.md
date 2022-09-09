@@ -36,7 +36,7 @@ It provides the following:
 
 ## Requirements
 
-- Neovim v0.6.1 or [nightly](https://github.com/neovim/neovim/releases)
+- Neovim v0.7.2 or [nightly](https://github.com/neovim/neovim/releases)
     builds.
 - A Patched Font (Pick your font of choice from the
     [NerdFonts](https://github.com/ryanoasis/nerd-fonts) guys)
@@ -48,8 +48,6 @@ It provides the following:
 If you're using this configuration with NeoVim 0.6/0.6.1, you'll have to deal
 with the formatters outputing wrong `eol` in `Windows` files (fileformats=dos).
 There's an issue on NeoVim which is already merge.
-
-The solution is to use a nightly build (v0.7.0).
 
 ### Dependencies
 
@@ -221,12 +219,12 @@ Also see `/lua/plugins/lsp/servers/null-ls.lua`.
 |   |   ├── 📝 mappings.lua
 |   |   └── 📝 settings.lua
 │   └── 📁 plugins/
-│       ├── 📁 colors/
-│       ├── 📁 completion/
+│       ├── 📝 colorizer.lua
+│       ├── 📝 completion.lua
 │       ...
 │       ├── 📁 lsp/
 │       ...
-|       ├── 📝 manager.lua
+|       ├── 📝 plugman.lua
 │       └── 📝 init.lua
 └─ 📝 init.lua
 ```
@@ -235,15 +233,8 @@ Also see `/lua/plugins/lsp/servers/null-ls.lua`.
 
 | Folder Name  | Description                                   |
 |--------------|-----------------------------------------------|
-| 📁colors     | Every color related plugin                    |
-| 📁completion | Completion system                             |
-| 📁ef         | Editor functions (autopairs, comment, tabout) |
-| 📁git        | Git Integration                               |
-| 📁keys       | Plugins related to keymapping                 |
 | 📁lsp        | Lsp config and servers                        |
-| 📁telescope  | Telescope                                     |
-| 📁treesiter  | Treesitter functionality                      |
-| 📁ui         | UI Plugins (File-Manager, Statusline, etc)    |
+| 📝 file.lua  | Configuration file of name_plugin.lua         |
 
 ### Overview
 
@@ -263,64 +254,6 @@ And in core’s `init.lua`:
 ``` lua
 require('core.mappings')
 require('core.settings')
-```
-
-So, if you wanted to create the following sub-structure under `core`:
-
-``` text
-📁 lua
-└── 📁 core
-    ├── 📁 newFolder1
-    |   ├── 📝 newFile011
-    |   └── 📝 newFile012
-    ├── 📁 newFolder2
-    |   ├── 📝 newFile021
-    |   └── 📝 newFile022
-    ├── 📝 init.lua
-    ├── 📝 mappings.lua
-    └── 📝 settings.lua
-```
-
-You’ll need to create a `init.lua` under `newFolder1` and `newFolder2`. Then
-required it in `core/init.lua`:
-
-``` text
-📁 lua
-└── 📁 core
-    ├── 📁 newFolder1
-    |   ├── 📝 init.lua
-    |   ├── 📝 newFile011
-    |   └── 📝 newFile012
-    ├── 📁 newFolder2
-    |   ├── 📝 init.lua
-    |   ├── 📝 newFile021
-    |   └── 📝 newFile022
-    ├── 📝 init.lua
-    ├── 📝 mappings.lua
-    └── 📝 settings.lua
-```
-
-- `core/newFolder1/init.lua`
-
-``` lua
-require('newFolder1.newFile011')
-require('newFolder1.newFile012')
-```
-
-- `core/newFolder2/init.lua`
-
-``` lua
-require('newFolder2.newFile021')
-require('newFolder2.newFile022')
-```
-
-- `core/init.lua`
-
-``` lua
-require('core.mappings')
-require('core.settings')
-require('newFolder1')
-require('newFolder2')
 ```
 
 ## TreeSitter Queries
@@ -364,7 +297,6 @@ These are the plugins included:
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                          |
 | [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer) |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)               |
-| [nvim-lspsaga](https://github.com/tami5/lspsaga.nvim)                    |
 | [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)        |
 | [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)                 |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)    |
@@ -380,7 +312,7 @@ These are the plugins included:
 
 To control the plugins you’ve got a few files:
 
-- `lua/plugins/manager.lua`: Add/Remove the plugins from this file.
+- `lua/plugins/plugman.lua`: Add/Remove the plugins from this file.
 - `lua/plugins/init.lua`: Add/Remove the module configuration.
 
 And `Paq` (Plugin Manager).
