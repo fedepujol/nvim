@@ -44,12 +44,11 @@ vim.cmd('set tabstop=4') -- Set Tab to 4 spaces
 -- Window Options
 wo.conceallevel = 0 -- Determine how text with the "conceal" attribute is shown. 0 -> As text
 wo.cursorline = true -- Enable hightlightning of the current line
-wo.foldcolumn = '2'
-wo.foldlevel = 99
-wo.foldenable = true
+
 wo.list = true -- Always show Tabs
 wo.number = true -- Line numbers
 wo.signcolumn = 'yes' -- Always show the SignColumn
 wo.wrap = false -- Display long lines as such
 
 vim.cmd('filetype plugin indent on')
+vim.cmd(':lang en_GB')
