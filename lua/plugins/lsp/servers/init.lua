@@ -2,7 +2,6 @@
 require('plugins.lsp.servers.angular-ls')
 require('plugins.lsp.servers.bash-ls')
 require('plugins.lsp.servers.css-ls')
-require('plugins.lsp.servers.null-ls')
 require('plugins.lsp.servers.haskell-ls')
 require('plugins.lsp.servers.html-ls')
 require('plugins.lsp.servers.emmet-ls')
