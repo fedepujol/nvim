@@ -19,6 +19,7 @@ require('lspconfig').angularls.setup({
 	on_new_config = function(new_config)
 		new_config.cmd = new_cmd
 	end,
+	root_dir = config.root_pattern({'.angular-cli.json', 'angular.json'}),
 	on_attach = config.on_attach,
 	capabilities = config.capabilities,
 })
