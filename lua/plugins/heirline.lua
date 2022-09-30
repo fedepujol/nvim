@@ -169,21 +169,17 @@ local FileIcon = {
 }
 
 local FileName = {
-	init = function(self)
-		self.lfname = vim.fn.fnamemodify(self.filename, ':.')
-		if self.lfname == '' then
-			self.lfname = 'Undefined'
+	provider = function(self)
+		local filename = vim.fn.fnamemodify(self.filename, ':.')
+		if filename == '' then
+			return 'Undefined'
 		end
+
+		if not conditions.width_percent_below(#filename, 0.25) then
+			return vim.fn.pathshorten(filename)
+		end
+		return filename
 	end,
-	utils.make_flexible_component(2, {
-		provider = function(self)
-			return self.lfname
-		end,
-	}, {
-		provider = function(self)
-			return vim.fn.pathshorten(self.lfname)
-		end,
-	}),
 }
 
 local FileFlags = {
@@ -233,8 +229,7 @@ local Git = {
 			return count > 0 and (' ' .. count) .. ' '
 		end,
 		hl = { fg = utils.get_highlight('GitSignsAdd').fg },
-	},
-	{
+	}, {
 		provider = function(self)
 			local count = self.status_dict.added or 0
 			return count > 0 and '● '
@@ -266,52 +261,32 @@ local Git = {
 			return count > 0 and '●'
 		end,
 		hl = { fg = utils.get_highlight('GitSignsDelete').fg },
-	})
+	}),
 }
 
-local GitBlock = utils.insert(Git, { provider = '%<'})
+local GitBlock = utils.insert(Git, { provider = '%<' })
 
 -- Lsp
 local LSPBlock = {
-	init = function (self)
+	init = function(self)
 		self.prefix = ' '
-	end
+	end,
 }
 
 local Lsp = {
 	condition = conditions.lsp_attached,
-	utils.make_flexible_component(3, {
-		provider = function(self)
-			local names = {}
-			for _, server in ipairs(vim.lsp.buf_get_clients(0)) do
-				table.insert(names, server.name)
-			end
-			return self.prefix .. '[' .. table.concat(names, ' ') .. ']'
-		end,
-	}, {
-		provider = function(self)
-			local count = 0
-			local names = {}
-			for _, server in ipairs(vim.lsp.buf_get_clients(0)) do
-				count = count + 1
-				table.insert(names, server.name)
-			end
-			return self.prefix .. '['.. names[1] .. '+'.. count - 1  .. ']'
-		end,
-	}, {
-		provider = function(self)
-			local count = 0
-			for _, _ in ipairs(vim.lsp.buf_get_clients(0)) do
-				count = count + 1
-			end
-			return self.prefix .. '[' .. count .. ']'
-		end,
-	}),
+	update = { 'LspAttach', 'LspDetach' },
+	provider = function(self)
+		local names = {}
+		for _, server in ipairs(vim.lsp.buf_get_clients(0)) do
+			table.insert(names, server.name)
+		end
+		return self.prefix .. '[' .. table.concat(names, ' ') .. ']'
+	end,
 	hl = {
 		fg = utils.get_highlight('Type').fg,
 	},
 }
-
 
 -- Diagnostics
 local Diagnostics = {
@@ -356,7 +331,7 @@ local Diagnostics = {
 	},
 }
 
-LSPBlock = utils.insert(LSPBlock, Lsp, Space, Diagnostics, { provider = '%<'} )
+LSPBlock = utils.insert(LSPBlock, Lsp, Space, Diagnostics, { provider = '%<' })
 
 -- FileEncodig
 local FileEncoding = {
@@ -364,6 +339,7 @@ local FileEncoding = {
 		local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
 		return enc:upper()
 	end,
+	hl = { fg = utils.get_highlight('Number').fg }
 }
 
 local FileFormat = {
@@ -379,6 +355,7 @@ local FileFormat = {
 		end
 		return res
 	end,
+	hl = { fg = utils.get_highlight('Character').fg }
 }
 
 -- File Size
