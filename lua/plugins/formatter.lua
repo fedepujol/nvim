@@ -39,20 +39,22 @@ require('formatter').setup({
 				}
 			end,
 		},
-		css = filetypes.css.cssbeautify,
-		function()
-			return {
-				exe = 'css-beautify',
-				args = {
-					'-f',
-					util.escape_path(util.get_current_buffer_file_path()),
-					'--type',
-					'css',
-					'-s',
-					'2',
-				},
-				stdin = true,
-			}
-		end,
+		css = {
+			filetypes.css.cssbeautify,
+			function()
+				return {
+					exe = 'css-beautify',
+					args = {
+						'-f',
+						util.escape_path(util.get_current_buffer_file_path()),
+						'--type',
+						'css',
+						'-s',
+						'2',
+					},
+					stdin = true,
+				}
+			end,
+		}
 	},
 })
