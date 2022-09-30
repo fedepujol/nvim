@@ -24,13 +24,13 @@ require('paq')({
 	'neovim/nvim-lspconfig',
 	'weilbith/nvim-code-action-menu',
 	'williamboman/nvim-lsp-installer',
-	'jose-elias-alvarez/null-ls.nvim';
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons',
 
 	-- Colors
 	'fedepujol/nv-themes',
+	-- 'fedepujol/bracket-guides';
 	'norcalli/nvim-colorizer.lua',
 	'rktjmp/lush.nvim',
 	'rktjmp/shipwright.nvim',
