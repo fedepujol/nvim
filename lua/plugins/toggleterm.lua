@@ -15,7 +15,7 @@ require('toggleterm').setup({
 	direction = 'horizontal', -- vertical | float | tab
 	persist_size = true,
 	close_on_exit = true,
-	-- shell = vim.o.shell,
+	shell = shell
 })
 
 local lazygit = Terminal:new({
