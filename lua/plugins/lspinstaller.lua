@@ -3,7 +3,7 @@ require('nvim-lsp-installer').setup({
 	ensure_installed = {
 		'angularls', 'bashls', 'cssls',
 		'emmet_ls', 'html',
-		'jsonls', 'jdtls', 'sumneko_lua',
+		'jsonls', 'sumneko_lua',
 		'tsserver', 'vimls',
 		'lemminx', 'yamlls'
 	},
