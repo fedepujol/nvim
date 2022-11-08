@@ -16,6 +16,4 @@ require('Comment').setup({
 		basic = true, -- gcc, gcb, gc[count]{motion}, gb[count]{motion}
 		extra = true, -- gco, gcO, gcA
 	},
-	pre_hook = nil, -- Called before commenting the line
-	post_hook = nil, -- Called after commenting the line
 })
