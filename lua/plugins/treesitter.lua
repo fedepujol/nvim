@@ -1,16 +1,13 @@
 require('nvim-treesitter.configs').setup({
 	-- one of "all" or a list of languages
 	ensure_installed = {
-		'bash', 'c', 'c_sharp', 'cmake',
-		'cpp', 'css', 'dockerfile', 'go',
-		'graphql', 'haskell', 'help', 'hjson',
+		'bash', 'c', 'cmake', 'cpp',
+		'css', 'haskell', 'help', 'hjson',
 		'html', 'http', 'java', 'javascript',
 		'jsdoc', 'json', 'json5', 'jsonc',
-		'llvm', 'lua', 'make', 'markdown',
-		'ninja', 'nix', 'pascal', 'perl',
-		'php', 'python', 'scheme', 'r',
-		'regex', 'rust', 'scss', 'teal',
-		'toml', 'tsx', 'typescript', 'verilog',
+		'llvm', 'lua', 'markdown', 'nix',
+		'pascal', 'python', 'scheme', 'regex',
+		'scss', 'toml', 'tsx', 'typescript',
 		'vim', 'yaml',
 	},
 	sync_install = false, -- Install parsers synchronously (only applied to ensure_installed)
@@ -27,7 +24,7 @@ require('nvim-treesitter.configs').setup({
 		additional_vim_regex_highlighting = false,
 	},
 	rainbow = {
-		enable = true,
+		enable = false,
 		extended_mode = false,
 		max_file_lines = nil,
 	},
