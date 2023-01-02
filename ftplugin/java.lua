@@ -1,11 +1,11 @@
 -- Java JDTLS
 local config = require('plugins.lsp.config').build_config()
 local home = os.getenv('HOME')
-local downloads = home .. '/Downloads'
-local jdk11 = downloads .. '/jdk-11.0.15'
-local jdk18 = downloads .. '/jdk-18.0.1.1'
+local work_dir = home .. '/Workspace/tools/java'
+local jdk11 = work_dir .. '/jdk-11.0.15'
+local jdk18 = work_dir .. '/jdk-18.0.1.1'
 
-local jdtls = downloads .. '/jdtls'
+local jdtls = work_dir .. '/jdtls'
 local jar = jdtls .. '/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar'
 local config_sys = jdtls .. '/config_win'
 local root_markers = { 'gradlew', 'mvnw', '.git' }
@@ -39,7 +39,26 @@ config.cmd = {
 }
 
 config.settings = {
+	['java.format.settings.url'] = '/f/java-test/eclipse-java-google-style.xml',
+	['java.format.settings.profile'] = 'GoogleStyle',
 	java = {
+		configuration = {
+			runtimes = {
+				{
+					name = "JavaSE-1.8",
+					path = "/Program Files/Java/jdk1.8.0_333/",
+					default = true,
+				},
+				{
+					name = "JavaSE-11",
+					path = jdk11
+				},
+				{
+					name = "JavaSE-18",
+					path = jdk18
+				}
+			}
+		},
 		signatureHelp = {
 			enabled = true
 		};
@@ -51,6 +70,7 @@ config.settings = {
 		};
 	},
 	init_options = {
+		jvm_args = '-javaagent:', home..'\\.m2\\repository\\org\\projectlombok\\lombok\\1.16.18\\lombok-1.16.18.jar',
 		bundles = {}
 	},
 }
@@ -58,9 +78,11 @@ config.settings = {
 config.on_attach = function(client, bufnr)
 	require('plugins.lsp.config').on_attach(client, bufnr)
 	require('jdtls.setup').add_commands()
+
+	local opts = { silent = true, buffer = bufnr }
+	vim.keymap.set('n', '<C-S-o>', '<Cmd>lua require("jdtls").organize_imports()<CR>', opts)
 end
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)
-
