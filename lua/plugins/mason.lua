@@ -1,12 +1,5 @@
--- Nvim-Lsp-Installer
-require('nvim-lsp-installer').setup({
-	ensure_installed = {
-		'angularls', 'bashls', 'cssls',
-		'emmet_ls', 'html',
-		'jsonls', 'jdtls', 'sumneko_lua',
-		'tsserver', 'vimls',
-		'lemminx', 'yamlls'
-	},
+-- Mason nvim
+require('mason').setup({
 	automatic_installation = false,
 	ui = {
 		check_outdated_servers_on_open = false,
@@ -25,5 +18,15 @@ require('nvim-lsp-installer').setup({
 			check_outdated_servers = 'C',
 			uninstall_server = 'X'
 		}
+	},
+})
+
+require('mason-lspconfig').setup({
+	ensure_installed = {
+		'angularls', 'bashls', 'cssls',
+		'emmet_ls', 'html',
+		'jsonls', 'jdtls', 'sumneko_lua',
+		'tsserver', 'vimls',
+		'lemminx', 'yamlls'
 	},
 })

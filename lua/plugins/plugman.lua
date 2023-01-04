@@ -23,7 +23,8 @@ require('paq')({
 	'mhartington/formatter.nvim',
 	'neovim/nvim-lspconfig',
 	'weilbith/nvim-code-action-menu',
-	'williamboman/nvim-lsp-installer',
+	'williamboman/mason.nvim',
+	'williamboman/mason-lspconfig.nvim',
 
 	-- Icons
 	'kyazdani42/nvim-web-devicons',
