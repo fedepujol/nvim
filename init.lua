@@ -1,14 +1,5 @@
--- General Configs
+-- General bootstrap
 require('core')
-
--- Plugins
-require('plugins')
-
--- Change The Colorscheme
-vim.cmd(':colo nv-cosmos')
-
--- Init HeirLine so it takes the colors
-require('plugins.heirline')
 
 if vim.g.neovide ~= nil then
 	vim.opt.guifont = 'Fira Code:h11'

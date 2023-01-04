@@ -101,8 +101,12 @@ wk.register({
 		p = { ':Lspsaga preview_definition<CR>', 'Preview Definition' },
 	},
 	m = {
-		name = "Mason",
+		name = 'Mason',
 		i = { ':Mason<CR>', 'Mason Info' },
+	},
+	p = {
+		name = 'Lazy Plugin Manager',
+		i = { ':Lazy<CR>', 'Lazy Info' }
 	},
 	r = {
 		name = 'Run commands',
