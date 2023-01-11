@@ -61,24 +61,24 @@ return {
 					behavior = cmp.ConfirmBehavior.Insert,
 					select = true,
 				}),
-				['<TAB>'] = function(fallback)
+				['<TAB>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif vim.fn['vsnip#available'](1) ~= 0 then
+					elseif vim.fn['vsnip#available'](1) == 1 then
 						feedkey('<Plug>(vsnip-expand-or-jump)', '')
 					else
 						fallback()
 					end
-				end,
-				['<S-TAB>'] = function(fallback)
+				end, { 'i', 's' }),
+				['<S-TAB>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif vim.fn['vsnip#available'](1) ~= 0 then
+					elseif vim.fn['vsnip#available'](-1) == 1 then
 						feedkey('<Plug>(vsnip-jump-prev)', '')
 					else
 						fallback()
 					end
-				end,
+				end, { 'i', 's' }),
 				['<C-SPACE>'] = cmp.mapping.complete(),
 				['<ESC>'] = cmp.mapping.close(),
 				['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -100,8 +100,18 @@ return {
 			},
 		})
 
+		cmp.setup.cmdline({'/', '?'}, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = 'buffer' }
+			}
+		})
+
 		cmp.setup.cmdline(':', {
+			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
+				{ name = 'path' }
+			}, {
 				{ name = 'cmdline' },
 			}),
 		})
