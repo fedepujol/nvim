@@ -5,6 +5,7 @@ return {
 		dependencies = {
 			'williamboman/mason-lspconfig.nvim',
 			'neovim/nvim-lspconfig',
+			'mfussenegger/nvim-jdtls',
 			'j-hui/fidget.nvim',
 		},
 		config = function()
@@ -107,48 +108,9 @@ return {
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 			capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-			local function getOS()
-				local system_name = ''
-				if vim.fn.has('mac') == 1 then
-					system_name = 'macOS'
-				elseif vim.fn.has('unix') == 1 then
-					system_name = 'Linux'
-				else
-					system_name = 'Windows'
-				end
-				return system_name
-			end
-
-			local function isOS(target)
-				local os = getOS()
-				return os ~= '' and os:lower() == target
-			end
-
-			local function prefix()
-				local osPrefix = ''
-				if isOS('windows') then
-					osPrefix = '.cmd'
-				end
-				return osPrefix
-			end
-
-			local dir = vim.fn.stdpath('data') .. '/mason'
-
 			local root_pattern = require('lspconfig.util').root_pattern
 
 			-- Angular LSP
-			local angular_dir = dir .. '/angularls/node_modules'
-			local ngLangSvc = angular_dir .. '/@angular/language-service'
-			local typescript = angular_dir .. '/typescript/lib'
-			local new_cmd = {
-				angular_dir .. '/.bin/ngserver' .. prefix(),
-				'--stdio',
-				'--tsProbeLocations',
-				typescript,
-				'--ngProbeLocations',
-				ngLangSvc,
-			}
-
 			require('lspconfig').angularls.setup({
 				-- cmd = new_cmd,
 				-- on_new_config = function(new_config)
