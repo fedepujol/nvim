@@ -190,6 +190,7 @@ require('lspconfig').tsserver.setup({
 )
 ```
 
+
 Then install the server:
 
 ```text
