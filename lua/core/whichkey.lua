@@ -84,11 +84,7 @@ wk.register({
 	},
 	l = {
 		name = 'LSP',
-		i = {
-			name = 'Info',
-			i = { ':LspInfo<CR>', 'Info' },
-			l = { ':LspInstallInfo<CR>', 'List Install Servers' },
-		},
+		i = { ':LspInfo<CR>', 'Info' },
 		H = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
 		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', 'Go to Implementation' },
 		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document Symbol' },
@@ -103,6 +99,14 @@ wk.register({
 			p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev. Diagnostic' },
 		},
 		p = { ':Lspsaga preview_definition<CR>', 'Preview Definition' },
+	},
+	m = {
+		name = 'Mason',
+		i = { ':Mason<CR>', 'Mason Info' },
+	},
+	p = {
+		name = 'Lazy Plugin Manager',
+		i = { ':Lazy<CR>', 'Lazy Info' }
 	},
 	r = {
 		name = 'Run commands',
