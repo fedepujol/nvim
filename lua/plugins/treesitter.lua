@@ -1,5 +1,11 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
+	dependencies = {
+		{
+			'nvim-treesitter/playground',
+			cmd = 'TSPlaygroundToggle'
+		},
+	},
 	config = function()
 		require('nvim-treesitter.configs').setup({
 			-- one of "all" or a list of languages
