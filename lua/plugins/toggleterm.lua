@@ -2,6 +2,9 @@
 
 return {
 	'akinsho/nvim-toggleterm.lua',
+	keys = {
+		{ '<leader>ti', "lua require('toggleterm.terminal').Terminal", desc = 'Toggle Terminal'}
+	},
 	config = function()
 		local wk = require('which-key')
 		local Terminal = require('toggleterm.terminal').Terminal
