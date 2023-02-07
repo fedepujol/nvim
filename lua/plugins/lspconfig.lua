@@ -4,6 +4,7 @@ return {
 		event = "BufReadPost",
 		dependencies = {
 			'williamboman/mason-lspconfig.nvim',
+			'folke/neodev.nvim',
 			'neovim/nvim-lspconfig',
 			'mfussenegger/nvim-jdtls',
 			'j-hui/fidget.nvim',
@@ -109,6 +110,20 @@ return {
 			capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 			local root_pattern = require('lspconfig.util').root_pattern
+
+			-- Neodev setup
+			require('neodev').setup({
+				library = {
+					enabled = true,
+					runtime = true, -- runtime path
+					types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+					plugins = true, -- installed opt or start plugins in packpath
+					-- can be a list to plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+				},
+				setup_jsonls = false,
+				lspconfig = true,
+				pathStrict = true,
+			})
 
 			-- Angular LSP
 			require('lspconfig').angularls.setup({
