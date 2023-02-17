@@ -36,7 +36,7 @@ return {
 				ensure_installed = {
 					'angularls', 'bashls', 'cssls',
 					'emmet_ls', 'html',
-					'jsonls', 'jdtls', 'sumneko_lua',
+					'jsonls', 'jdtls', 'lua_ls',
 					'tsserver', 'vimls',
 					'lemminx', 'yamlls'
 				},
@@ -220,20 +220,13 @@ return {
 			})
 
 			-- Lua LSP
-			local runtime_path = vim.split(package.path, ';')
-
-			table.insert(runtime_path, 'lua/?.lua')
-			table.insert(runtime_path, 'lua/?/init.lua')
-
-			require('lspconfig').sumneko_lua.setup({
+			require('lspconfig').lua_ls.setup({
 				-- cmd = { dir .. '/sumneko_lua/extension/server/bin/lua-language-server' },
 				settings = {
 					Lua = {
 						runtime = {
 							-- Tell the language server which versin of Lua you're using (most likely LuaJIT in the case of Neovim)
-							version = 'LuaJIT',
-							-- Setup your lua path
-							path = runtime_path,
+							version = 'LuaJIT'
 						},
 						diagnostics = {
 							-- Get the language server to recognize the 'vim' global
