@@ -1,8 +1,8 @@
 -- Java JDTLS
 local config = {}
-local home = os.getenv('HOME') or ('C:\\Users\\' + os.getenv('USERNAME'))
+local home = os.getenv('HOME') or ('C:\\Users\\' .. os.getenv('USERNAME'))
 local work_dir = home .. '/Workspace/tools/java'
-local jdk11 = work_dir .. '/jdk-11.0.15'
+local jdk17 = work_dir .. '/jdk-17.0.6'
 local jdk18 = work_dir .. '/jdk-18.0.1.1'
 
 local jdtls = work_dir .. '/jdtls'
@@ -13,7 +13,7 @@ local workspace = home .. '/Workspace/java/' .. project_name
 
 config.cmd = {
 	-- 💀
-	jdk11 .. '/bin/java.exe', -- or '/path/to/java11_or_newer/bin/java'
+	jdk17 .. '/bin/java.exe', -- or '/path/to/java11_or_newer/bin/java'
 
 	'-Declipse.application=org.eclipse.jdt.ls.core.id1',
 	'-Dosgi.bundles.defaultStartLevel=4',
@@ -24,6 +24,8 @@ config.cmd = {
 	'--add-modules=ALL-SYSTEM',
 	'--add-opens', 'java.base/java.util=ALL-UNNAMED',
 	'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+	-- lombok
+	'-javaagent:'.. home .. '/Workspace/tools/editor/eclipse/lombok.jar',
 
 	-- 💀
 	'-jar', jar,
@@ -36,7 +38,7 @@ config.cmd = {
 	'-data', workspace
 }
 
-config.root_dir = require('jdtls.setup').find_root({ '.git', 'gradlew', 'mvnw', 'pom.xml' })
+config.root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew', 'mvnw' }, { upward = true})[1])
 
 config.settings = {
 	['java.format.settings.url'] = '/f/java-test/eclipse-java-google-style.xml',
@@ -50,8 +52,8 @@ config.settings = {
 					default = true,
 				},
 				{
-					name = "JavaSE-11",
-					path = jdk11
+					name = "JavaSE-17",
+					path = jdk17
 				},
 				{
 					name = "JavaSE-18",
