@@ -276,22 +276,12 @@ return {
 		local GitBlock = utils.insert(Git, { provider = '%<' })
 
 		-- Lsp
-		local LSPBlock = {
-			init = function(self)
-				self.prefix = ' '
-			end,
-		}
+		local LSPBlock = {}
 
 		local Lsp = {
 			condition = conditions.lsp_attached,
 			update = { 'LspAttach', 'LspDetach' },
-			provider = function(self)
-				local names = {}
-				for _, server in ipairs(vim.lsp.get_active_clients({bufnr = 0})) do
-					table.insert(names, server.name)
-				end
-				return self.prefix .. '[' .. table.concat(names, ' ') .. ']'
-			end,
+			provider = ' [LSP]',
 			hl = {
 				fg = utils.get_highlight('Type').fg,
 			},
