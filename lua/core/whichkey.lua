@@ -57,6 +57,7 @@ wk.register({
 			w = { ':BufferOrderByWindowNumber<CR>', 'Window Number' },
 		},
 		p = { ':BufferPick<CR>', 'Pick' },
+		o = { ':Neotree float buffers<CR>', 'Show Open Buffers'},
 	},
 	u = {
 		name = 'Utilities',
