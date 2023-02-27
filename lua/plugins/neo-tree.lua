@@ -1,5 +1,6 @@
 return {
 	'nvim-neo-tree/neo-tree.nvim',
+	branch = 'v2.x',
 	dependencies = {
 		'nvim-lua/plenary.nvim',
 		'nvim-lua/popup.nvim',
@@ -9,6 +10,8 @@ return {
 		{ '<C-b>', ':NeoTreeShow<CR>', desc = 'NeoTree' }
 	},
 	config = function()
+		vim.cmd([[let g:neo_tree_remove_legacy_commands = 1 ]])
+
 		require('neo-tree').setup({
 			close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 			close_floats_on_escape_key = true,
