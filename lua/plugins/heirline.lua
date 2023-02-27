@@ -7,38 +7,29 @@ return {
 		'lewis6991/gitsigns.nvim'
 	},
 	config = function()
-
 		local M = {}
 
 		M.colors = {
 			white = '#FFFFFF',
-
 			black0 = '#000000',
 			black3 = '#161616',
-
 			blue0 = '#0D47A1',
 			blue1 = '#1565C0',
-
 			green0 = '#247B22',
 			green3 = '#36B739',
 			green4 = '#69D36B',
 			green5 = '#87DC89',
-
 			gray1 = '#808080',
 			gray3 = '#B1B1B1',
 			gray5 = '#D8D8D8',
 			gray6 = '#E2E2E2',
-
 			red0 = '#890000',
 			red2 = '#D80000',
 			red3 = '#EB0000',
 			red5 = '#FF1414',
 			red7 = '#FF3B3B',
-
 			yellow1 = '#9D9D00',
-
 			purple3 = '#800080',
-
 			orange0 = '#764C00',
 			orange4 = '#FFAC14',
 			orange5 = '#FFB327',
@@ -160,7 +151,7 @@ return {
 		local FileNameBlock = {
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(0)
-			end,
+			end
 		}
 
 		local FileIcon = {
@@ -170,51 +161,18 @@ return {
 				self.icon, self.icon_color = ndIcons.get_icon_color(filename, extension, { default = true })
 			end,
 			provider = function(self)
-				return self.icon and (self.icon .. ' ')
+				return self.icon and (self.icon)
 			end,
 			hl = function(self)
 				return { fg = self.icon_color }
 			end,
 		}
 
-		local FileName = {
-			provider = function(self)
-				local filename = vim.fn.fnamemodify(self.filename, ':.')
-				if filename == '' then
-					return 'Undefined'
-				end
-
-				if not conditions.width_percent_below(#filename, 0.25) then
-					return vim.fn.pathshorten(filename)
-				end
-				return filename
-			end,
-		}
-
-		local FileFlags = {
-			{
-				provider = function()
-					if vim.bo.modified then
-						return ' ●'
-					end
-				end,
-			},
-			{
-				provider = function()
-					if not vim.bo.modifiable or vim.bo.readonly then
-						return ' '
-					end
-				end,
-			},
-		}
-
-		FileNameBlock =
-		utils.insert(FileNameBlock, FileIcon, FileName, unpack(FileFlags), { provider = '%<' })
+		FileNameBlock = utils.insert(FileNameBlock, FileIcon)
 
 		-- Git
 		local Git = {
 			condition = conditions.is_git_repo,
-
 			init = function(self)
 				self.status_dict = vim.b.gitsigns_status_dict
 				self.has_changes = self.status_dict.added ~= 0
@@ -281,7 +239,14 @@ return {
 		local Lsp = {
 			condition = conditions.lsp_attached,
 			update = { 'LspAttach', 'LspDetach' },
-			provider = ' [LSP]',
+			-- provider = ' [LSP]',
+			provider = function ()
+				local names = {}
+				for _, server in pairs(vim.lsp.get_active_clients({bufnr = 0})) do
+					table.insert(names, server.name)
+				end
+				return '  [' .. table.concat(names, " ") .. ']'
+			end,
 			hl = {
 				fg = utils.get_highlight('Type').fg,
 			},
@@ -290,14 +255,12 @@ return {
 		-- Diagnostics
 		local Diagnostics = {
 			condition = conditions.has_diagnostics,
-
 			static = {
-				error_icon = '',
-				warn_icon = '',
-				info_icon = '',
-				hint_icon = '',
+				error_icon = ' ',
+				warn_icon = ' ',
+				info_icon = ' ',
+				hint_icon = ' ',
 			},
-
 			init = function(self)
 				self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
 				self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -306,31 +269,44 @@ return {
 			end,
 			{
 				provider = function(self)
-					return self.errors > 0 and (self.error_icon .. ' ' .. self.errors .. ' ')
+					return self.errors > 0 and (self.error_icon .. self.errors .. ' ')
 				end,
 				hl = { fg = utils.get_highlight('DiagnosticError').fg },
 			},
 			{
 				provider = function(self)
-					return self.warnings > 0 and (self.warn_icon .. ' ' .. self.warnings .. ' ')
+					return self.warnings > 0 and (self.warn_icon .. self.warnings .. ' ')
 				end,
 				hl = { fg = utils.get_highlight('DiagnosticWarn').fg },
 			},
 			{
 				provider = function(self)
-					return self.info > 0 and (self.info_icon .. ' ' .. self.info .. ' ')
+					return self.info > 0 and (self.info_icon .. self.info .. ' ')
 				end,
 				hl = { fg = utils.get_highlight('DiagnosticInfo').fg },
 			},
 			{
 				provider = function(self)
-					return self.hints > 0 and (self.hint_icon .. ' ' .. self.hints .. ' ')
+					return self.hints > 0 and (self.hint_icon .. self.hints .. ' ')
 				end,
 				hl = { fg = utils.get_highlight('DiagnosticHint').fg },
 			},
 		}
 
 		LSPBlock = utils.insert(LSPBlock, Lsp, Space, Diagnostics, { provider = '%<' })
+
+		local FileIndent = {
+			provider = function()
+				local res = ''
+				if vim.bo.expandtab then
+					res = 'Tabs: ' .. vim.bo.shiftwidth
+				else
+					res = 'Spaces: ' .. vim.bo.shiftwidth
+				end
+				return res
+			end,
+			hl = { fg = utils.get_highlight('Boolean').fg },
+		}
 
 		-- FileEncodig
 		local FileEncoding = {
@@ -373,7 +349,7 @@ return {
 					i = i + 1
 				end
 
-				return string.format('%.2g%s猪', fSize, suffix[i])
+				return string.format('%.2g%s', fSize, suffix[i])
 			end,
 		}
 
@@ -427,15 +403,20 @@ return {
 		local MainLine = {
 			ViMode,
 			Space,
+			GitBlock,
+			Space,
 			FileNameBlock,
+			Space,
+			FileType,
 			Space,
 			FileSize,
 			Align,
-			GitBlock,
-			Align,
 			LSPBlock,
+			Align,
 			Space,
 			FileFormat,
+			Space,
+			FileIndent,
 			Space,
 			FileEncoding,
 			Space,
@@ -448,9 +429,9 @@ return {
 		local SpecialLine = {
 			condition = function()
 				return conditions.buffer_matches({
-					buftype = { 'nofile', 'help', 'quickfix' },
-					filetype = { '^git.*', 'fugitive' },
-				}) or (not conditions.is_active())
+						buftype = { 'nofile', 'help', 'quickfix' },
+						filetype = { '^git.*', 'fugitive' },
+					}) or (not conditions.is_active())
 			end,
 			ViMode,
 			Space,
