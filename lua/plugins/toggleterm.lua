@@ -3,7 +3,7 @@
 return {
 	'akinsho/nvim-toggleterm.lua',
 	keys = {
-		{ '<leader>ti', "lua require('toggleterm.terminal').Terminal", desc = 'Toggle Terminal'}
+		{ '<leader>ti', ":ToggleTerm<CR>", desc = 'Toggle Terminal'}
 	},
 	config = function()
 		local wk = require('which-key')
