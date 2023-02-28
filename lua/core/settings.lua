@@ -29,7 +29,7 @@ vim.opt.writebackup = false -- No backup file
 
 -- Buffer Options
 vim.opt.autoindent = true -- Copy indent from current line when starting a new line
-vim.opt.expandtab = true -- Converts tabs into spaces
+vim.opt.expandtab = false -- Converts tabs into spaces
 vim.opt.fileencoding = 'UTF-8' -- Encoding fot the current buffer. Conversion done with iconv()
 vim.opt.smartindent = true -- Smart autoindenting when starting a new line
 vim.opt.softtabstop = -1 -- Length to use when editing text (0 for 'tabstop', -1 for 'shiftwidth')
