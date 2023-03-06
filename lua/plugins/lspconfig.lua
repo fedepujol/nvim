@@ -35,10 +35,10 @@ return {
 				automatic_installation = false,
 				ensure_installed = {
 					'angularls', 'bashls', 'cssls',
-					'emmet_ls', 'html',
-					'jsonls', 'jdtls', 'lua_ls',
-					'tsserver', 'vimls',
-					'lemminx', 'yamlls'
+					'emmet_ls', 'html', 'jsonls',
+					'jdtls', 'lua_ls', 'rust_analyzer',
+					'tsserver', 'vimls', 'lemminx',
+					'yamlls'
 				},
 			})
 
@@ -127,10 +127,6 @@ return {
 
 			-- Angular LSP
 			require('lspconfig').angularls.setup({
-				-- cmd = new_cmd,
-				-- on_new_config = function(new_config)
-				-- 	new_config.cmd = new_cmd
-				-- end,
 				root_dir = root_pattern({ '.angular-cli.json', 'angular.json' }),
 				on_attach = on_attach,
 				capabilities = capabilities,
@@ -160,21 +156,21 @@ return {
 			})
 
 			-- Emmet LSP
-			require('lspconfig').emmet_ls.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-				root_dir = root_pattern({ '.git', '*.html', '*.css' }),
-				filtypes = { 'html', 'css' },
-			})
+			-- require('lspconfig').emmet_ls.setup({
+			-- 	on_attach = on_attach,
+			-- 	capabilities = capabilities,
+			-- root_dir = root_pattern({ '.git', '*.html', '*.css' }),
+			-- 	filtypes = { 'html', 'css' },
+			-- })
 
 			-- HTML LSP
 			--Enable (broadcasting) snippet capability for completion
-			require('lspconfig').html.setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-				provideFormatter = true,
-				single_file_support = true
-			})
+			-- require('lspconfig').html.setup({
+			-- 	on_attach = on_attach,
+			-- 	capabilities = capabilities,
+			-- 	provideFormatter = true,
+			-- 	single_file_support = true
+			-- })
 
 			-- JSON LSP
 			require('lspconfig').jsonls.setup({
@@ -260,6 +256,12 @@ return {
 				on_attach = on_attach,
 				capabilities = capabilities,
 				hostInfo = "neovim"
+			})
+
+			-- Rust LSP
+			require('lspconfig').rust_analyzer.setup({
+				on_attach = on_attach,
+				capabilities = capabilities
 			})
 
 			-- Vim LSP
