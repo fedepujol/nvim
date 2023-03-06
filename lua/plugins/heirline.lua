@@ -95,6 +95,12 @@ return {
 			end
 		}
 
+		local FileName = {
+			provider = function (self)
+				return vim.fn.fnamemodify(self.filename, ':t')
+			end
+		}
+
 		local FileIcon = {
 			init = function(self)
 				local filename = self.filename
@@ -109,7 +115,7 @@ return {
 			end,
 		}
 
-		FileNameBlock = utils.insert(FileNameBlock, FileIcon)
+		FileNameBlock = utils.insert(FileNameBlock, FileIcon, Space, FileName)
 
 		-- Git
 		local Git = {
@@ -296,7 +302,7 @@ return {
 
 		local FileType = {
 			provider = function()
-				return vim.bo.filetype
+				return vim.bo.filetype:upper()
 			end,
 		}
 
