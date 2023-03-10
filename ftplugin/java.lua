@@ -10,6 +10,7 @@ local jar = jdtls .. '/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-06
 local config_sys = jdtls .. '/config_win'
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace = home .. '/Workspace/java/' .. project_name
+local masonDir = home .. 'AppData/nvim-data/mason'
 
 config.cmd = {
 	-- 💀
@@ -25,7 +26,7 @@ config.cmd = {
 	'--add-opens', 'java.base/java.util=ALL-UNNAMED',
 	'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 	-- lombok
-	'-javaagent:'.. home .. '/Workspace/tools/editor/eclipse/lombok.jar',
+	'-javaagent:' .. home .. '/Workspace/tools/editor/eclipse/lombok.jar',
 
 	-- 💀
 	'-jar', jar,
@@ -38,7 +39,13 @@ config.cmd = {
 	'-data', workspace
 }
 
-config.root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew', 'mvnw' }, { upward = true})[1])
+local bundles = {
+	vim.fn.glob(masonDir .. '/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar', true)
+}
+
+vim.list_extend(bundles, vim.split(vim.fn.glob(masonDir .. '/packages/java-test/extension/server/*.jar', true), "\n"))
+
+config.root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew', 'mvnw' }, { upward = true })[1])
 
 config.settings = {
 	['java.format.settings.url'] = '/f/java-test/eclipse-java-google-style.xml',
@@ -63,19 +70,25 @@ config.settings = {
 		},
 		signatureHelp = {
 			enabled = true
-		};
+		},
 		sources = {
 			organizeImports = {
-				starThreshold = 9999;
-				staticStarThreshold = 9999;
-			};
-		};
-	},
-	init_options = {
-		jvm_args = '-javaagent:', home .. '\\.m2\\repository\\org\\projectlombok\\lombok\\1.16.18\\lombok-1.16.18.jar',
-		bundles = {}
+				starThreshold = 9999,
+				staticStarThreshold = 9999,
+			},
+		},
 	},
 }
+
+config["init_options"] = {
+	bundles = bundles,
+	jvm_args = '-javaagent:' .. home .. '/Workspace/tools/editor/eclipse/lombok.jar',
+}
+
+config["on_attach"] = function(client, bufnr)
+	require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+	require('jdtls.setup').add_commands()
+end
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
