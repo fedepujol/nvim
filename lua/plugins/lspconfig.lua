@@ -7,6 +7,7 @@ return {
 			'folke/neodev.nvim',
 			'neovim/nvim-lspconfig',
 			'mfussenegger/nvim-jdtls',
+			'mfussenegger/nvim-dap',
 			'j-hui/fidget.nvim',
 		},
 		config = function()
@@ -15,9 +16,9 @@ return {
 					check_outdated_packages_on_open = false,
 					border = 'rounded',
 					icons = {
-						server_installed = '﫟',
-						server_pending = '神',
-						server_uninstalled = '',
+						package_installed = '﫟',
+						package_pending = '神',
+						package_uninstalled = '',
 					},
 					keymaps = {
 						toggle_server_expand = "<CR>",
@@ -156,21 +157,21 @@ return {
 			})
 
 			-- Emmet LSP
-			-- require('lspconfig').emmet_ls.setup({
-			-- 	on_attach = on_attach,
-			-- 	capabilities = capabilities,
-			-- root_dir = root_pattern({ '.git', '*.html', '*.css' }),
-			-- 	filtypes = { 'html', 'css' },
-			-- })
+			require('lspconfig').emmet_ls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				root_dir = root_pattern({ '.git', '*.html', '*.css' }),
+				filtypes = { 'html', 'css' },
+			})
 
 			-- HTML LSP
-			--Enable (broadcasting) snippet capability for completion
-			-- require('lspconfig').html.setup({
-			-- 	on_attach = on_attach,
-			-- 	capabilities = capabilities,
-			-- 	provideFormatter = true,
-			-- 	single_file_support = true
-			-- })
+			-- Enable (broadcasting) snippet capability for completion
+			require('lspconfig').html.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				provideFormatter = true,
+				single_file_support = true
+			})
 
 			-- JSON LSP
 			require('lspconfig').jsonls.setup({
@@ -241,6 +242,20 @@ return {
 				},
 				on_attach = on_attach,
 				capabilities = capabilities,
+			})
+
+			-- Nix LSP
+			require('lspconfig').nil_ls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				single_file_support = true,
+				settings = {
+					['nil'] = {
+						formatting = {
+							command = { "nixpkgs-fmt" }
+						}
+					}
+				}
 			})
 
 			-- Python LSP
