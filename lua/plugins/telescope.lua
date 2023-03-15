@@ -3,11 +3,11 @@
 return {
 	'nvim-telescope/telescope.nvim',
 	keys = {
-		{ '<C-p>', "<CMD>lua require('telescope.builtin').find_files({previewer = false})<CR>", desc = "Find Files" }
+		{ '<leader>fp', "<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>", desc = "Find Files" },
+		{ '<leader>fh', ":Telescope help_tags<CR>",                                                  desc = "Find Help" },
+		{ '<leader>fg', ":Telescope live_grep<CR>",                                                  desc = "Live Grep" },
 	},
 	config = function()
-		local wk = require('which-key')
-
 		-- Telescope
 		require('telescope').setup({
 			defaults = {
@@ -40,14 +40,5 @@ return {
 				set_env = { ['COLORTERM'] = 'truecolor' },
 			},
 		})
-
-		wk.register({
-			name = 'Find',
-			b = { '<cmd>lua require("telescope.builtin").buffers()<CR>', 'Buffers' },
-			c = { '<cmd>:Telescope commands<CR>', 'Commands' },
-			g = { '<cmd>lua require("telescope.builtin").live_grep()<CR>', 'Live Grep' },
-			h = { '<cmd>lua require("telescope.builtin").help_tags()<CR>', 'Help Tags' },
-			o = { '<cmd>lua require("telescope.builtin").oldfiles()<CR>', 'Old files' },
-		}, { mode = 'n', prefix = '<C-f>', noremap = true, silent = true })
 	end,
 }
