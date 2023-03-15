@@ -33,12 +33,5 @@ return {
 		-- Move between buffers
 		vim.keymap.set('n', '<TAB>', ':BufferNext<CR>', opts)
 		vim.keymap.set('n', '<S-TAB>', ':BufferPrevious<CR>', opts)
-
-		-- Re-order
-		vim.keymap.set('n', '<M-.>', ':BufferMoveNext<CR>', opts)
-		vim.keymap.set('n', '<M-,>', ':BufferMovePrevious<CR>', opts)
-
-		-- Close
-		vim.keymap.set('n', '<M-c>', ':BufferClose!<CR>', opts)
 	end
 }
