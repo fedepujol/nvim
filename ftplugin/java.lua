@@ -10,7 +10,7 @@ local jar = jdtls .. '/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-06
 local config_sys = jdtls .. '/config_win'
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace = home .. '/Workspace/java/' .. project_name
-local masonDir = home .. 'AppData/nvim-data/mason'
+local masonDir = home .. '/AppData/Local/nvim-data/mason'
 
 config.cmd = {
 	-- 💀
@@ -80,12 +80,12 @@ config.settings = {
 	},
 }
 
-config["init_options"] = {
+config.init_options = {
 	bundles = bundles,
 	jvm_args = '-javaagent:' .. home .. '/Workspace/tools/editor/eclipse/lombok.jar',
 }
 
-config["on_attach"] = function(client, bufnr)
+config.on_attach = function(client, bufnr)
 	require('jdtls').setup_dap({ hotcodereplace = 'auto' })
 	require('jdtls.setup').add_commands()
 end
