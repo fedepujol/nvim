@@ -47,6 +47,7 @@ vim.opt.undolevels = 2000
 vim.opt.conceallevel = 0 -- Determine how text with the "conceal" attribute is shown. 0 -> As text
 vim.opt.cursorline = true -- Enable hightlightning of the current line
 vim.opt.list = true -- Always show Tabs
+vim.opt.number = true -- Number line
 vim.opt.relativenumber = true -- Relative numbers line
 vim.opt.signcolumn = 'yes' -- Always show the SignColumn
 vim.opt.wrap = false -- Display long lines as such

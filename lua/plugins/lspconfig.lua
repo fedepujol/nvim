@@ -1,6 +1,7 @@
 -- Lsp Config
 return {
-	{ 'williamboman/mason.nvim',
+	{
+		'williamboman/mason.nvim',
 		event = "BufReadPost",
 		dependencies = {
 			'williamboman/mason-lspconfig.nvim',
@@ -201,7 +202,8 @@ return {
 							},
 							{
 								fileMatch = { 'angular.json' },
-								url = 'https://raw.githubusercontent.com/angular/angular-cli/master/packages/angular/cli/lib/config/workspace-schema.json'
+								url =
+								'https://raw.githubusercontent.com/angular/angular-cli/master/packages/angular/cli/lib/config/workspace-schema.json'
 							},
 							{
 								fileMatch = { '.eslintrc' },
@@ -244,6 +246,19 @@ return {
 				capabilities = capabilities,
 			})
 
+			-- Markdown LSP's
+			require('lspconfig').marksman.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				single_file_support = true
+			})
+
+			require('lspconfig').prosemd_lsp.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				single_file_support = true
+			})
+
 			-- Nix LSP
 			require('lspconfig').nil_ls.setup({
 				on_attach = on_attach,
@@ -270,7 +285,9 @@ return {
 			require('lspconfig').tsserver.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
-				hostInfo = "neovim"
+				init_options = {
+					hostInfo = "neovim"
+				},
 			})
 
 			-- Rust LSP

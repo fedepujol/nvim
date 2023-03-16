@@ -3,7 +3,7 @@ return {
 	'rebelot/heirline.nvim',
 	event = 'VeryLazy',
 	dependencies = {
-		'kyazdani42/nvim-web-devicons',
+		'nvim-tree/nvim-web-devicons',
 		'lewis6991/gitsigns.nvim'
 	},
 	config = function()
@@ -95,27 +95,57 @@ return {
 			end
 		}
 
+		local FileFlags = {
+			{
+				condition = function()
+					return vim.bo.modified
+				end,
+				provider = "●",
+				hl = { fg = utils.get_highlight('DiagnosticHint').fg },
+			},
+			{
+				condition = function()
+					return not vim.bo.modifiable or vim.bo.readonly
+				end,
+				provider = "",
+				hl = { fg = utils.get_highlight('DiagnosticWarn').fg },
+			},
+		}
+
 		local FileName = {
-			provider = function (self)
-				return vim.fn.fnamemodify(self.filename, ':t')
-			end
+			init = function(self)
+				self.lfilename = vim.fn.fnamemodify(self.filename, ":.")
+				if self.lfilename == "" then self.lfilename = "[Undefined]" end
+			end,
+			flexible = 2,
+			{
+				provider = function(self)
+					return " " .. vim.fn.pathshorten(self.lfilename)
+				end,
+			},
+			{
+				provider = function(self)
+					return " ".. vim.fn.fnamemodify(self.filename, ":t")
+				end,
+			},
 		}
 
 		local FileIcon = {
-			init = function(self)
-				local filename = self.filename
+			provider = function()
+				local filename = vim.api.nvim_buf_get_name(0)
 				local extension = vim.fn.fnamemodify(filename, ':e')
-				self.icon, self.icon_color = ndIcons.get_icon_color(filename, extension, { default = true })
+				local icon, _ = ndIcons.get_icon_color(filename, extension, { default = true })
+				return icon
 			end,
-			provider = function(self)
-				return self.icon and (self.icon)
-			end,
-			hl = function(self)
-				return { fg = self.icon_color }
+			hl = function()
+				local filename = vim.api.nvim_buf_get_name(0)
+				local extension = vim.fn.fnamemodify(filename, ':e')
+				local _, icon_color = ndIcons.get_icon_color(filename, extension, { default = true })
+				return { fg = icon_color }
 			end,
 		}
 
-		FileNameBlock = utils.insert(FileNameBlock, FileIcon, Space, FileName)
+		FileNameBlock = utils.insert(FileNameBlock, FileName, FileFlags, { provider = "%<"})
 
 		-- Git
 		local Git = {
@@ -126,56 +156,72 @@ return {
 					or self.status_dict.removed ~= 0
 					or self.status_dict.changed ~= 0
 			end,
-			{ flexible = 2, {
-				provider = function(self)
-					return ' ' .. self.status_dict.head .. ' '
-				end,
-				hl = { fg = utils.get_highlight('PreProc').fg },
-			}, {
-				provider = function()
-					return ' '
-				end,
-				hl = { fg = utils.get_highlight('PreProc').fg },
-			} },
-			{ flexible = 2, {
-				provider = function(self)
-					local count = self.status_dict.added or 0
-					return count > 0 and (' ' .. count) .. ' '
-				end,
-				hl = { fg = utils.get_highlight('GitSignsAdd').fg },
-			}, {
-				provider = function(self)
-					local count = self.status_dict.added or 0
-					return count > 0 and '● '
-				end,
-				hl = { fg = utils.get_highlight('GitSignsAdd').fg },
-			} },
-			{ flexible = 2, {
-				provider = function(self)
-					local count = self.status_dict.removed or 0
-					return count > 0 and (' ' .. count) .. ' '
-				end,
-				hl = { fg = utils.get_highlight('GitSignsChange').fg },
-			}, {
-				provider = function(self)
-					local count = self.status_dict.removed or 0
-					return count > 0 and '● '
-				end,
-				hl = { fg = utils.get_highlight('GitSignsChange').fg },
-			} },
-			{ flexible = 2, {
-				provider = function(self)
-					local count = self.status_dict.changed or 0
-					return count > 0 and (' ' .. count)
-				end,
-				hl = { fg = utils.get_highlight('GitSignsDelete').fg },
-			}, {
-				provider = function(self)
-					local count = self.status_dict.changed or 0
-					return count > 0 and '●'
-				end,
-				hl = { fg = utils.get_highlight('GitSignsDelete').fg },
-			} },
+			{
+				flexible = 2,
+				{
+					provider = function(self)
+						return ' ' .. self.status_dict.head .. ' '
+					end,
+					hl = { fg = utils.get_highlight('PreProc').fg },
+				},
+				{
+					provider = function()
+						return ' '
+					end,
+					hl = { fg = utils.get_highlight('PreProc').fg },
+				}
+			},
+			{
+				flexible = 2,
+				{
+					provider = function(self)
+						local count = self.status_dict.added or 0
+						return count > 0 and (' ' .. count) .. ' '
+					end,
+					hl = { fg = utils.get_highlight('GitSignsAdd').fg },
+				},
+				{
+					provider = function(self)
+						local count = self.status_dict.added or 0
+						return count > 0 and '● '
+					end,
+					hl = { fg = utils.get_highlight('GitSignsAdd').fg },
+				}
+			},
+			{
+				flexible = 2,
+				{
+					provider = function(self)
+						local count = self.status_dict.removed or 0
+						return count > 0 and (' ' .. count) .. ' '
+					end,
+					hl = { fg = utils.get_highlight('GitSignsChange').fg },
+				},
+				{
+					provider = function(self)
+						local count = self.status_dict.removed or 0
+						return count > 0 and '● '
+					end,
+					hl = { fg = utils.get_highlight('GitSignsChange').fg },
+				}
+			},
+			{
+				flexible = 2,
+				{
+					provider = function(self)
+						local count = self.status_dict.changed or 0
+						return count > 0 and (' ' .. count)
+					end,
+					hl = { fg = utils.get_highlight('GitSignsDelete').fg },
+				},
+				{
+					provider = function(self)
+						local count = self.status_dict.changed or 0
+						return count > 0 and '●'
+					end,
+					hl = { fg = utils.get_highlight('GitSignsDelete').fg },
+				}
+			},
 		}
 
 		local GitBlock = utils.insert(Git, { provider = '%<' })
@@ -246,7 +292,7 @@ return {
 			provider = function()
 				local res = ''
 				if not vim.bo.expandtab then
-					res = 'Tab Size: ' .. vim.bo.shiftwidth
+					res = 'Tabs: ' .. vim.bo.shiftwidth
 				else
 					res = 'Spaces: ' .. vim.bo.shiftwidth
 				end
@@ -278,26 +324,6 @@ return {
 				return res
 			end,
 			hl = { fg = utils.get_highlight('Character').fg }
-		}
-
-		-- File Size
-		local FileSize = {
-			condition = function()
-				return vim.api.nvim_buf_get_name(0) ~= ''
-			end,
-			provider = function()
-				local i = 1
-				local suffix = { 'b', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb' }
-				local fSize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
-
-				fSize = (fSize < 0 and 0) or fSize
-				while fSize >= 1024 do
-					fSize = fSize / 1024
-					i = i + 1
-				end
-
-				return string.format('%.2g%s', fSize, suffix[i])
-			end,
 		}
 
 		local FileType = {
@@ -348,24 +374,29 @@ return {
 
 		-- Config
 		local MainLine = {
+			-- Right
 			ViMode,
 			Space,
 			GitBlock,
 			Space,
 			FileNameBlock,
 			Space,
-			FileType,
-			Space,
-			FileSize,
 			Align,
+
+			-- Center
 			LSPBlock,
 			Align,
+
+			-- Left
+			FileIcon,
+			Space,
+			FileType,
+			Space,
+			FileEncoding,
 			Space,
 			FileFormat,
 			Space,
 			FileIndent,
-			Space,
-			FileEncoding,
 			Space,
 			Ruler,
 			Space,
