@@ -31,11 +31,18 @@ require('which-key').setup({
 local wk = require('which-key')
 
 wk.register({
-	['|'] = {
-		name = 'General Settings',
+	s = {
+		name = 'Settings',
 		h = { ':checkhealth<CR>', 'Neovim Health' },
-		v = { ':Telescope vim_options<CR>', 'Vim Options' },
+		l = { ':Lazy<CR>', 'Lazy Info' },
+		m = { ':Mason<CR>', 'Mason Info' },
 		o = { ':CmpStatus<CR>', 'Completion Status' },
+		t = {
+			name = 'TreeSitter',
+			m = { ':TSModuleInfo<CR>', 'Module Info' },
+			i = { ':TSInstallInfo<CR>', 'Install Info' },
+		},
+		v = { ':Telescope vim_options<CR>', 'Vim Options' },
 	},
 	b = {
 		name = 'Buffers',
@@ -64,9 +71,11 @@ wk.register({
 	},
 	f = {
 		name = 'Files',
-		p = { "<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>", desc = "Find Files" },
-		h = { ":Telescope help_tags<CR>",                                                  desc = "Find Help" },
-		g = { ":Telescope live_grep<CR>",                                                  desc = "Live Grep" },
+		a = { ':normal!gg0vG$<CR>', 'Select all' },
+		d = { ':normal!$x<CR>', 'Delete last character' },
+		g = { ":Telescope live_grep<CR>", "Live Grep" },
+		h = { ":Telescope help_tags<CR>", "Find Help" },
+		p = { "<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>", "Find Files" },
 	},
 	g = {
 		name = 'Git',
@@ -94,27 +103,13 @@ wk.register({
 			p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev. Diagnostic' },
 		},
 	},
-	m = {
-		name = 'Mason',
-		i = { ':Mason<CR>', 'Mason Info' },
-	},
-	p = {
-		name = 'Lazy Plugin Manager',
-		i = { ':Lazy<CR>', 'Lazy Info' }
-	},
-	r = {
-		name = 'Run commands',
-		l = { ':luafile %<CR>', 'Run luafile' },
-	},
-	s = {
-		name = 'TreeSitter',
-		m = { ':TSModuleInfo<CR>', 'Module Info' },
-		i = { ':TSInstallInfo<CR>', 'Install Info' },
+	t = {
+		name = "Terminal",
+		t = { ":ToggleTerm<CR>", 'Toggle Terminal' },
 	},
 	u = {
-		name = 'Utilities',
-		d = { ':normal!$x<CR>', 'Delete last character' },
-		a = { ':normal!gg0vG$<CR>', 'Select all' },
+		name = 'UndoTree',
+		t = { ':UndotreeToggle<CR>', 'Toggle UndoTree' },
 	},
 }, { mode = 'n', prefix = '<leader>', noremap = true, silent = true })
 
