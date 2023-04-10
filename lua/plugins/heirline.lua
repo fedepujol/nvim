@@ -95,21 +95,9 @@ return {
 			end
 		}
 
-		local FileFlags = {
-			{
-				condition = function()
-					return vim.bo.modified
-				end,
-				provider = "●",
-				hl = { fg = utils.get_highlight('DiagnosticHint').fg },
-			},
-			{
-				condition = function()
-					return not vim.bo.modifiable or vim.bo.readonly
-				end,
-				provider = "",
-				hl = { fg = utils.get_highlight('DiagnosticWarn').fg },
-			},
+		local FolderIcon = {
+			provider = ' ',
+			hl = { fg = utils.get_highlight('Directory').fg }
 		}
 
 		local FileName = {
@@ -120,12 +108,12 @@ return {
 			flexible = 2,
 			{
 				provider = function(self)
-					return " " .. vim.fn.pathshorten(self.lfilename)
+					return vim.fn.pathshorten(self.lfilename)
 				end,
 			},
 			{
 				provider = function(self)
-					return " ".. vim.fn.fnamemodify(self.filename, ":t")
+					return vim.fn.fnamemodify(self.filename, ":t")
 				end,
 			},
 		}
@@ -145,7 +133,7 @@ return {
 			end,
 		}
 
-		FileNameBlock = utils.insert(FileNameBlock, FileName, FileFlags, { provider = "%<"})
+		FileNameBlock = utils.insert(FileNameBlock, FolderIcon, FileName, { provider = "%<" })
 
 		-- Git
 		local Git = {
@@ -292,9 +280,9 @@ return {
 			provider = function()
 				local res = ''
 				if not vim.bo.expandtab then
-					res = 'Tabs: ' .. vim.bo.shiftwidth
+					res = 'TAB: ' .. vim.bo.shiftwidth
 				else
-					res = 'Spaces: ' .. vim.bo.shiftwidth
+					res = 'SPC: ' .. vim.bo.shiftwidth
 				end
 				return res
 			end,
@@ -315,15 +303,15 @@ return {
 				local res = ''
 				local fmt = vim.bo.fileformat
 				if fmt == 'unix' then
-					res = ' ' .. fmt:upper()
+					res = ' '
 				elseif fmt == 'dos' then
-					res = ' ' .. fmt:upper()
+					res = ' '
 				else
-					res = ' ' .. fmt:upper()
+					res = ' '
 				end
 				return res
 			end,
-			hl = { fg = utils.get_highlight('Character').fg }
+			hl = { fg = utils.get_highlight('Number').fg }
 		}
 
 		local FileType = {
@@ -392,11 +380,10 @@ return {
 			Space,
 			FileType,
 			Space,
-			FileEncoding,
+			FileIndent,
 			Space,
 			FileFormat,
-			Space,
-			FileIndent,
+			FileEncoding,
 			Space,
 			Ruler,
 			Space,

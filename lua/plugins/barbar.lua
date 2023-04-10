@@ -10,17 +10,29 @@ return {
 			tabpages = false, -- Enable current/total tabpages indicator
 			closable = true, -- Enables close button
 			clickable = true, -- Enables clickable tabs. (Left-click goto buffer, middle-click closes)
-			diagnostics = {
-				{ enabled = false }, -- Error
-				{ enabled = false }, -- Warn
-				{ enabled = false }, -- Info
-				{ enabled = false }, -- Hint
+			icons = {
+				buffer_index = false, -- Show buffer index
+				buffer_number = true, -- Show bufnr
+				diagnostics = {
+					{ enabled = false }, -- Error
+					{ enabled = false }, -- Warn
+					{ enabled = false }, -- Info
+					{ enabled = false }, -- Hint
+				},
+				filetype = {
+					custom_colors = false
+				},
+				separator = {
+					left = '|',
+					right = '|',
+				},
+				inactive = {
+					separator = {
+						left = '|',
+						right = '|'
+					}
+				}
 			},
-			exclude_name = { 'package.json' },
-			icons = true, -- Enable icons
-			icon_custom_colors = false,
-			icon_separator_active = '|', -- Separator icon for active tabs
-			icon_separator_inactive = '|', -- Separator icon for inactive tabs
 			insert_at_end = false, -- Enables open new buffer at the end (Defaults to false -> open after current)
 			insert_at_start = false, -- Enables open new buffer at the start. Has priority over insert_at_end. (Defualts to false -> open after current)
 			maximum_length = 50, -- Maximum buffer name length
