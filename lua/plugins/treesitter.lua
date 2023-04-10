@@ -15,9 +15,12 @@ return {
 			ensure_installed = {
 				'bash', 'c', 'cmake', 'cpp',
 				'css', 'haskell', 'help', 'hjson',
+				'git_config', 'gitignore', 'comment',
 				'html', 'http', 'java', 'javascript',
+				'ini', 'query', 'rasi', 'sxhkdrc',
 				'jsdoc', 'json', 'json5', 'jsonc',
-				'llvm', 'lua', 'markdown', 'markdown_inline', 'nix',
+				'llvm', 'lua', 'luadoc', 'luap',
+				'markdown', 'markdown_inline', 'nix',
 				'pascal', 'python', 'scheme', 'regex',
 				'scss', 'toml', 'tsx', 'typescript',
 				'vim', 'yaml',

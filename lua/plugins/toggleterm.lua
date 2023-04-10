@@ -2,9 +2,7 @@
 
 return {
 	'akinsho/nvim-toggleterm.lua',
-	keys = {
-		{ '<leader>ti', ":ToggleTerm<CR>", desc = 'Toggle Terminal'}
-	},
+	cmd = "ToggleTerm",
 	config = function()
 		local wk = require('which-key')
 		local Terminal = require('toggleterm.terminal').Terminal
@@ -53,10 +51,6 @@ return {
 		end
 
 		wk.register({
-			t = {
-				name = 'Terminal',
-				i = { '<cmd>:ToggleTerm<CR>', 'New/Toggle Term' },
-			},
 			g = {
 				l = { '<cmd>lua lazygit_toggle()<CR>', 'Lazygit' },
 				d = { '<cmd>lua diff_toggle()<CR>', 'DiffView' },
