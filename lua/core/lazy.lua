@@ -21,7 +21,6 @@ require('lazy').setup({
 		{
 			'fedepujol/nv-themes',
 			lazy = false,
-			dev = true,
 			priority = 1000,
 			config = function()
 				vim.cmd([[color nv-cosmos]])
