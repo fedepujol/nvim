@@ -21,19 +21,42 @@ require('lazy').setup({
 		{
 			'fedepujol/nv-themes',
 			lazy = false,
+			dev = true,
 			priority = 1000,
 			config = function()
-				vim.cmd([[colorschem nv-cosmos]])
+				vim.cmd([[color nv-cosmos]])
 			end
 		},
 		{
 			'fedepujol/move.nvim',
-			cmd = "MoveLine"
+			cmd = {
+				"MoveLine", "MoveBlock", "MoveWord",
+			},
+		},
+		{
+			'rktjmp/lush.nvim',
+			cmd = 'Lushify',
+		},
+		{
+			'rktjmp/shipwright.nvim',
+			cmd = 'Shipwright',
 		},
 		{ 'folke/which-key.nvim' },
+		{
+			'mfussenegger/nvim-jdtls',
+			ft = 'java',
+			dependencies = {
+				'mfussenegger/nvim-dap'
+			}
+		},
 		{ import = 'plugins' },
 	},
-	defaults = { lazy = true },
+	defaults = {
+		lazy = true,
+	},
+	ui = {
+		border = "rounded",
+	},
 	diff = { cmd = 'terminal.git' },
 	performance = {
 		cache = {
