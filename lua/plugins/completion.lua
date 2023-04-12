@@ -90,7 +90,7 @@ return {
 				{ name = 'nvim_lua' },
 				{ name = 'vsnip' },
 				{ name = 'path' },
-				{ name = 'buffer', keyword_length = 5, max_item_count = 5 },
+				{ name = 'buffer',                 keyword_length = 5, max_item_count = 5 },
 			},
 			formatting = {
 				format = function(_, vim_item)
@@ -100,9 +100,10 @@ return {
 			},
 		})
 
-		cmp.setup.cmdline({'/', '?'}, {
+		cmp.setup.cmdline({ '/', '?' }, {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = {
+				{ name = 'nvim_lsp_document_symbol' },
 				{ name = 'buffer' }
 			}
 		})
