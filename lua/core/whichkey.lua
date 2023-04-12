@@ -73,9 +73,6 @@ wk.register({
 		name = 'Files',
 		a = { ':normal!gg0vG$<CR>', 'Select all' },
 		d = { ':normal!$x<CR>', 'Delete last character' },
-		g = { ":Telescope live_grep<CR>", "Live Grep" },
-		h = { ":Telescope help_tags<CR>", "Find Help" },
-		p = { "<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>", "Find Files" },
 	},
 	g = {
 		name = 'Git',
