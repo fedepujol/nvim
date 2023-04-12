@@ -4,8 +4,8 @@ return {
 	'nvim-telescope/telescope.nvim',
 	keys = {
 		{ '<leader>fp', "<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>", desc = "Find Files" },
-		{ '<leader>fh', ":Telescope help_tags<CR>",                                                  desc = "Find Help" },
-		{ '<leader>fg', ":Telescope live_grep<CR>",                                                  desc = "Live Grep" },
+		{ '<leader>fh', "<cmd>Telescope help_tags<CR>",                                              desc = "Find Help" },
+		{ '<leader>fg', "<cmd>Telescope live_grep<CR>",                                              desc = "Live Grep" },
 	},
 	config = function()
 		-- Telescope
