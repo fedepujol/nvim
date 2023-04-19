@@ -17,13 +17,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-	spec = {
+		-- Spec
 		{
-			'fedepujol/nv-themes',
+			'fedepujol/cosmos.nvim',
 			lazy = false,
 			priority = 1000,
 			config = function()
-				vim.cmd([[color nv-cosmos]])
+				vim.cmd([[color cosmos]])
 			end
 		},
 		{
@@ -50,16 +50,29 @@ require('lazy').setup({
 		},
 		{ import = 'plugins' },
 	},
-	defaults = {
-		lazy = true,
-	},
-	ui = {
-		border = "rounded",
-	},
-	diff = { cmd = 'terminal.git' },
-	performance = {
-		cache = {
-			enabled = true
-		}
-	},
-})
+	-- Opts
+	{
+		defaults = {
+			lazy = true
+		},
+		dev = {
+			path = "~/workspace/nvim"
+		},
+		ui = {
+			border = "rounded",
+		},
+		diff = {
+			cmd = 'terminal.git'
+		},
+		checker = {
+			enabled = false,
+		},
+		change_detection = {
+			enabled = false
+		},
+		performance = {
+			cache = {
+				enabled = true
+			}
+		},
+	})
