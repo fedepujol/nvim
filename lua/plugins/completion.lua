@@ -56,6 +56,10 @@ return {
 					vim.fn['vsnip#anonymous'](args.body)
 				end,
 			},
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered()
+			},
 			mapping = {
 				['<CR>'] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Insert,
@@ -93,8 +97,15 @@ return {
 				{ name = 'buffer',                 keyword_length = 5, max_item_count = 5 },
 			},
 			formatting = {
-				format = function(_, vim_item)
+				format = function(entry, vim_item)
 					vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+					vim_item.menu = ({
+						nvim_lsp = "[Lsp]",
+						nvim_lua = "[Lua]",
+						visnip = "[ViSnip]",
+						path = "[Path]",
+						buffer = "[Buffer]",
+					})[entry.source.name]
 					return vim_item
 				end,
 			},
