@@ -171,7 +171,7 @@ return {
 				},
 				find_by_full_path_words = false, -- `false` means it only searches the tail of a path.
 				search_limit = 50, -- max number of search results when using filters
-				follow_current_file = false, -- This will find and focus the file in the active buffer every time
+				follow_current_file = true, -- This will find and focus the file in the active buffer every time
 				hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
 				use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
 			},
