@@ -36,7 +36,7 @@ return {
 			ensure_installed = {
 				'angularls', 'bashls', 'cssls',
 				'emmet_ls', 'html', 'jsonls',
-				'jdtls', 'lua_ls', 'rust_analyzer',
+				'jdtls', 'lua_ls',
 				'tsserver', 'vimls', 'lemminx',
 				'yamlls'
 			},
@@ -120,7 +120,9 @@ return {
 			return orig_util_open_floating_preview(contents, syntax, opts, ...)
 		end
 
-		local capabilities = require('cmp_nvim_lsp').default_capabilities()
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 		local root_pattern = require('lspconfig.util').root_pattern
 
@@ -271,7 +273,7 @@ return {
 
 		-- Rust LSP
 		require('lspconfig').rust_analyzer.setup({
-			capabilities = capabilities
+			capabilities = capabilities,
 		})
 
 		-- Vim LSP
@@ -288,10 +290,13 @@ return {
 					runtimepath = true,
 				},
 				isNeovim = true,
+				isKeyword = '@,48-57,_,192-255,-#',
+				runtimepath = '',
 				suggest = {
 					fromRuntimepath = true,
 					fromVimruntime = true,
 				},
+				vimruntime = '',
 			},
 		})
 
