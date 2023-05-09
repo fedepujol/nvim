@@ -12,7 +12,7 @@ It provides the following:
 - LSP’s
 - Snippets
 - Statusline
-- Tabline
+- Bufferline
 - Terminal Wrapper
 
 ## Index
@@ -36,8 +36,6 @@ It provides the following:
   [NerdFonts](https://github.com/ryanoasis/nerd-fonts) guys)
 - Terminal emulator capable of using a patched font (For Windows you may try
   [Windows Terminal](https://github.com/Microsoft/Terminal)).
-- [Lazy.nvim](https://github.com/folke/lazy.nvim)
-  (package manager to lazy load your config).
 
 If you're using this configuration with NeoVim 0.6/0.6.1, you'll have to deal
 with the formatters outputing wrong `eol` in `Windows` files (fileformats=dos).
