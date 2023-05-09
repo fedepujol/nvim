@@ -19,8 +19,8 @@ return {
 			enable_diagnostics = false,
 			enable_git_status = true,
 			git_status_async = true,
-			log_level = 'info', -- "trace", "debug", "info", "warn", "error", "fatal"
-			log_to_file = false, -- true, false, "/path/to/file.log", use :NeoTreeLogs to show the file
+			log_level = 'info',      -- "trace", "debug", "info", "warn", "error", "fatal"
+			log_to_file = false,     -- true, false, "/path/to/file.log", use :NeoTreeLogs to show the file
 			open_files_in_last_window = true, -- false = open files in top left window
 			popup_border_style = 'rounded', -- "double", "none", "rounded", "shadow", "single" or "solid"
 			resize_timer_interval = 50, -- in ms, needed for containers to redraw right aligned and faded content
@@ -77,10 +77,12 @@ return {
 				['component.html'] = { 'component.css', 'component.ts' },
 				['component.ts'] = { 'component.spec.ts' },
 			},
-			window = { -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
+			window = {
+				-- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
 				position = 'left', -- left, right, float, current
 				width = 40, -- applies to left and right positions
-				popup = { -- settings that apply to float position only
+				popup = {
+					-- settings that apply to float position only
 					size = {
 						height = '80%',
 						width = '50%',
@@ -123,7 +125,7 @@ return {
 							width = '100%',
 							right_padding = 1,
 							content = {
-								{ 'name', zindex = 10 },
+								{ 'name',        zindex = 10 },
 								{ 'diagnostics', errors_only = true, zindex = 20, align = 'right' },
 							},
 						},
@@ -170,7 +172,7 @@ return {
 					},
 				},
 				find_by_full_path_words = false, -- `false` means it only searches the tail of a path.
-				search_limit = 50, -- max number of search results when using filters
+				search_limit = 50,          -- max number of search results when using filters
 				follow_current_file = true, -- This will find and focus the file in the active buffer every time
 				hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
 				use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
