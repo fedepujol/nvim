@@ -2,7 +2,7 @@
 
 return {
 	'NvChad/nvim-colorizer.lua',
-	event = 'BufReadPost',
+	cmd = 'ColorizerAttachToBuffer',
 	config = function()
 		require('colorizer').setup({
 			'*',
