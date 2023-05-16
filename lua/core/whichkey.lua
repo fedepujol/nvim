@@ -20,12 +20,14 @@ require('which-key').setup({
 		['<Tab>'] = 'TAB',
 		['<leader>'] = 'LEAD',
 	},
+	icons = {
+		group = ' ',
+	},
 	window = {
-		border = 'none',
+		border = 'single',
 		position = 'bottom',
 	},
 	show_help = true,
-	hidden = { '<silent>', '<cmd>', '<CMD>', '<CR>', 'lua', '^:' },
 })
 
 local wk = require('which-key')
