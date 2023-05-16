@@ -96,7 +96,7 @@ return {
 		}
 
 		local FolderIcon = {
-			provider = ' ',
+			provider = '󰉋 ',
 			hl = { fg = utils.get_highlight('Directory').fg }
 		}
 
@@ -198,7 +198,7 @@ return {
 				{
 					provider = function(self)
 						local count = self.status_dict.changed or 0
-						return count > 0 and (' ' .. count)
+						return count > 0 and ('󰍶  ' .. count)
 					end,
 					hl = { fg = utils.get_highlight('GitSignsDelete').fg },
 				},
@@ -240,7 +240,7 @@ return {
 				error_icon = ' ',
 				warn_icon = ' ',
 				info_icon = ' ',
-				hint_icon = ' ',
+				hint_icon = '󰌵 ',
 			},
 			init = function(self)
 				self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
@@ -307,7 +307,7 @@ return {
 				elseif fmt == 'dos' then
 					res = ' '
 				else
-					res = ' '
+					res = ' '
 				end
 				return res
 			end,
@@ -334,15 +334,15 @@ return {
 				local tL = vim.fn.line('$')
 
 				if cL == 1 then
-					return ' Top'
+					return '󰘣 Top'
 				elseif cL == tL then
-					return ' Bot'
+					return '󰘡 Bot'
 				end
 
 				local result, _ = math.modf((cL / tL) * 100)
 				local percentage = string.format('%02d', result)
 
-				return ' ' .. percentage .. '%%'
+				return '󰉸  ' .. percentage .. '%%'
 			end,
 			hl = {
 				fg = utils.get_highlight('StorageClass').fg,

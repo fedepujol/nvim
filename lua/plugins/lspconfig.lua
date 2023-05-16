@@ -15,8 +15,8 @@ return {
 				check_outdated_packages_on_open = false,
 				border = 'rounded',
 				icons = {
-					package_installed = '﫟',
-					package_pending = '神',
+					package_installed = ' ',
+					package_pending = '󰦖 ',
 					package_uninstalled = '',
 				},
 				keymaps = {
@@ -91,7 +91,7 @@ return {
 		local signs = {
 			Error = '',
 			Warn = '',
-			Hint = '',
+			Hint = '󰌵',
 			Info = ''
 		}
 
