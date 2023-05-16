@@ -1,7 +1,8 @@
 # Neovim Config
 
-Hello there fellow stranger! This is my custom config for Neovim, it has been
-tested on Linux and Windows.
+Hello there fellow stranger! 
+
+This is my custom *PDE* for Neovim! (it has been tested on Linux and Windows).
 
 It provides the following:
 
@@ -14,6 +15,8 @@ It provides the following:
 - Statusline
 - Bufferline
 - Terminal Wrapper
+
+and more!
 
 ## Index
 
@@ -37,9 +40,9 @@ It provides the following:
 - Terminal emulator capable of using a patched font (For Windows you may try
   [Windows Terminal](https://github.com/Microsoft/Terminal)).
 
-If you're using this configuration with NeoVim 0.6/0.6.1, you'll have to deal
-with the formatters outputing wrong `eol` in `Windows` files (fileformats=dos).
-There's an issue on NeoVim, which is already merge.
+> If you're using this configuration with Neovim 0.6/0.6.1, you'll have to deal
+with the formatters outputing wrong `eol` on `Windows` files (`fileformat=dos`).
+There's was an issue, which is already merge.
 
 ## Installation
 
