@@ -1,21 +1,20 @@
+-- Buffer Options
+vim.opt_local.tabstop = 2
+vim.opt_local.shiftwidth = 2
+vim.opt_local.expandtab = true
+
 -- Java JDTLS
 local config = {}
-local home = os.getenv('HOME') or ('C:\\Users\\' .. os.getenv('USERNAME'))
-local work_dir = home .. '/Workspace/tools/java'
-local jdk17 = work_dir .. '/jdk-17.0.6'
-local jdk18 = work_dir .. '/jdk-18.0.1.1'
+local paths = require('utils')
+local jdtlsPaths = paths.jdtlsPaths()
+local jdtls = require('jdtls')
 
-local jdtls = work_dir .. '/jdtls'
-local jar = jdtls .. '/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar'
-local config_sys = jdtls .. '/config_win'
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace = home .. '/Workspace/java/' .. project_name
-local masonDir = home .. '/AppData/Local/nvim-data/mason'
+vim.print(jdtlsPaths)
+vim.print(paths)
 
 config.cmd = {
-	-- 💀
-	jdk17 .. '/bin/java.exe', -- or '/path/to/java11_or_newer/bin/java'
-
+	-- 💀 or '/path/to/java11_or_newer/bin/java'
+	jdtlsPaths.jdk .. '/bin/java.exe',
 	'-Declipse.application=org.eclipse.jdt.ls.core.id1',
 	'-Dosgi.bundles.defaultStartLevel=4',
 	'-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -25,30 +24,25 @@ config.cmd = {
 	'--add-modules=ALL-SYSTEM',
 	'--add-opens', 'java.base/java.util=ALL-UNNAMED',
 	'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+
 	-- lombok
-	'-javaagent:' .. home .. '/Workspace/tools/editor/eclipse/lombok.jar',
-
-	-- 💀
-	'-jar', jar,
-
-	-- 💀
-	'-configuration', config_sys,
-
-	-- 💀
-	-- See `data directory configuration` section in the README
-	'-data', workspace
+	'-javaagent:' .. paths.workspace .. '/tools/editor/eclipse/lombok.jar',
+	'-jar', jdtlsPaths.jar,
+	'-configuration', jdtlsPaths.config_sys,
+	'-data', jdtlsPaths.project
 }
 
 local bundles = {
-	vim.fn.glob(masonDir .. '/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar', true)
+	vim.fn.glob(paths.mason .. '/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar',
+		true)
 }
 
-vim.list_extend(bundles, vim.split(vim.fn.glob(masonDir .. '/packages/java-test/extension/server/*.jar', true), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(paths.mason .. '/packages/java-test/extension/server/*.jar', true), "\n"))
 
 config.root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew', 'mvnw' }, { upward = true })[1])
 
 config.settings = {
-	['java.format.settings.url'] = '/f/java-test/eclipse-java-google-style.xml',
+	['java.format.settings.url'] = paths.workspace .. '/java/eclipse-java-google-style.xml',
 	['java.format.settings.profile'] = 'GoogleStyle',
 	java = {
 		configuration = {
@@ -60,12 +54,8 @@ config.settings = {
 				},
 				{
 					name = "JavaSE-17",
-					path = jdk17
+					path = jdtlsPaths.jdk
 				},
-				{
-					name = "JavaSE-18",
-					path = jdk18
-				}
 			}
 		},
 		signatureHelp = {
@@ -80,16 +70,21 @@ config.settings = {
 	},
 }
 
+local extendedClientCapabilities = jdtls.extendedClientCapabilities;
+extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+
 config.init_options = {
 	bundles = bundles,
-	jvm_args = '-javaagent:' .. home .. '/Workspace/tools/editor/eclipse/lombok.jar',
+	jvm_args = '-javaagent:' .. paths.workspace .. '/tools/editor/eclipse/lombok.jar',
+	extendedClientCapabilities = extendedClientCapabilities
 }
 
 config.on_attach = function(client, bufnr)
-	require('jdtls').setup_dap({ hotcodereplace = 'auto' })
-	require('jdtls.setup').add_commands()
+	jdtls.setup_dap({ hotcodereplace = 'auto' })
+	jdtls.setup.add_commands()
 end
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-require('jdtls').start_or_attach(config)
+jdtls.start_or_attach(config)
