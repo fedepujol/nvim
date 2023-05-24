@@ -9,9 +9,6 @@ local paths = require('utils')
 local jdtlsPaths = paths.jdtlsPaths()
 local jdtls = require('jdtls')
 
-vim.print(jdtlsPaths)
-vim.print(paths)
-
 config.cmd = {
 	-- 💀 or '/path/to/java11_or_newer/bin/java'
 	jdtlsPaths.jdk .. '/bin/java.exe',
@@ -42,7 +39,7 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(paths.mason .. '/packages/java-te
 config.root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew', 'mvnw' }, { upward = true })[1])
 
 config.settings = {
-	['java.format.settings.url'] = paths.workspace .. '/java/eclipse-java-google-style.xml',
+	['java.format.settings.url'] = paths.workspace .. '/java/g-format.xml',
 	['java.format.settings.profile'] = 'GoogleStyle',
 	java = {
 		configuration = {
