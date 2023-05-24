@@ -5,9 +5,7 @@ return {
 	dependencies = {
 		'nvim-tree/nvim-web-devicons'
 	},
-	keys = {
-		{ '<leader>ts', ':TroubleToggle<CR>', desc = "Trouble" }
-	},
+	cmd = "TroubleToggle",
 	config = function()
 		require('trouble').setup({
 			position = "bottom",   -- position of the list can be: bottom, top, left, right
