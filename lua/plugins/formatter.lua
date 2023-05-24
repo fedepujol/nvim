@@ -6,9 +6,10 @@ return {
 		local filetypes = require('formatter.filetypes')
 
 		require('formatter').setup({
-			logging = true, -- Enable logging
+			logging = true,         -- Enable logging
 			log_level = vim.log.levels.WARN, -- Log level
-			filetype = { -- Formatter configurations are opt-in
+			filetype = {
+				-- Formatter configurations are opt-in
 				lua = {
 					filetypes.lua.stylua,
 				},
