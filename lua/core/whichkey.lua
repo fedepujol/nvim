@@ -35,10 +35,10 @@ local wk = require('which-key')
 wk.register({
 	s = {
 		name = 'Settings',
+		c = { ':CmpStatus<CR>', 'Completion Status' },
 		h = { ':checkhealth<CR>', 'Neovim Health' },
 		l = { ':Lazy<CR>', 'Lazy Info' },
 		m = { ':Mason<CR>', 'Mason Info' },
-		o = { ':CmpStatus<CR>', 'Completion Status' },
 		t = {
 			name = 'TreeSitter',
 			m = { ':TSModuleInfo<CR>', 'Module Info' },
@@ -90,21 +90,29 @@ wk.register({
 	l = {
 		name = 'LSP',
 		i = { ':LspInfo<CR>', 'Info' },
-		I = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', 'Go to Implementation' },
-		s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document Symbol' },
-		t = { '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Go to Type-Definition' },
-		f = { '<Cmd>lua vim.lsp.buf.format({ async = true })<CR>', 'Format' },
-		r = { ':Telescope lsp_references<CR>', 'Show References' },
-		h = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Get Signature Help' },
+		b = {
+			name = "Buffer",
+			i = { '<Cmd>lua vim.lsp.buf.implementation()<CR>', 'Go to Implementation' },
+			s = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document Symbol' },
+			t = { '<Cmd>lua vim.lsp.buf.type_definition()<CR>', 'Go to Type-Definition' },
+			f = { '<Cmd>lua vim.lsp.buf.format({ async = true })<CR>', 'Format' },
+			h = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Get Signature Help' },
+			r = { ':Telescope lsp_references<CR>', 'Show References' },
+		},
 		d = {
 			name = 'Diagnostics',
 			n = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Next Diagnostic' },
 			p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev. Diagnostic' },
 		},
+		t = {
+			name = "Trouble",
+			t = { ':TroubleToggle<CR>', 'Trouble Toggle'}
+		}
 	},
 	t = {
 		name = "Terminal",
 		t = { ":ToggleTerm<CR>", 'Toggle Terminal' },
+		s = { ":TermSelect<CR>", 'Select Terminal'},
 	},
 	u = {
 		name = 'UndoTree',
