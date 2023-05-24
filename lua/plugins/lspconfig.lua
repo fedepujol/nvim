@@ -192,13 +192,15 @@ return {
 					},
 					schemas = require('schemastore').json.schemas({
 						select = {
+							'.angular-cli.json',
+							'.eslintrc',
+							'.vsconfig',
+							'angular.json',
+							'launchsettings.json',
 							'package.json',
+							'task.json',
 							'tsconfig.json',
 							'tslint.json',
-							'.angular-cli.json',
-							'angular.json',
-							'.eslintrc',
-							'.vsconfig'
 						}
 					})
 				}
