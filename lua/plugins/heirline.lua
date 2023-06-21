@@ -4,7 +4,7 @@ return {
 	event = 'VeryLazy',
 	dependencies = {
 		'nvim-tree/nvim-web-devicons',
-		'lewis6991/gitsigns.nvim'
+		'lewis6991/gitsigns.nvim',
 	},
 	config = function()
 		local M = {}
@@ -92,18 +92,20 @@ return {
 		local FileNameBlock = {
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(0)
-			end
+			end,
 		}
 
 		local FolderIcon = {
 			provider = '󰉋 ',
-			hl = { fg = utils.get_highlight('Directory').fg }
+			hl = { fg = utils.get_highlight('Directory').fg },
 		}
 
 		local FileName = {
 			init = function(self)
-				self.lfilename = vim.fn.fnamemodify(self.filename, ":.")
-				if self.lfilename == "" then self.lfilename = "[Undefined]" end
+				self.lfilename = vim.fn.fnamemodify(self.filename, ':.')
+				if self.lfilename == '' then
+					self.lfilename = '[Undefined]'
+				end
 			end,
 			flexible = 2,
 			{
@@ -113,7 +115,7 @@ return {
 			},
 			{
 				provider = function(self)
-					return vim.fn.fnamemodify(self.filename, ":t")
+					return vim.fn.fnamemodify(self.filename, ':t')
 				end,
 			},
 		}
@@ -128,12 +130,13 @@ return {
 			hl = function()
 				local filename = vim.api.nvim_buf_get_name(0)
 				local extension = vim.fn.fnamemodify(filename, ':e')
-				local _, icon_color = ndIcons.get_icon_color(filename, extension, { default = true })
+				local _, icon_color =
+					ndIcons.get_icon_color(filename, extension, { default = true })
 				return { fg = icon_color }
 			end,
 		}
 
-		FileNameBlock = utils.insert(FileNameBlock, FolderIcon, FileName, { provider = "%<" })
+		FileNameBlock = utils.insert(FileNameBlock, FolderIcon, FileName, { provider = '%<' })
 
 		-- Git
 		local Git = {
@@ -157,7 +160,7 @@ return {
 						return ' '
 					end,
 					hl = { fg = utils.get_highlight('PreProc').fg },
-				}
+				},
 			},
 			{
 				flexible = 2,
@@ -174,7 +177,7 @@ return {
 						return count > 0 and '● '
 					end,
 					hl = { fg = utils.get_highlight('GitSignsAdd').fg },
-				}
+				},
 			},
 			{
 				flexible = 2,
@@ -191,24 +194,24 @@ return {
 						return count > 0 and '● '
 					end,
 					hl = { fg = utils.get_highlight('GitSignsChange').fg },
-				}
+				},
 			},
 			{
 				flexible = 2,
 				{
 					provider = function(self)
 						local count = self.status_dict.changed or 0
-						return count > 0 and ('󰍶  ' .. count)
+						return count > 0 and ('󰍶 ' .. count)
 					end,
 					hl = { fg = utils.get_highlight('GitSignsDelete').fg },
 				},
 				{
 					provider = function(self)
 						local count = self.status_dict.changed or 0
-						return count > 0 and '●'
+						return count > 0 and '● '
 					end,
 					hl = { fg = utils.get_highlight('GitSignsDelete').fg },
-				}
+				},
 			},
 		}
 
@@ -226,7 +229,7 @@ return {
 				for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
 					table.insert(names, server.name)
 				end
-				return ' [' .. table.concat(names, " ") .. ']'
+				return ' [' .. table.concat(names, ' ') .. ']'
 			end,
 			hl = {
 				fg = utils.get_highlight('Type').fg,
@@ -295,7 +298,7 @@ return {
 				local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
 				return enc:upper()
 			end,
-			hl = { fg = utils.get_highlight('Number').fg }
+			hl = { fg = utils.get_highlight('Number').fg },
 		}
 
 		local FileFormat = {
@@ -311,7 +314,7 @@ return {
 				end
 				return res
 			end,
-			hl = { fg = utils.get_highlight('Number').fg }
+			hl = { fg = utils.get_highlight('Number').fg },
 		}
 
 		local FileType = {
@@ -342,7 +345,7 @@ return {
 				local result, _ = math.modf((cL / tL) * 100)
 				local percentage = string.format('%02d', result)
 
-				return '󰉸  ' .. percentage .. '%%'
+				return '󰉸 ' .. percentage .. '%%'
 			end,
 			hl = {
 				fg = utils.get_highlight('StorageClass').fg,
@@ -394,9 +397,9 @@ return {
 		local SpecialLine = {
 			condition = function()
 				return conditions.buffer_matches({
-						buftype = { 'nofile', 'help', 'quickfix' },
-						filetype = { '^git.*', 'fugitive' },
-					}) or (not conditions.is_active())
+					buftype = { 'nofile', 'help', 'quickfix' },
+					filetype = { '^git.*', 'fugitive' },
+				}) or (not conditions.is_active())
 			end,
 			ViMode,
 			Space,
@@ -450,5 +453,5 @@ return {
 		require('heirline').setup({
 			statusline = StatusLines,
 		})
-	end
+	end,
 }
