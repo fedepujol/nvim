@@ -45,5 +45,6 @@ return {
 		maximum_length = 50,    -- Maximum buffer name length
 		semantic_letters = true,
 		no_name_title = 'Undefined', -- Sets the name of unnamed buffers. Only a static string is valid.
+		tabpages = true
 	}
 }
