@@ -48,6 +48,10 @@ require('lazy').setup({
 				'mfussenegger/nvim-dap'
 			}
 		},
+		{
+			'Bekaboo/dropbar.nvim',
+			lazy = false
+		},
 		{ import = 'plugins' },
 	},
 	-- Opts
@@ -56,7 +60,7 @@ require('lazy').setup({
 			lazy = true
 		},
 		dev = {
-			path = "~/workspace/nvim"
+			path = "~/sid/nvim"
 		},
 		ui = {
 			border = "rounded",
