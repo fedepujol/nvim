@@ -10,6 +10,9 @@ return {
 			log_level = vim.log.levels.WARN, -- Log level
 			filetype = {
 				-- Formatter configurations are opt-in
+				css = {
+					filetypes.css.prettierd
+				},
 				lua = {
 					filetypes.lua.stylua,
 				},
