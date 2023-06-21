@@ -41,7 +41,7 @@ end
 
 M.home = homepath()
 M.data = vim.fn.stdpath('data')
-M.workspace = M.home .. '/Workspace'
+M.workspace = M.home .. '/sid'
 M.mason = M.data .. '/mason'
 M.jdtls = M.mason .. '/packages/jdtls'
 
