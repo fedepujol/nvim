@@ -53,9 +53,19 @@ return {
 						action = 'require("telescope.builtin").help_tags()'
 					},
 					{
+						icon = ' ',
+						icon_hl = 'String',
+						desc = 'Terminal',
+						desc_hl = 'String',
+						key = 't',
+						keymap = 'SPC t',
+						key_hl = 'Number',
+						action = ':ToggleTerm<CR>'
+					},
+					{
 						icon = '🚪 ',
 						icon_hl = 'String',
-						desc = 'Exit',
+						desc = 'Quit',
 						desc_hl = 'String',
 						key = 'q',
 						keymap = 'CTRL',
