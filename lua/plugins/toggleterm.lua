@@ -10,6 +10,7 @@ return {
 		direction = 'horizontal', -- vertical | float | tab
 		persist_size = true,
 		close_on_exit = true,
-		open_mapping = '<leader>tc'
+		open_mapping = vim.fn.shellescape('\\tc'),
+		insert_mapping = false
 	}
 }
