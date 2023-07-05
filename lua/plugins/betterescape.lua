@@ -9,5 +9,5 @@ return {
 			clear_empty_lines = true, -- Clears the line if there is only whitespaces
 			keys = '<ESC>', -- Keys used for escaping. Could be a function
 		})
-	end
+	end,
 }

@@ -279,6 +279,7 @@ return {
 
 		LSPBlock = utils.insert(LSPBlock, Lsp, Space, Diagnostics, { provider = '%<' })
 
+
 		local FileIndent = {
 			provider = function()
 				local res = ''
