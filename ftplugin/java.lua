@@ -10,8 +10,7 @@ local jdtlsPaths = paths.jdtlsPaths()
 local jdtls = require('jdtls')
 
 config.cmd = {
-	-- 💀 or '/path/to/java11_or_newer/bin/java'
-	jdtlsPaths.jdk .. '/bin/java.exe',
+	jdtlsPaths.jdk.v17 .. '/bin/java.exe',
 	'-Declipse.application=org.eclipse.jdt.ls.core.id1',
 	'-Dosgi.bundles.defaultStartLevel=4',
 	'-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -46,12 +45,12 @@ config.settings = {
 			runtimes = {
 				{
 					name = "JavaSE-1.8",
-					path = "/Program Files/Java/jdk1.8.0_333/",
+					path = jdtlsPaths.jdk.v8,
 					default = true,
 				},
 				{
 					name = "JavaSE-17",
-					path = jdtlsPaths.jdk
+					path = jdtlsPaths.jdk.v17
 				},
 			}
 		},
