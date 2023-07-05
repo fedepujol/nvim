@@ -51,6 +51,7 @@ return {
 				},
 			},
 			filesystem = {
+				follow_current_file = true,
 				group_empty_dirs = true
 			},
 			nesting_rules = {
