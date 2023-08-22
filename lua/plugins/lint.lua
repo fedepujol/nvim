@@ -5,6 +5,7 @@ return {
 		require('lint').linters_by_ft = {
 			markdown = { 'markdownlint' },
 			sh = { 'shellcheck' },
+			typescript = { 'eslint'},
 			yaml = { 'yamllint' },
 		}
 
