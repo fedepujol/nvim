@@ -101,17 +101,14 @@ return {
 		end
 
 		-- Handlers
-		vim.lsp.diagnostic.config = {
+		vim.diagnostic.config({
 			virtual_text = true,
 			signs = true,
 			underline = true,
-			update_on_insert = false,
-			source = 'always',
-			severity_sort = false,
 			float = {
-				source = 'always',
+				source = true,
 			},
-		}
+		})
 
 		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -205,6 +202,11 @@ return {
 					})
 				}
 			}
+		})
+
+		-- Kotlin
+		require('lspconfig').kotlin_language_server.setup({
+			capabilities = capabilities
 		})
 
 		-- Lua LSP
