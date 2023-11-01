@@ -4,17 +4,21 @@ return {
 		require('nvim-treesitter.configs').setup({
 			ensure_installed = {
 				'bash',
-				'c', 'cmake', 'comment', 'cpp', 'css',
+				'c', 'cmake', 'comment', 'cpp', 'css', 'csv',
+				'diff',
+				'git_config', 'gitattributes', 'gitcommit', 'gitignore',
 				'hjson', 'html', 'http',
 				'ini',
-				'java', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc',
-				'lua', 'luadoc', 'luap',
+				'java', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc', 'jq',
+				'kotlin',
+				'lua', 'luau', 'luadoc', 'luap',
 				'markdown', 'markdown_inline',
+				'org',
 				'nix',
-				'python', 'php',
+				'passwd', 'php', 'python',
 				'query',
 				'rasi', 'regex', 'rust',
-				'scheme', 'scss', 'sql',
+				'scheme', 'scss', 'sql', 'ssh_config', 'sxhkdrc',
 				'toml', 'tsx', 'typescript',
 				'vim', 'vimdoc',
 				'yaml', 'yuck',
@@ -29,7 +33,6 @@ return {
 			},
 			highlight = {
 				enable = true, -- false will disable the whole extension
-				-- disable = { 'html' },
 				additional_vim_regex_highlighting = false,
 			},
 			modules = {}
