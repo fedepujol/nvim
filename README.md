@@ -1,6 +1,6 @@
 # Neovim Config
 
-Hello there fellow stranger! 
+Hello there fellow stranger!
 
 This is my custom *PDE* for Neovim! (it has been tested on Linux and Windows).
 
@@ -42,7 +42,7 @@ and more!
 
 > If you're using this configuration with Neovim 0.6/0.6.1, you'll have to deal
 with the formatters outputing wrong `eol` on `Windows` files (`fileformat=dos`).
-There's was an issue, which is already merge.
+There was an issue, which is already merge.
 
 ## Installation
 
@@ -63,7 +63,7 @@ config follow steps:
 
 ### First Launch
 
-On first launch, _lazy_ package manager will download
+On first launch, *lazy* package manager will download
 every plugin declared on the folder `/lua/plugins` and on `/lua/core/lazy.lua` file.
 
 After this, re-open neovim. Then when you open a file, `mason-lspconfig.nvim`
