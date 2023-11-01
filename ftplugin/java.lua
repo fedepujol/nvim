@@ -77,8 +77,7 @@ config.init_options = {
 }
 
 config.on_attach = function(client, bufnr)
-	jdtls.setup_dap({ hotcodereplace = 'auto' })
-	jdtls.setup.add_commands()
+	jdtls.setup_dap()
 end
 
 -- This starts a new client & server,
