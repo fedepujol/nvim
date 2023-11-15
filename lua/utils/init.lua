@@ -51,7 +51,7 @@ M.jdtlsPaths = function()
 		config_sys = M.jdtls .. '/' .. selectConfig(),
 		jar = vim.fn.glob(M.jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
 		jdk = {
-			v17 = M.workspace .. '/tools/java/jdk-17.0.6',
+			v17 = vim.fn.glob(M.workspace .. '/tools/java/jdk-17*'),
 			v8 = os.getenv('PROGRAMFILES') .. '/Java/jdk1.8.0_333'
 		},
 		project = M.workspace .. '/java/' .. project_name,
