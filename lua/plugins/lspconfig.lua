@@ -7,10 +7,11 @@ return {
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
 		'williamboman/mason.nvim',
-		'williamboman/mason-lspconfig.nvim',
+		'williamboman/mason-lspconfig.nvim'
 	},
 	config = function()
 		require('mason').setup({
+			log_level = vim.log.levels.DEBUG,
 			ui = {
 				check_outdated_packages_on_open = false,
 				border = 'rounded',
@@ -34,11 +35,8 @@ return {
 		require('mason-lspconfig').setup({
 			automatic_installation = false,
 			ensure_installed = {
-				'angularls', 'bashls', 'cssls',
-				'emmet_ls', 'html', 'jsonls',
-				'jdtls', 'lua_ls',
-				'tsserver', 'vimls', 'lemminx',
-				'yamlls'
+				'bashls', 'jsonls',
+				'lua_ls', 'vimls', 'yamlls'
 			},
 		})
 
@@ -117,9 +115,19 @@ return {
 			return orig_util_open_floating_preview(contents, syntax, opts, ...)
 		end
 
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
-		capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+		local capabilities = vim.tbl_deep_extend(
+			'force',
+			vim.lsp.protocol.make_client_capabilities(),
+			require('cmp_nvim_lsp').default_capabilities(),
+			{
+				workspace = {
+					didChangeConfiguration = { dynamicRegistration = true },
+					didChangeWatchedFiles = { dynamicRegistration = true },
+					didChangeWorkspaceFolders = { dynamicRegistration = true },
+				}
+			}
+		)
+		-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		local root_pattern = require('lspconfig.util').root_pattern
 
@@ -169,6 +177,13 @@ return {
 			capabilities = capabilities,
 			root_dir = root_pattern({ '.git', '*.html', '*.css' }),
 			filtypes = { 'html', 'css' },
+		})
+
+		-- ESLint LSP
+		require('lspconfig').eslint.setup({
+			settings = {
+				format = false,
+			}
 		})
 
 		-- HTML LSP
@@ -247,17 +262,19 @@ return {
 			single_file_support = true
 		})
 
-		-- Nix LSP
-		require('lspconfig').nil_ls.setup({
+		require('lspconfig').ltex.setup({
 			capabilities = capabilities,
-			single_file_support = true,
 			settings = {
-				['nil'] = {
-					formatting = {
-						command = { "nixpkgs-fmt" }
-					}
+				ltex = {
+					language = "en-GB"
 				}
 			}
+		})
+
+		-- Nix LSP
+		require('lspconfig').nixd.setup({
+			capabilities = capabilities,
+			single_file_support = true,
 		})
 
 		-- Python LSP
@@ -320,6 +337,11 @@ return {
 					})
 				}
 			}
+		})
+
+		-- XML LSP
+		require('lspconfig').lemminx.setup({
+			capabilities = capabilities
 		})
 	end
 }
