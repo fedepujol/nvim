@@ -87,7 +87,25 @@ return {
 			update = { 'ModeChanged' },
 		}
 
-		ViMode = utils.surround({ '', '' }, black3, { ViMode })
+		local MacroRec = {
+			condition = function()
+				return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
+			end,
+			provider = " ",
+			hl = { fg = "orange", bold = true },
+			utils.surround({ "[", "]" }, nil, {
+				provider = function()
+					return vim.fn.reg_recording()
+				end,
+				hl = { fg = "green", bold = true },
+			}),
+			update = {
+				"RecordingEnter",
+				"RecordingLeave",
+			}
+		}
+
+		ViMode = utils.surround({ '', '' }, black3, { MacroRec, ViMode })
 
 		local FileNameBlock = {
 			init = function(self)
@@ -223,7 +241,6 @@ return {
 		local Lsp = {
 			condition = conditions.lsp_attached,
 			update = { 'LspAttach', 'LspDetach' },
-			-- provider = ' [LSP]',
 			provider = function()
 				local names = {}
 				for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do

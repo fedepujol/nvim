@@ -45,7 +45,7 @@ return {
 			filesystem = {
 				follow_current_file = {
 					enabled = true,
-					leave_dirs_open = true,
+					leave_dirs_open = false,
 				},
 				group_empty_dirs = true
 			},
