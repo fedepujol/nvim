@@ -5,12 +5,14 @@ vim.opt_local.expandtab = true
 
 -- Java JDTLS
 local config = {}
+
+---@class JavaUtils
 local paths = require('utils')
-local jdtlsPaths = paths.jdtlsPaths()
+
 local jdtls = require('jdtls')
 
 config.cmd = {
-	jdtlsPaths.jdk.v17 .. '/bin/java.exe',
+	paths.jdtlsPaths.jdk.v17 .. '/bin/java.exe',
 	'-Declipse.application=org.eclipse.jdt.ls.core.id1',
 	'-Dosgi.bundles.defaultStartLevel=4',
 	'-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -22,10 +24,10 @@ config.cmd = {
 	'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
 	-- lombok
-	'-javaagent:' .. paths.workspace .. '/tools/editor/eclipse/lombok.jar',
-	'-jar', jdtlsPaths.jar,
-	'-configuration', jdtlsPaths.config_sys,
-	'-data', jdtlsPaths.project
+	'-javaagent:' .. paths.workspace .. '/tools/eclipse/plugins/org.projectlombok.agent_1.18.30/lombok.jar',
+	'-jar', paths.jdtlsPaths.jar,
+	'-configuration', paths.jdtlsPaths.config_sys,
+	'-data', paths.jdtlsPaths.project
 }
 
 local bundles = {
@@ -38,19 +40,27 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(paths.mason .. '/packages/java-te
 config.root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew', 'mvnw' }, { upward = true })[1])
 
 config.settings = {
-	['java.format.settings.url'] = paths.workspace .. '/java/g-format.xml',
-	['java.format.settings.profile'] = 'GoogleStyle',
+	-- ['java.format.settings.url'] = paths.workspace .. '/java/google-format.xml',
+	-- ['java.format.settings.profile'] = 'GoogleStyle',
 	java = {
 		configuration = {
 			runtimes = {
 				{
 					name = "JavaSE-1.8",
-					path = jdtlsPaths.jdk.v8,
+					path = paths.jdtlsPaths.jdk.v8,
 					default = true,
 				},
 				{
+					name = "JavaSE-11",
+					path = paths.jdtlsPaths.jdk.v11
+				},
+				{
 					name = "JavaSE-17",
-					path = jdtlsPaths.jdk.v17
+					path = paths.jdtlsPaths.jdk.v17
+				},
+				{
+					name = "JavaSE-21",
+					path = paths.jdtlsPaths.jdk.v21
 				},
 			}
 		},
@@ -72,13 +82,15 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 config.init_options = {
 	bundles = bundles,
-	jvm_args = '-javaagent:' .. paths.workspace .. '/tools/editor/eclipse/lombok.jar',
+	jvm_args = '-javaagent:' .. paths.workspace .. '/tools/eclipse/plugins/org.projectlombok.agent_1.18.30/lombok.jar',
 	extendedClientCapabilities = extendedClientCapabilities
 }
 
 config.on_attach = function(client, bufnr)
 	jdtls.setup_dap()
 end
+
+config.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
