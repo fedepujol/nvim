@@ -1,3 +1,18 @@
+---@class JdtlsPaths 
+---@field config_sys string
+---@field jar string
+---@field jdk table
+---@field project string
+
+---@class JavaUtils
+---@field home string?
+---@field data any
+---@field workspace string
+---@field mason string
+---@field jdtls string
+---@field jdtlsPaths JdtlsPaths
+
+---@class JavaUtils
 local M = {}
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
@@ -42,20 +57,20 @@ end
 M.home = homepath()
 M.data = vim.fn.stdpath('data')
 M.workspace = M.home .. '/sid'
+M.scoop = M.home .. '/scoop'
 M.mason = M.data .. '/mason'
 M.jdtls = M.mason .. '/packages/jdtls'
 
----@return table
-M.jdtlsPaths = function()
-	return {
-		config_sys = M.jdtls .. '/' .. selectConfig(),
-		jar = vim.fn.glob(M.jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
-		jdk = {
-			v17 = vim.fn.glob(M.workspace .. '/tools/java/jdk-17*'),
-			v8 = os.getenv('PROGRAMFILES') .. '/Java/jdk1.8.0_333'
-		},
-		project = M.workspace .. '/java/' .. project_name,
-	}
-end
+M.jdtlsPaths = {
+	config_sys = M.jdtls .. '/' .. selectConfig(),
+	jar = vim.fn.glob(M.jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
+	jdk = {
+		v8 = M.scoop .. '/apps/corretto8-jdk/current',
+		v11 = M.scoop .. '/apps/openjdk11/current',
+		v17 = M.scoop .. '/apps/openjdk17/current',
+		v21 = M.scoop .. '/apps/openjdk21/current',
+	},
+	project = M.workspace .. '/java/' .. project_name,
+}
 
 return M
