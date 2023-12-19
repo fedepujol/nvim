@@ -9,14 +9,18 @@ vim.opt.autoindent = true -- Copy indent from current line when starting a new l
 vim.opt.background = 'dark' -- Tell NVim the background color
 vim.opt.backup = false -- No backup file when written
 vim.opt.clipboard = 'unnamedplus' -- Copy-Paste between Neovim and everything else
-vim.opt.cmdheight = 1 -- Number of screen lines to use for messages
+vim.opt.cmdheight = 0 -- Number of screen lines to use for messages
 vim.opt.completeopt = 'menuone,noselect' -- Set for nvim-compe. Comma-separated options for insert mode.
 vim.opt.conceallevel = 0 -- Determine how text with the "conceal" attribute is shown. 0 -> As text
 vim.opt.cursorline = true -- Enable hightlightning of the current line
 vim.opt.encoding = 'UTF-8' -- Encoding used internally
 vim.opt.expandtab = false -- Converts tabs into spaces
 vim.opt.fileencoding = 'UTF-8' -- Encoding fot the current buffer. Conversion done with iconv()
-vim.opt.fillchars = 'fold: ,foldopen:,foldsep: ,foldclose:'
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.foldcolumn = '1' -- When and how to draw folding column
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 vim.opt.guifontwide = 'Fira Code:h11'
 vim.opt.hidden = true -- Buffers becomes hidden when abandoned
 vim.opt.hlsearch = false -- Highlighting search
@@ -52,3 +56,9 @@ vim.opt.writebackup = false -- No backup file
 
 vim.cmd('filetype plugin indent on')
 vim.cmd(':lang en_GB')
+
+if vim.g.neovide then
+	vim.o.guifont = "FiraCode Nerd Font:h11"
+	vim.g.neovide_confirm_quit = true
+	vim.g.neovide_cursor_animation_length = 0
+end
