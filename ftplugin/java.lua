@@ -10,6 +10,7 @@ local config = {}
 local paths = require('utils')
 
 local jdtls = require('jdtls')
+local jdtls_dap = require('jdtls.dap')
 
 config.cmd = {
 	paths.jdtlsPaths.jdk.v17 .. '/bin/java.exe',
@@ -40,9 +41,18 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(paths.mason .. '/packages/java-te
 config.root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'gradlew', 'mvnw' }, { upward = true })[1])
 
 config.settings = {
-	-- ['java.format.settings.url'] = paths.workspace .. '/java/google-format.xml',
-	-- ['java.format.settings.profile'] = 'GoogleStyle',
 	java = {
+		autoBuild = {
+			enabled = false,
+		},
+		maxConcurrentBuilds = 4,
+		format = {
+			enabled = true,
+			settings = {
+				url = paths.workspace .. '/java/g-format.xml',
+				profile = 'GoogleStyle'
+			}
+		},
 		configuration = {
 			runtimes = {
 				{
@@ -57,10 +67,6 @@ config.settings = {
 				{
 					name = "JavaSE-17",
 					path = paths.jdtlsPaths.jdk.v17
-				},
-				{
-					name = "JavaSE-21",
-					path = paths.jdtlsPaths.jdk.v21
 				},
 			}
 		},
@@ -80,17 +86,43 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities;
 extendedClientCapabilities.onCompletionItemSelectedCommand = "editor.action.triggerParameterHints"
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
+local capabilities = vim.tbl_deep_extend(
+	'force',
+	vim.lsp.protocol.make_client_capabilities(),
+	require('cmp_nvim_lsp').default_capabilities(),
+	{
+		workspace = {
+			didChangeConfiguration = { dynamicRegistration = true },
+			didChangeWatchedFiles = { dynamicRegistration = true },
+			didChangeWorkspaceFolders = { dynamicRegistration = true },
+		},
+	},
+	{
+		textDocument = {
+			foldingRange = {
+				dynamicRegistration = true,
+				lineFoldingOnly = true
+			}
+		}
+	}
+)
+
 config.init_options = {
 	bundles = bundles,
 	jvm_args = '-javaagent:' .. paths.workspace .. '/tools/eclipse/plugins/org.projectlombok.agent_1.18.30/lombok.jar',
-	extendedClientCapabilities = extendedClientCapabilities
+	extendedClientCapabilities = extendedClientCapabilities,
 }
 
-config.on_attach = function(client, bufnr)
+config.on_attach = function()
 	jdtls.setup_dap()
+	jdtls_dap.setup_dap_main_class_configs()
 end
 
-config.capabilities = vim.lsp.protocol.make_client_capabilities()
+config.capabilities = capabilities
+config.handlers = {
+	['language/status'] = function()
+	end
+}
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
