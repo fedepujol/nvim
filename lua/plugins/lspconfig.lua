@@ -1,13 +1,13 @@
 -- Lsp Config
 return {
 	'neovim/nvim-lspconfig',
-	event = "BufReadPre",
+	event = 'BufReadPre',
 	dependencies = {
 		'folke/neodev.nvim',
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
 		'williamboman/mason.nvim',
-		'williamboman/mason-lspconfig.nvim'
+		'williamboman/mason-lspconfig.nvim',
 	},
 	config = function()
 		require('mason').setup({
@@ -21,31 +21,34 @@ return {
 					package_uninstalled = '',
 				},
 				keymaps = {
-					toggle_server_expand = "<CR>",
+					toggle_server_expand = '<CR>',
 					install_server = 'i',
 					update_server = 'u',
 					check_server_version = 'c',
 					update_all_servers = 'U',
 					check_outdated_servers = 'C',
-					uninstall_server = 'X'
-				}
-			}
+					uninstall_server = 'X',
+				},
+			},
 		})
 
 		require('mason-lspconfig').setup({
 			automatic_installation = false,
 			ensure_installed = {
-				'bashls', 'jsonls',
-				'lua_ls', 'vimls', 'yamlls'
+				'bashls',
+				'jsonls',
+				'lua_ls',
+				'vimls',
+				'yamlls',
 			},
 		})
 
 		-- Mappings
-		local key_opts = { noremap = true, silent = true }
+		local key_opts = { noremap = true, silent = true, desc = '' }
 		vim.keymap.set('n', 'dl', vim.diagnostic.open_float, key_opts)
 		vim.keymap.set('n', 'dp', vim.diagnostic.goto_prev, key_opts)
 		vim.keymap.set('n', 'dn', vim.diagnostic.goto_next, key_opts)
-		vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, key_opts)
+		vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open QuickFix'})
 
 		-- Use an on_attach function to only map the following keys
 		-- after the language server attaches to the current buffer
@@ -72,7 +75,7 @@ return {
 				vim.keymap.set('n', 'rn', vim.lsp.buf.rename, opts)
 				vim.keymap.set({ 'n', 'v' }, 'ca', vim.lsp.buf.code_action, opts)
 				vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-			end
+			end,
 		})
 
 		local border = {
@@ -90,7 +93,7 @@ return {
 			Error = '',
 			Warn = '',
 			Hint = '󰌵',
-			Info = ''
+			Info = '',
 		}
 
 		for type, icon in pairs(signs) do
@@ -124,12 +127,17 @@ return {
 					didChangeConfiguration = { dynamicRegistration = true },
 					didChangeWatchedFiles = { dynamicRegistration = true },
 					didChangeWorkspaceFolders = { dynamicRegistration = true },
+				},
+			},
+			{
+				textDocument = {
+					foldingRange = {
+						dynamicRegistration = true,
+						lineFoldingOnly = true
+					}
 				}
 			}
 		)
-		-- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-		local root_pattern = require('lspconfig.util').root_pattern
 
 		-- Neodev setup
 		require('neodev').setup({
@@ -138,61 +146,27 @@ return {
 				runtime = true, -- runtime path
 				types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
 				plugins = true, -- installed opt or start plugins in packpath
-				-- can be a list to plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
 			},
 			setup_jsonls = false,
 			lspconfig = true,
 			pathStrict = true,
 		})
 
-		-- Angular LSP
-		require('lspconfig').angularls.setup({
-			root_dir = root_pattern({ '.angular-cli.json', 'angular.json' }),
-			capabilities = capabilities,
-		})
+		local lspconfig = require('lspconfig')
+		local servers = {
+			"angularls", "bashls", "cssls", "emmet_ls", "eslint",
+			"html",
+			"kotlin_language_server", "lua_ls", "marksman",
+			"prosemd_lsp", "ltex", "nixd",
+			"pylsp", "tsserver", "rust_analyzer", "vimls",
+			"lemminx"
+		}
 
-		-- Bash LSP
-		require('lspconfig').bashls.setup({
-			capabilities = capabilities,
-			cmd_env = {
-				GLOB_PATTERN = '*@(.sh|.inc|.bash|.zsh|.command)',
-			},
-			filetypes = { 'sh', 'zsh' },
-			single_file_support = true
-		})
-
-		-- CSS LSP
-		require('lspconfig').cssls.setup({
-			capabilities = capabilities,
-			filetypes = { 'css', 'scss', 'less' },
-			settings = {
-				css = {
-					validate = true,
-				},
-			},
-		})
-
-		-- Emmet LSP
-		require('lspconfig').emmet_ls.setup({
-			capabilities = capabilities,
-			root_dir = root_pattern({ '.git', '*.html', '*.css' }),
-			filtypes = { 'html', 'css' },
-		})
-
-		-- ESLint LSP
-		require('lspconfig').eslint.setup({
-			settings = {
-				format = false,
-			}
-		})
-
-		-- HTML LSP
-		-- Enable (broadcasting) snippet capability for completion
-		require('lspconfig').html.setup({
-			capabilities = capabilities,
-			provideFormatter = true,
-			single_file_support = true
-		})
+		for _, value in pairs(servers) do
+			lspconfig[value].setup({
+				capabilities = capabilities
+			})
+		end
 
 		-- JSON LSP
 		require('lspconfig').jsonls.setup({
@@ -213,118 +187,35 @@ return {
 							'task.json',
 							'tsconfig.json',
 							'tslint.json',
-						}
-					})
-				}
-			}
-		})
-
-		-- Kotlin
-		require('lspconfig').kotlin_language_server.setup({
-			capabilities = capabilities
-		})
-
-		-- Lua LSP
-		require('lspconfig').lua_ls.setup({
-			-- cmd = { dir .. '/sumneko_lua/extension/server/bin/lua-language-server' },
-			settings = {
-				Lua = {
-					runtime = {
-						-- Tell the language server which versin of Lua you're using (most likely LuaJIT in the case of Neovim)
-						version = 'LuaJIT'
-					},
-					diagnostics = {
-						-- Get the language server to recognize the 'vim' global
-						globals = { 'vim' },
-					},
-					workspace = {
-						-- Make the server aware of Neovim runtime files
-						library = vim.api.nvim_get_runtime_file('', true),
-						checkThirdParty = false,
-					},
-					-- Do not send telemetry data
-					telemetry = {
-						enable = false,
-					},
+						},
+					}),
 				},
 			},
-			capabilities = capabilities,
 		})
 
-		-- Markdown LSP's
-		require('lspconfig').marksman.setup({
-			capabilities = capabilities,
-			single_file_support = true
-		})
-
-		require('lspconfig').prosemd_lsp.setup({
-			capabilities = capabilities,
-			single_file_support = true
-		})
-
-		require('lspconfig').ltex.setup({
-			capabilities = capabilities,
-			settings = {
-				ltex = {
-					language = "en-GB"
-				}
-			}
-		})
-
-		-- Nix LSP
-		require('lspconfig').nixd.setup({
-			capabilities = capabilities,
-			single_file_support = true,
-		})
-
-		-- Python LSP
-		require('lspconfig').pylsp.setup({
-			filetypes = { 'python' },
-			capabilities = capabilities,
-			single_file_support = true,
-		})
-
-		-- TSServer LSP
-		require('lspconfig').tsserver.setup({
-			capabilities = capabilities,
-			init_options = {
-				hostInfo = "neovim"
+		-- PowerShell
+		local pses = require('utils').mason .. '/packages/powershell-editor-services/PowerShellEditorServices'
+		require('lspconfig').powershell_es.setup({
+			cmd = { 'powershell', '-NoLogo', '-NoProfile', '-Command',
+				pses .. '/Start-EditorServices.ps1',
+				'-BundledModulesPath', pses,
+				'-LogPath', pses .. '/log/pwsh.log',
+				'-SessionDetailsPath', pses .. '/session.json',
+				'-FeatureFlags', '@()',
+				'-AdditionalModules', '@()',
+				'-HostName', 'nvim',
+				'-HostProfileId', '0',
+				'-HostVersion', '1.0.0',
+				'-Stdio',
+				'-LogLevel', 'Normal'
 			},
-		})
-
-		-- Rust LSP
-		require('lspconfig').rust_analyzer.setup({
+			shell = 'powershell',
 			capabilities = capabilities,
-		})
-
-		-- Vim LSP
-		require('lspconfig').vimls.setup({
-			capabilities = capabilities,
-			init_options = {
-				diagnostic = {
-					enable = true,
-				},
-				indexes = {
-					count = 3,
-					gap = 100,
-					projectRootPatterns = { 'runtime', 'nvim', '.git', 'autoload', 'plugin' },
-					runtimepath = true,
-				},
-				isNeovim = true,
-				isKeyword = '@,48-57,_,192-255,-#',
-				runtimepath = '',
-				suggest = {
-					fromRuntimepath = true,
-					fromVimruntime = true,
-				},
-				vimruntime = '',
-			},
+			bundle_path = pses,
 		})
 
 		-- Yaml LSP
 		require('lspconfig').yamlls.setup({
-			filetypes = { 'yml', 'yaml' },
-			root_dir = root_pattern({ '.git', vim.fn.getcwd() }),
 			capabilities = capabilities,
 			settings = {
 				yaml = {
@@ -332,16 +223,11 @@ return {
 						select = {
 							'docker-compose.yml',
 							'.yarnrc.yml',
-							'yamllint'
-						}
-					})
-				}
-			}
+							'yamllint',
+						},
+					}),
+				},
+			},
 		})
-
-		-- XML LSP
-		require('lspconfig').lemminx.setup({
-			capabilities = capabilities
-		})
-	end
+	end,
 }
