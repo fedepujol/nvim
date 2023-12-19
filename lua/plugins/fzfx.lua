@@ -1,12 +1,12 @@
 -- Fzf Extended
 --
 return {
-	"linrongbin16/fzfx.nvim",
+	'linrongbin16/fzfx.nvim',
 	event = 'VimEnter',
 	keys = {
 		{
 			'<leader>fp',
-			"<cmd>FzfxFiles<CR>",
+			'<cmd>FzfxFiles<CR>',
 			desc = 'Find Files',
 		},
 		{
@@ -17,14 +17,19 @@ return {
 	},
 	dependencies = {
 		{
-			"junegunn/fzf",
+			'junegunn/fzf',
 			build = function()
-				vim.fn["fzf#install"]()
+				vim.fn['fzf#install']()
 			end,
 		},
 	},
 	config = function()
-		require("fzfx").setup()
+		require('fzfx').setup({
+			files = {
+				fzf_opts = {
+					'--preview-window=hidden',
+				},
+			},
+		})
 	end,
-
 }
