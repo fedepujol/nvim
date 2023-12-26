@@ -48,7 +48,8 @@ return {
 		vim.keymap.set('n', 'dl', vim.diagnostic.open_float, key_opts)
 		vim.keymap.set('n', 'dp', vim.diagnostic.goto_prev, key_opts)
 		vim.keymap.set('n', 'dn', vim.diagnostic.goto_next, key_opts)
-		vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open QuickFix'})
+		vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist,
+			{ noremap = true, silent = true, desc = 'Open QuickFix' })
 
 		-- Use an on_attach function to only map the following keys
 		-- after the language server attaches to the current buffer
@@ -154,12 +155,24 @@ return {
 
 		local lspconfig = require('lspconfig')
 		local servers = {
-			"angularls", "bashls", "cssls", "emmet_ls", "eslint",
+			"angularls",
+			"bashls",
+			"cssls",
+			"emmet_ls",
+			"eslint",
+			"groovyls",
 			"html",
-			"kotlin_language_server", "lua_ls", "marksman",
-			"prosemd_lsp", "ltex", "nixd",
-			"pylsp", "tsserver", "rust_analyzer", "vimls",
-			"lemminx"
+			"kotlin_language_server",
+			"lemminx",
+			"ltex",
+			"lua_ls",
+			"marksman",
+			"nixd",
+			"prosemd_lsp",
+			"pylsp",
+			"rust_analyzer",
+			"tsserver",
+			"vimls",
 		}
 
 		for _, value in pairs(servers) do

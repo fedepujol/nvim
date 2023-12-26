@@ -107,37 +107,6 @@ return {
 
 		ViMode = utils.surround({ '', '' }, black3, { MacroRec, ViMode })
 
-		local FileNameBlock = {
-			init = function(self)
-				self.filename = vim.api.nvim_buf_get_name(0)
-			end,
-		}
-
-		local FolderIcon = {
-			provider = '󰉋 ',
-			hl = { fg = utils.get_highlight('Directory').fg },
-		}
-
-		local FileName = {
-			init = function(self)
-				self.lfilename = vim.fn.fnamemodify(self.filename, ':.')
-				if self.lfilename == '' then
-					self.lfilename = '[Undefined]'
-				end
-			end,
-			flexible = 2,
-			{
-				provider = function(self)
-					return vim.fn.pathshorten(self.lfilename)
-				end,
-			},
-			{
-				provider = function(self)
-					return vim.fn.fnamemodify(self.filename, ':t')
-				end,
-			},
-		}
-
 		local FileIcon = {
 			provider = function()
 				local filename = vim.api.nvim_buf_get_name(0)
@@ -154,7 +123,17 @@ return {
 			end,
 		}
 
-		FileNameBlock = utils.insert(FileNameBlock, FolderIcon, FileName, { provider = '%<' })
+		-- Lazy
+		local Lazy = {
+			condition = function()
+				local ok, lazy_status = pcall(require, "lazy.status")
+				return ok and lazy_status.has_updates()
+			end,
+			update = { "User", pattern = "LazyUpdate" },
+			provider = function()
+				return 'Updates Available: ' .. require("lazy.status").updates()
+			end
+		}
 
 		-- Git
 		local Git = {
@@ -388,8 +367,7 @@ return {
 			Space,
 			GitBlock,
 			Space,
-			FileNameBlock,
-			Space,
+			Lazy,
 			Align,
 
 			-- Center
