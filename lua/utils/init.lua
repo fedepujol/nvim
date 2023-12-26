@@ -2,6 +2,7 @@
 ---@field config_sys string
 ---@field jar string
 ---@field jdk table
+---@field gradle string
 ---@field project string
 
 ---@class JavaUtils
@@ -57,7 +58,7 @@ end
 M.home = homepath()
 M.data = vim.fn.stdpath('data')
 M.workspace = M.home .. '/sid'
-M.scoop = M.home .. '/scoop'
+M.scoop = M.home .. '/scoop/apps'
 M.mason = M.data .. '/mason'
 M.jdtls = M.mason .. '/packages/jdtls'
 
@@ -65,11 +66,12 @@ M.jdtlsPaths = {
 	config_sys = M.jdtls .. '/' .. selectConfig(),
 	jar = vim.fn.glob(M.jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
 	jdk = {
-		v8 = M.scoop .. '/apps/corretto8-jdk/current',
-		v11 = M.scoop .. '/apps/openjdk11/current',
-		v17 = M.scoop .. '/apps/openjdk17/current',
-		v21 = M.scoop .. '/apps/openjdk21/current',
+		v8 = M.scoop .. '/corretto8-jdk/current',
+		v11 = M.scoop .. '/openjdk11/current',
+		v17 = M.scoop .. '/openjdk17/current',
+		v21 = M.scoop .. '/openjdk21/current',
 	},
+	gradle = M.scoop .. '/gradle6/current',
 	project = M.workspace .. '/java/' .. project_name,
 }
 
