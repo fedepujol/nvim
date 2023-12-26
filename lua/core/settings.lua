@@ -33,6 +33,7 @@ vim.opt.pumheight = 10 -- Maximum number of items to show in Pop-ups
 vim.opt.relativenumber = true -- Relative numbers line
 vim.opt.ruler = true -- Show line and column numbers of the cursor position
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.shadafile = 'NONE' -- SHared DAta in between neovim sessions. Useful when you care
 vim.opt.shiftwidth = 4 -- Change number of spaces inserted for indentation
 vim.opt.showmode = false -- In Insert/Replace/Visual put a message on the last line.
 vim.opt.showtabline = 2 -- Always show tabs
