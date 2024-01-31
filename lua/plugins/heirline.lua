@@ -131,7 +131,7 @@ return {
 			end,
 			update = { "User", pattern = "LazyUpdate" },
 			provider = function()
-				return 'Updates Available: ' .. require("lazy.status").updates()
+				return 'Updates: ' .. require("lazy.status").updates()
 			end
 		}
 
@@ -222,7 +222,7 @@ return {
 			update = { 'LspAttach', 'LspDetach' },
 			provider = function()
 				local names = {}
-				for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+				for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
 					table.insert(names, server.name)
 				end
 				return ' [' .. table.concat(names, ' ') .. ']'
