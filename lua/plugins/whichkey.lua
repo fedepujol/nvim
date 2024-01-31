@@ -81,6 +81,7 @@ return {
 			},
 			g = {
 				name = 'Git',
+				b = { "<cmd>lua require('gitsigns').blame_line()<CR>", "Blame Line" },
 				h = {
 					name = 'Hunk',
 					j = { "<cmd>lua require('gitsigns').next_hunk()<CR>", 'Next Hunk' },
@@ -89,10 +90,6 @@ return {
 					r = { "<cmd>lua require('gitsigns').reset_hunk()<CR>", 'Reset Hunk' },
 					R = { "<cmd>lua require('gitsigns').reset_buffer()<CR>", 'Reset Buffer' },
 				},
-			},
-			i = {
-				name = 'Icons',
-				s = { ':IconPickerNormal<CR>', 'Search Nerd Icons' },
 			},
 			l = {
 				name = 'LSP',
@@ -111,23 +108,11 @@ return {
 					n = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Next Diagnostic' },
 					p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev. Diagnostic' },
 				},
-				t = {
-					name = 'Trouble',
-					t = { ':TroubleToggle<CR>', 'Trouble Toggle' },
-				},
 			},
 			t = {
 				name = 'Terminal',
 				t = { ':ToggleTerm<CR>', 'Toggle Terminal' },
 				s = { ':TermSelect<CR>', 'Select Terminal' },
-			},
-			u = {
-				name = 'UndoTree',
-				t = { ':UndotreeToggle<CR>', 'Toggle UndoTree' },
-			},
-			r = {
-				name = 'Run Task',
-				r = { ':OverseerRun<CR>', 'Run' },
 			},
 		}, { mode = 'n', prefix = '<leader>', noremap = true, silent = true })
 
