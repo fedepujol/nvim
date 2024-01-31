@@ -19,7 +19,7 @@ return {
 			},
 			current_line_blame = true,
 			current_line_blame_opts = {
-				virt_text = true,
+				virt_text = false,
 				virt_text_pos = 'eol',
 				delay = 2000,
 			},
@@ -28,7 +28,7 @@ return {
 			update_debounce = 100,
 			status_formatter = nil, -- Use default
 			preview_config = {
-				border = 'single',
+				border = 'rounded',
 				style = 'minimal',
 				relative = 'cursor',
 				row = 0,
