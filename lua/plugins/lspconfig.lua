@@ -6,7 +6,7 @@ return {
 		'folke/neodev.nvim',
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
-		'williamboman/mason.nvim',
+		{ 'williamboman/mason.nvim', build = ":MasonUpdate" },
 		'williamboman/mason-lspconfig.nvim',
 	},
 	config = function()
@@ -160,7 +160,6 @@ return {
 			"cssls",
 			"emmet_ls",
 			"eslint",
-			"groovyls",
 			"html",
 			"kotlin_language_server",
 			"lemminx",
@@ -235,7 +234,6 @@ return {
 					schemas = require('schemastore').yaml.schemas({
 						select = {
 							'docker-compose.yml',
-							'.yarnrc.yml',
 							'yamllint',
 						},
 					}),
