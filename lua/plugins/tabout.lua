@@ -10,7 +10,7 @@ return {
 			act_as_tab = true, -- Act as a tab if tabout is not possible
 			act_as_shift_tab = true,
 			enable_backwards = true,
-			completion = true,
+			completion = false,
 			tabouts = {
 				{ open = "'", close = "'" },
 				{ open = '"', close = '"' },
