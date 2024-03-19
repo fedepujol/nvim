@@ -4,10 +4,8 @@ return {
 	'hrsh7th/nvim-cmp',
 	event = 'InsertEnter',
 	dependencies = {
-		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-cmdline',
 		'hrsh7th/cmp-nvim-lsp',
-		'hrsh7th/cmp-nvim-lsp-document-symbol',
 		'hrsh7th/cmp-nvim-lsp-signature-help',
 		'hrsh7th/cmp-nvim-lua',
 		'hrsh7th/cmp-path',
@@ -58,14 +56,14 @@ return {
 			},
 			window = {
 				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered()
+				documentation = cmp.config.window.bordered(),
 			},
 			mapping = {
-				['<CR>'] = cmp.mapping.confirm({
+				['<C-y>'] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Insert,
 					select = true,
 				}),
-				['<TAB>'] = cmp.mapping(function(fallback)
+				['<C-n>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
 					elseif vim.fn['vsnip#available'](1) == 1 then
@@ -74,7 +72,7 @@ return {
 						fallback()
 					end
 				end, { 'i', 's' }),
-				['<S-TAB>'] = cmp.mapping(function(fallback)
+				['<C-p>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
 					elseif vim.fn['vsnip#available'](-1) == 1 then
@@ -94,35 +92,26 @@ return {
 				{ name = 'nvim_lua' },
 				{ name = 'vsnip' },
 				{ name = 'path' },
-				{ name = 'buffer',                 keyword_length = 5, max_item_count = 5 },
 			},
 			formatting = {
 				format = function(entry, vim_item)
 					vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
 					vim_item.menu = ({
-						nvim_lsp = "[Lsp]",
-						nvim_lua = "[Lua]",
-						visnip = "[ViSnip]",
-						path = "[Path]",
-						buffer = "[Buffer]",
+						nvim_lsp = '[Lsp]',
+						nvim_lua = '[Lua]',
+						visnip = '[Snippet]',
+						path = '[Path]',
+						buffer = '[Buffer]',
 					})[entry.source.name]
 					return vim_item
 				end,
 			},
 		})
 
-		cmp.setup.cmdline({ '/', '?' }, {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = {
-				{ name = 'nvim_lsp_document_symbol' },
-				{ name = 'buffer' }
-			}
-		})
-
 		cmp.setup.cmdline(':', {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
-				{ name = 'path' }
+				{ name = 'path' },
 			}, {
 				{ name = 'cmdline' },
 			}),
@@ -131,5 +120,5 @@ return {
 		-- Add parenthesis to functions and methods
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-	end
+	end,
 }
