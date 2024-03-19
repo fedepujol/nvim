@@ -4,11 +4,13 @@ return {
 	config = function()
 		require('nvim-treesitter.configs').setup({
 			ensure_installed = {
+				'angular',
 				'bash',
 				'c', 'cmake', 'comment', 'cpp', 'css', 'csv',
 				'diff',
 				'git_config', 'gitattributes', 'gitcommit', 'gitignore',
 				'hjson', 'html', 'http',
+				'hjson', 'http',
 				'ini',
 				'java', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc', 'jq',
 				'kotlin',
