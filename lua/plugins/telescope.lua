@@ -2,7 +2,28 @@
 
 return {
 	'nvim-telescope/telescope.nvim',
+	event = 'VimEnter',
+	dependencies = {
+		'nvim-lua/plenary.nvim',
+		{
+			'nvim-telescope/telescope-fzf-native.nvim',
+			build = 'make',
+			cond = function()
+				return vim.fn.executable('make') == 1
+			end
+		}
+	},
 	keys = {
+		{
+			'<leader>fp',
+			'<cmd>lua require("telescope.builtin").find_files({previewer = false})<CR>',
+			desc = 'Find Files',
+		},
+		{
+			'<leader>fg',
+			'<cmd>Telescope live_grep<CR>',
+			desc = 'Live Grep',
+		},
 		{
 			'<leader>fh',
 			'<cmd>Telescope help_tags<CR>',
@@ -10,37 +31,17 @@ return {
 		}
 	},
 	config = function()
-		-- Telescope
 		require('telescope').setup({
 			defaults = {
-				vimgrep_arguments = {
-					'rg',
-					'--color=never',
-					'--with-filename',
-					'--line-number',
-					'--column',
-					'--smart-case',
-				},
 				prompt_prefix = '~ ',
 				selection_caret = '> ',
-				sorting_strategy = 'ascending',
 				layout_strategy = 'horizontal',
-				layout_config = {
-					prompt_position = 'top',
-					horizontal = {
-						mirror = false,
-					},
-					vertical = {
-						mirror = false,
-					},
-				},
 				path_display = {
 					shorten = 4,
 				},
-				use_less = true,
-				file_ignore_patterns = { './node_modules' },
-				set_env = { ['COLORTERM'] = 'truecolor' },
 			},
 		})
+
+		pcall(require('telescope').load_extension, 'fzf')
 	end,
 }

@@ -40,7 +40,7 @@ return {
 						key = 'p',
 						keymap = 'SPC f',
 						key_hl = 'Number',
-						action = ':FzfxFiles'
+						action = 'require("telescope.builtin").find_files({previewer = false})'
 					},
 					{
 						icon = ' ',
