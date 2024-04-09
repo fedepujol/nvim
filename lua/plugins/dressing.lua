@@ -4,5 +4,5 @@ return {
 	event = 'VeryLazy',
 	config = function()
 		require('dressing').setup()
-	end
+	end,
 }

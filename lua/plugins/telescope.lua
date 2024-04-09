@@ -7,11 +7,13 @@ return {
 		'nvim-lua/plenary.nvim',
 		{
 			'nvim-telescope/telescope-fzf-native.nvim',
+			-- It requires GCC and make
+			-- If used cmake instead, the build step must be changed
 			build = 'make',
 			cond = function()
 				return vim.fn.executable('make') == 1
-			end
-		}
+			end,
+		},
 	},
 	keys = {
 		{
@@ -28,7 +30,7 @@ return {
 			'<leader>fh',
 			'<cmd>Telescope help_tags<CR>',
 			desc = 'Find Help',
-		}
+		},
 	},
 	config = function()
 		require('telescope').setup({

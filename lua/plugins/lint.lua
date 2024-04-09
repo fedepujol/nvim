@@ -6,12 +6,13 @@ return {
 			markdown = { 'markdownlint' },
 			sh = { 'shellcheck' },
 			yaml = { 'yamllint' },
+			gitcommit = { 'commitlint' },
 		}
 
-		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+		vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 			callback = function()
 				require('lint').try_lint()
-			end
+			end,
 		})
 	end,
 }
