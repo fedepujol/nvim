@@ -59,7 +59,7 @@ return {
 				documentation = cmp.config.window.bordered(),
 			},
 			mapping = {
-				['<C-y>'] = cmp.mapping.confirm({
+				['<CR>'] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Insert,
 					select = true,
 				}),
