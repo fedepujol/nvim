@@ -6,7 +6,7 @@ return {
 		'folke/neodev.nvim',
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
-		{ 'williamboman/mason.nvim', build = ":MasonUpdate" },
+		{ 'williamboman/mason.nvim', build = ':MasonUpdate' },
 		'williamboman/mason-lspconfig.nvim',
 	},
 	config = function()
@@ -48,8 +48,12 @@ return {
 		vim.keymap.set('n', 'dl', vim.diagnostic.open_float, key_opts)
 		vim.keymap.set('n', 'dp', vim.diagnostic.goto_prev, key_opts)
 		vim.keymap.set('n', 'dn', vim.diagnostic.goto_next, key_opts)
-		vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist,
-			{ noremap = true, silent = true, desc = 'Open QuickFix' })
+		vim.keymap.set(
+			'n',
+			'<space>q',
+			vim.diagnostic.setloclist,
+			{ noremap = true, silent = true, desc = 'Open QuickFix' }
+		)
 
 		-- Use an on_attach function to only map the following keys
 		-- after the language server attaches to the current buffer
@@ -134,9 +138,9 @@ return {
 				textDocument = {
 					foldingRange = {
 						dynamicRegistration = true,
-						lineFoldingOnly = true
-					}
-				}
+						lineFoldingOnly = true,
+					},
+				},
 			}
 		)
 
@@ -155,30 +159,35 @@ return {
 
 		local lspconfig = require('lspconfig')
 		local servers = {
-			"angularls",
-			"bashls",
-			"cssls",
-			"emmet_ls",
-			"eslint",
-			"html",
-			"kotlin_language_server",
-			"lemminx",
-			"ltex",
-			"lua_ls",
-			"marksman",
-			"nixd",
-			"prosemd_lsp",
-			"pylsp",
-			"rust_analyzer",
-			"tsserver",
-			"vimls",
+			'angularls',
+			'bashls',
+			'cssls',
+			'emmet_ls',
+			'eslint',
+			'html',
+			'kotlin_language_server',
+			'lemminx',
+			'lua_ls',
+			'marksman',
+			'nixd',
+			'prosemd_lsp',
+			'pylsp',
+			'rust_analyzer',
+			'tsserver',
+			'vimls',
 		}
 
 		for _, value in pairs(servers) do
 			lspconfig[value].setup({
-				capabilities = capabilities
+				capabilities = capabilities,
 			})
 		end
+
+		-- LTEX LSP
+		require('lspconfig').ltex.setup({
+			capabilities = capabilities,
+			filetypes = { 'markdown', 'org', 'plaintext' },
+		})
 
 		-- JSON LSP
 		require('lspconfig').jsonls.setup({
@@ -206,20 +215,34 @@ return {
 		})
 
 		-- PowerShell
-		local pses = require('utils').mason .. '/packages/powershell-editor-services/PowerShellEditorServices'
+		local pses = require('utils').mason
+			.. '/packages/powershell-editor-services/PowerShellEditorServices'
 		require('lspconfig').powershell_es.setup({
-			cmd = { 'powershell', '-NoLogo', '-NoProfile', '-Command',
+			cmd = {
+				'powershell',
+				'-NoLogo',
+				'-NoProfile',
+				'-Command',
 				pses .. '/Start-EditorServices.ps1',
-				'-BundledModulesPath', pses,
-				'-LogPath', pses .. '/log/pwsh.log',
-				'-SessionDetailsPath', pses .. '/session.json',
-				'-FeatureFlags', '@()',
-				'-AdditionalModules', '@()',
-				'-HostName', 'nvim',
-				'-HostProfileId', '0',
-				'-HostVersion', '1.0.0',
+				'-BundledModulesPath',
+				pses,
+				'-LogPath',
+				pses .. '/log/pwsh.log',
+				'-SessionDetailsPath',
+				pses .. '/session.json',
+				'-FeatureFlags',
+				'@()',
+				'-AdditionalModules',
+				'@()',
+				'-HostName',
+				'nvim',
+				'-HostProfileId',
+				'0',
+				'-HostVersion',
+				'1.0.0',
 				'-Stdio',
-				'-LogLevel', 'Normal'
+				'-LogLevel',
+				'Normal',
 			},
 			shell = 'powershell',
 			capabilities = capabilities,

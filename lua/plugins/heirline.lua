@@ -89,20 +89,20 @@ return {
 
 		local MacroRec = {
 			condition = function()
-				return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
+				return vim.fn.reg_recording() ~= '' and vim.o.cmdheight == 0
 			end,
-			provider = " ",
-			hl = { fg = "orange", bold = true },
-			utils.surround({ "[", "]" }, nil, {
+			provider = ' ',
+			hl = { fg = 'orange', bold = true },
+			utils.surround({ '[', ']' }, nil, {
 				provider = function()
 					return vim.fn.reg_recording()
 				end,
-				hl = { fg = "green", bold = true },
+				hl = { fg = 'green', bold = true },
 			}),
 			update = {
-				"RecordingEnter",
-				"RecordingLeave",
-			}
+				'RecordingEnter',
+				'RecordingLeave',
+			},
 		}
 
 		ViMode = utils.surround({ '', '' }, black3, { MacroRec, ViMode })
@@ -126,13 +126,13 @@ return {
 		-- Lazy
 		local Lazy = {
 			condition = function()
-				local ok, lazy_status = pcall(require, "lazy.status")
+				local ok, lazy_status = pcall(require, 'lazy.status')
 				return ok and lazy_status.has_updates()
 			end,
-			update = { "User", pattern = "LazyUpdate" },
+			update = { 'User', pattern = 'LazyUpdate' },
 			provider = function()
-				return 'Updates: ' .. require("lazy.status").updates()
-			end
+				return 'Updates: ' .. require('lazy.status').updates()
+			end,
 		}
 
 		-- Git
@@ -274,7 +274,6 @@ return {
 		}
 
 		LSPBlock = utils.insert(LSPBlock, Lsp, Space, Diagnostics, { provider = '%<' })
-
 
 		local FileIndent = {
 			provider = function()

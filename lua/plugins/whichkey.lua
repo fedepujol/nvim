@@ -1,7 +1,7 @@
 -- WhichKey
 return {
 	'folke/which-key.nvim',
-	event = "VeryLazy",
+	event = 'VeryLazy',
 	config = function()
 		require('which-key').setup({
 			plugins = {
@@ -47,7 +47,7 @@ return {
 					name = 'TreeSitter',
 					m = { ':TSModuleInfo<CR>', 'Module Info' },
 					i = { ':TSInstallInfo<CR>', 'Install Info' },
-				}
+				},
 			},
 			b = {
 				name = 'Buffers',
@@ -81,7 +81,7 @@ return {
 			},
 			g = {
 				name = 'Git',
-				b = { "<cmd>lua require('gitsigns').blame_line()<CR>", "Blame Line" },
+				b = { "<cmd>lua require('gitsigns').blame_line()<CR>", 'Blame Line' },
 				h = {
 					name = 'Hunk',
 					j = { "<cmd>lua require('gitsigns').next_hunk()<CR>", 'Next Hunk' },
@@ -122,5 +122,5 @@ return {
 				l = { ':normal!$x<CR>', 'Delete last character' },
 			},
 		}, { mode = 'v', prefix = '<leader>', noremap = true, silent = true })
-	end
+	end,
 }
