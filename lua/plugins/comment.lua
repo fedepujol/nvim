@@ -3,7 +3,7 @@
 return {
 	'numToStr/Comment.nvim',
 	event = 'BufEnter',
-	config = function ()
+	config = function()
 		require('Comment').setup({
 			padding = true, -- Add a space b/w comment the line
 			sticky = true, -- Whether the cursor should stay at its position
@@ -21,5 +21,5 @@ return {
 				extra = true, -- gco, gcO, gcA
 			},
 		})
-	end
+	end,
 }
