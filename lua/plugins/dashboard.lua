@@ -40,17 +40,27 @@ return {
 						key = 'p',
 						keymap = 'SPC f',
 						key_hl = 'Number',
-						action = 'require("telescope.builtin").find_files({previewer = false})'
+						action = 'require("telescope.builtin").find_files({previewer = false})',
 					},
 					{
 						icon = ' ',
 						icon_hl = 'String',
-						desc = 'Find Help',
+						desc = 'Help',
 						desc_hl = 'String',
 						key = 'h',
 						keymap = 'SPC f',
 						key_hl = 'Number',
-						action = 'require("telescope.builtin").help_tags()'
+						action = 'require("telescope.builtin").help_tags()',
+					},
+					{
+						icon = ' ',
+						icon_hl = 'String',
+						desc = 'New File',
+						desc_hl = 'String',
+						key = 'f',
+						keymap = 'SPC n',
+						key_hl = 'Number',
+						action = ':enew',
 					},
 					{
 						icon = ' ',
@@ -60,35 +70,35 @@ return {
 						key = 't',
 						keymap = 'SPC t',
 						key_hl = 'Number',
-						action = ':ToggleTerm<CR>'
+						action = ':ToggleTerm<CR>',
 					},
 					{
-						icon = '🚪 ',
+						icon = '󰗼 ',
 						icon_hl = 'String',
 						desc = 'Quit',
 						desc_hl = 'String',
 						key = 'q',
 						keymap = 'CTRL',
 						key_hl = 'Number',
-						action = ':qa!'
+						action = ':qa!',
 					},
 				},
-				footer = {} --your footer
-			}
+				footer = {}, --your footer
+			},
 		}
 		return opts
 	end,
 	config = function(_, opts)
-		local db = require("dashboard")
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "LazyVimStarted",
+		local db = require('dashboard')
+		vim.api.nvim_create_autocmd('User', {
+			pattern = 'LazyVimStarted',
 			callback = function()
-				local stats = require("lazy").stats()
+				local stats = require('lazy').stats()
 				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-				local footer = "⚡ Neovim loaded " .. stats.loaded .. " plugins in " .. ms .. "ms"
-				opts.config.footer = { "" .. footer .. "" }
+				local footer = '⚡ Neovim loaded ' .. stats.loaded .. ' plugins in ' .. ms .. 'ms'
+				opts.config.footer = { '' .. footer .. '' }
 				db.setup(opts)
 			end,
 		})
-	end
+	end,
 }
