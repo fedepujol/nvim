@@ -44,13 +44,27 @@ return {
 		})
 
 		-- Mappings
-		local key_opts = { noremap = true, silent = true, desc = '' }
-		vim.keymap.set('n', 'dl', vim.diagnostic.open_float, key_opts)
-		vim.keymap.set('n', 'dp', vim.diagnostic.goto_prev, key_opts)
-		vim.keymap.set('n', 'dn', vim.diagnostic.goto_next, key_opts)
 		vim.keymap.set(
 			'n',
-			'<space>q',
+			'<leader>e',
+			vim.diagnostic.open_float,
+			{ noremap = true, silent = true, desc = 'Diagnostic Open Float' }
+		)
+		vim.keymap.set(
+			'n',
+			'[d',
+			vim.diagnostic.goto_prev,
+			{ noremap = true, silent = true, desc = 'Previous Diagnostic' }
+		)
+		vim.keymap.set(
+			'n',
+			']d',
+			vim.diagnostic.goto_next,
+			{ noremap = true, silent = true, desc = 'Next Diagnostic' }
+		)
+		vim.keymap.set(
+			'n',
+			'<leader>q',
 			vim.diagnostic.setloclist,
 			{ noremap = true, silent = true, desc = 'Open QuickFix' }
 		)
