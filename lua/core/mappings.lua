@@ -33,6 +33,8 @@ vim.keymap.set('v', '<A-k>', ':MoveBlock(-1)<CR>', { noremap = true, silent = tr
 
 vim.keymap.set('n', '<A-h>', ':MoveHChar(-1)<CR>', { noremap = true, silent = true, desc = 'Move Char Left' })
 vim.keymap.set('n', '<A-l>', ':MoveHChar(1)<CR>', { noremap = true, silent = true, desc = 'Move Char Right' })
+vim.keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', { noremap = true, silent = true, desc = 'Move Block Left' })
+vim.keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', { noremap = true, silent = true, desc = 'Move Block Right' })
 
 vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', { noremap = true, silent = true, desc = 'Transpose Word Right' })
 vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', { noremap = true, silent = true, desc = 'Transpose Word Left' })
