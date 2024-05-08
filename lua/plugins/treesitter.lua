@@ -1,6 +1,6 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
-	build = ":TSUpdate",
+	build = ':TSUpdate',
 	config = function()
 		require('nvim-treesitter.configs').setup({
 			ensure_installed = {
@@ -9,8 +9,7 @@ return {
 				'c', 'cmake', 'comment', 'cpp', 'css', 'csv',
 				'diff',
 				'git_config', 'gitattributes', 'gitcommit', 'gitignore',
-				'hjson', 'html', 'http',
-				'hjson', 'http',
+				'hjson', 'http', 'html', 'hjson', 'http',
 				'ini',
 				'java', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc', 'jq',
 				'kotlin',
@@ -26,7 +25,7 @@ return {
 				'vim', 'vimdoc',
 				'yaml', 'yuck',
 				'xml',
-				'zig'
+				'zig',
 			},
 			sync_install = false, -- Install parsers synchronously (only applied to ensure_installed)
 			auto_install = true, -- Automatically install missing parsers
@@ -38,7 +37,7 @@ return {
 				enable = true, -- false will disable the whole extension
 				additional_vim_regex_highlighting = false,
 			},
-			modules = {}
+			modules = {},
 		})
-	end
+	end,
 }
