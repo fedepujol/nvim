@@ -4,5 +4,8 @@ return {
 		'stevearc/dressing.nvim',
 		'nvim-telescope/telescope.nvim',
 	},
-	cmd = 'Nerdy'
+	keys = {
+		{ '<leader>bin', '<cmd>Nerdy<CR>', desc = 'Insert Nerd Icon' },
+	},
+	cmd = 'Nerdy',
 }
