@@ -16,12 +16,11 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-
 local spec = {
 	{
 		'fedepujol/cosmos.nvim',
 		lazy = false,
-		priority = 1000,
+		-- priority = 1000,
 		dev = true,
 		config = function()
 			vim.cmd([[color cosmos]])
@@ -34,6 +33,12 @@ local spec = {
 			'MoveBlock',
 			'MoveWord',
 		},
+		opts = {
+			char = {
+				enable = true,
+			},
+		},
+		dev = true,
 	},
 	{
 		'fedepujol/bracketpair.nvim',
