@@ -12,7 +12,6 @@ return {
 				lua = { 'stylua' },
 				markdown = { 'markdownlint' },
 				javascript = { 'prettierd' },
-				java = { 'google-java-format' },
 				rust = { 'rustfmt' },
 				yaml = { 'yamlfmt' },
 				xml = { 'xmlformatter' },
