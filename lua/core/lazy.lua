@@ -79,7 +79,7 @@ local opts = {
 		enabled = false,
 	},
 	change_detection = {
-		enabled = false,
+		enabled = true,
 	},
 	performance = {
 		cache = {
