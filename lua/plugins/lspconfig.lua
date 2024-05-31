@@ -10,6 +10,7 @@ return {
 		'williamboman/mason-lspconfig.nvim',
 	},
 	config = function()
+		-- Mason Setup
 		require('mason').setup({
 			log_level = vim.log.levels.DEBUG,
 			ui = {
@@ -42,6 +43,151 @@ return {
 				'yamlls',
 			},
 		})
+
+		-- Neodev setup
+		require('neodev').setup({
+			library = {
+				enabled = true,
+				runtime = true, -- runtime path
+				types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+				plugins = true, -- installed opt or start plugins in packpath
+			},
+			setup_jsonls = false,
+			lspconfig = true,
+			pathStrict = true,
+		})
+
+		-- Capabilities
+		local capabilities = vim.tbl_deep_extend(
+			'force',
+			vim.lsp.protocol.make_client_capabilities(),
+			require('cmp_nvim_lsp').default_capabilities(),
+			{
+				workspace = {
+					didChangeConfiguration = { dynamicRegistration = true },
+					didChangeWatchedFiles = { dynamicRegistration = true },
+					didChangeWorkspaceFolders = { dynamicRegistration = true },
+				},
+			},
+			{
+				textDocument = {
+					foldingRange = {
+						dynamicRegistration = true,
+						lineFoldingOnly = true,
+					},
+				},
+			}
+		)
+
+		-- Servers
+		local lspconfig = require('lspconfig')
+		local pses = require('utils').mason
+			.. '/packages/powershell-editor-services/PowerShellEditorServices'
+
+		local servers_custom = {
+			bashls = {},
+			cssls = {},
+			eslint = {},
+			kotlin_language_server = {},
+			lemminx = {},
+			lua_ls = {},
+			marksman = {},
+			prosemd_lsp = {},
+			pylsp = {},
+			rust_analyzer = {},
+			tsserver = {},
+			vimls = {},
+			nil_ls = {
+				settings = {
+					["nil"] = {
+						formatting = {
+							command = { "nixpkgs-fmt" }
+						}
+					}
+				}
+			},
+			angularls = {
+				filetypes = { 'angular.html', 'typescript' },
+			},
+			html = {
+				filetypes = { 'angular.html', 'html', 'templ' },
+			},
+			emmet_ls = {
+				filetypes = { 'angular.html', 'html', 'less', 'sass', 'scss' },
+			},
+			ltex = {
+				filetypes = { 'markdown', 'org', 'plaintext' },
+			},
+			jsonls = {
+				settings = {
+					json = {
+						validate = {
+							enable = true,
+						},
+						schemas = require('schemastore').json.schemas({
+							select = {
+								'.angular-cli.json',
+								'.eslintrc',
+								'.vsconfig',
+								'angular.json',
+								'launchsettings.json',
+								'package.json',
+								'task.json',
+								'tsconfig.json',
+								'tslint.json',
+							},
+						}),
+					},
+				},
+			},
+			powershell_es = {
+				cmd = {
+					'powershell',
+					'-NoLogo',
+					'-NoProfile',
+					'-Command',
+					pses .. '/Start-EditorServices.ps1',
+					'-BundledModulesPath',
+					pses,
+					'-LogPath',
+					pses .. '/log/pwsh.log',
+					'-SessionDetailsPath',
+					pses .. '/session.json',
+					'-FeatureFlags',
+					'@()',
+					'-AdditionalModules',
+					'@()',
+					'-HostName',
+					'nvim',
+					'-HostProfileId',
+					'0',
+					'-HostVersion',
+					'1.0.0',
+					'-Stdio',
+					'-LogLevel',
+					'Normal',
+				},
+				shell = 'powershell',
+				bundle_path = pses,
+			},
+			yamlls = {
+				settings = {
+					yaml = {
+						schemas = require('schemastore').yaml.schemas({
+							select = {
+								'docker-compose.yml',
+								'yamllint',
+							},
+						}),
+					},
+				},
+			}
+		}
+
+		for name, config in pairs(servers_custom) do
+			config = vim.tbl_extend('force', {}, { capabilities = capabilities }, config)
+			lspconfig[name].setup(config)
+		end
 
 		-- Mappings
 		vim.keymap.set(
@@ -97,6 +243,7 @@ return {
 			end,
 		})
 
+		-- UI
 		local border = {
 			{ '╭', 'FloatBorder' },
 			{ '─', 'FloatBorder' },
@@ -130,152 +277,12 @@ return {
 			},
 		})
 
+		---@diagnostic disable: duplicate-set-field
 		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 			opts = opts or {}
 			opts.border = opts.border or border
 			return orig_util_open_floating_preview(contents, syntax, opts, ...)
 		end
-
-		local capabilities = vim.tbl_deep_extend(
-			'force',
-			vim.lsp.protocol.make_client_capabilities(),
-			require('cmp_nvim_lsp').default_capabilities(),
-			{
-				workspace = {
-					didChangeConfiguration = { dynamicRegistration = true },
-					didChangeWatchedFiles = { dynamicRegistration = true },
-					didChangeWorkspaceFolders = { dynamicRegistration = true },
-				},
-			},
-			{
-				textDocument = {
-					foldingRange = {
-						dynamicRegistration = true,
-						lineFoldingOnly = true,
-					},
-				},
-			}
-		)
-
-		-- Neodev setup
-		require('neodev').setup({
-			library = {
-				enabled = true,
-				runtime = true, -- runtime path
-				types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-				plugins = true, -- installed opt or start plugins in packpath
-			},
-			setup_jsonls = false,
-			lspconfig = true,
-			pathStrict = true,
-		})
-
-		local lspconfig = require('lspconfig')
-		local servers = {
-			'angularls',
-			'bashls',
-			'cssls',
-			'emmet_ls',
-			'eslint',
-			'html',
-			'kotlin_language_server',
-			'lemminx',
-			'lua_ls',
-			'marksman',
-			'nixd',
-			'prosemd_lsp',
-			'pylsp',
-			'rust_analyzer',
-			'tsserver',
-			'vimls',
-		}
-
-		for _, value in pairs(servers) do
-			lspconfig[value].setup({
-				capabilities = capabilities,
-			})
-		end
-
-		-- LTEX LSP
-		require('lspconfig').ltex.setup({
-			capabilities = capabilities,
-			filetypes = { 'markdown', 'org', 'plaintext' },
-		})
-
-		-- JSON LSP
-		require('lspconfig').jsonls.setup({
-			capabilities = capabilities,
-			settings = {
-				json = {
-					validate = {
-						enable = true,
-					},
-					schemas = require('schemastore').json.schemas({
-						select = {
-							'.angular-cli.json',
-							'.eslintrc',
-							'.vsconfig',
-							'angular.json',
-							'launchsettings.json',
-							'package.json',
-							'task.json',
-							'tsconfig.json',
-							'tslint.json',
-						},
-					}),
-				},
-			},
-		})
-
-		-- PowerShell
-		local pses = require('utils').mason
-			.. '/packages/powershell-editor-services/PowerShellEditorServices'
-		require('lspconfig').powershell_es.setup({
-			cmd = {
-				'powershell',
-				'-NoLogo',
-				'-NoProfile',
-				'-Command',
-				pses .. '/Start-EditorServices.ps1',
-				'-BundledModulesPath',
-				pses,
-				'-LogPath',
-				pses .. '/log/pwsh.log',
-				'-SessionDetailsPath',
-				pses .. '/session.json',
-				'-FeatureFlags',
-				'@()',
-				'-AdditionalModules',
-				'@()',
-				'-HostName',
-				'nvim',
-				'-HostProfileId',
-				'0',
-				'-HostVersion',
-				'1.0.0',
-				'-Stdio',
-				'-LogLevel',
-				'Normal',
-			},
-			shell = 'powershell',
-			capabilities = capabilities,
-			bundle_path = pses,
-		})
-
-		-- Yaml LSP
-		require('lspconfig').yamlls.setup({
-			capabilities = capabilities,
-			settings = {
-				yaml = {
-					schemas = require('schemastore').yaml.schemas({
-						select = {
-							'docker-compose.yml',
-							'yamllint',
-						},
-					}),
-				},
-			},
-		})
 	end,
 }
