@@ -108,6 +108,10 @@ return {
 					n = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Next Diagnostic' },
 					p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev. Diagnostic' },
 				},
+				t = {
+					name = 'Trouble',
+					s = { ':Trouble symbols<cr>', 'Trouble Symbols' }
+				}
 			},
 			t = {
 				name = 'Terminal',
