@@ -12,6 +12,7 @@ return {
 		'hrsh7th/cmp-vsnip',
 		'hrsh7th/vim-vsnip',
 		'mattn/emmet-vim',
+		'folke/lazydev.nvim'
 	},
 	config = function()
 		local cmp = require('cmp')
@@ -92,6 +93,7 @@ return {
 				{ name = 'nvim_lua' },
 				{ name = 'vsnip' },
 				{ name = 'path' },
+				{ name = 'lazydev',                group_index = 0 }
 			},
 			formatting = {
 				format = function(entry, vim_item)

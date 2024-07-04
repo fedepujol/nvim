@@ -3,7 +3,6 @@ return {
 	'neovim/nvim-lspconfig',
 	event = 'BufReadPre',
 	dependencies = {
-		'folke/neodev.nvim',
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
 		{ 'williamboman/mason.nvim', build = ':MasonUpdate' },
@@ -42,19 +41,6 @@ return {
 				'vimls',
 				'yamlls',
 			},
-		})
-
-		-- Neodev setup
-		require('neodev').setup({
-			library = {
-				enabled = true,
-				runtime = true, -- runtime path
-				types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-				plugins = true, -- installed opt or start plugins in packpath
-			},
-			setup_jsonls = false,
-			lspconfig = true,
-			pathStrict = true,
 		})
 
 		-- Capabilities
