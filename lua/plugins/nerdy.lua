@@ -5,7 +5,7 @@ return {
 		'nvim-telescope/telescope.nvim',
 	},
 	keys = {
-		{ '<leader>bin', '<cmd>Nerdy<CR>', desc = 'Insert Nerd Icon' },
+		{ '<leader>is', '<cmd>Nerdy<CR>', desc = 'Nerd Icon' },
 	},
 	cmd = 'Nerdy',
 }

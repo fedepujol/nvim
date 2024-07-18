@@ -7,7 +7,7 @@ return {
 		'MunifTanjim/nui.nvim',
 	},
 	keys = {
-		{ '<C-b>', ':Neotree toggle<CR>', desc = 'NeoTree' }
+		{ '<C-b>', ':Neotree toggle<CR>', desc = 'NeoTree' },
 	},
 	config = function()
 		require('neo-tree').setup({
@@ -16,7 +16,7 @@ return {
 			default_component_configs = {
 				indent = {
 					with_markers = true,
-					with_expanders = true
+					with_expanders = true,
 				},
 				modified = {
 					symbol = '',
@@ -24,18 +24,18 @@ return {
 				git_status = {
 					symbols = {
 						-- Change type
-						added     = '',
-						deleted   = '',
-						modified  = '',
-						renamed   = '󰑕',
+						added = '',
+						deleted = '',
+						modified = '',
+						renamed = '󰑕',
 						-- Status type
-						conflict  = '',
-						ignored   = 'I',
-						staged    = 'S',
-						unstaged  = '',
+						conflict = '',
+						ignored = 'I',
+						staged = 'S',
+						unstaged = '',
 						untracked = 'U',
 					},
-				}
+				},
 			},
 			window = {
 				mappings = {
@@ -47,11 +47,11 @@ return {
 					enabled = true,
 					leave_dirs_open = false,
 				},
-				group_empty_dirs = true
+				group_empty_dirs = true,
 			},
 			nesting_rules = {
-				["component.html"] = { "component.css", "component.ts" }
-			}
+				['component.html'] = { 'component.css', 'component.ts' },
+			},
 		})
-	end
+	end,
 }
