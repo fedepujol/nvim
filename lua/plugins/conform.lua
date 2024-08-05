@@ -9,12 +9,12 @@ return {
 			},
 			formatters_by_ft = {
 				css = { 'prettierd' },
+				javascript = { 'prettierd' },
 				lua = { 'stylua' },
 				markdown = { 'markdownlint' },
-				javascript = { 'prettierd' },
 				rust = { 'rustfmt' },
-				yaml = { 'yamlfmt' },
 				xml = { 'xmlformatter' },
+				yaml = { 'yamlfmt' },
 			},
 		})
 	end,

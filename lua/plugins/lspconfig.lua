@@ -85,21 +85,21 @@ return {
 			vimls = {},
 			nil_ls = {
 				settings = {
-					["nil"] = {
+					['nil'] = {
 						formatting = {
-							command = { "nixpkgs-fmt" }
-						}
-					}
-				}
+							command = { 'nixpkgs-fmt' },
+						},
+					},
+				},
 			},
 			angularls = {
-				filetypes = { 'angular.html', 'typescript' },
+				filetypes = { 'htmlangular', 'typescript' },
 			},
 			html = {
-				filetypes = { 'angular.html', 'html', 'templ' },
+				filetypes = { 'htmlangular', 'html', 'templ' },
 			},
 			emmet_ls = {
-				filetypes = { 'angular.html', 'html', 'less', 'sass', 'scss' },
+				filetypes = { 'htmlangular', 'html', 'less', 'sass', 'scss' },
 			},
 			ltex = {
 				filetypes = { 'markdown', 'org', 'plaintext' },
@@ -167,7 +167,7 @@ return {
 						}),
 					},
 				},
-			}
+			},
 		}
 
 		for name, config in pairs(servers_custom) do
@@ -178,21 +178,9 @@ return {
 		-- Mappings
 		vim.keymap.set(
 			'n',
-			'<leader>e',
+			'<leader>ldf',
 			vim.diagnostic.open_float,
 			{ noremap = true, silent = true, desc = 'Diagnostic Open Float' }
-		)
-		vim.keymap.set(
-			'n',
-			'[d',
-			vim.diagnostic.goto_prev,
-			{ noremap = true, silent = true, desc = 'Previous Diagnostic' }
-		)
-		vim.keymap.set(
-			'n',
-			']d',
-			vim.diagnostic.goto_next,
-			{ noremap = true, silent = true, desc = 'Next Diagnostic' }
 		)
 		vim.keymap.set(
 			'n',
