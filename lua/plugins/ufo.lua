@@ -10,19 +10,19 @@ return {
 				require('statuscol').setup({
 					reculright = true,
 					segments = {
-						{ text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-						{ text = { '%s' },                  click = "v:lua.ScSa" },
-						{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-					}
+						{ text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
+						{ text = { '%s' }, click = 'v:lua.ScSa' },
+						{ text = { builtin.lnumfunc, ' ' }, click = 'v:lua.ScLa' },
+					},
 				})
-			end
-		}
+			end,
+		},
 	},
 	config = function()
 		require('ufo').setup({
 			provider_selector = function()
 				return { 'treesitter', 'indent' }
-			end
+			end,
 		})
-	end
+	end,
 }
