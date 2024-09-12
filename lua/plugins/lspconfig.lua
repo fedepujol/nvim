@@ -81,7 +81,7 @@ return {
 			prosemd_lsp = {},
 			pylsp = {},
 			rust_analyzer = {},
-			tsserver = {},
+			ts_ls = {},
 			vimls = {},
 			nil_ls = {
 				settings = {
