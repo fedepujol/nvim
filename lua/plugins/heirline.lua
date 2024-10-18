@@ -212,6 +212,12 @@ return {
 			},
 		}
 
+		local git_blame = require('gitblame')
+		local Blame = {
+			condition = git_blame.is_blame_text_available,
+			provider = git_blame.get_current_blame_text
+		}
+
 		local GitBlock = utils.insert(Git, { provider = '%<' })
 
 		-- Lsp
@@ -374,6 +380,8 @@ return {
 			Align,
 
 			-- Left
+			Blame,
+			Space,
 			FileIcon,
 			Space,
 			FileType,
