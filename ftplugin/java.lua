@@ -13,7 +13,7 @@ local jdtls = require('jdtls')
 local jdtls_dap = require('jdtls.dap')
 
 config.cmd = {
-	paths.jdtlsPaths.jdk.v17 .. '/bin/java.exe',
+	paths.jdtlsPaths.jdk.v21 .. '/bin/java.exe',
 	'-Declipse.application=org.eclipse.jdt.ls.core.id1',
 	'-Dosgi.bundles.defaultStartLevel=4',
 	'-Declipse.product=org.eclipse.jdt.ls.core.product',
