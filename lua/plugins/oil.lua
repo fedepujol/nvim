@@ -4,13 +4,13 @@ return {
 		'nvim-tree/nvim-web-devicons',
 	},
 	keys = {
-		{ '<C-b>', ':Oil --float<CR>', desc = 'Oil' },
+		{ '<C-b>', ':Oil --float<CR>', desc = 'Open Oil' },
 	},
 	config = function()
 		require('oil').setup({
 			columns = {
 				"icon", "permissions", "size"
-			}
+			},
 		})
 	end
 }
