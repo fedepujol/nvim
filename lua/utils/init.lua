@@ -1,4 +1,4 @@
----@class JdtlsPaths 
+---@class JdtlsPaths
 ---@field config_sys string
 ---@field jar string
 ---@field jdk table
@@ -68,10 +68,10 @@ M.jdtlsPaths = {
 	jdk = {
 		v8 = M.scoop .. '/corretto8-jdk/current',
 		v11 = M.scoop .. '/openjdk11/current',
-		v17 = M.scoop .. '/openjdk17/current',
-		v21 = M.scoop .. '/openjdk21/current',
+		v17 = M.scoop .. '/corretto-lts-jdk/current',
+		v21 = M.scoop .. '/corretto-jdk/current',
 	},
-	gradle = M.scoop .. '/gradle6/current',
+	gradle = M.scoop .. '/gradle7/current',
 	project = M.workspace .. '/java/' .. project_name,
 }
 

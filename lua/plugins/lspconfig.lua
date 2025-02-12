@@ -72,15 +72,18 @@ return {
 
 		local servers_custom = {
 			bashls = {},
-			cssls = {},
-			eslint = {},
+			cssls = {
+				filetypes = { "css" }
+			},
 			kotlin_language_server = {},
 			lemminx = {},
 			lua_ls = {},
 			marksman = {},
+			openedge_ls = {},
 			prosemd_lsp = {},
 			pylsp = {},
 			rust_analyzer = {},
+			somesass_ls = {},
 			ts_ls = {},
 			vimls = {},
 			nil_ls = {
@@ -107,22 +110,10 @@ return {
 			jsonls = {
 				settings = {
 					json = {
+						schemas = require('schemastore').json.schemas(),
 						validate = {
 							enable = true,
 						},
-						schemas = require('schemastore').json.schemas({
-							select = {
-								'.angular-cli.json',
-								'.eslintrc',
-								'.vsconfig',
-								'angular.json',
-								'launchsettings.json',
-								'package.json',
-								'task.json',
-								'tsconfig.json',
-								'tslint.json',
-							},
-						}),
 					},
 				},
 			},
@@ -159,12 +150,14 @@ return {
 			yamlls = {
 				settings = {
 					yaml = {
-						schemas = require('schemastore').yaml.schemas({
-							select = {
-								'docker-compose.yml',
-								'yamllint',
-							},
-						}),
+						schemaStore = {
+							enable = false,
+							url = "",
+						},
+						schemas = require('schemastore').yaml.schemas(),
+						validate = {
+							enable = true
+						}
 					},
 				},
 			},
@@ -205,6 +198,12 @@ return {
 				vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 				vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 				vim.keymap.set('n', 'sh', vim.lsp.buf.signature_help, opts)
+				vim.keymap.set('n', '[d', function()
+					vim.diagnostic.jump({ count = -1, float = true })
+				end, opts)
+				vim.keymap.set('n', ']d', function()
+					vim.diagnostic.jump({ count = 1, float = true })
+				end, opts)
 				vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
 				vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
 				vim.keymap.set('n', '<space>wl', function()
@@ -243,7 +242,9 @@ return {
 
 		-- Handlers
 		vim.diagnostic.config({
-			virtual_text = true,
+			virtual_text = {
+				source = true
+			},
 			signs = true,
 			underline = true,
 			float = {

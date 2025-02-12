@@ -41,10 +41,6 @@ local spec = {
 		dev = true,
 	},
 	{
-		'fedepujol/bracketpair.nvim',
-		dev = true,
-	},
-	{
 		'rktjmp/lush.nvim',
 		cmd = 'Lushify',
 	},

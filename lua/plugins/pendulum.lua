@@ -1,6 +1,6 @@
 return {
 	'ptdewey/pendulum-nvim',
-	lazy = false,
+	event = "InsertEnter",
 	config = function()
 		require('pendulum').setup({
 			log_file = vim.fn.expand("$HOME/Documents/pendulum-nvim_log.csv"),
