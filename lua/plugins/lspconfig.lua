@@ -5,7 +5,7 @@ return {
 	dependencies = {
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
-		{ 'williamboman/mason.nvim', build = ':MasonUpdate' },
+		{ 'williamboman/mason.nvim' },
 		'williamboman/mason-lspconfig.nvim',
 	},
 	config = function()
@@ -74,6 +74,17 @@ return {
 			bashls = {},
 			cssls = {
 				filetypes = { "css" }
+			},
+			dockerls = {
+				settings = {
+					docker = {
+						languageserver = {
+							formatter = {
+								ignoreMultilineInstructions = true
+							}
+						}
+					}
+				}
 			},
 			kotlin_language_server = {},
 			lemminx = {},
