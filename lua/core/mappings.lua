@@ -1,7 +1,7 @@
 -- General Mappings
 --
 -- Save
-vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = 'Save File' })
+vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = '[s]ave File' })
 vim.keymap.set(
 	'i',
 	'<C-s>',
@@ -10,8 +10,8 @@ vim.keymap.set(
 )
 
 -- Quit
-vim.keymap.set('n', '<C-q>', ':q<CR>', { noremap = true, silent = true, desc = 'Quit' })
-vim.keymap.set('n', '<C-Q>', ':qall!<CR>', { noremap = true, silent = true, desc = 'Force Quit' })
+vim.keymap.set('n', '<C-q>', ':q<CR>', { noremap = true, silent = true, desc = '[q]uit' })
+vim.keymap.set('n', '<C-Q>', ':qall!<CR>', { noremap = true, silent = true, desc = 'Force [Q]uit all' })
 
 -- Better Tabbing
 vim.keymap.set('v', '<S-TAB>', '<gv', { noremap = true, silent = true, desc = 'Next Buffer' })
@@ -51,7 +51,7 @@ vim.keymap.set(
 )
 
 -- Terminal
-vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true, desc = '' })
+vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit terminal mode' })
 vim.keymap.set('t', '<A-h>', '<C-\\><C-N><C-w>h', { noremap = true, silent = true, desc = '' })
 vim.keymap.set('t', '<A-j>', '<C-\\><C-N><C-w>j', { noremap = true, silent = true, desc = '' })
 vim.keymap.set('t', '<A-k>', '<C-\\><C-N><C-w>k', { noremap = true, silent = true, desc = '' })

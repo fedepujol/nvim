@@ -11,6 +11,7 @@ return {
 			},
 		},
 	},
+	{ 'saghen/blink.cmp' },
 	{ 'Bilal2453/luvit-meta',   lazy = true },
 	{ 'gonstoll/wezterm-types', lazy = true },
 }

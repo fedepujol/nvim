@@ -1,25 +1,21 @@
--- Nvim-CMP
+-- Blink.CMP
 
 return {
-	'hrsh7th/nvim-cmp',
+	'saghen/blink.cmp',
 	event = 'InsertEnter',
 	dependencies = {
-		'hrsh7th/cmp-cmdline',
-		'hrsh7th/cmp-nvim-lsp',
-		'hrsh7th/cmp-nvim-lsp-signature-help',
-		'hrsh7th/cmp-nvim-lua',
-		'hrsh7th/cmp-path',
-		'hrsh7th/cmp-vsnip',
-		'hrsh7th/vim-vsnip',
-		'mattn/emmet-vim',
-		'folke/lazydev.nvim'
+		'L3MON4D3/LuaSnip',
+		version = "2.*",
+		build = (function()
+			if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then
+				return
+			end
+			return 'make install_jsregexp'
+		end)()
 	},
+	version = "1.*",
 	config = function()
-		local cmp = require('cmp')
-
-		local feedkey = function(key, mode)
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-		end
+		local blink = require('blink.cmp')
 
 		local kind_icons = {
 			Class = ' ',
@@ -49,78 +45,68 @@ return {
 			Variable = ' ',
 		}
 
-		cmp.setup({
-			snippet = {
-				expand = function(args)
-					vim.fn['vsnip#anonymous'](args.body)
-				end,
+		---@module "blink.cmp"
+		---@type blink.cmp.Config
+		blink.setup({
+			keymap = {
+				preset = "enter",
 			},
-			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+			appearance = {
+				nerd_font_variant = "mono"
 			},
-			mapping = {
-				['<CR>'] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Insert,
-					select = true,
-				}),
-				['<C-n>'] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
-					elseif vim.fn['vsnip#available'](1) == 1 then
-						feedkey('<Plug>(vsnip-expand-or-jump)', '')
-					else
-						fallback()
-					end
-				end, { 'i', 's' }),
-				['<C-p>'] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item()
-					elseif vim.fn['vsnip#available'](-1) == 1 then
-						feedkey('<Plug>(vsnip-jump-prev)', '')
-					else
-						fallback()
-					end
-				end, { 'i', 's' }),
-				['<C-SPACE>'] = cmp.mapping.complete(),
-				['<ESC>'] = cmp.mapping.close(),
-				['<C-d>'] = cmp.mapping.scroll_docs(-4),
-				['<C-f>'] = cmp.mapping.scroll_docs(4),
+			completion = {
+				list = {
+					selection = {
+						preselect = false,
+						auto_insert = true
+					}
+				},
+				menu = {
+					border = "rounded",
+					draw = {
+						columns = {
+							{ "label", "label_description", gap = 1 }, { "kind_icon", "source_name" }
+						},
+						components = {
+							kind_icon = {
+								text = function(ctx)
+									return ' ' .. string.format('%s', kind_icons[ctx.kind])
+								end
+							}
+						}
+					}
+				},
+				documentation = {
+					window = {
+						border = "rounded"
+					},
+					auto_show = false,
+					auto_show_delay_ms = 500
+				}
+			},
+			signature = {
+				enabled = true,
+				window = {
+					border = "rounded",
+					show_documentation = false
+				}
+			},
+			snippets = {
+				preset = 'luasnip'
 			},
 			sources = {
-				{ name = 'nvim_lsp' },
-				{ name = 'nvim_lsp_signature_help' },
-				{ name = 'nvim_lua' },
-				{ name = 'vsnip' },
-				{ name = 'path' },
-				{ name = 'lazydev',                group_index = 0 }
+				default = {
+					"lsp", "path", "snippets", "buffer", "lazydev"
+				},
+				providers = {
+					lazydev = {
+						module = 'lazydev.integrations.blink', score_offset = 100
+					}
+				}
 			},
-			formatting = {
-				format = function(entry, vim_item)
-					vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-					vim_item.menu = ({
-						nvim_lsp = '[Lsp]',
-						nvim_lua = '[Lua]',
-						visnip = '[Snippet]',
-						path = '[Path]',
-						buffer = '[Buffer]',
-					})[entry.source.name]
-					return vim_item
-				end,
-			},
+			fuzzy = {
+				implementation = "prefer_rust_with_warning"
+			}
 		})
-
-		cmp.setup.cmdline(':', {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				{ name = 'path' },
-			}, {
-				{ name = 'cmdline' },
-			}),
-		})
-
-		-- Add parenthesis to functions and methods
-		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 	end,
 }

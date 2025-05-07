@@ -5,17 +5,13 @@ return {
 		'nvim-neotest/nvim-nio',
 		'theHamsta/nvim-dap-virtual-text'
 	},
-	keys = function(_, keys)
-		local dap = require('dap')
-		return {
-			{ '<F4>',       dap.continue,          { desc = 'Debug: Continue' } },
-			{ '<F6>',       dap.step_over,         { desc = 'Debug: Step Over' } },
-			{ '<F5>',       dap.step_into,         { desc = 'Debug: Step Into' } },
-			{ '<F8>',       dap.step_out,          { desc = 'Debug: Step Out' } },
-			{ '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' } },
-			unpack(keys)
-		}
-	end,
+	keys = {
+		{ '<F4>',       function() require('dap').continue() end,          desc = 'Debug: Continue' },
+		{ '<F6>',       function() require('dap').step_over() end,         desc = 'Debug: Step Over' },
+		{ '<F5>',       function() require('dap').step_into() end,         desc = 'Debug: Step Into' },
+		{ '<F8>',       function() require('dap').step_out() end,          desc = 'Debug: Step Out' },
+		{ '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Debug: Toggle Breakpoint' },
+	},
 	config = function()
 		local dap = require('dap')
 		local dapui = require('dapui')
