@@ -5,8 +5,8 @@ return {
 	dependencies = {
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
-		'williamboman/mason.nvim',
-		'williamboman/mason-lspconfig.nvim',
+		{ 'williamboman/mason.nvim', version = '1.*' },
+		{ 'williamboman/mason-lspconfig.nvim', version = '1.*' },
 		'saghen/blink.cmp',
 		{ url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim' },
 	},
@@ -35,7 +35,7 @@ return {
 		})
 
 		require('mason-lspconfig').setup({
-			automatic_enable = false,
+			automatic_installation = false,
 			ensure_installed = {
 				'bashls',
 				'jsonls',

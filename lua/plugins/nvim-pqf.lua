@@ -1,7 +1,7 @@
 return {
 	'yorickpeterse/nvim-pqf',
 	event = 'LspAttach',
-	config = function ()
+	config = function()
 		require('pqf').setup()
-	end
+	end,
 }
