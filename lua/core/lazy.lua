@@ -84,4 +84,4 @@ local opts = {
 }
 
 require('lazy').setup(spec, opts)
-vim.keymap.set('n', '<leader>ul', ':Lazy<CR>', { desc = "[l]azy" })
+vim.keymap.set('n', '<leader>ul', ':Lazy<CR>', { desc = '[l]azy' })

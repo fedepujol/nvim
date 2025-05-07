@@ -5,15 +5,15 @@ return {
 	event = 'InsertEnter',
 	dependencies = {
 		'L3MON4D3/LuaSnip',
-		version = "2.*",
+		version = '2.*',
 		build = (function()
 			if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then
 				return
 			end
 			return 'make install_jsregexp'
-		end)()
+		end)(),
 	},
-	version = "1.*",
+	version = '1.*',
 	config = function()
 		local blink = require('blink.cmp')
 
@@ -49,64 +49,70 @@ return {
 		---@type blink.cmp.Config
 		blink.setup({
 			keymap = {
-				preset = "enter",
+				preset = 'enter',
 			},
 			appearance = {
-				nerd_font_variant = "mono"
+				nerd_font_variant = 'mono',
 			},
 			completion = {
 				list = {
 					selection = {
 						preselect = false,
-						auto_insert = true
-					}
+						auto_insert = true,
+					},
 				},
 				menu = {
-					border = "rounded",
+					border = 'rounded',
 					draw = {
 						columns = {
-							{ "label", "label_description", gap = 1 }, { "kind_icon", "source_name" }
+							{ 'label', 'label_description', gap = 1 },
+							{ 'kind_icon', 'source_name' },
 						},
 						components = {
 							kind_icon = {
 								text = function(ctx)
 									return ' ' .. string.format('%s', kind_icons[ctx.kind])
-								end
-							}
-						}
-					}
+								end,
+							},
+						},
+					},
 				},
 				documentation = {
 					window = {
-						border = "rounded"
+						border = 'rounded',
 					},
 					auto_show = false,
-					auto_show_delay_ms = 500
-				}
+					auto_show_delay_ms = 500,
+				},
 			},
 			signature = {
 				enabled = true,
 				window = {
-					border = "rounded",
-					show_documentation = false
-				}
+					border = 'rounded',
+					show_documentation = false,
+				},
 			},
 			snippets = {
-				preset = 'luasnip'
+				preset = 'luasnip',
 			},
 			sources = {
 				default = {
-					"lsp", "path", "snippets", "buffer", "lazydev"
+					'lsp',
+					'path',
+					'snippets',
+					'buffer',
+					'lazydev',
 				},
 				providers = {
 					lazydev = {
-						module = 'lazydev.integrations.blink', score_offset = 100
-					}
-				}
+						module = 'lazydev.integrations.blink',
+						score_offset = 100,
+					},
+				},
 			},
 			fuzzy = {
-				implementation = "prefer_rust_with_warning"
-			}
+				implementation = 'prefer_rust_with_warning',
+			},
 		})
 	end,
 }

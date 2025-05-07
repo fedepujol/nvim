@@ -27,16 +27,14 @@ return {
 		})
 
 		local wk = require('which-key')
-
-		-- stylua: ignore
 		wk.add({
-			{ '<leader>b', group = "[b]uffers" },
-			{ '<leader>d', group = '[d]ebug' },
-			{ '<leader>g', group = "[g]it" },
-			{ '<leader>l', group = "[l]sp" },
-			{ '<leader>s', group = "[s]earch" },
-			{ '<leader>t', group = "[t]erminal" },
-			{ '<leader>u', group = '[u]ser settings' },
+			{ '<leader>b', group = '[b]uffers', icon = { icon = '󰈔', color = 'cyan' } },
+			{ '<leader>d', group = '[d]ebug', icon = { icon = ' ', color = 'red' } },
+			{ '<leader>g', group = '[g]it', icon = { icon = ' ', color = 'orange' } },
+			{ '<leader>l', group = '[l]sp', icon = { icon = ' ', color = 'purple' } },
+			{ '<leader>s', group = '[s]earch', icon = { icon = ' ', color = 'blue' } },
+			{ '<leader>t', group = '[t]erminal', icon = { icon = ' ', color = 'green' } },
+			{ '<leader>u', group = '[u]ser settings', icon = { icon = ' ', color = 'azure' } },
 		})
 	end,
 }

@@ -5,8 +5,10 @@ return {
 	dependencies = {
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
-		{ 'williamboman/mason.nvim' },
+		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
+		'saghen/blink.cmp',
+		{ url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim' },
 	},
 	config = function()
 		-- Mason Setup
@@ -33,7 +35,7 @@ return {
 		})
 
 		require('mason-lspconfig').setup({
-			automatic_installation = false,
+			automatic_enable = false,
 			ensure_installed = {
 				'bashls',
 				'jsonls',
@@ -43,27 +45,33 @@ return {
 			},
 		})
 
+		vim.keymap.set('n', '<leader>um', ':Mason<CR>', { desc = '[m]ason' })
 		-- Capabilities
-		local capabilities = vim.tbl_deep_extend(
+		-- Base LSP capabilities
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+		-- blink.cmp capabilities
+		capabilities = vim.tbl_deep_extend(
 			'force',
-			vim.lsp.protocol.make_client_capabilities(),
-			require('cmp_nvim_lsp').default_capabilities(),
-			{
-				workspace = {
-					didChangeConfiguration = { dynamicRegistration = true },
-					didChangeWatchedFiles = { dynamicRegistration = true },
-					didChangeWorkspaceFolders = { dynamicRegistration = true },
+			capabilities,
+			require('blink.cmp').get_lsp_capabilities({}, false)
+		)
+
+		-- Custom capabilities
+		capabilities = vim.tbl_deep_extend('force', capabilities, {
+			workspace = {
+				didChangeConfiguration = { dynamicRegistration = true },
+				didChangeWatchedFiles = { dynamicRegistration = true },
+				didChangeWorkspaceFolders = { dynamicRegistration = true },
+			},
+		}, {
+			textDocument = {
+				foldingRange = {
+					dynamicRegistration = true,
+					lineFoldingOnly = true,
 				},
 			},
-			{
-				textDocument = {
-					foldingRange = {
-						dynamicRegistration = true,
-						lineFoldingOnly = true,
-					},
-				},
-			}
-		)
+		})
 
 		-- Servers
 		local lspconfig = require('lspconfig')
@@ -73,18 +81,18 @@ return {
 		local servers_custom = {
 			bashls = {},
 			cssls = {
-				filetypes = { "css" }
+				filetypes = { 'css' },
 			},
 			dockerls = {
 				settings = {
 					docker = {
 						languageserver = {
 							formatter = {
-								ignoreMultilineInstructions = true
-							}
-						}
-					}
-				}
+								ignoreMultilineInstructions = true,
+							},
+						},
+					},
+				},
 			},
 			kotlin_language_server = {},
 			lemminx = {},
@@ -163,16 +171,33 @@ return {
 					yaml = {
 						schemaStore = {
 							enable = false,
-							url = "",
+							url = '',
 						},
 						schemas = require('schemastore').yaml.schemas(),
 						validate = {
-							enable = true
-						}
+							enable = true,
+						},
 					},
 				},
 			},
 		}
+
+		require('sonarlint').setup({
+			server = {
+				cmd = {
+					'sonarlint-language-server',
+					'-stdio',
+					'-analyzers',
+					vim.fn.expand('$MASON/share/sonarlint-analyzers/sonarjava.jar'),
+					vim.fn.expand(
+						'$MASON/share/sonarlint-analyzers/sonarjavasymbolicexecution.jar'
+					),
+				},
+			},
+			filetypes = {
+				'java',
+			},
+		})
 
 		for name, config in pairs(servers_custom) do
 			config = vim.tbl_extend('force', {}, { capabilities = capabilities }, config)
@@ -182,15 +207,9 @@ return {
 		-- Mappings
 		vim.keymap.set(
 			'n',
-			'<leader>ldf',
-			vim.diagnostic.open_float,
-			{ noremap = true, silent = true, desc = 'Diagnostic Open Float' }
-		)
-		vim.keymap.set(
-			'n',
-			'<leader>q',
+			'<leader>lq',
 			vim.diagnostic.setloclist,
-			{ noremap = true, silent = true, desc = 'Open QuickFix' }
+			{ desc = '[l]sp open [q]uickfix' }
 		)
 
 		-- Use an on_attach function to only map the following keys
@@ -198,32 +217,55 @@ return {
 		vim.api.nvim_create_autocmd('LspAttach', {
 			group = vim.api.nvim_create_augroup('UserLspConfig', {}),
 			callback = function(ev)
-				-- Enable completion triggered by <c-x><c-o>
-				vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+				local map = function(keys, func, desc, mode)
+					mode = mode or 'n'
+					vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = '[l]sp ' .. desc })
+				end
 
 				-- Mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
-				local opts = { buffer = ev.buf }
-				vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-				vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-				vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-				vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-				vim.keymap.set('n', 'sh', vim.lsp.buf.signature_help, opts)
-				vim.keymap.set('n', '[d', function()
+				--
+				-- Go to declaration of world under cursor, not to be confused with DEFINITION
+				map('<leader>lgD', vim.lsp.buf.declaration, '[g]o to [D]eclaration')
+
+				-- Go to definition of world under cursor
+				map('<leader>lgd', vim.lsp.buf.definition, '[g]o to [d]efinition')
+
+				-- Hover signature or documentation
+				map('<leader>lK', vim.lsp.buf.hover, '[K]hover')
+
+				-- Go to implementation
+				map('<leader>lgi', vim.lsp.buf.implementation, '[g]o to [i]mplementation')
+
+				-- Signature help
+				map('<leader>lsh', vim.lsp.buf.signature_help, 'Show [s]ignature [h]elp')
+
+				-- Diagnostics
+				map('[d', function()
 					vim.diagnostic.jump({ count = -1, float = true })
-				end, opts)
-				vim.keymap.set('n', ']d', function()
+				end, 'Next [diagnostic')
+
+				map(']d', function()
 					vim.diagnostic.jump({ count = 1, float = true })
-				end, opts)
-				vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-				vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-				vim.keymap.set('n', '<space>wl', function()
-					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				end, opts)
-				vim.keymap.set('n', 'D', vim.lsp.buf.type_definition, opts)
-				vim.keymap.set('n', 'rn', vim.lsp.buf.rename, opts)
-				vim.keymap.set({ 'n', 'v' }, 'ca', vim.lsp.buf.code_action, opts)
-				vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+				end, 'Prev ]diagnostic')
+
+				-- Type definition
+				map('<leader>lgtd', vim.lsp.buf.type_definition, '[g]o [t]ype [d]efinition')
+
+				-- Rename variable under cursor
+				map('<leader>lrn', vim.lsp.buf.rename, '[r]e[n]ame')
+
+				-- Execute a code action
+				map('<leader>lca', vim.lsp.buf.code_action, 'Show [c]ode [a]ction', { 'n', 'v' })
+
+				-- Finde references under cursor
+				map('<leader>lgr', vim.lsp.buf.references, '[g]o to [r]eferences')
+
+				-- Find all symbols in the current document
+				map('<leader>lsc', vim.lsp.buf.document_symbol, '[s]ymbol [c]urrent document')
+
+				-- Find all symbols in the current document
+				map('<leader>lsw', vim.lsp.buf.workspace_symbol, '[s]ymbol [w]orkspace')
 			end,
 		})
 
@@ -254,7 +296,7 @@ return {
 		-- Handlers
 		vim.diagnostic.config({
 			virtual_text = {
-				source = true
+				source = true,
 			},
 			signs = true,
 			underline = true,

@@ -10,7 +10,7 @@ return {
 			formatters_by_ft = {
 				css = { 'prettierd' },
 				javascript = { 'prettierd' },
-				-- lua = { 'stylua' },
+				lua = { 'stylua' },
 				markdown = { 'markdownlint' },
 				rust = { 'rustfmt' },
 				yaml = { 'yamlfmt' },

@@ -29,15 +29,22 @@ return {
 
 		pcall(require('telescope').load_extension, 'fzf')
 
-		local builtin = require("telescope.builtin")
-		vim.keymap.set('n', '<leader>sf', function() builtin.find_files({ previewer = false }) end,
-			{ desc = "[s]earch [f]iles" })
+		local builtin = require('telescope.builtin')
+		vim.keymap.set('n', '<leader>sf', function()
+			builtin.find_files({ previewer = false })
+		end, { desc = '[s]earch [f]iles' })
 
-		vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = "[s]earch by [g]rep" })
+		vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[s]earch by [g]rep' })
 		vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
-		vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [l]sp [d]iagnostics' })
+		vim.keymap.set(
+			'n',
+			'<leader>sd',
+			builtin.diagnostics,
+			{ desc = '[s]earch [l]sp [d]iagnostics' }
+		)
 
-		vim.keymap.set('n', '<leader>sb', function() builtin.buffers({ previewer = false }) end,
-			{ desc = '[s]earch [b]uffers' })
+		vim.keymap.set('n', '<leader>sb', function()
+			builtin.buffers({ previewer = false })
+		end, { desc = '[s]earch [b]uffers' })
 	end,
 }
