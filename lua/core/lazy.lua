@@ -20,7 +20,6 @@ local spec = {
 	{
 		'fedepujol/cosmos.nvim',
 		lazy = false,
-		-- priority = 1000,
 		dev = true,
 		config = function()
 			vim.cmd([[color cosmos]])
@@ -85,3 +84,4 @@ local opts = {
 }
 
 require('lazy').setup(spec, opts)
+vim.keymap.set('n', '<leader>ul', ':Lazy<CR>', { desc = "[l]azy" })

@@ -29,7 +29,7 @@ config.cmd = {
 	-- lombok
 	'-javaagent:'
 	.. paths.workspace
-	.. '/tools/eclipse/plugins/org.projectlombok.agent_1.18.30/lombok.jar',
+	.. '/tools/eclipse/lombok.jar',
 	'-jar',
 	paths.jdtlsPaths.jar,
 	'-configuration',
