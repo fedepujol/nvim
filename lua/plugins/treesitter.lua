@@ -3,30 +3,20 @@ return {
 	build = ':TSUpdate',
 	event = 'VeryLazy',
 	config = function()
+		-- stylua: ignore
 		require('nvim-treesitter.configs').setup({
 			ensure_installed = {
-				'angular',
 				'bash',
-				'c', 'cmake', 'comment', 'cpp', 'css', 'csv',
+				'c', 'comment',
 				'diff',
-				'git_config', 'gitattributes', 'gitcommit', 'gitignore',
-				'hjson', 'http', 'html', 'hjson', 'http',
 				'ini',
-				'java', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc', 'jq',
-				'kotlin',
-				'lua', 'luau', 'luadoc', 'luap',
+				'json',
+				'lua',
 				'markdown', 'markdown_inline',
-				'org',
 				'nix',
-				'passwd', 'php', 'python',
-				'query',
-				'rasi', 'regex', 'rust',
-				'scheme', 'scss', 'sql', 'ssh_config', 'sxhkdrc',
-				'toml', 'tsx', 'typescript',
+				'sql',
 				'vim', 'vimdoc',
-				'yaml', 'yuck',
-				'xml',
-				'zig',
+				'yaml',
 			},
 			sync_install = false, -- Install parsers synchronously (only applied to ensure_installed)
 			auto_install = true, -- Automatically install missing parsers
