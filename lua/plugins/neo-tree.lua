@@ -12,6 +12,14 @@ return {
 		---@type neotree.Config?
 		require('neo-tree').setup({
 			close_if_last_window = true,
+			filesystem = {
+				window = {
+					mappings = {
+						['<F5>'] = 'refresh',
+						['<TAB>'] = 'open',
+					},
+				},
+			},
 		})
 	end,
 }

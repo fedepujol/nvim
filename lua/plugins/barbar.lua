@@ -45,8 +45,12 @@ return {
 			tabpages = true,
 		})
 
-		vim.keymap.set('n', '<TAB>', ":BufferNext<CR>", { desc = "Next Buffer" })
-		vim.keymap.set('n', '<S-TAB>', ':BufferPrevious<CR>', { desc = 'Prev. Buffer' })
-		vim.keymap.set('n', '<leader>bcc', ':BufferClose<CR>', { desc = "[b]uffer [c]lose [c]urrent" })
-	end
+		-- Replace default mappings for buffer
+		vim.keymap.del('n', ']b')
+		vim.keymap.del('n', '[b')
+
+		vim.keymap.set('n', '<leader>bn', ':BufferNext<CR>', { desc = '[b]uffer [n]ext' })
+		vim.keymap.set('n', '<leader>bp', ':BufferPrevious<CR>', { desc = '[b]uffer [p]revious' })
+		vim.keymap.set('n', '<leader>bc', ':BufferClose<CR>', { desc = '[b]uffer [c]lose' })
+	end,
 }
