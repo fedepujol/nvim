@@ -28,8 +28,8 @@ config.cmd = {
 
 	-- lombok
 	'-javaagent:'
-	.. paths.workspace
-	.. '/tools/eclipse/lombok.jar',
+		.. paths.workspace
+		.. '/tools/eclipse/lombok.jar',
 	'-jar',
 	paths.jdtlsPaths.jar,
 	'-configuration',
@@ -41,7 +41,7 @@ config.cmd = {
 local bundles = {
 	vim.fn.glob(
 		paths.mason
-		.. '/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar',
+			.. '/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar',
 		true
 	),
 }
@@ -102,7 +102,7 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local capabilities = vim.tbl_deep_extend(
 	'force',
 	vim.lsp.protocol.make_client_capabilities(),
-	require('cmp_nvim_lsp').default_capabilities(),
+	require('blink.cmp').get_lsp_capabilities({}, false),
 	{
 		workspace = {
 			didChangeConfiguration = { dynamicRegistration = true },
