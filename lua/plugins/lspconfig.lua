@@ -5,8 +5,8 @@ return {
 	dependencies = {
 		'j-hui/fidget.nvim',
 		'b0o/SchemaStore.nvim',
-		{ 'williamboman/mason.nvim', version = '1.*' },
-		{ 'williamboman/mason-lspconfig.nvim', version = '1.*' },
+		{ 'mason-org/mason.nvim', version = '2.*' },
+		{ 'mason-org/mason-lspconfig.nvim', version = '2.*' },
 		'saghen/blink.cmp',
 		{ url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim' },
 	},
@@ -35,7 +35,7 @@ return {
 		})
 
 		require('mason-lspconfig').setup({
-			automatic_installation = false,
+			automatic_enable = false,
 			ensure_installed = {
 				'bashls',
 				'jsonls',
@@ -46,6 +46,7 @@ return {
 		})
 
 		vim.keymap.set('n', '<leader>um', ':Mason<CR>', { desc = '[m]ason' })
+		vim.keymap.set('n', '<leader>lf', vim.lsp.formatexpr, { desc = '[l]sp [f]ormat' })
 		-- Capabilities
 		-- Base LSP capabilities
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -74,112 +75,26 @@ return {
 		})
 
 		-- Servers
-		local lspconfig = require('lspconfig')
-		local pses = require('utils').mason
-			.. '/packages/powershell-editor-services/PowerShellEditorServices'
-
 		local servers_custom = {
-			bashls = {},
-			cssls = {
-				filetypes = { 'css' },
-			},
-			dockerls = {
-				settings = {
-					docker = {
-						languageserver = {
-							formatter = {
-								ignoreMultilineInstructions = true,
-							},
-						},
-					},
-				},
-			},
-			kotlin_language_server = {},
-			lemminx = {},
-			lua_ls = {},
-			marksman = {},
-			openedge_ls = {},
-			prosemd_lsp = {},
-			pylsp = {},
-			rust_analyzer = {},
-			somesass_ls = {},
-			ts_ls = {},
-			vimls = {},
-			nil_ls = {
-				settings = {
-					['nil'] = {
-						formatting = {
-							command = { 'nixpkgs-fmt' },
-						},
-					},
-				},
-			},
-			angularls = {
-				filetypes = { 'htmlangular', 'typescript' },
-			},
-			html = {
-				filetypes = { 'htmlangular', 'html', 'templ' },
-			},
-			emmet_ls = {
-				filetypes = { 'htmlangular', 'html', 'less', 'sass', 'scss' },
-			},
-			ltex = {
-				filetypes = { 'markdown', 'org', 'plaintext' },
-			},
-			jsonls = {
-				settings = {
-					json = {
-						schemas = require('schemastore').json.schemas(),
-						validate = {
-							enable = true,
-						},
-					},
-				},
-			},
-			powershell_es = {
-				cmd = {
-					'powershell',
-					'-NoLogo',
-					'-NoProfile',
-					'-Command',
-					pses .. '/Start-EditorServices.ps1',
-					'-BundledModulesPath',
-					pses,
-					'-LogPath',
-					pses .. '/log/pwsh.log',
-					'-SessionDetailsPath',
-					pses .. '/session.json',
-					'-FeatureFlags',
-					'@()',
-					'-AdditionalModules',
-					'@()',
-					'-HostName',
-					'nvim',
-					'-HostProfileId',
-					'0',
-					'-HostVersion',
-					'1.0.0',
-					'-Stdio',
-					'-LogLevel',
-					'Normal',
-				},
-				shell = 'powershell',
-				bundle_path = pses,
-			},
-			yamlls = {
-				settings = {
-					yaml = {
-						schemaStore = {
-							enable = false,
-							url = '',
-						},
-						schemas = require('schemastore').yaml.schemas(),
-						validate = {
-							enable = true,
-						},
-					},
-				},
-			},
+			'angularls',
+			'bashls',
+			'cssls',
+			'dockerls',
+			'emmet_ls',
+			'html',
+			'jsonls',
+			'lemminx',
+			'ltex',
+			'lua_ls',
+			'marksman',
+			'powershell_es',
+			'prosemd_lsp',
+			'pylsp',
+			'rust_analyzer',
+			'somesass_ls',
+			'ts_ls',
+			'vimls',
+			'yamlls',
 		}
 
 		require('sonarlint').setup({
@@ -199,18 +114,18 @@ return {
 			},
 		})
 
-		for name, config in pairs(servers_custom) do
-			config = vim.tbl_extend('force', {}, { capabilities = capabilities }, config)
-			lspconfig[name].setup(config)
+		-- Disable the default keybinds
+		for _, bind in ipairs({ 'grn', 'grr', 'gri', 'gO', 'gra' }) do
+			pcall(vim.keymap.del, 'n', bind)
 		end
 
-		-- Mappings
-		vim.keymap.set(
-			'n',
-			'<leader>lq',
-			vim.diagnostic.setloclist,
-			{ desc = '[l]sp open [q]uickfix' }
-		)
+		for _, name in pairs(servers_custom) do
+			vim.lsp.config(name, {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable(name)
+			-- lspconfig[name].setup(cfg)
+		end
 
 		-- Use an on_attach function to only map the following keys
 		-- after the language server attaches to the current buffer
@@ -281,27 +196,23 @@ return {
 			{ '│', 'FloatBorder' },
 		}
 
-		local signs = {
-			Error = '',
-			Warn = '',
-			Hint = '󰌵',
-			Info = '',
-		}
-
-		for type, icon in pairs(signs) do
-			local hl = 'DiagnosticSign' .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-		end
-
 		-- Handlers
 		vim.diagnostic.config({
 			virtual_text = {
 				source = true,
 			},
-			signs = true,
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = '',
+					[vim.diagnostic.severity.WARN] = '',
+					[vim.diagnostic.severity.HINT] = '󰌵',
+					[vim.diagnostic.severity.INFO] = '',
+				},
+			},
 			underline = true,
 			float = {
 				source = true,
+				header = '󰔫',
 			},
 		})
 
