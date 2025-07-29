@@ -13,7 +13,7 @@ return {
 				'json',
 				'lua',
 				'markdown', 'markdown_inline',
-				'nix',
+				'nix', 'norg',
 				'sql',
 				'vim', 'vimdoc',
 				'yaml',

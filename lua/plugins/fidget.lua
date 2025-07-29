@@ -2,7 +2,7 @@
 
 return {
 	'j-hui/fidget.nvim',
-	event = 'VeryLazy',
+	event = 'VimEnter',
 	config = function()
 		require('fidget').setup({
 			progress = {
@@ -18,14 +18,13 @@ return {
 						html = { name = '󰌝 html-lsp' },
 						jdtls = { name = '󰬷 jdtls' },
 						jsonls = { name = '󰘦 json-lsp' },
-						kotlin_language_server = { name = '󱈙 kotlin-lsp' },
-						lemminx = { name = '<XML> lemminx-lsp' },
+						lemminx = { name = '󰗀 lemminx-lsp' },
 						ltex = { name = '󰍔 ltex-lsp' },
 						lua_ls = { name = '󰢱 lua_ls' },
 						marksman = { name = '󰍔 marksman-lsp' },
 						nixd = { name = '󱄅 nixd-lsp' },
 						powershell_es = { name = '󰨊 powershell-lsp' },
-						prosemd_lsp = { name = '󰍔 prosemd-lsp' },
+						prosemd_lsp = { name = '󰍔 harper-lsp' },
 						pylsp = { name = '󰌠 py-lsp' },
 						rust_analyzer = { name = '󱘗 rust-lsp' },
 						tsserver = { name = '󰛦 ts-lsp' },
@@ -37,6 +36,22 @@ return {
 			notification = {
 				override_vim_notify = true,
 			},
+		})
+
+		local notification = require('fidget.notification')
+
+		vim.api.nvim_create_autocmd('User', {
+			pattern = 'LazyVimStarted',
+			callback = function()
+				local stats = require('lazy').stats()
+				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+				local footer = '⚡' .. stats.loaded .. ' plugins in ' .. ms .. 'ms'
+				notification.notify(
+					footer,
+					vim.log.levels.INFO,
+					{ annote = 'neovim', skip_history = true }
+				)
+			end,
 		})
 	end,
 }

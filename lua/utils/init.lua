@@ -19,8 +19,8 @@ local M = {}
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
 local os_names = {
-	["Windows"] = "windows",
-	["Linux"] = "linux",
+	['Windows'] = 'windows',
+	['Linux'] = 'linux',
 }
 
 ---Returns the name of the OS
@@ -74,5 +74,15 @@ M.jdtlsPaths = {
 	gradle = M.scoop .. '/gradle7/current',
 	project = M.workspace .. '/java/' .. project_name,
 }
+
+M.is_windows = function()
+	local result = false
+	if jit and jit.os then
+		local name = os_names[jit.os] or 'unkwon'
+		result = name == 'windows'
+	end
+
+	return result
+end
 
 return M

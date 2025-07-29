@@ -3,16 +3,7 @@
 return {
 	'saghen/blink.cmp',
 	event = 'InsertEnter',
-	dependencies = {
-		'L3MON4D3/LuaSnip',
-		version = '2.*',
-		build = (function()
-			if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then
-				return
-			end
-			return 'make install_jsregexp'
-		end)(),
-	},
+	dependencies = { 'L3MON4D3/LuaSnip' },
 	version = '1.*',
 	config = function()
 		local blink = require('blink.cmp')
@@ -97,21 +88,34 @@ return {
 			},
 			sources = {
 				default = {
+					'buffer',
+					'lazydev',
 					'lsp',
 					'path',
 					'snippets',
-					'buffer',
-					'lazydev',
 				},
 				providers = {
+					buffer = {
+						name = '[buffer]',
+						min_keyword_length = 4,
+					},
 					lazydev = {
 						module = 'lazydev.integrations.blink',
 						score_offset = 100,
 					},
+					lsp = {
+						name = '[lsp]',
+					},
+					path = {
+						name = '[path]',
+					},
+					snippets = {
+						name = '[snippets]',
+					},
 				},
 			},
 			fuzzy = {
-				implementation = 'prefer_rust_with_warning',
+				implementation = 'lua',
 			},
 		})
 	end,

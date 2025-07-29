@@ -13,6 +13,7 @@ return {
 		require('neo-tree').setup({
 			close_if_last_window = true,
 			filesystem = {
+				group_empty_dirs = true,
 				window = {
 					mappings = {
 						['<F5>'] = 'refresh',
@@ -21,5 +22,12 @@ return {
 				},
 			},
 		})
+
+		vim.keymap.set(
+			'n',
+			'<leader>nt',
+			':Neotree toggle right<cr>',
+			{ desc = '[n]eotree [t]oggle' }
+		)
 	end,
 }

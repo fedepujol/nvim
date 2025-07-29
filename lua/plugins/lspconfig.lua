@@ -9,6 +9,7 @@ return {
 		{ 'mason-org/mason-lspconfig.nvim', version = '2.*' },
 		'saghen/blink.cmp',
 		{ url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim' },
+		{ 'pmizio/typescript-tools.nvim' },
 	},
 	config = function()
 		-- Mason Setup
@@ -46,19 +47,12 @@ return {
 		})
 
 		vim.keymap.set('n', '<leader>um', ':Mason<CR>', { desc = '[m]ason' })
-		vim.keymap.set('n', '<leader>lf', vim.lsp.formatexpr, { desc = '[l]sp [f]ormat' })
+
 		-- Capabilities
 		-- Base LSP capabilities
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 		-- blink.cmp capabilities
-		capabilities = vim.tbl_deep_extend(
-			'force',
-			capabilities,
-			require('blink.cmp').get_lsp_capabilities({}, false)
-		)
-
-		-- Custom capabilities
 		capabilities = vim.tbl_deep_extend('force', capabilities, {
 			workspace = {
 				didChangeConfiguration = { dynamicRegistration = true },
@@ -72,7 +66,7 @@ return {
 					lineFoldingOnly = true,
 				},
 			},
-		})
+		}, require('blink.cmp').get_lsp_capabilities({}, false))
 
 		-- Servers
 		local servers_custom = {
@@ -84,15 +78,14 @@ return {
 			'html',
 			'jsonls',
 			'lemminx',
-			'ltex',
 			'lua_ls',
 			'marksman',
+			'markdown_oxide',
 			'powershell_es',
-			'prosemd_lsp',
 			'pylsp',
 			'rust_analyzer',
 			'somesass_ls',
-			'ts_ls',
+			-- 'ts_ls',
 			'vimls',
 			'yamlls',
 		}
@@ -114,17 +107,39 @@ return {
 			},
 		})
 
+		require('typescript-tools').setup({
+			settings = {
+				tsserver_file_preferences = {
+					quotePreference = 'single',
+					organizeImportsIgnoreCase = true,
+				},
+				tsserver_format_options = {
+					convertTabsToSpaces = false,
+					trimTrailingWhitespaces = true,
+					tabSize = 4,
+					identSize = 4,
+				},
+			},
+		})
+
 		-- Disable the default keybinds
 		for _, bind in ipairs({ 'grn', 'grr', 'gri', 'gO', 'gra' }) do
 			pcall(vim.keymap.del, 'n', bind)
 		end
 
+		vim.lsp.config('*', {
+			capabilities = capabilities,
+		})
+
+		local lspconfig = require('lspconfig')
 		for _, name in pairs(servers_custom) do
-			vim.lsp.config(name, {
-				capabilities = capabilities,
-			})
-			vim.lsp.enable(name)
-			-- lspconfig[name].setup(cfg)
+			if name == 'emmet_ls' or name == 'html' or name == 'cssls' or name == 'lemminx' then
+				lspconfig[name].setup({
+					capabilities = capabilities,
+				})
+			else
+				vim.lsp.enable(name)
+			end
 		end
 
 		-- Use an on_attach function to only map the following keys
@@ -140,6 +155,10 @@ return {
 				-- Mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				--
+
+				-- Format
+				map('<leader>lf', vim.lsp.buf.format, '[l]sp [f]ormat')
+
 				-- Go to declaration of world under cursor, not to be confused with DEFINITION
 				map('<leader>lgD', vim.lsp.buf.declaration, '[g]o to [D]eclaration')
 

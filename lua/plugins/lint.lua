@@ -1,14 +1,14 @@
 return {
 	'mfussenegger/nvim-lint',
 	event = {
-		"BufWritePost",
+		'BufWritePost',
 	},
 	config = function()
 		require('lint').linters_by_ft = {
-			markdown = { 'markdownlint' },
+			gitcommit = { 'commitlint' },
+			markdown = { 'proselint' },
 			sh = { 'shellcheck' },
 			yaml = { 'yamllint' },
-			gitcommit = { 'commitlint' },
 		}
 
 		vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
