@@ -23,11 +23,6 @@ return {
 			},
 		})
 
-		vim.keymap.set(
-			'n',
-			'<leader>nt',
-			':Neotree toggle right<cr>',
-			{ desc = '[n]eotree [t]oggle' }
-		)
+		vim.keymap.set('n', '<leader>vt', ':Neotree toggle right<cr>', { desc = '[v]iew [t]ree' })
 	end,
 }

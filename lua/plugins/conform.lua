@@ -11,7 +11,6 @@ return {
 				css = { 'prettierd' },
 				javascript = { 'prettierd' },
 				lua = { 'stylua' },
-				markdown = { 'markdownlint' },
 				rust = { 'rustfmt' },
 				yaml = { 'yamlfmt' },
 			},

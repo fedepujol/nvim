@@ -23,35 +23,39 @@ local os_names = {
 	['Linux'] = 'linux',
 }
 
+M.is_windows = function()
+	local result = false
+	if jit and jit.os then
+		local name = os_names[jit.os] or 'unknown'
+		result = name == 'windows' and name ~= 'unknown'
+	end
+
+	return result
+end
+
 ---Returns the name of the OS
 local function homepath()
 	local home = nil
 
-	if jit and jit.os then
-		local name = os_names[jit.os] or 'unknown'
-		if name ~= nil and name ~= 'unknown' then
-			if name == 'linux' then
-				home = '' .. os.getenv('HOME')
-			else
-				home = os.getenv('USERPROFILE')
-			end
-		end
+	local isWin = M.is_windows()
+	if isWin then
+		home = os.getenv('USERPROFILE')
+	else
+		home = '' .. os.getenv('HOME')
 	end
 
 	return home
 end
 
 local function selectConfig()
-	local name = os_names[jit.os]
 	local sys = nil
 
-	if name ~= nil then
-		if name == 'windows' then
-			sys = 'config_win'
-		else
-			sys = 'config_linux'
-		end
+	if M.is_windows() then
+		sys = 'config_win'
+	else
+		sys = 'config_linux'
 	end
+
 	return sys
 end
 
@@ -67,22 +71,12 @@ M.jdtlsPaths = {
 	jar = vim.fn.glob(M.jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
 	jdk = {
 		v8 = M.scoop .. '/corretto8-jdk/current',
-		v11 = M.scoop .. '/openjdk11/current',
+		v11 = M.scoop .. '/temurin11-jdk/current',
 		v17 = M.scoop .. '/corretto-lts-jdk/current',
 		v21 = M.scoop .. '/corretto-jdk/current',
 	},
 	gradle = M.scoop .. '/gradle7/current',
 	project = M.workspace .. '/java/' .. project_name,
 }
-
-M.is_windows = function()
-	local result = false
-	if jit and jit.os then
-		local name = os_names[jit.os] or 'unkwon'
-		result = name == 'windows'
-	end
-
-	return result
-end
 
 return M

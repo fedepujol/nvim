@@ -75,6 +75,7 @@ return {
 			'cssls',
 			'dockerls',
 			'emmet_ls',
+			'harper_ls',
 			'html',
 			'jsonls',
 			'lemminx',

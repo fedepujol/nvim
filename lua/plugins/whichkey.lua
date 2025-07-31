@@ -35,6 +35,8 @@ return {
 			{ '<leader>s', group = '[s]earch', icon = { icon = ' ', color = 'blue' } },
 			{ '<leader>t', group = '[t]erminal', icon = { icon = ' ', color = 'green' } },
 			{ '<leader>u', group = '[u]ser settings', icon = { icon = ' ', color = 'azure' } },
+			{ '<leader>v', group = '[v]iew', icon = { icon = ' ', color = 'azure' } },
+			{ '<leader>n', group = '[n]otes', icon = { icon = ' ', color = 'azure' } },
 		})
 	end,
 }
