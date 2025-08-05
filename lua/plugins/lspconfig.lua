@@ -1,4 +1,6 @@
 -- Lsp Config
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'neovim/nvim-lspconfig',
 	event = 'BufReadPre',
@@ -81,7 +83,6 @@ return {
 			'lemminx',
 			'lua_ls',
 			'marksman',
-			'markdown_oxide',
 			'powershell_es',
 			'pylsp',
 			'rust_analyzer',

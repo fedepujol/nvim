@@ -1,5 +1,7 @@
 -- BarBar Setup
 
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'romgrk/barbar.nvim',
 	event = 'VeryLazy',

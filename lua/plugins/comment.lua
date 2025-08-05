@@ -1,5 +1,6 @@
 -- Comment
-
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'numToStr/Comment.nvim',
 	event = 'BufEnter',

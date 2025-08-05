@@ -1,6 +1,7 @@
 -- Package-info.nvim
 -- NPM functions for package.json
---
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'vuki656/package-info.nvim',
 	dependencies = {

@@ -1,4 +1,6 @@
 -- BetterEscape
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'max397574/better-escape.nvim',
 	event = 'InsertEnter',

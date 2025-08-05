@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'kevinhwang91/nvim-ufo',
 	event = 'LspAttach',

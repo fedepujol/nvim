@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'nvim-treesitter/nvim-treesitter',
 	build = ':TSUpdate',
@@ -6,16 +8,25 @@ return {
 		-- stylua: ignore
 		require('nvim-treesitter.configs').setup({
 			ensure_installed = {
+				'angular',
 				'bash',
-				'c', 'comment',
-				'diff',
+				'c', 'comment', 'css', 'cmake',
+				'diff', 'dockerfile', 'dot',
+				'editorconfig',
+				'git_config', 'gitcommit', 'git_rebase', 'gitattributes', 'gitignore',
+				'html',
 				'ini',
-				'json',
-				'lua',
+				'javascript',
+				'json', 'json5', 'jsonc',
+				'lua', 'luau', 'luadoc',
 				'markdown', 'markdown_inline',
-				'nix', 'norg',
-				'sql',
+				'nix', 'norg', 'norg_meta',
+				'powershell',
+				'scss', 'sql',
+				'toml',
+				'typescript',
 				'vim', 'vimdoc',
+				'xml',
 				'yaml',
 			},
 			sync_install = false, -- Install parsers synchronously (only applied to ensure_installed)

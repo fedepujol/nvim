@@ -1,5 +1,6 @@
 -- Blink.CMP
-
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'saghen/blink.cmp',
 	event = 'InsertEnter',

@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'stevearc/oil.nvim',
 	dependencies = {
@@ -9,8 +11,10 @@ return {
 	config = function()
 		require('oil').setup({
 			columns = {
-				"icon", "permissions", "size"
+				'icon',
+				'permissions',
+				'size',
 			},
 		})
-	end
+	end,
 }

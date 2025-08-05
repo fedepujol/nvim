@@ -1,16 +1,17 @@
 -- Colorizer Setup
-
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'NvChad/nvim-colorizer.lua',
 	cmd = 'ColorizerAttachToBuffer',
 	config = function()
 		require('colorizer').setup({
-			filetypes = { "*" },
+			filetypes = { '*' },
 			lua = { names = false },
 			html = { names = false },
 			cmp_docs = {
-				always_update = true
-			}
+				always_update = true,
+			},
 		})
-	end
+	end,
 }

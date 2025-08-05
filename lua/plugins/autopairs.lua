@@ -1,5 +1,7 @@
 -- Autopairs setup
 
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'windwp/nvim-autopairs',
 	event = 'BufReadPost',

@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'yorickpeterse/nvim-pqf',
 	event = 'LspAttach',

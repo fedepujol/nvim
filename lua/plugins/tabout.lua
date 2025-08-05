@@ -1,5 +1,6 @@
 -- Tabout config
-
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'abecodes/tabout.nvim',
 	event = 'InsertEnter',
@@ -22,5 +23,5 @@ return {
 			ignore_beginning = false, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
 			exclude = {}, -- tabout will ignore these filetypes
 		})
-	end
+	end,
 }

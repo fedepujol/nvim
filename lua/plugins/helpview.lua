@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'OXY2DEV/helpview.nvim',
 	ft = 'help',

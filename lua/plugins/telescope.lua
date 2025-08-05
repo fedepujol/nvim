@@ -1,5 +1,7 @@
 -- Which-key config
 
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'nvim-telescope/telescope.nvim',
 	event = 'VimEnter',

@@ -1,4 +1,6 @@
 -- Custom Providers
+---@module "lazy"
+---@type LazyPluginSpec
 return {
 	'rebelot/heirline.nvim',
 	event = 'VeryLazy',
@@ -215,7 +217,7 @@ return {
 		local git_blame = require('gitblame')
 		local Blame = {
 			condition = git_blame.is_blame_text_available,
-			provider = git_blame.get_current_blame_text
+			provider = git_blame.get_current_blame_text,
 		}
 
 		local GitBlock = utils.insert(Git, { provider = '%<' })
