@@ -18,8 +18,8 @@ local root_dir = vim.fn.getcwd()
 local node_modules_dir = vim.fs.find('node_modules', { path = root_dir, upward = true })[1]
 local project_root = node_modules_dir and vim.fs.dirname(node_modules_dir) or '?'
 
----@class JavaUtils
-local utils = require('utils')
+---@class CommonUtils
+local utils = require('common-utils')
 
 local function get_angular_core_version()
 	if not project_root then

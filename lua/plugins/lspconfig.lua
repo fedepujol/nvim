@@ -81,15 +81,15 @@ return {
 			'html',
 			'jsonls',
 			'lemminx',
+			'ltex_plus',
 			'lua_ls',
 			'marksman',
 			'powershell_es',
 			'pylsp',
-			'rust_analyzer',
 			'somesass_ls',
-			-- 'ts_ls',
 			'vimls',
 			'yamlls',
+			-- 'ts_ls',
 		}
 
 		require('sonarlint').setup({

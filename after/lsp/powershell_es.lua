@@ -1,4 +1,4 @@
-local pses = require('utils').mason
+local pses = require('common-utils').mason
 	.. '/packages/powershell-editor-services/PowerShellEditorServices'
 
 ---@class vim.lsp.Config

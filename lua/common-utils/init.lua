@@ -5,7 +5,7 @@
 ---@field gradle string
 ---@field project string
 
----@class JavaUtils
+---@class CommonUtils
 ---@field home string?
 ---@field data any
 ---@field workspace string
@@ -13,7 +13,7 @@
 ---@field jdtls string
 ---@field jdtlsPaths JdtlsPaths
 
----@class JavaUtils
+---@class CommonUtils
 local M = {}
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')

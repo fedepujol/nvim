@@ -37,5 +37,12 @@ vim.api.nvim_create_autocmd('FileType', {
 			'<plug>(neorg.telescope.insert_link)',
 			{ desc = '[n]eorg [i]nsert [l]inkable' }
 		)
+		vim.keymap.set('n', '<<', '<plug>(neorg.promo.demote.nested)', { desc = '[n]eorg demote' })
+		vim.keymap.set(
+			'n',
+			'>>',
+			'<plug>(neorg.promo.promote.nested)',
+			{ desc = '[n]eorg promote' }
+		)
 	end,
 })

@@ -6,8 +6,8 @@ vim.opt_local.expandtab = true
 -- Java JDTLS
 local config = {}
 
----@class JavaUtils
-local paths = require('utils')
+---@class CommonUtils
+local paths = require('common-utils')
 
 local jdtls = require('jdtls')
 local jdtls_dap = require('jdtls.dap')

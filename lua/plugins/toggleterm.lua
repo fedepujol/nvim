@@ -8,7 +8,7 @@ return {
 		{ '<leader>to', '<CMD>ToggleTerm<CR>', desc = '[t]erminal [o]pen' },
 	},
 	config = function()
-		local utils = require('utils')
+		local utils = require('common-utils')
 		local newShell = vim.o.shell
 
 		if utils.is_windows() then
