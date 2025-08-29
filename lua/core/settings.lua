@@ -1,9 +1,9 @@
 -- Settings
 -- For more information about the options use :h 'option'.
 -- E.g. :h 'background'
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
 -- Set to true if nerd fonts are being used
 vim.g.have_nerd_font = true
 
@@ -21,11 +21,26 @@ vim.opt.tabstop = 4 -- Set tab to 4 spaces
 vim.opt.background = 'dark' -- Tell NVim the background color
 vim.opt.cmdheight = 0 -- Number of screen lines to use for messages
 vim.opt.cursorline = true -- Enable hightlightning of the current line
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.fillchars = {
+	fold = ' ',
+	foldopen = '',
+	foldsep = ' ',
+	foldclose = '',
+	diff = '/',
+}
 vim.opt.guifontwide = 'Fira Code:h11'
 vim.opt.laststatus = 3 -- Influence if the last window should have a statusline. 2 -> always.
 vim.opt.list = true -- Always show Tabs
-vim.opt.listchars = 'tab:│ ,lead:.,trail:.,extends:>,precedes:<' -- Make tabs appear as | in the editor
+
+vim.opt.listchars = {
+	tab = '│ ',
+	lead = '.',
+	trail = '·',
+	extends = '>',
+	precedes = '<',
+	nbsp = '␣',
+}
+
 vim.opt.number = true -- Number line
 vim.opt.pumheight = 10 -- Maximum number of items to show in Pop-ups
 vim.opt.relativenumber = true -- Relative numbers line
@@ -37,7 +52,7 @@ vim.opt.showtabline = 2 -- Always show tabs
 vim.opt.signcolumn = 'yes' -- Always show the SignColumn
 vim.opt.syntax = 'ON' -- Enable syntax
 vim.opt.termguicolors = true -- Set for colorizer. Enables 24Bit colors on TUI.
-vim.api.nvim_exec2('language en_GB', { output = false })
+vim.cmd('language en_GB')
 
 -- Encoding
 vim.opt.encoding = 'UTF-8' -- Encoding used internally
@@ -72,6 +87,13 @@ vim.opt.updatetime = 300 -- Time to wait before the swap file is written to disk
 vim.opt.wrap = true -- Display long lines as such
 vim.opt.writebackup = false -- No backup file
 vim.cmd('filetype plugin indent on')
+
+-- From kickstart.nvim
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+vim.schedule(function()
+	vim.o.clipboard = 'unnamedplus'
+end)
 
 -- Neovide
 if vim.g.neovide then
