@@ -7,6 +7,7 @@ return {
 		{ 'benlubas/neorg-interim-ls' },
 		{ 'nvim-neorg/neorg-telescope' },
 	},
+	ft = 'norg',
 	keys = {
 		{ '<leader>ngi', '<CMD>Neorg index<CR>', desc = '[n]eorg [g]o [i]ndex' },
 	},
@@ -30,6 +31,13 @@ return {
 					config = {
 						workspaces = {
 							pages = vim.fn.expand('~/sid/vault/pages/'),
+							concept = vim.fn.expand('~/sid/vault/pages/concept/'),
+							entertainment = vim.fn.expand('~/sid/vault/pages/entertainment/'),
+							medicine = vim.fn.expand('~/sid/vault/pages/medicine/'),
+							paradox = vim.fn.expand('~/sid/vault/pages/paradox/'),
+							technology = vim.fn.expand('~/sid/vault/pages/technology/'),
+							vehicle = vim.fn.expand('~/sid/vault/pages/vehicle/'),
+							world = vim.fn.expand('~/sid/vault/pages/world/'),
 						},
 						default_workspace = 'pages',
 					},
