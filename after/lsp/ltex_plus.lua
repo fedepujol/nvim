@@ -4,32 +4,46 @@ return {
 	settings = {
 		ltex = {
 			dictionary = {
+				-- stylua: ignore
 				['en-GB'] = {
-					'ADB',
-					'Bufferline',
-					'Keybinding',
-					'Keybindings',
-					'NeoVim',
-					'Neovim',
-					'NerdFont',
-					'NerdFonts',
-					'PDE',
-					'RTFM',
-					'Statusline',
+					-- Commands
+					'rm', 'grep', 'cd', 'awk', 'fzf', 'ls',
+					'nvim', 'vim', 'gpg', 'cmake',
+
+					-- Program names
+					'Neovim', 'Vim',
+
+					-- Packages
+					'neovim',
+
+					-- LSPs
 					'angularls',
 					'bashls',
-					'bufferline',
-					'keybinding',
-					'keybindings',
 					'lua_ls',
-					'neovim',
-					'nerdfont',
-					'nerdfonts',
-					'statusline',
 					'ts_ls',
-					'vim',
 					'vimlsp',
 					'yamllsp',
+
+					-- Languages
+					'lua', 'vimscript',
+					'VimScript',
+
+					-- Java
+					'BigDecimal',
+
+					-- Neovim/Vim
+					':%s', 'gCTRL-A', 'gCTRL-X', '%s',
+
+					-- Abbreviations
+					'ADB', 'PDE', 'PKB', 'RTFM',
+					'usr', 'bin',
+
+					'Tab-line',
+					'tab-line',
+					'NerdFont',
+					'RelWithDebInfo',
+					'Status-line',
+					'status-line',
 				},
 			},
 			language = 'en-GB',
