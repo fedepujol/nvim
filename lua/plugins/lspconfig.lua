@@ -11,7 +11,6 @@ return {
 		{ 'mason-org/mason-lspconfig.nvim', version = '2.*' },
 		'saghen/blink.cmp',
 		{ url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim' },
-		{ 'pmizio/typescript-tools.nvim' },
 	},
 	config = function()
 		-- Mason Setup
@@ -39,58 +38,10 @@ return {
 
 		require('mason-lspconfig').setup({
 			automatic_enable = false,
-			ensure_installed = {
-				'bashls',
-				'jsonls',
-				'lua_ls',
-				'vimls',
-				'yamlls',
-			},
+			ensure_installed = {},
 		})
 
 		vim.keymap.set('n', '<leader>um', ':Mason<CR>', { desc = '[m]ason' })
-
-		-- Capabilities
-		-- Base LSP capabilities
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-		-- blink.cmp capabilities
-		capabilities = vim.tbl_deep_extend('force', capabilities, {
-			workspace = {
-				didChangeConfiguration = { dynamicRegistration = true },
-				didChangeWatchedFiles = { dynamicRegistration = true },
-				didChangeWorkspaceFolders = { dynamicRegistration = true },
-			},
-		}, {
-			textDocument = {
-				foldingRange = {
-					dynamicRegistration = true,
-					lineFoldingOnly = true,
-				},
-			},
-		}, require('blink.cmp').get_lsp_capabilities({}, false))
-
-		-- Servers
-		local servers_custom = {
-			'angularls',
-			'bashls',
-			'cssls',
-			'dockerls',
-			'emmet_ls',
-			'harper_ls',
-			'html',
-			'jsonls',
-			'lemminx',
-			'ltex_plus',
-			'lua_ls',
-			'marksman',
-			'powershell_es',
-			'pylsp',
-			'somesass_ls',
-			'vimls',
-			'yamlls',
-			-- 'ts_ls',
-		}
 
 		require('sonarlint').setup({
 			server = {
@@ -109,39 +60,9 @@ return {
 			},
 		})
 
-		require('typescript-tools').setup({
-			settings = {
-				tsserver_file_preferences = {
-					quotePreference = 'single',
-					organizeImportsIgnoreCase = true,
-				},
-				tsserver_format_options = {
-					convertTabsToSpaces = false,
-					trimTrailingWhitespaces = true,
-					tabSize = 4,
-					identSize = 4,
-				},
-			},
-		})
-
 		-- Disable the default keybinds
 		for _, bind in ipairs({ 'grn', 'grr', 'gri', 'gO', 'gra' }) do
 			pcall(vim.keymap.del, 'n', bind)
-		end
-
-		vim.lsp.config('*', {
-			capabilities = capabilities,
-		})
-
-		local lspconfig = require('lspconfig')
-		for _, name in pairs(servers_custom) do
-			if name == 'emmet_ls' or name == 'html' or name == 'cssls' or name == 'lemminx' then
-				lspconfig[name].setup({
-					capabilities = capabilities,
-				})
-			else
-				vim.lsp.enable(name)
-			end
 		end
 
 		-- Use an on_attach function to only map the following keys
@@ -219,8 +140,10 @@ return {
 
 		-- Handlers
 		vim.diagnostic.config({
+			severity_sort = true,
 			virtual_text = {
 				source = true,
+				spacing = 2,
 			},
 			signs = {
 				text = {
@@ -230,8 +153,11 @@ return {
 					[vim.diagnostic.severity.INFO] = '',
 				},
 			},
-			underline = true,
+			underline = {
+				severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
+			},
 			float = {
+				border = 'rounded',
 				source = true,
 				header = '󰔫',
 			},
@@ -243,6 +169,55 @@ return {
 			opts = opts or {}
 			opts.border = opts.border or border
 			return orig_util_open_floating_preview(contents, syntax, opts, ...)
+		end
+
+		-- Capabilities
+		-- Base LSP capabilities
+		--- @type lsp.ClientCapabilities
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+		-- blink.cmp capabilities
+		capabilities = vim.tbl_deep_extend('force', capabilities, {
+			workspace = {
+				didChangeConfiguration = { dynamicRegistration = true },
+				didChangeWatchedFiles = { dynamicRegistration = true },
+				didChangeWorkspaceFolders = { dynamicRegistration = true },
+			},
+		}, {
+			textDocument = {
+				foldingRange = {
+					dynamicRegistration = true,
+					lineFoldingOnly = true,
+				},
+			},
+		}, require('blink.cmp').get_lsp_capabilities({}, false))
+
+		-- Servers
+		local servers = {
+			'angularls',
+			'bashls',
+			'cssls',
+			'dockerls',
+			'emmet_ls',
+			'html',
+			'jsonls',
+			'lemminx',
+			'ltex_plus',
+			'lua_ls',
+			'marksman',
+			'powershell_es',
+			'pylsp',
+			'rust_analyzer',
+			'somesass_ls',
+			'ts_ls',
+			'vimls',
+			'yamlls',
+		}
+
+		-- Config LSPs
+		vim.lsp.config('*', { capabilities = capabilities })
+		for _, name in pairs(servers) do
+			vim.lsp.enable(name)
 		end
 	end,
 }
