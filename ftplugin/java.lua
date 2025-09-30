@@ -60,11 +60,7 @@ config.settings = {
 		},
 		maxConcurrentBuilds = 4,
 		format = {
-			enabled = true,
-			settings = {
-				url = paths.workspace .. '/java/g-format.xml',
-				profile = 'GoogleStyle',
-			},
+			enabled = false,
 		},
 		configuration = {
 			runtimes = {
