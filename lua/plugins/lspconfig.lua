@@ -70,6 +70,12 @@ return {
 		vim.api.nvim_create_autocmd('LspAttach', {
 			group = vim.api.nvim_create_augroup('UserLspConfig', {}),
 			callback = function(ev)
+				-- Disable semantic tokens for clang
+				local client = vim.lsp.get_client_by_id(ev.data.client_id)
+				if client ~= nil and client.name == 'clangd' then
+					client.server_capabilities.semanticTokensProvider = nil
+				end
+
 				local map = function(keys, func, desc, mode)
 					mode = mode or 'n'
 					vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = '[l]sp ' .. desc })
@@ -196,6 +202,7 @@ return {
 		local servers = {
 			'angularls',
 			'bashls',
+			'clangd',
 			'cssls',
 			'dockerls',
 			'emmet_ls',

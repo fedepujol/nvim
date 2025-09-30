@@ -49,8 +49,8 @@ return {
 			completion = {
 				list = {
 					selection = {
-						preselect = false,
-						auto_insert = true,
+						preselect = true,
+						auto_insert = false,
 					},
 				},
 				menu = {
@@ -73,7 +73,7 @@ return {
 					window = {
 						border = 'rounded',
 					},
-					auto_show = false,
+					auto_show = true,
 					auto_show_delay_ms = 500,
 				},
 			},

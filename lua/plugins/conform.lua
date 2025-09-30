@@ -7,11 +7,16 @@ return {
 		require('conform').setup({
 			format_on_save = {
 				timeout_ms = 500,
-				lsp_fallback = true,
+				lsp_format = 'fallback',
 			},
 			formatters_by_ft = {
+				c = { 'clang-format' },
 				css = { 'prettierd' },
+				-- Requires Java v17+
+				java = { 'google-java-format' },
 				javascript = { 'prettierd' },
+				-- nixpkgs-fmt was deprecated
+				nix = { 'nixfmt' },
 				lua = { 'stylua' },
 				rust = { 'rustfmt' },
 				yaml = { 'yamlfmt' },
