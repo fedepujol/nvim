@@ -19,6 +19,7 @@ return {
 				nix = { 'nixfmt' },
 				lua = { 'stylua' },
 				rust = { 'rustfmt' },
+				sh = { 'shfmt' },
 				yaml = { 'yamlfmt' },
 			},
 		})

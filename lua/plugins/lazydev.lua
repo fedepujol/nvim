@@ -11,6 +11,7 @@ return {
 	opts = {
 		library = {
 			'lazy.nvim',
+			'nvim-dap-ui',
 			{ path = 'luvit-meta/library', words = { 'vim%.uv' } },
 			{ path = 'wezterm-types', mods = { 'wezterm' } },
 		},

@@ -67,6 +67,7 @@ return {
 								end,
 							},
 						},
+						treesitter = { 'lsp' },
 					},
 				},
 				documentation = {
