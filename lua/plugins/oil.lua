@@ -15,6 +15,17 @@ return {
 				'permissions',
 				'size',
 			},
+			float = {
+				border = 'rounded',
+			},
+			preview_win = {
+				win_options = {
+					border = 'rounded',
+				},
+			},
+			confirmation = {
+				border = 'rounded',
+			},
 		})
 	end,
 }
