@@ -27,6 +27,7 @@ return {
 
 		require('nvim-dap-virtual-text').setup({})
 
+		---@diagnostic disable-next-line: missing-fields
 		require('dapui').setup({
 			icons = {
 				expanded = '',
@@ -34,6 +35,8 @@ return {
 				current_frame = '*',
 			},
 			controls = {
+				element = 'repl',
+				enabled = true,
 				icons = {
 					pause = '',
 					play = '',

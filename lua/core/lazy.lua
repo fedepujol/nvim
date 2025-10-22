@@ -20,9 +20,8 @@ local spec = {
 	{
 		'fedepujol/cosmos.nvim',
 		lazy = false,
-		dev = true,
 		config = function()
-			vim.cmd([[color cosmos]])
+			vim.cmd('color cosmos')
 		end,
 	},
 	{
@@ -37,7 +36,6 @@ local spec = {
 				enable = true,
 			},
 		},
-		dev = true,
 	},
 	{
 		'rktjmp/lush.nvim',
@@ -57,6 +55,7 @@ local spec = {
 	{ import = 'plugins' },
 }
 
+---@type LazyConfig
 local opts = {
 	defaults = {
 		lazy = true,
