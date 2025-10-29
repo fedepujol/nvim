@@ -105,11 +105,11 @@ return {
 
 				-- Diagnostics
 				map('[d', function()
-					vim.diagnostic.jump({ count = -1, float = true })
+					vim.diagnostic.jump({ count = -1, float = true, wrap = true })
 				end, 'Next [diagnostic')
 
 				map(']d', function()
-					vim.diagnostic.jump({ count = 1, float = true })
+					vim.diagnostic.jump({ count = 1, float = true, wrap = true })
 				end, 'Prev ]diagnostic')
 
 				-- Type definition
@@ -145,29 +145,31 @@ return {
 		}
 
 		-- Handlers
-		vim.diagnostic.config({
-			severity_sort = true,
-			virtual_text = {
-				source = true,
-				spacing = 2,
-			},
-			signs = {
-				text = {
-					[vim.diagnostic.severity.ERROR] = '',
-					[vim.diagnostic.severity.WARN] = '',
-					[vim.diagnostic.severity.HINT] = '󰌵',
-					[vim.diagnostic.severity.INFO] = '',
-				},
-			},
-			underline = {
-				severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
-			},
-			float = {
-				border = 'rounded',
-				source = true,
-				header = '󰔫',
-			},
-		})
+		-- Disable Neovim's default virtual text diagnostics
+		vim.diagnostic.config({ virtual_text = false })
+		-- vim.diagnostic.config({
+		-- 	severity_sort = true,
+		-- 	virtual_text = {
+		-- 		source = true,
+		-- 		spacing = 2,
+		-- 	},
+		-- 	signs = {
+		-- 		text = {
+		-- 			[vim.diagnostic.severity.ERROR] = '',
+		-- 			[vim.diagnostic.severity.WARN] = '',
+		-- 			[vim.diagnostic.severity.HINT] = '󰌵',
+		-- 			[vim.diagnostic.severity.INFO] = '',
+		-- 		},
+		-- 	},
+		-- 	underline = {
+		-- 		severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
+		-- 	},
+		-- 	float = {
+		-- 		border = 'rounded',
+		-- 		source = true,
+		-- 		header = '󰔫',
+		-- 	},
+		-- })
 
 		---@diagnostic disable: duplicate-set-field
 		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -206,6 +208,7 @@ return {
 			'cssls',
 			'dockerls',
 			'emmet_ls',
+			'eslint',
 			'html',
 			'jsonls',
 			'lemminx',

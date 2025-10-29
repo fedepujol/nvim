@@ -17,6 +17,7 @@ return {
 			'html',
 			'ini',
 			'java', 'javascript', 'json', 'json5',
+			'kdl',
 			'lua', 'luau', 'luadoc',
 			'markdown', 'markdown_inline',
 			'nix',
@@ -37,6 +38,7 @@ return {
 			for _, name in ipairs(parsers) do
 				table.insert(fts, vim.treesitter.language.get_filetypes(name))
 			end
+
 			return vim.iter(fts):flatten():totable()
 		end
 
@@ -44,7 +46,6 @@ return {
 		if not ok then
 			vim.notify('nvim-treesitter not installed', vim.log.levels.ERROR)
 		else
-			vim.treesitter.language._complete()
 			ts.install(parsers)
 		end
 
