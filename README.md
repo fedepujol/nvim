@@ -1,10 +1,8 @@
 # Neovim Config
 
-Hello there fellow stranger!
+This is custom config was tested on *Linux* and *Windows*
 
-This is my custom *PDE* for Neovim! (it has been tested on Linux and Windows).
-
-It provides the following:
+Included:
 
 - Code Completion
 - File Explorer
@@ -15,8 +13,7 @@ It provides the following:
 - Statusline
 - Bufferline
 - Terminal Wrapper
-
-and more!
+- And more!
 
 ## Index
 
@@ -29,34 +26,26 @@ and more!
     - [Formatters and Linters](#formatters-and-linters)
 - [Settings](#settings)
 - [Keybindings](#keybindings)
-- [Plugins](#plugins)
 
 ## Requirements
 
-- Neovim v0.9.0 or [nightly](https://github.com/neovim/neovim/releases)
-  builds.
-- A Patched Font (Pick your font of choice from the
-  [NerdFonts](https://github.com/ryanoasis/nerd-fonts) guys)
-- Terminal emulator capable of using a patched font (For Windows you may try
-  [Windows Terminal](https://github.com/Microsoft/Terminal)).
+- Neovim v0.11.0 or [nightly](https://github.com/neovim/neovim/releases) builds.
+- A Patched Font (Pick your font of choice from the [NerdFonts](https://github.com/ryanoasis/nerd-fonts) guys)
+- Terminal emulator capable of using a patched font (For Windows you may try [Windows Terminal](https://github.com/Microsoft/Terminal)).
 
-> If you're using this configuration with Neovim 0.6/0.6.1, you'll have to deal
-with the formatters outputing wrong `eol` on `Windows` files (`fileformat=dos`).
-There was an issue, which is already merge.
+>[!note]
+If you're using this configuration with Neovim 0.6/0.6.1, you'll have to deal
+with the formatters outputting wrong `eol` on `Windows` files (`fileformat=dos`). 
+`:h fileformat`
 
 ## Installation
 
-There is not a custom installation script (for now). To use this
-config follow steps:
-
 - Windows
-
   - Open a `CMD`/`PowerShell`/`Bash`
   - Navigate to `~\AppData\Local` (C:\\Users\\your_user\\AppData\\Local)
   - Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
 
 - Linux
-
   - Open a terminal (it depends on your distribution)
   - Navigate to `~/.config/`
   - Clone the repo with `git clone https://github.com/fedepujol/nvim.git`
@@ -66,22 +55,21 @@ config follow steps:
 On first launch, *lazy* package manager will download
 every plugin declared on the folder `/lua/plugins` and on `/lua/core/lazy.lua` file.
 
-After this, re-open neovim. Then when you open a file, `mason-lspconfig.nvim`
+After this, re-open Neovim. Then when you open a file, `lspconfig`
 will download the LSP's configured in the file `/lua/plugins/lspconfig.lua`.
 
-| Lsp           | File            |
+| LSP           | File            |
 | ------------- | --------------- |
-| angularls     | html/typescript |
-| bashls        | sh/bash         |
-| css           | css             |
-| html          | html            |
-| lua_ls        | lua             |
-| marksman      | markdown        |
-| prosemd_lsp   | markdown        |
-| rust-analyzer | rust            |
-| tsserver      | typescript      |
-| vimlsp        | vim             |
-| yamllsp       | yaml            |
+| angularls     | HTMLAngular/TypeScript |
+| bashls        | SH/Bash         |
+| cssls           | CSS             |
+| html          | HTML            |
+| lua_ls        | Lua             |
+| marksman      | Markdown        |
+| harper_ls | Markdown        |
+| tsserver      | TypeScript      |
+| vimlsp        | Vim             |
+| yamllsp       | YAML            |
 
 ### Language Server Protocol
 
@@ -106,13 +94,13 @@ To view all available servers to download and managed the ones you've got:
 
 #### Configuration
 
-I’ve included several lsp’s initializations (bash, css, html, etc.) in
+I’ve included several LSP's initializations (Bash, CSS, HTML, etc.) in
 `lua/plugins/lspconfig.lua`.
 
 These are maintained in `nvim-lspconfig` repo. There you'll find the configurations
 for several servers. If you want one, just take the config and paste it on the file.
 If you want more control, change the default values.
-A lot of the times, you'll have something like this:
+A lot of time, you'll have something like this:
 
 ```lua
 require('lspconfig').tsserver.setup({})
@@ -147,7 +135,7 @@ visit the [repo](https://github.com/folke/lazy.nvim).
 
 - File: `lua/core/settings.lua`
 
-Every setting you want to change about Neovim goes in here.
+Every piece of setting you want to change about Neovim goes in here.
 
 ## Keybindings
 
@@ -155,52 +143,7 @@ Neovim related keybindings
 
 - File: `lua/core/mappings.lua`
 
-Pluggins keybindings:
+Plugins keybindings:
 
-- File: `lua/core/which-key.lua`
+- File: `lua/core/whichkey.lua`
 
-## Plugins
-
-These are the plugins included:
-
-| Name                                                                       |
-| -------------------------------------------------------------------------- |
-| [Comment](https://github.com/numToStr/Comment.nvim)                        |
-| [barbar](https://github.com/romgrk/barbar.nvim)                            |
-| [better-escape](https://github.com/max397574/better-escape.nvim)           |
-| [bracketpair.nvim](https://github.com/fedepujol/bracketpair.nvim)          |
-| [colorizer](https://github.com/NvChad/nvim-colorizer.lua)                  |
-| [cosmos.nvim](https://github.com/fedepujol/cosmos.nvim)                    |
-| [dressing.nvim](https://github.com/stevearc/dressing.nvim)                 |
-| [fidget.nvim](https://github.com/j-hui/fidget.nvim)                        |
-| [formatter.nvim](https://github.com/mhartington/formatter.nvim)            |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                     |
-| [heirline](https://github.com/rebelot/heirline.nvim)                       |
-| [lazy.nvim](https://github.com/folke/lazy.nvim)                            |
-| [lush](https://github.com/rktjmp/lush.nvim)                                |
-| [mason-lspconfig.nvim](https://github.com/williamboman/nvim-lsp-installer) |
-| [mason.nvim](https://github.com/williamboman/nvim-lsp-installer)           |
-| [move.nvim](https://github.com/fedepujol/move.nvim)                        |
-| [neo-tree](https://github.com/kyazdani42/nvim-tree.lua)                    |
-| [neodev.nvim](https://github.com/folke/neodev.nvim)                        |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)                 |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                            |
-| [nvim-dap](https://github.com/mfussenegger/nvim-dap)                       |
-| [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls)                   |
-| [nvim-lint](https://github.com/mfussenegger/nvim-lint)                     |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                 |
-| [nvim-toggleterm](https://github.com/akinsho/nvim-toggleterm.lua)          |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)      |
-| [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)                 |
-| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons)        |
-| [package-info.nvim](https://github.com/vuki656/package-info.nvim')         |
-| [playground](https://github.com/nvim-treesitter/playground)                |
-| [schemastore.nvim](https://github.com/b0o/SchemaStore.nvim)                |
-| [shipwright](https://github.com/rktjmp/shipwright.nvim)                    |
-| [tabout.nvim](https://github.com/abecodes/tabout.nvim)                     |
-| [telescope](https://github.com/nvim-telescope/telescope.nvim)              |
-| [trouble.nvim](https://github.com/folke/trouble.nvim)                      |
-| [undotree](https://github.com/mbbill/undotree)                             |
-| [vim-visual-multi](https://github.com/mg979/vim-visual-multi)              |
-| [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)                          |
-| [which-key](https://github.com/folke/which-key.nvim)                       |
