@@ -60,7 +60,11 @@ config.settings = {
 		},
 		maxConcurrentBuilds = 4,
 		format = {
-			enabled = false,
+			enabled = true,
+			settings = {
+				url = paths.workspace .. '/java/g-format.xml',
+				profile = 'GoogleStyle',
+			},
 		},
 		configuration = {
 			runtimes = {
@@ -92,7 +96,7 @@ config.settings = {
 }
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
-extendedClientCapabilities.onCompletionItemSelectedCommand = 'editor.action.triggerParameterHints'
+-- extendedClientCapabilities.onCompletionItemSelectedCommand = 'editor.action.triggerParameterHints'
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 local capabilities = vim.tbl_deep_extend(
