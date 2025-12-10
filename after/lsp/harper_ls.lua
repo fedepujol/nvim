@@ -1,4 +1,4 @@
 ---@class vim.lsp.Config
 return {
-	filetypes = { 'markdown', 'norg', 'gitcommit' },
+	filetypes = { 'markdown', 'org', 'norg', 'gitcommit' },
 }
