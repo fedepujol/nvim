@@ -50,7 +50,7 @@ return {
 				list = {
 					selection = {
 						preselect = true,
-						auto_insert = false,
+						auto_insert = true,
 					},
 				},
 				menu = {
