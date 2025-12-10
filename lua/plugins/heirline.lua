@@ -367,6 +367,30 @@ return {
 			end,
 		}
 
+		local trifoce_lualine = require('triforce.lualine')
+		local TriforceBlock = {}
+
+		local Level = {
+			provider = function()
+				return trifoce_lualine.level({
+					show_bar = false,
+					show_percent = false,
+					show_xp = true,
+				})
+			end,
+			hl = { fg = utils.get_highlight('PreProc').fg },
+		}
+
+		local Streak = {
+			provider = function()
+				return trifoce_lualine.streak()
+			end,
+			hl = { fg = utils.get_highlight('DiagnosticInfo').fg },
+		}
+
+		TriforceBlock =
+			utils.insert(TriforceBlock, Space, Level, Space, Streak, { provider = '%<' })
+
 		-- Config
 		local MainLine = {
 			-- Right
@@ -383,6 +407,8 @@ return {
 
 			-- Left
 			Blame,
+			Space,
+			TriforceBlock,
 			Space,
 			FileIcon,
 			Space,
