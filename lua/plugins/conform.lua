@@ -12,10 +12,8 @@ return {
 			formatters_by_ft = {
 				c = { 'clang-format' },
 				css = { 'prettierd' },
-				-- Requires Java v17+
-				java = { 'google-java-format' },
+				-- java = { 'google-java-format' },
 				javascript = { 'prettierd' },
-				-- nixpkgs-fmt was deprecated
 				nix = { 'nixfmt' },
 				lua = { 'stylua' },
 				rust = { 'rustfmt' },
