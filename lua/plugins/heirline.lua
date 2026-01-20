@@ -373,23 +373,17 @@ return {
 		local Level = {
 			provider = function()
 				return trifoce_lualine.level({
-					show_bar = false,
-					show_percent = false,
-					show_xp = true,
+					prefix = 'Lvl.',
+					bar = {
+						chars = { filled = '●', empty = '○' },
+						length = 10,
+					},
 				})
 			end,
 			hl = { fg = utils.get_highlight('PreProc').fg },
 		}
 
-		local Streak = {
-			provider = function()
-				return trifoce_lualine.streak()
-			end,
-			hl = { fg = utils.get_highlight('DiagnosticInfo').fg },
-		}
-
-		TriforceBlock =
-			utils.insert(TriforceBlock, Space, Level, Space, Streak, { provider = '%<' })
+		TriforceBlock = utils.insert(TriforceBlock, Space, Level, Space, { provider = '%<' })
 
 		-- Config
 		local MainLine = {
