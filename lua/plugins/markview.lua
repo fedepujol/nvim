@@ -5,12 +5,16 @@ return {
 	ft = 'markdown',
 	config = function()
 		require('markview').setup({
-			experimental = {
-				markdown = {
-					code_blocks = {
-						label_direction = 'left',
-					},
+			markdown = {
+				code_blocks = {
+					label_direction = 'left',
 				},
+				list_items = {
+					shift_width = 2,
+				},
+			},
+			experimental = {
+				fancy_comments = true,
 			},
 		})
 	end,
