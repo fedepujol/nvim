@@ -126,7 +126,7 @@ Just type:
 
 And navigate to `Formatters` or `Linters`, select the ones you want and install them!
 
-### Plugin Folder Structure
+### Plug in Folder Structure
 
 This repo follows the **plugin structure** of `lazy.nvim`. If you want to know more
 visit the [repo](https://github.com/folke/lazy.nvim).
