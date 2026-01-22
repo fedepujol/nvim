@@ -6,9 +6,6 @@ return {
 	config = function()
 		require('markview').setup({
 			markdown = {
-				code_blocks = {
-					label_direction = 'left',
-				},
 				list_items = {
 					shift_width = 2,
 				},
