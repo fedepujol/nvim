@@ -76,6 +76,17 @@ return {
 					client.server_capabilities.semanticTokensProvider = nil
 				end
 
+				if client and client:supports_method('textDocument/codeLens') then
+					vim.lsp.codelens.refresh()
+					vim.api.nvim_create_autocmd(
+						{ 'TextChanged', 'BufEnter', 'CursorHold', 'InsertLeave' },
+						{
+							buffer = ev.buf,
+							callback = vim.lsp.codelens.refresh,
+						}
+					)
+				end
+
 				local map = function(keys, func, desc, mode)
 					mode = mode or 'n'
 					vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = '[l]sp ' .. desc })
@@ -121,14 +132,14 @@ return {
 				-- Execute a code action
 				map('<leader>lca', vim.lsp.buf.code_action, 'Show [c]ode [a]ction', { 'n', 'v' })
 
-				-- Finde references under cursor
-				map('<leader>lgr', vim.lsp.buf.references, '[g]o to [r]eferences')
+				-- -- Finde references under cursor
+				-- map('<leader>lgr', vim.lsp.buf.references, '[g]o to [r]eferences')
 
 				-- Find all symbols in the current document
-				map('<leader>lsc', vim.lsp.buf.document_symbol, '[s]ymbol [c]urrent document')
+				-- map('<leader>lsc', vim.lsp.buf.document_symbol, '[s]ymbol [c]urrent document')
 
 				-- Find all symbols in the current document
-				map('<leader>lsw', vim.lsp.buf.workspace_symbol, '[s]ymbol [w]orkspace')
+				-- map('<leader>lsw', vim.lsp.buf.workspace_symbol, '[s]ymbol [w]orkspace')
 			end,
 		})
 
