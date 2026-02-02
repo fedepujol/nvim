@@ -35,8 +35,8 @@ Included:
 
 >[!note]
 If you're using this configuration with Neovim 0.6/0.6.1, you'll have to deal
-with the formatters outputting wrong `eol` on `Windows` files (`fileformat=dos`). 
-`:h fileformat`
+with the formatters outputting wrong `eol` on `Windows` files (`fileformat=dos`)
+More info in `:h fileformat`
 
 ## Installation
 
@@ -58,18 +58,18 @@ every plugin declared on the folder `/lua/plugins` and on `/lua/core/lazy.lua` f
 After this, re-open Neovim. Then when you open a file, `lspconfig`
 will download the LSP's configured in the file `/lua/plugins/lspconfig.lua`.
 
-| LSP           | File            |
-| ------------- | --------------- |
+| LSP           | File                   |
+| ------------- | ---------------------- |
 | angularls     | HTMLAngular/TypeScript |
-| bashls        | SH/Bash         |
-| cssls           | CSS             |
-| html          | HTML            |
-| lua_ls        | Lua             |
-| marksman      | Markdown        |
-| harper_ls | Markdown        |
-| tsserver      | TypeScript      |
-| vimlsp        | Vim             |
-| yamllsp       | YAML            |
+| bashls        | SH/Bash                |
+| cssls         | CSS                    |
+| html          | HTML                   |
+| lua_ls        | Lua                    |
+| marksman      | Markdown               |
+| harper_ls     | Markdown               |
+| tsserver      | TypeScript             |
+| vimlsp        | Vim                    |
+| yamllsp       | YAML                   |
 
 ### Language Server Protocol
 
