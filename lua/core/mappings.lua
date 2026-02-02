@@ -18,6 +18,10 @@ vim.keymap.set(
 	{ noremap = true, silent = true, desc = 'Force [Q]uit all' }
 )
 
+-- Buffers
+vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = '[b]uffer [n]ext' })
+vim.keymap.set('n', '<leader>bp', ':bprev<CR>', { desc = '[b]uffer [p]rev' })
+
 -- Window Nav
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true, desc = '' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true, desc = '' })
@@ -63,66 +67,8 @@ vim.keymap.set('t', '<A-j>', '<C-\\><C-N><C-w>j', { noremap = true, silent = tru
 vim.keymap.set('t', '<A-k>', '<C-\\><C-N><C-w>k', { noremap = true, silent = true, desc = '' })
 vim.keymap.set('t', '<A-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = '' })
 
--- Move Line/Block
-vim.keymap.set(
-	'n',
-	'<A-j>',
-	':MoveLine(1)<CR>',
-	{ noremap = true, silent = true, desc = 'Line Down' }
-)
-vim.keymap.set(
-	'n',
-	'<A-k>',
-	':MoveLine(-1)<CR>',
-	{ noremap = true, silent = true, desc = 'Line Up' }
-)
-vim.keymap.set(
-	'v',
-	'<A-j>',
-	':MoveBlock(1)<CR>',
-	{ noremap = true, silent = true, desc = 'Block Down' }
-)
-vim.keymap.set(
-	'v',
-	'<A-k>',
-	':MoveBlock(-1)<CR>',
-	{ noremap = true, silent = true, desc = 'Block Up' }
-)
-
-vim.keymap.set(
-	'n',
-	'<A-h>',
-	':MoveHChar(-1)<CR>',
-	{ noremap = true, silent = true, desc = 'Move Char Left' }
-)
-vim.keymap.set(
-	'n',
-	'<A-l>',
-	':MoveHChar(1)<CR>',
-	{ noremap = true, silent = true, desc = 'Move Char Right' }
-)
-vim.keymap.set(
-	'v',
-	'<A-l>',
-	':MoveHBlock(1)<CR>',
-	{ noremap = true, silent = true, desc = 'Move Block Left' }
-)
-vim.keymap.set(
-	'v',
-	'<A-h>',
-	':MoveHBlock(-1)<CR>',
-	{ noremap = true, silent = true, desc = 'Move Block Right' }
-)
-
-vim.keymap.set(
-	'n',
-	'<leader>wf',
-	':MoveWord(1)<CR>',
-	{ noremap = true, silent = true, desc = 'Transpose Word Right' }
-)
-vim.keymap.set(
-	'n',
-	'<leader>wb',
-	':MoveWord(-1)<CR>',
-	{ noremap = true, silent = true, desc = 'Transpose Word Left' }
-)
+-- Notes
+vim.keymap.set('n', '<leader>nd', function()
+	vim.api.nvim_exec2(':tabnew', { output = false })
+	vim.api.nvim_exec2([[:tcd ~/sid/vault]], { output = false })
+end, { desc = '[n]otes [d]ir' })

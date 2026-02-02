@@ -16,10 +16,13 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+---@module "lazy"
+---@type LazyPluginSpec
 local spec = {
 	{
 		'fedepujol/cosmos.nvim',
 		lazy = false,
+		dev = true,
 		config = function()
 			vim.cmd('color cosmos')
 		end,
@@ -30,6 +33,12 @@ local spec = {
 			'MoveLine',
 			'MoveBlock',
 			'MoveWord',
+		},
+		keys = {
+			{ '<A-j>', ':MoveLine(1)<CR>', { desc = 'Line Down' } },
+			{ '<A-k>', ':MoveLine(-1)<CR>', { desc = 'Line Up' } },
+			{ mode = 'v', '<A-j>', ':MoveBlock(1)<CR>', { desc = 'Block Down' } },
+			{ mode = 'v', '<A-k>', ':MoveBlock(-1)<CR>', { desc = 'Block Up' } },
 		},
 		opts = {
 			char = {
@@ -55,6 +64,7 @@ local spec = {
 	{ import = 'plugins' },
 }
 
+---@module "lazy"
 ---@type LazyConfig
 local opts = {
 	defaults = {
