@@ -8,7 +8,6 @@ return {
 	config = function()
 		require('lint').linters_by_ft = {
 			gitcommit = { 'commitlint' },
-			markdown = { 'proselint' },
 			sh = { 'shellcheck' },
 			yaml = { 'yamllint' },
 		}
