@@ -4,7 +4,9 @@
 return {
 	'saghen/blink.cmp',
 	event = 'InsertEnter',
-	dependencies = { 'L3MON4D3/LuaSnip' },
+	dependencies = {
+		{ 'L3MON4D3/LuaSnip' },
+	},
 	version = '1.*',
 	config = function()
 		local blink = require('blink.cmp')
