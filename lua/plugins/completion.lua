@@ -6,6 +6,7 @@ return {
 	event = 'InsertEnter',
 	dependencies = {
 		{ 'L3MON4D3/LuaSnip' },
+		{ 'disrupted/blink-cmp-conventional-commits' },
 	},
 	version = '1.*',
 	config = function()
@@ -97,6 +98,7 @@ return {
 					'lsp',
 					'path',
 					'snippets',
+					'conventional_commits',
 				},
 				providers = {
 					buffer = {
@@ -115,6 +117,16 @@ return {
 					},
 					snippets = {
 						name = '[snippets]',
+					},
+					conventional_commits = {
+						name = '[ccommits]',
+						module = 'blink-cmp-conventional-commits',
+						enabled = function()
+							return vim.bo.filetype == 'gitcommit'
+						end,
+						---@module 'blink-cmp-conventional-commits'
+						---@type blink-cmp-conventional-commits.Options
+						opts = {}, -- none so far
 					},
 				},
 			},
