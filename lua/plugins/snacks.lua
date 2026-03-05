@@ -16,7 +16,6 @@ return {
 				},
 			},
 		},
-		lazygit = { enabled = true },
 	},
 	keys = {
 		-- find
