@@ -1,4 +1,4 @@
 ---@class vim.lsp.Config
 return {
-	filetypes = { 'htmlangular', 'typescript' },
+	filetypes = { 'htmlangular', 'html', 'css' },
 }
