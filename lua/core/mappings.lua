@@ -18,10 +18,6 @@ vim.keymap.set(
 	{ noremap = true, silent = true, desc = 'Force [Q]uit all' }
 )
 
--- Buffers
-vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = '[b]uffer [n]ext' })
-vim.keymap.set('n', '<leader>bp', ':bprev<CR>', { desc = '[b]uffer [p]rev' })
-
 -- Window Nav
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true, desc = '' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true, desc = '' })
