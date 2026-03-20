@@ -15,6 +15,9 @@ return {
 	config = function()
 		-- Mason Setup
 		require('mason').setup({
+			registries = {
+				'file:~/sid/nvim/mason-registry',
+			},
 			log_level = vim.log.levels.DEBUG,
 			ui = {
 				check_outdated_packages_on_open = false,
@@ -76,7 +79,11 @@ return {
 					client.server_capabilities.semanticTokensProvider = nil
 				end
 
-				if client and client:supports_method('textDocument/codeLens') then
+				if
+					client
+					and client:supports_method('textDocument/codeLens')
+					and client.name == 'markdown_oxide'
+				then
 					vim.lsp.codelens.refresh()
 					vim.api.nvim_create_autocmd(
 						{ 'TextChanged', 'BufEnter', 'CursorHold', 'InsertLeave' },
@@ -220,13 +227,13 @@ return {
 			'dockerls',
 			'emmet_ls',
 			'eslint',
-			'groovyls',
+			'gradle_ls',
 			'harper_ls',
 			'html',
 			'jsonls',
 			'lemminx',
 			'lua_ls',
-			'marksman',
+			'markdown_oxide',
 			'powershell_es',
 			'pylsp',
 			'rust_analyzer',
