@@ -214,12 +214,6 @@ return {
 			},
 		}
 
-		local git_blame = require('gitblame')
-		local Blame = {
-			condition = git_blame.is_blame_text_available,
-			provider = git_blame.get_current_blame_text,
-		}
-
 		local GitBlock = utils.insert(Git, { provider = '%<' })
 
 		-- Lsp
@@ -229,11 +223,38 @@ return {
 			condition = conditions.lsp_attached,
 			update = { 'LspAttach', 'LspDetach' },
 			provider = function()
-				local names = {}
-				for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-					table.insert(names, server.name)
+				local lsp_icons = {
+					['angularls'] = '',
+					['bashls'] = '',
+					['clangd'] = '',
+					['cssls'] = '',
+					['dockerls'] = '󰡨',
+					['emmet_ls'] = '',
+					['eslint'] = '',
+					['gradle_ls'] = '',
+					['harper_ls'] = '',
+					['html'] = '',
+					['jsonls'] = '󰘦',
+					['lemminx'] = '',
+					['lua_ls'] = '󰢱',
+					['markdown_oxide'] = '',
+					['powershell_es'] = '󰨊',
+					['pylsp'] = '',
+					['rust_analyzer'] = '󱘗',
+					['somesass_ls'] = '󰟬',
+					['ts_ls'] = '',
+					['vimls'] = '',
+					['yamlls'] = '',
+				}
+
+				---@type vim.lsp.Client[]
+				local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+
+				local res = ''
+				for _, value in ipairs(clients) do
+					res = res .. ' ' .. lsp_icons[value.name]
 				end
-				return ' [' .. table.concat(names, ' ') .. ']'
+				return '<' .. res .. ' >'
 			end,
 			hl = {
 				fg = utils.get_highlight('Type').fg,
@@ -400,8 +421,6 @@ return {
 			Align,
 
 			-- Left
-			Blame,
-			Space,
 			TriforceBlock,
 			Space,
 			FileIcon,
