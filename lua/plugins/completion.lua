@@ -77,8 +77,9 @@ return {
 					window = {
 						border = 'rounded',
 					},
-					auto_show = true,
+					auto_show = false,
 					auto_show_delay_ms = 500,
+					treesitter_highlighting = true,
 				},
 			},
 			signature = {
@@ -131,7 +132,7 @@ return {
 				},
 			},
 			fuzzy = {
-				implementation = 'lua',
+				implementation = 'prefer_rust_with_warning',
 			},
 		})
 	end,
