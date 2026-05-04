@@ -84,12 +84,11 @@ return {
 					and client:supports_method('textDocument/codeLens')
 					and client.name == 'markdown_oxide'
 				then
-					vim.lsp.codelens.refresh()
 					vim.api.nvim_create_autocmd(
 						{ 'TextChanged', 'BufEnter', 'CursorHold', 'InsertLeave' },
 						{
 							buffer = ev.buf,
-							callback = vim.lsp.codelens.refresh,
+							callback = vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled()),
 						}
 					)
 				end
