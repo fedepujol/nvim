@@ -234,10 +234,12 @@ return {
 					['gradle_ls'] = '',
 					['harper_ls'] = '',
 					['html'] = '',
+					['jdtls'] = '',
 					['jsonls'] = '󰘦',
 					['lemminx'] = '',
 					['lua_ls'] = '󰢱',
 					['markdown_oxide'] = '',
+					['nvim-jdtls'] = '',
 					['powershell_es'] = '󰨊',
 					['pylsp'] = '',
 					['rust_analyzer'] = '󱘗',
@@ -252,12 +254,16 @@ return {
 
 				local res = ''
 				for _, value in ipairs(clients) do
-					res = res .. ' ' .. lsp_icons[value.name]
+					if lsp_icons[value.name] then
+						res = res .. ' ' .. lsp_icons[value.name]
+					else
+						res = res .. ' ' .. value.name
+					end
 				end
 				return '<' .. res .. ' >'
 			end,
 			hl = {
-				fg = utils.get_highlight('Type').fg,
+				fg = white,
 			},
 		}
 
