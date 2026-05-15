@@ -15,9 +15,6 @@ return {
 	config = function()
 		-- Mason Setup
 		require('mason').setup({
-			registries = {
-				'file:~/sid/nvim/mason-registry',
-			},
 			log_level = vim.log.levels.DEBUG,
 			ui = {
 				check_outdated_packages_on_open = false,
@@ -232,7 +229,6 @@ return {
 			'jsonls',
 			'lemminx',
 			'lua_ls',
-			'markdown_oxide',
 			'powershell_es',
 			'pylsp',
 			'rust_analyzer',

@@ -48,7 +48,7 @@ vim.opt.ruler = true -- Show line and column numbers of the cursor position
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.showcmdloc = 'statusline' -- Show command on statusline
 vim.opt.showmode = false -- In Insert/Replace/Visual put a message on the last line.
-vim.opt.showtabline = 1 -- Always show tabs
+vim.opt.showtabline = 2 -- Always show tabs
 vim.opt.signcolumn = 'yes' -- Always show the SignColumn
 vim.opt.syntax = 'ON' -- Enable syntax
 vim.opt.termguicolors = true -- Set for colorizer. Enables 24Bit colors on TUI.
@@ -97,9 +97,42 @@ end)
 
 -- Neovide
 if vim.g.neovide then
+	-- Display Settings
 	vim.o.guifont = 'FiraCode Nerd Font:h11'
+	vim.g.neovide_floating_shadow = false
+	vim.g.neovide_hide_mouse_when_typing = true
+
+	-- Functionality Settings
 	vim.g.neovide_refresh_rate = 120
 	vim.g.neovide_idle_refresh_rate = 5
 	vim.g.neovide_confirm_quit = true
+
+	-- Cursor Settings
 	vim.g.neovide_cursor_animation_length = 0.150
 end
+
+-- UI2
+require('vim._core.ui2').enable({
+	enable = true,
+	msg = {
+		targets = {
+			[''] = 'msg',
+			bufwrite = 'cmd',
+			completion = 'cmd',
+			confirm = 'cmd',
+			echo = 'msg',
+			echoerr = 'pager',
+			echomsg = 'msg',
+			empty = 'cmd',
+			emsg = 'msg',
+			list_cmd = 'pager',
+			lua_error = 'pager',
+			lua_print = 'msg',
+			wildlist = 'pager',
+			wmsg = 'msg',
+		},
+		msg = {
+			height = 0.4,
+		},
+	},
+})

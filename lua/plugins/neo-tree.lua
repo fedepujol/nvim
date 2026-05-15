@@ -8,7 +8,10 @@ return {
 		'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
 		'MunifTanjim/nui.nvim',
 	},
-	lazy = false, -- neo-tree will lazily load itself
+	keys = {
+		{ '<leader>vt', ':Neotree toggle right<CR>', desc = '[v]iew [t]ree' },
+	},
+	lazy = true, -- neo-tree will lazily load itself
 	config = function()
 		---@module "neo-tree"
 		---@type neotree.Config?
@@ -24,7 +27,5 @@ return {
 				},
 			},
 		})
-
-		vim.keymap.set('n', '<leader>vt', ':Neotree toggle right<cr>', { desc = '[v]iew [t]ree' })
 	end,
 }
