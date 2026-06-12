@@ -6,11 +6,14 @@ return {
 	event = 'BufReadPre',
 	dependencies = {
 		'j-hui/fidget.nvim',
-		'b0o/SchemaStore.nvim',
+		{ 'b0o/SchemaStore.nvim', ft = { 'json', 'yaml' } },
 		{ 'mason-org/mason.nvim', version = '2.*' },
 		{ 'mason-org/mason-lspconfig.nvim', version = '2.*' },
 		'saghen/blink.cmp',
-		{ url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim' },
+		{
+			url = 'https://gitlab.com/schrieveslaach/sonarlint.nvim',
+			ft = 'java',
+		},
 	},
 	config = function()
 		-- Mason Setup
@@ -161,29 +164,6 @@ return {
 		-- Handlers
 		-- Disable Neovim's default virtual text diagnostics
 		vim.diagnostic.config({ virtual_text = false })
-		-- vim.diagnostic.config({
-		-- 	severity_sort = true,
-		-- 	virtual_text = {
-		-- 		source = true,
-		-- 		spacing = 2,
-		-- 	},
-		-- 	signs = {
-		-- 		text = {
-		-- 			[vim.diagnostic.severity.ERROR] = '',
-		-- 			[vim.diagnostic.severity.WARN] = '',
-		-- 			[vim.diagnostic.severity.HINT] = '󰌵',
-		-- 			[vim.diagnostic.severity.INFO] = '',
-		-- 		},
-		-- 	},
-		-- 	underline = {
-		-- 		severity = { vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
-		-- 	},
-		-- 	float = {
-		-- 		border = 'rounded',
-		-- 		source = true,
-		-- 		header = '󰔫',
-		-- 	},
-		-- })
 
 		---@diagnostic disable: duplicate-set-field
 		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -216,13 +196,13 @@ return {
 
 		-- Servers
 		local servers = {
-			'angularls',
+			-- 'angularls',
 			'bashls',
 			'clangd',
 			'cssls',
 			'dockerls',
-			'emmet_ls',
-			'eslint',
+			-- 'emmet_ls',
+			-- 'eslint',
 			'gradle_ls',
 			'harper_ls',
 			'html',

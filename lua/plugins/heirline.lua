@@ -3,7 +3,7 @@
 ---@type LazyPluginSpec
 return {
 	'rebelot/heirline.nvim',
-	event = 'VeryLazy',
+	event = 'BufNew',
 	dependencies = {
 		'nvim-tree/nvim-web-devicons',
 		'lewis6991/gitsigns.nvim',

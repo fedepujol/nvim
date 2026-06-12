@@ -88,6 +88,17 @@ vim.opt.wrap = true -- Display long lines as such
 vim.opt.writebackup = false -- No backup file
 vim.cmd('filetype plugin indent on')
 
+if vim.fn.has('win32') == 1 then
+	vim.opt.shell = 'powershell'
+	vim.opt.shelltemp = false
+	vim.opt.shellcmdflag = '-NoLogo -NoProfile'
+	vim.opt.shellpipe = '> %s 2>&1'
+	vim.opt.shellquote = ''
+	vim.opt.shellxquote = ''
+else
+	vim.opt.shell = 'bash'
+end
+
 -- From kickstart.nvim
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -113,26 +124,26 @@ end
 
 -- UI2
 require('vim._core.ui2').enable({
-	enable = true,
-	msg = {
-		targets = {
-			[''] = 'msg',
-			bufwrite = 'cmd',
-			completion = 'cmd',
-			confirm = 'cmd',
-			echo = 'msg',
-			echoerr = 'pager',
-			echomsg = 'msg',
-			empty = 'cmd',
-			emsg = 'msg',
-			list_cmd = 'pager',
-			lua_error = 'pager',
-			lua_print = 'msg',
-			wildlist = 'pager',
-			wmsg = 'msg',
-		},
-		msg = {
-			height = 0.4,
-		},
-	},
+	-- enable = true,
+	-- msg = {
+	-- 	targets = {
+	-- 		[''] = 'msg',
+	-- 		bufwrite = 'cmd',
+	-- 		completion = 'cmd',
+	-- 		confirm = 'cmd',
+	-- 		echo = 'msg',
+	-- 		echoerr = 'pager',
+	-- 		echomsg = 'msg',
+	-- 		empty = 'cmd',
+	-- 		emsg = 'msg',
+	-- 		list_cmd = 'pager',
+	-- 		lua_error = 'pager',
+	-- 		lua_print = 'msg',
+	-- 		wildlist = 'pager',
+	-- 		wmsg = 'msg',
+	-- 	},
+	-- 	msg = {
+	-- 		height = 0.4,
+	-- 	},
+	-- },
 })

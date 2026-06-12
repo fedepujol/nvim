@@ -2,8 +2,7 @@
 ---@type LazyPluginSpec
 return {
 	'rachartier/tiny-inline-diagnostic.nvim',
-	event = 'VeryLazy',
-	priority = 1000,
+	event = 'LspAttach',
 	config = function()
 		require('tiny-inline-diagnostic').setup({
 			options = {

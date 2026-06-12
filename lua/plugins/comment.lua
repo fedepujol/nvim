@@ -3,7 +3,7 @@
 ---@type LazyPluginSpec
 return {
 	'numToStr/Comment.nvim',
-	event = 'BufEnter',
+	event = 'BufReadPre',
 	config = function()
 		require('Comment').setup({
 			padding = true, -- Add a space b/w comment the line

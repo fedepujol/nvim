@@ -2,7 +2,7 @@
 ---@type LazyPluginSpec
 return {
 	'kevinhwang91/nvim-ufo',
-	event = 'VeryLazy',
+	event = 'BufReadPre',
 	dependencies = {
 		'kevinhwang91/promise-async',
 		{

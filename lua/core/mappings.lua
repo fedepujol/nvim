@@ -64,7 +64,6 @@ vim.keymap.set('t', '<A-k>', '<C-\\><C-N><C-w>k', { noremap = true, silent = tru
 vim.keymap.set('t', '<A-l>', '<C-\\><C-N><C-w>l', { noremap = true, silent = true, desc = '' })
 
 -- Notes
-vim.keymap.set('n', '<leader>nd', function()
-	vim.api.nvim_exec2(':tabnew', { output = false })
-	vim.api.nvim_exec2([[:tcd ~/sid/vault]], { output = false })
-end, { desc = '[n]otes [d]ir' })
+vim.keymap.set('n', '<leader>nni', function()
+	require('common-utils').generate_uuid()
+end, { desc = '[n]otes [n]ew [i]d' })

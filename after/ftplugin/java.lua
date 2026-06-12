@@ -27,9 +27,7 @@ config.cmd = {
 	'java.base/java.lang=ALL-UNNAMED',
 
 	-- lombok
-	'-javaagent:'
-		.. paths.workspace
-		.. '/tools/eclipse/lombok.jar',
+	'-javaagent:' .. paths.workspace .. '/tools/eclipse/lombok.jar',
 	'-jar',
 	paths.jdtlsPaths.jar,
 	'-configuration',

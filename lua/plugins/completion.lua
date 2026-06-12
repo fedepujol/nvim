@@ -101,6 +101,9 @@ return {
 					'snippets',
 					'conventional_commits',
 				},
+				per_filetype = {
+					org = { 'orgmode' },
+				},
 				providers = {
 					buffer = {
 						name = '[buffer]',
@@ -128,6 +131,11 @@ return {
 						---@module 'blink-cmp-conventional-commits'
 						---@type blink-cmp-conventional-commits.Options
 						opts = {}, -- none so far
+					},
+					orgmode = {
+						name = '[org]',
+						module = 'orgmode.org.autocompletion.blink',
+						fallbacks = { 'buffer' },
 					},
 				},
 			},
