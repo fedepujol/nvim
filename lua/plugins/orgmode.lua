@@ -5,6 +5,7 @@ return {
 	ft = 'org',
 	dependencies = {
 		'chipsenkbeil/org-roam.nvim',
+		'akinsho/org-bullets.nvim',
 	},
 	config = function()
 		require('orgmode').setup({
@@ -32,5 +33,7 @@ return {
 		require('org-roam').setup({
 			directory = vim.fn.expand('~/sid/vault/notes'),
 		})
+
+		require('org-bullets').setup({})
 	end,
 }

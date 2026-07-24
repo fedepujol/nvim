@@ -5,11 +5,16 @@ return {
 	dependencies = {
 		'nvzone/volt',
 	},
+	keys = {
+		{
+			'<leader>tp',
+			function()
+				require('triforce').show_profile()
+			end,
+		},
+	},
 	config = function()
 		require('triforce').setup({
-			keymap = {
-				show_profile = '<leader>tp',
-			},
 			xp_rewards = {
 				char = 0.25,
 				line = 0.5,
