@@ -89,12 +89,9 @@ vim.opt.writebackup = false -- No backup file
 vim.cmd('filetype plugin indent on')
 
 if vim.fn.has('win32') == 1 then
-	vim.opt.shell = 'powershell'
-	vim.opt.shelltemp = false
-	vim.opt.shellcmdflag = '-NoLogo -NoProfile'
-	vim.opt.shellpipe = '> %s 2>&1'
-	vim.opt.shellquote = ''
-	vim.opt.shellxquote = ''
+	vim.opt.shell = 'pwsh'
+	vim.opt.shellcmdflag = "$PSStyle.OutputRendering = ''PlainText'';"
+	vim.cmd([[let $__SuppressAnsiEscapeSequences = 1]])
 else
 	vim.opt.shell = 'bash'
 end

@@ -70,10 +70,10 @@ M.jdtlsPaths = {
 	config_sys = M.jdtls .. '/' .. selectConfig(),
 	jar = vim.fn.glob(M.jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
 	jdk = {
-		v8 = M.scoop .. '/corretto8-jdk/current',
+		v8 = M.scoop .. '/temurin8-jdk/current',
 		v11 = M.scoop .. '/temurin11-jdk/current',
-		v17 = M.scoop .. '/corretto-lts-jdk/current',
-		v21 = M.scoop .. '/corretto-jdk/current',
+		v17 = M.scoop .. '/temurin17-jdk/current',
+		v21 = M.scoop .. '/temurin-lts-jdk/current',
 	},
 	gradle = M.scoop .. '/gradle7/current',
 	project = M.workspace .. '/java/' .. project_name,
